@@ -11,7 +11,6 @@
 		BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */; };
 		BC94AD2A2AA5FE3B00A77052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC94AD292AA5FE3B00A77052 /* Assets.xcassets */; };
 		BC94AD2D2AA5FE3B00A77052 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC94AD2B2AA5FE3B00A77052 /* LaunchScreen.storyboard */; };
-		BC94AD3C2AA6190F00A77052 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD3B2AA6190E00A77052 /* BaseViewController.swift */; };
 		BC94AD3F2AA619CE00A77052 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = BC94AD3E2AA619CE00A77052 /* Moya */; };
 		BC94AD422AA619DC00A77052 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = BC94AD412AA619DC00A77052 /* Then */; };
 		BC94AD452AA619FC00A77052 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC94AD442AA619FC00A77052 /* SnapKit */; };
@@ -26,6 +25,7 @@
 		BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD582AA6208900A77052 /* ExampleRequest.swift */; };
 		BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5A2AA621E200A77052 /* AppDependency.swift */; };
 		BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */; };
+		BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,6 @@
 		BC94AD292AA5FE3B00A77052 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC94AD2C2AA5FE3B00A77052 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC94AD2E2AA5FE3B00A77052 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC94AD3B2AA6190E00A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ../../../../../BaseViewController.swift; sourceTree = "<group>"; };
 		BC94AD462AA61A4800A77052 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		BC94AD482AA61A8300A77052 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		BC94AD4A2AA61B6C00A77052 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		BC94AD582AA6208900A77052 /* ExampleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRequest.swift; sourceTree = "<group>"; };
 		BC94AD5A2AA621E200A77052 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCustomView.swift; sourceTree = "<group>"; };
+		BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +125,7 @@
 		BC94AD372AA618C400A77052 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				BC94AD3B2AA6190E00A77052 /* BaseViewController.swift */,
+				BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */,
 				BC94AD482AA61A8300A77052 /* BaseView.swift */,
 				BC94AD4A2AA61B6C00A77052 /* BaseButton.swift */,
 			);
@@ -267,8 +267,8 @@
 				BC94AD4E2AA61CA500A77052 /* ExampleViewController.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* ExampleRouter.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
-				BC94AD3C2AA6190F00A77052 /* BaseViewController.swift in Sources */,
 				BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */,
+				BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
 				BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */,
