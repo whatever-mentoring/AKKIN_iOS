@@ -33,9 +33,9 @@ final class MainViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "myPageButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(myPageButtonTapped))
+        setNavigationItem()
+
+        view.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
     }
     
     // MARK: Configuration
@@ -59,5 +59,10 @@ final class MainViewController: BaseViewController {
         provider.request(.getSomething) { result in
             /// Do Something
         }
+    }
+
+    private func setNavigationItem() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "myPageButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(myPageButtonTapped))
     }
 }
