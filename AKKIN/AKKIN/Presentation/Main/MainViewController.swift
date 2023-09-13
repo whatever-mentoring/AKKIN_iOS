@@ -15,11 +15,13 @@ final class MainViewController: BaseViewController {
         static let buttonHeight = 30
     }
 
-    private let navigationTitleLabel = UILabel().then {
-        $0.text = "아낀거지"
+    private let navigationTitleImageView = UIImageView().then {
+        $0.image = UIImage(named: "AKKIN_Title")
     }
 
     @objc func myPageButtonTapped() {
+//        let nextViewController = MyPageViewController()
+//        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     // MARK: Environment
@@ -30,7 +32,7 @@ final class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleLabel)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "myPageButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(myPageButtonTapped))
     }
     
