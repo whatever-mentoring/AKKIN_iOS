@@ -25,6 +25,7 @@ final class MainViewController: BaseViewController {
     }
     
     let mainCardCollectionView = MainCardCollectionView()
+    let mainWeeklyStatsView = MainWeeklyStatsView()
 
     // MARK: Environment
     private let router = ExampleRouter()
@@ -43,6 +44,7 @@ final class MainViewController: BaseViewController {
         super.configureSubviews()
 
         view.addSubview(mainCardCollectionView)
+        view.addSubview(mainWeeklyStatsView)
     }
     
     // MARK: Layout
@@ -50,7 +52,14 @@ final class MainViewController: BaseViewController {
         super.makeConstraints()
         
         mainCardCollectionView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(255)
+        }
+
+        mainWeeklyStatsView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(mainCardCollectionView.snp.bottom)
+            $0.height.equalTo(150)
         }
     }
     
