@@ -24,6 +24,8 @@ final class MainViewController: BaseViewController {
 //        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
+    let mainCardCollectionView = MainCardCollectionView()
+
     // MARK: Environment
     private let router = ExampleRouter()
     private let provider = ExampleProvider(session: .default)
@@ -39,13 +41,17 @@ final class MainViewController: BaseViewController {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        
+
+        view.addSubview(mainCardCollectionView)
     }
     
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-
+        
+        mainCardCollectionView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     // MARK: Networking
