@@ -20,6 +20,7 @@ final class MainViewController: BaseViewController {
 
     let mainCardCollectionView = MainCardCollectionView()
     let mainWeeklyStatsView = MainWeeklyStatsView()
+    let mainMonthlyStatsView = MainMonthlyStatsView()
 
     // MARK: Environment
     private let router = ExampleRouter()
@@ -40,6 +41,7 @@ final class MainViewController: BaseViewController {
 
         view.addSubview(mainCardCollectionView)
         view.addSubview(mainWeeklyStatsView)
+        view.addSubview(mainMonthlyStatsView)
 
         myPageButton.tap = { [weak self] in
             guard let self else { return }
@@ -60,6 +62,11 @@ final class MainViewController: BaseViewController {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(mainCardCollectionView.snp.bottom)
             $0.height.equalTo(150)
+        }
+
+        mainMonthlyStatsView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(mainWeeklyStatsView.snp.bottom)
         }
     }
     
