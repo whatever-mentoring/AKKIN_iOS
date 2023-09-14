@@ -29,6 +29,7 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setContentView()
+        configureSubviews()
         makeConstraints()
     }
 
@@ -50,11 +51,13 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowRadius = 8
     }
 
-    private func makeConstraints() {
+    private func configureSubviews() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(cardImageView)
         contentView.addSubview(registerButton)
+    }
 
+    private func makeConstraints() {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(20)
             $0.centerX.equalToSuperview()
