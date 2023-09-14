@@ -8,13 +8,8 @@
 import UIKit
 
 final class MainViewController: BaseViewController {
-    
-    // MARK: Constants
-    private enum Metric {
-        static let labelHeight = 50
-        static let buttonHeight = 30
-    }
 
+    // MARK: UI Components
     private let navigationTitleImageView = UIImageView().then {
         $0.image = UIImage(named: "AKKIN_Title")
     }
