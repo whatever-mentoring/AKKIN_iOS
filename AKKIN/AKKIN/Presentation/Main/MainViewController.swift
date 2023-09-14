@@ -19,23 +19,23 @@ final class MainViewController: BaseViewController {
         $0.image = UIImage(named: "AKKIN_Title")
     }
 
-    @objc func myPageButtonTapped() {
-//        let nextViewController = MyPageViewController()
-//        self.navigationController?.pushViewController(nextViewController, animated: true)
+    private let myPageButton = BaseButton().then {
+        $0.setImage(UIImage(named: "myPageButton"), for: .normal)
     }
-    
+
     let mainCardCollectionView = MainCardCollectionView()
     let mainWeeklyStatsView = MainWeeklyStatsView()
 
     // MARK: Environment
     private let router = ExampleRouter()
     private let provider = ExampleProvider(session: .default)
-    
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
 
+        router.viewController = self
         view.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
     }
     
@@ -45,6 +45,11 @@ final class MainViewController: BaseViewController {
 
         view.addSubview(mainCardCollectionView)
         view.addSubview(mainWeeklyStatsView)
+
+        myPageButton.tap = { [weak self] in
+            guard let self else { return }
+            router.presentMyPageViewController()
+        }
     }
     
     // MARK: Layout
@@ -72,6 +77,6 @@ final class MainViewController: BaseViewController {
 
     private func setNavigationItem() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "myPageButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(myPageButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: myPageButton)
     }
 }
