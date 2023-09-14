@@ -13,6 +13,7 @@ final class MainCardCollectionView: BaseView {
     public lazy var cardCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: createLayout())
         collectionView.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
+        collectionView.isScrollEnabled = false
         collectionView.register(MainCardCollectionViewCell.self, forCellWithReuseIdentifier: MainCardCollectionViewCell.identifier)
         return collectionView
     }()
