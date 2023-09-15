@@ -19,7 +19,7 @@ struct CompositionRoot {
     static func resolve() -> AppDependency {
         return AppDependency { scene in
             UIWindow(windowScene: scene).then {
-                $0.rootViewController = UINavigationController(rootViewController: MainViewController())
+                $0.rootViewController = UINavigationController(rootViewController: SplashViewController())
             }
         }
     }
