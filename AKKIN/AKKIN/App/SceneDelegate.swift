@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func changeRootViewController() {
          guard let window = window else { return }
-         window.rootViewController = UINavigationController(rootViewController: SplashViewController())
+         window.rootViewController = UINavigationController(rootViewController: ExampleViewController())
          UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
      }
 }
