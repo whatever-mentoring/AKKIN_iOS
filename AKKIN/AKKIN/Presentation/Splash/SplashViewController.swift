@@ -9,17 +9,16 @@ import UIKit
 
 final class SplashViewController: BaseViewController {
 
+    // MARK: UI Components
     private let splashImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "splash")
         return imageView
     }()
 
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setHierarchy()
-        setConstraints()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -31,11 +30,13 @@ final class SplashViewController: BaseViewController {
         }
     }
 
-    func setHierarchy() {
+    // MARK: Configuration
+    override func configureSubviews() {
         view.addSubview(splashImageView)
     }
 
-    func setConstraints() {
+    // MARK: Layout
+    override func makeConstraints() {
         splashImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
