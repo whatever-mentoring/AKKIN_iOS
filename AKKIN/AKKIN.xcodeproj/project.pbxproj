@@ -14,6 +14,10 @@
 		95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535BE2AB23EED00FA2492 /* MainWeeklyStatsView.swift */; };
 		95E535C12AB24A2300FA2492 /* MainMonthlyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535C02AB24A2300FA2492 /* MainMonthlyStatsView.swift */; };
 		95E535C32AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535C22AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift */; };
+		95E535D82AB499F900FA2492 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535D72AB499F900FA2492 /* MyPageViewController.swift */; };
+		95E535DA2AB49A0100FA2492 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535D92AB49A0100FA2492 /* MyPageView.swift */; };
+		95E535DC2AB4A25E00FA2492 /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535DB2AB4A25E00FA2492 /* MyPageTableViewCell.swift */; };
+		95E535DE2AB4B10200FA2492 /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535DD2AB4B10200FA2492 /* MyPageTableViewHeader.swift */; };
 		BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD202AA5FE3A00A77052 /* AppDelegate.swift */; };
 		BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */; };
 		BC94AD2A2AA5FE3B00A77052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC94AD292AA5FE3B00A77052 /* Assets.xcassets */; };
@@ -43,6 +47,10 @@
 		95E535BE2AB23EED00FA2492 /* MainWeeklyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeeklyStatsView.swift; sourceTree = "<group>"; };
 		95E535C02AB24A2300FA2492 /* MainMonthlyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMonthlyStatsView.swift; sourceTree = "<group>"; };
 		95E535C22AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMonthlyStatsTableViewCell.swift; sourceTree = "<group>"; };
+		95E535D72AB499F900FA2492 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		95E535D92AB49A0100FA2492 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		95E535DB2AB4A25E00FA2492 /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
+		95E535DD2AB4B10200FA2492 /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
 		BC94AD1D2AA5FE3A00A77052 /* AKKIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKKIN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC94AD202AA5FE3A00A77052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +99,17 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		95E535D62AB499EC00FA2492 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				95E535D72AB499F900FA2492 /* MyPageViewController.swift */,
+				95E535D92AB49A0100FA2492 /* MyPageView.swift */,
+				95E535DB2AB4A25E00FA2492 /* MyPageTableViewCell.swift */,
+				95E535DD2AB4B10200FA2492 /* MyPageTableViewHeader.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		BC94AD142AA5FE3A00A77052 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +153,7 @@
 		BC94AD352AA6189600A77052 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				95E535D62AB499EC00FA2492 /* MyPage */,
 				95E535A42AB1910900FA2492 /* Main */,
 				BC94AD4C2AA61C9600A77052 /* Example */,
 				BC94AD372AA618C400A77052 /* Base */,
@@ -298,10 +318,13 @@
 				95E535C12AB24A2300FA2492 /* MainMonthlyStatsView.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* ExampleRouter.swift in Sources */,
 				95E535B72AB1D4E000FA2492 /* MainCardCollectionViewCell.swift in Sources */,
+				95E535DE2AB4B10200FA2492 /* MyPageTableViewHeader.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */,
 				BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */,
 				95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */,
+				95E535DC2AB4A25E00FA2492 /* MyPageTableViewCell.swift in Sources */,
+				95E535DA2AB49A0100FA2492 /* MyPageView.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
 				BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */,
@@ -309,6 +332,7 @@
 				95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */,
 				BC94AD492AA61A8300A77052 /* BaseView.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
+				95E535D82AB499F900FA2492 /* MyPageViewController.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,
