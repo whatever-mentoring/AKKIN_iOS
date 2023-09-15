@@ -24,6 +24,11 @@ final class SplashViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.8) {
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.changeRootViewController()
+        }
     }
 
     func setHierarchy() {
