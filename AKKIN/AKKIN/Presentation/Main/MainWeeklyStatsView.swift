@@ -29,7 +29,7 @@ final class MainWeeklyStatsView: BaseView {
         $0.font = .systemFont(ofSize: 16)
     }
 
-    private let detailButton = UIButton().then {
+    private let detailButton = BaseButton().then {
         $0.setImage(UIImage(named: "detailButton"), for: .normal)
     }
 
@@ -60,6 +60,8 @@ final class MainWeeklyStatsView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
         setLabelColor()
+
+        detailButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
 
         addSubview(weeklyStatsLabel)
         addSubview(weeklyStatsView)
