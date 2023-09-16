@@ -65,7 +65,7 @@ final class MyPageViewController: BaseViewController {
 
         backButton.tap = { [weak self] in
             guard let self else { return }
-//            router.dismissViewController()
+            router.dismissViewController()
         }
     }
 
