@@ -175,7 +175,6 @@ final class WeeklyStatsViewController: BaseViewController {
         }
     }
 
-    // MARK: View Transition
     override func viewTransition() {
         backButton.tap = { [weak self] in
             guard let self else { return }
