@@ -11,10 +11,6 @@
 		9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */; };
 		9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */; };
 		9507C1C32AB6271D00E026F9 /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1C22AB6271D00E026F9 /* MyPageTableViewCell.swift */; };
-		9507C1C62AB62C1800E026F9 /* WeeklyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1C52AB62C1800E026F9 /* WeeklyStatsViewController.swift */; };
-		9507C1C82AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1C72AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift */; };
-		9507C1CA2AB62C3500E026F9 /* WeeklyStatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1C92AB62C3500E026F9 /* WeeklyStatsCollectionView.swift */; };
-		9507C1CC2AB62C4700E026F9 /* WeeklyStatsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1CB2AB62C4700E026F9 /* WeeklyStatsListCell.swift */; };
 		95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5359F2AB18F1700FA2492 /* MainViewController.swift */; };
 		95E535A22AB18F3200FA2492 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535A12AB18F3200FA2492 /* MainView.swift */; };
 		95E535B52AB1D4CF00FA2492 /* MainCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */; };
@@ -49,10 +45,6 @@
 		9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
 		9507C1C22AB6271D00E026F9 /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
-		9507C1C52AB62C1800E026F9 /* WeeklyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsViewController.swift; sourceTree = "<group>"; };
-		9507C1C72AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsCategoryCell.swift; sourceTree = "<group>"; };
-		9507C1C92AB62C3500E026F9 /* WeeklyStatsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsCollectionView.swift; sourceTree = "<group>"; };
-		9507C1CB2AB62C4700E026F9 /* WeeklyStatsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsListCell.swift; sourceTree = "<group>"; };
 		95E5359F2AB18F1700FA2492 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		95E535A12AB18F3200FA2492 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCollectionView.swift; sourceTree = "<group>"; };
@@ -104,25 +96,6 @@
 				9507C1C22AB6271D00E026F9 /* MyPageTableViewCell.swift */,
 			);
 			path = MyPage;
-			sourceTree = "<group>";
-		};
-		9507C1C42AB62C0800E026F9 /* WeeklyStats */ = {
-			isa = PBXGroup;
-			children = (
-				9507C1CF2AB62C7C00E026F9 /* cell */,
-				9507C1C52AB62C1800E026F9 /* WeeklyStatsViewController.swift */,
-				9507C1C92AB62C3500E026F9 /* WeeklyStatsCollectionView.swift */,
-			);
-			path = WeeklyStats;
-			sourceTree = "<group>";
-		};
-		9507C1CF2AB62C7C00E026F9 /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				9507C1C72AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift */,
-				9507C1CB2AB62C4700E026F9 /* WeeklyStatsListCell.swift */,
-			);
-			path = cell;
 			sourceTree = "<group>";
 		};
 		95E535A42AB1910900FA2492 /* Main */ = {
@@ -190,7 +163,6 @@
 		BC94AD352AA6189600A77052 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				9507C1C42AB62C0800E026F9 /* WeeklyStats */,
 				9507C1B72AB626C100E026F9 /* MyPage */,
 				95E535CE2AB492E500FA2492 /* Splash */,
 				95E535A42AB1910900FA2492 /* Main */,
@@ -352,14 +324,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC94AD472AA61A4800A77052 /* Int+Extension.swift in Sources */,
-				9507C1C62AB62C1800E026F9 /* WeeklyStatsViewController.swift in Sources */,
-				9507C1C82AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift in Sources */,
 				95E535B52AB1D4CF00FA2492 /* MainCardCollectionView.swift in Sources */,
 				BC94AD4E2AA61CA500A77052 /* ExampleViewController.swift in Sources */,
 				95E535C12AB24A2300FA2492 /* MainMonthlyStatsView.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* ExampleRouter.swift in Sources */,
 				95E535B72AB1D4E000FA2492 /* MainCardCollectionViewCell.swift in Sources */,
-				9507C1CA2AB62C3500E026F9 /* WeeklyStatsCollectionView.swift in Sources */,
 				9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				9507C1C32AB6271D00E026F9 /* MyPageTableViewCell.swift in Sources */,
@@ -367,7 +336,6 @@
 				BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */,
 				BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */,
 				95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */,
-				9507C1CC2AB62C4700E026F9 /* WeeklyStatsListCell.swift in Sources */,
 				9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
