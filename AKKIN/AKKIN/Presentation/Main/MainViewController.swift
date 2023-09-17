@@ -38,6 +38,7 @@ final class MainViewController: BaseViewController {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+        viewTransition()
 
         view.addSubview(mainCardCollectionView)
         view.addSubview(mainWeeklyStatsView)
@@ -66,7 +67,7 @@ final class MainViewController: BaseViewController {
     }
 
     // MARK: View Transition
-    override func viewTransition() {
+    private func viewTransition() {
         myPageButton.tap = { [weak self] in
             guard let self else { return }
             router.presentMyPageViewController()
