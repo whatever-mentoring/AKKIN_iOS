@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1B82AB626CB00E026F9 /* MyPageView.swift */; };
-		9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */; };
-		9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */; };
-		9507C1C32AB6271D00E026F9 /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1C22AB6271D00E026F9 /* MyPageTableViewCell.swift */; };
-		9507C1C62AB62C1800E026F9 /* WeeklyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1C52AB62C1800E026F9 /* WeeklyStatsViewController.swift */; };
-		9507C1C82AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1C72AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift */; };
-		9507C1CA2AB62C3500E026F9 /* WeeklyStatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1C92AB62C3500E026F9 /* WeeklyStatsCollectionView.swift */; };
-		9507C1CC2AB62C4700E026F9 /* WeeklyStatsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1CB2AB62C4700E026F9 /* WeeklyStatsListCell.swift */; };
+		959813BE2AB4C01700746D62 /* WeeklyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959813BD2AB4C01700746D62 /* WeeklyStatsViewController.swift */; };
+		959813C02AB4CAD000746D62 /* WeeklyStatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959813BF2AB4CAD000746D62 /* WeeklyStatsCollectionView.swift */; };
+		959813CA2AB5442900746D62 /* WeeklyStatsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959813C92AB5442900746D62 /* WeeklyStatsCategoryCell.swift */; };
+		959813CC2AB5458900746D62 /* WeeklyStatsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959813CB2AB5458900746D62 /* WeeklyStatsListCell.swift */; };
+		959813CE2AB5498700746D62 /* WeeklyStatsWeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959813CD2AB5498700746D62 /* WeeklyStatsWeekCell.swift */; };
 		95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5359F2AB18F1700FA2492 /* MainViewController.swift */; };
 		95E535A22AB18F3200FA2492 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535A12AB18F3200FA2492 /* MainView.swift */; };
 		95E535B52AB1D4CF00FA2492 /* MainCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */; };
@@ -22,7 +19,6 @@
 		95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535BE2AB23EED00FA2492 /* MainWeeklyStatsView.swift */; };
 		95E535C12AB24A2300FA2492 /* MainMonthlyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535C02AB24A2300FA2492 /* MainMonthlyStatsView.swift */; };
 		95E535C32AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535C22AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift */; };
-		95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535CF2AB492F400FA2492 /* SplashViewController.swift */; };
 		BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD202AA5FE3A00A77052 /* AppDelegate.swift */; };
 		BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */; };
 		BC94AD2A2AA5FE3B00A77052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC94AD292AA5FE3B00A77052 /* Assets.xcassets */; };
@@ -45,14 +41,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9507C1B82AB626CB00E026F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
-		9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
-		9507C1C22AB6271D00E026F9 /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
-		9507C1C52AB62C1800E026F9 /* WeeklyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsViewController.swift; sourceTree = "<group>"; };
-		9507C1C72AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsCategoryCell.swift; sourceTree = "<group>"; };
-		9507C1C92AB62C3500E026F9 /* WeeklyStatsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsCollectionView.swift; sourceTree = "<group>"; };
-		9507C1CB2AB62C4700E026F9 /* WeeklyStatsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsListCell.swift; sourceTree = "<group>"; };
+		959813BD2AB4C01700746D62 /* WeeklyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsViewController.swift; sourceTree = "<group>"; };
+		959813BF2AB4CAD000746D62 /* WeeklyStatsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsCollectionView.swift; sourceTree = "<group>"; };
+		959813C92AB5442900746D62 /* WeeklyStatsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsCategoryCell.swift; sourceTree = "<group>"; };
+		959813CB2AB5458900746D62 /* WeeklyStatsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsListCell.swift; sourceTree = "<group>"; };
+		959813CD2AB5498700746D62 /* WeeklyStatsWeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStatsWeekCell.swift; sourceTree = "<group>"; };
 		95E5359F2AB18F1700FA2492 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		95E535A12AB18F3200FA2492 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCollectionView.swift; sourceTree = "<group>"; };
@@ -60,7 +53,6 @@
 		95E535BE2AB23EED00FA2492 /* MainWeeklyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeeklyStatsView.swift; sourceTree = "<group>"; };
 		95E535C02AB24A2300FA2492 /* MainMonthlyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMonthlyStatsView.swift; sourceTree = "<group>"; };
 		95E535C22AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMonthlyStatsTableViewCell.swift; sourceTree = "<group>"; };
-		95E535CF2AB492F400FA2492 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BC94AD1D2AA5FE3A00A77052 /* AKKIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKKIN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC94AD202AA5FE3A00A77052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,34 +87,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9507C1B72AB626C100E026F9 /* MyPage */ = {
+		959813BC2AB4BFFC00746D62 /* WeeklyStats */ = {
 			isa = PBXGroup;
 			children = (
-				9507C1B82AB626CB00E026F9 /* MyPageView.swift */,
-				9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */,
-				9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */,
-				9507C1C22AB6271D00E026F9 /* MyPageTableViewCell.swift */,
-			);
-			path = MyPage;
-			sourceTree = "<group>";
-		};
-		9507C1C42AB62C0800E026F9 /* WeeklyStats */ = {
-			isa = PBXGroup;
-			children = (
-				9507C1CF2AB62C7C00E026F9 /* cell */,
-				9507C1C52AB62C1800E026F9 /* WeeklyStatsViewController.swift */,
-				9507C1C92AB62C3500E026F9 /* WeeklyStatsCollectionView.swift */,
+				959813BD2AB4C01700746D62 /* WeeklyStatsViewController.swift */,
+				959813BF2AB4CAD000746D62 /* WeeklyStatsCollectionView.swift */,
+				959813CD2AB5498700746D62 /* WeeklyStatsWeekCell.swift */,
+				959813C92AB5442900746D62 /* WeeklyStatsCategoryCell.swift */,
+				959813CB2AB5458900746D62 /* WeeklyStatsListCell.swift */,
 			);
 			path = WeeklyStats;
-			sourceTree = "<group>";
-		};
-		9507C1CF2AB62C7C00E026F9 /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				9507C1C72AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift */,
-				9507C1CB2AB62C4700E026F9 /* WeeklyStatsListCell.swift */,
-			);
-			path = cell;
 			sourceTree = "<group>";
 		};
 		95E535A42AB1910900FA2492 /* Main */ = {
@@ -137,14 +111,6 @@
 				95E535C22AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		95E535CE2AB492E500FA2492 /* Splash */ = {
-			isa = PBXGroup;
-			children = (
-				95E535CF2AB492F400FA2492 /* SplashViewController.swift */,
-			);
-			path = Splash;
 			sourceTree = "<group>";
 		};
 		BC94AD142AA5FE3A00A77052 = {
@@ -190,9 +156,7 @@
 		BC94AD352AA6189600A77052 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				9507C1C42AB62C0800E026F9 /* WeeklyStats */,
-				9507C1B72AB626C100E026F9 /* MyPage */,
-				95E535CE2AB492E500FA2492 /* Splash */,
+				959813BC2AB4BFFC00746D62 /* WeeklyStats */,
 				95E535A42AB1910900FA2492 /* Main */,
 				BC94AD4C2AA61C9600A77052 /* Example */,
 				BC94AD372AA618C400A77052 /* Base */,
@@ -352,35 +316,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC94AD472AA61A4800A77052 /* Int+Extension.swift in Sources */,
-				9507C1C62AB62C1800E026F9 /* WeeklyStatsViewController.swift in Sources */,
-				9507C1C82AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift in Sources */,
 				95E535B52AB1D4CF00FA2492 /* MainCardCollectionView.swift in Sources */,
 				BC94AD4E2AA61CA500A77052 /* ExampleViewController.swift in Sources */,
 				95E535C12AB24A2300FA2492 /* MainMonthlyStatsView.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* ExampleRouter.swift in Sources */,
 				95E535B72AB1D4E000FA2492 /* MainCardCollectionViewCell.swift in Sources */,
-				9507C1CA2AB62C3500E026F9 /* WeeklyStatsCollectionView.swift in Sources */,
-				9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
-				9507C1C32AB6271D00E026F9 /* MyPageTableViewCell.swift in Sources */,
-				9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */,
 				BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */,
+				959813CA2AB5442900746D62 /* WeeklyStatsCategoryCell.swift in Sources */,
 				BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */,
+				959813C02AB4CAD000746D62 /* WeeklyStatsCollectionView.swift in Sources */,
 				95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */,
-				9507C1CC2AB62C4700E026F9 /* WeeklyStatsListCell.swift in Sources */,
-				9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
+				959813CC2AB5458900746D62 /* WeeklyStatsListCell.swift in Sources */,
 				BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */,
 				95E535A22AB18F3200FA2492 /* MainView.swift in Sources */,
 				95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */,
 				BC94AD492AA61A8300A77052 /* BaseView.swift in Sources */,
+				959813CE2AB5498700746D62 /* WeeklyStatsWeekCell.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,
 				95E535C32AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift in Sources */,
-				95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */,
+				959813BE2AB4C01700746D62 /* WeeklyStatsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +479,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AKKIN/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -546,7 +505,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AKKIN/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

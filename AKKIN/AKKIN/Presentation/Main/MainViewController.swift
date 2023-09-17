@@ -42,8 +42,13 @@ final class MainViewController: BaseViewController {
         view.addSubview(mainCardCollectionView)
         view.addSubview(mainWeeklyStatsView)
         view.addSubview(mainMonthlyStatsView)
-    }
 
+        myPageButton.tap = { [weak self] in
+            guard let self else { return }
+            router.presentMyPageViewController()
+        }
+    }
+    
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
@@ -64,19 +69,7 @@ final class MainViewController: BaseViewController {
             $0.top.equalTo(mainWeeklyStatsView.snp.bottom)
         }
     }
-
-    // MARK: View Transition
-    override func viewTransition() {
-        myPageButton.tap = { [weak self] in
-            guard let self else { return }
-            router.presentMyPageViewController()
-        }
-
-        mainWeeklyStatsView.tapAdd = { [self] in
-            router.presentWeeklyStatsViewController()
-        }
-    }
-
+    
     // MARK: Networking
     private func loadSomething() {
         provider.request(.getSomething) { result in

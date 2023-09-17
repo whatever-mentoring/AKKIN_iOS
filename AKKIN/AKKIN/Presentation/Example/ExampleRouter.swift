@@ -19,16 +19,7 @@ final class ExampleRouter {
     }
 
     func presentMyPageViewController() {
-        let myPageViewController = MyPageViewController()
+        let myPageViewController = ExampleViewController()
         viewController?.navigationController?.pushViewController(myPageViewController, animated: true)
-    }
-
-    func presentWeeklyStatsViewController() {
-        let weeklyStatsViewController = WeeklyStatsViewController()
-        viewController?.navigationController?.pushViewController(weeklyStatsViewController, animated: true)
-    }
-
-    func dismissViewController() {
-        viewController?.navigationController?.popViewController(animated: true)
     }
 }
