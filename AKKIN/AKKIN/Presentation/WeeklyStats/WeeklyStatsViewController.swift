@@ -106,7 +106,6 @@ final class WeeklyStatsViewController: BaseViewController {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        router.viewController = self
 
         view.addSubview(weekLabel)
         view.addSubview(previousButton)
@@ -172,13 +171,6 @@ final class WeeklyStatsViewController: BaseViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(171)
             $0.leading.trailing.equalToSuperview().inset(24)
             $0.bottom.equalToSuperview()
-        }
-    }
-
-    override func viewTransition() {
-        backButton.tap = { [weak self] in
-            guard let self else { return }
-            router.dismissViewController()
         }
     }
 }
