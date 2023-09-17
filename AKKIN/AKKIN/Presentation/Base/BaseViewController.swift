@@ -15,7 +15,6 @@ class BaseViewController: UIViewController {
         
         configureSubviews()
         makeConstraints()
-        viewTransition()
         view.backgroundColor = .white
     }
     
@@ -26,9 +25,5 @@ class BaseViewController: UIViewController {
     
     // MARK: Layout
     func makeConstraints() {
-    }
-
-    // MARK: View Transition
-    func viewTransition() {
     }
 }
