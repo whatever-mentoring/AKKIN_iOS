@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B7427DB2AB876AE00BA7E2C /* Card in Resources */ = {isa = PBXBuildFile; fileRef = 6B7427DA2AB876AE00BA7E2C /* Card */; };
+		6B7427DD2AB876B600BA7E2C /* Input in Resources */ = {isa = PBXBuildFile; fileRef = 6B7427DC2AB876B600BA7E2C /* Input */; };
 		9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1B82AB626CB00E026F9 /* MyPageView.swift */; };
 		9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */; };
 		9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B7427DA2AB876AE00BA7E2C /* Card */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Card; sourceTree = "<group>"; };
+		6B7427DC2AB876B600BA7E2C /* Input */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Input; sourceTree = "<group>"; };
 		9507C1B82AB626CB00E026F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 		BC94AD352AA6189600A77052 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				6B7427DC2AB876B600BA7E2C /* Input */,
+				6B7427DA2AB876AE00BA7E2C /* Card */,
 				9507C1C42AB62C0800E026F9 /* WeeklyStats */,
 				9507C1B72AB626C100E026F9 /* MyPage */,
 				95E535CE2AB492E500FA2492 /* Splash */,
@@ -340,7 +346,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC94AD2D2AA5FE3B00A77052 /* LaunchScreen.storyboard in Resources */,
+				6B7427DD2AB876B600BA7E2C /* Input in Resources */,
 				BC94AD2A2AA5FE3B00A77052 /* Assets.xcassets in Resources */,
+				6B7427DB2AB876AE00BA7E2C /* Card in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
