@@ -17,4 +17,9 @@ final class ExampleRouter {
         someViewController.view.backgroundColor = .white
         viewController?.present(someViewController, animated: true)
     }
+
+    func presentMyPageViewController() {
+        let myPageViewController = ExampleViewController()
+        viewController?.navigationController?.pushViewController(myPageViewController, animated: true)
+    }
 }
