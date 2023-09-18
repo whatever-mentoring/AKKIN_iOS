@@ -54,6 +54,7 @@ final class MainCardCollectionView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+        addButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
         cardCollectionView.dataSource = self
 
         addSubview(akkinLabel)
