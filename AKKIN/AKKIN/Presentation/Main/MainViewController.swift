@@ -75,6 +75,10 @@ final class MainViewController: BaseViewController {
         mainWeeklyStatsView.tapAdd = { [self] in
             router.presentWeeklyStatsViewController()
         }
+
+        mainMonthlyStatsView.tapAdd = { [self] in
+            router.presentMonthlyStatsViewController()
+        }
     }
 
     // MARK: Networking
