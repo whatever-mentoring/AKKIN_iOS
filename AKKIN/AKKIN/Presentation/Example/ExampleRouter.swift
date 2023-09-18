@@ -23,13 +23,18 @@ final class ExampleRouter {
         viewController?.navigationController?.pushViewController(myPageViewController, animated: true)
     }
 
+    func presentInputViewController() {
+        let inputViewController = ExampleViewController()
+        viewController?.navigationController?.pushViewController(inputViewController, animated: true)
+    }
+
     func presentWeeklyStatsViewController() {
         let weeklyStatsViewController = WeeklyStatsViewController()
         viewController?.navigationController?.pushViewController(weeklyStatsViewController, animated: true)
     }
 
     func presentMonthlyStatsViewController() {
-        let monthlyStatsViewController = UIViewController()
+        let monthlyStatsViewController = ExampleViewController()
         viewController?.navigationController?.pushViewController(monthlyStatsViewController, animated: true)
     }
 

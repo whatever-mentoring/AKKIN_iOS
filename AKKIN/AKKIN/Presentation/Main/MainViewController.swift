@@ -72,6 +72,10 @@ final class MainViewController: BaseViewController {
             router.presentMyPageViewController()
         }
 
+        mainCardCollectionView.tapAdd = { [self] in
+            router.presentInputViewController()
+        }
+
         mainWeeklyStatsView.tapAdd = { [self] in
             router.presentWeeklyStatsViewController()
         }
