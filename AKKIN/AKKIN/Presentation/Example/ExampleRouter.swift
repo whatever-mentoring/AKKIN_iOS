@@ -31,4 +31,22 @@ final class ExampleRouter {
     func dismissViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }
+    
+    func presentInputSelectedViewController() {
+            let someViewController = InputViewController()
+            someViewController.view.backgroundColor = .white
+            viewController?.present(someViewController, animated: true)
+        }
+        
+    func presentCardViewController() {
+        let someViewController = CardViewController()
+        someViewController.view.backgroundColor = .white
+        someViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        viewController?.present(someViewController, animated: true)
+    }
+
+    func dismissCardViewController() {
+        viewController?.dismiss(animated: true)
+        //completion 함수 추가하기
+    }
 }
