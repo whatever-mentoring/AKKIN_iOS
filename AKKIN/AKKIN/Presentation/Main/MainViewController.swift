@@ -18,6 +18,12 @@ final class MainViewController: BaseViewController {
         $0.setImage(UIImage(named: "myPageButton"), for: .normal)
     }
 
+    private let scrollView = UIScrollView()
+    
+    private let contentStackView = UIStackView().then {
+        $0.axis = .vertical
+    }
+
     let mainCardCollectionView = MainCardCollectionView()
     let mainWeeklyStatsView = MainWeeklyStatsView()
     let mainMonthlyStatsView = MainMonthlyStatsView()
@@ -39,29 +45,35 @@ final class MainViewController: BaseViewController {
     override func configureSubviews() {
         super.configureSubviews()
 
-        view.addSubview(mainCardCollectionView)
-        view.addSubview(mainWeeklyStatsView)
-        view.addSubview(mainMonthlyStatsView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(mainCardCollectionView)
+        contentStackView.addArrangedSubview(mainWeeklyStatsView)
+        contentStackView.addArrangedSubview(mainMonthlyStatsView)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
         
+        scrollView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        contentStackView.snp.makeConstraints { make in
+            make.edges.width.equalToSuperview()
+        }
+
         mainCardCollectionView.snp.makeConstraints {
-            $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(334)
         }
 
         mainWeeklyStatsView.snp.makeConstraints {
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.top.equalTo(mainCardCollectionView.snp.bottom)
             $0.height.equalTo(150)
         }
 
         mainMonthlyStatsView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
-            $0.top.equalTo(mainWeeklyStatsView.snp.bottom)
+            $0.height.equalTo(245)
         }
     }
 
