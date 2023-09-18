@@ -50,7 +50,7 @@ final class MainViewController: BaseViewController {
         
         mainCardCollectionView.snp.makeConstraints {
             $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(255)
+            $0.height.equalTo(334)
         }
 
         mainWeeklyStatsView.snp.makeConstraints {

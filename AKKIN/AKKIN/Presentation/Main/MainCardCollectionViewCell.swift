@@ -11,19 +11,24 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "MainCardCollectionViewCell"
 
-    private let titleLabel = UILabel().then {
-        $0.text = "오늘 얼마 아낀거지?"
+    private let cardImageView = UIImageView().then {
+        $0.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
+    }
+
+    private let moneyLabel = UILabel().then {
+        $0.text = "무려 000,000 원"
+        $0.textColor = UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1)
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
     }
 
-    private let cardImageView = UIImageView().then {
-        $0.backgroundColor = UIColor(red: 1, green: 0.63, blue: 0.63, alpha: 1)
+    private let cardLabel = UILabel().then {
+        $0.text = "[ 헝그리 정신 실천 ]"
+        $0.font = .systemFont(ofSize: 16)
     }
 
-    private let registerButton = UIButton().then {
-        $0.setTitle("아낀 내역 추가하기", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+    private let contentLabel = UILabel().then {
+        $0.text = "밥 대신 공기 먹기"
+        $0.font = .systemFont(ofSize: 16)
     }
 
     override init(frame: CGRect) {
@@ -52,25 +57,31 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureSubviews() {
-        contentView.addSubview(titleLabel)
         contentView.addSubview(cardImageView)
-        contentView.addSubview(registerButton)
+        contentView.addSubview(moneyLabel)
+        contentView.addSubview(cardLabel)
+        contentView.addSubview(contentLabel)
     }
 
     private func makeConstraints() {
-        titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20)
-            $0.centerX.equalToSuperview()
-        }
-
         cardImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(60)
+            $0.top.equalToSuperview().inset(43)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(106)
+            $0.width.height.equalTo(104)
         }
 
-        registerButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(16)
+        moneyLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(172)
+            $0.centerX.equalToSuperview()
+        }
+
+        cardLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(202)
+            $0.centerX.equalToSuperview()
+        }
+
+        contentLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(227)
             $0.centerX.equalToSuperview()
         }
     }
