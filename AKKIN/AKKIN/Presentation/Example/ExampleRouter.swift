@@ -28,6 +28,11 @@ final class ExampleRouter {
         viewController?.navigationController?.pushViewController(weeklyStatsViewController, animated: true)
     }
 
+    func presentMonthlyStatsViewController() {
+        let monthlyStatsViewController = UIViewController()
+        viewController?.navigationController?.pushViewController(monthlyStatsViewController, animated: true)
+    }
+
     func dismissViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }
