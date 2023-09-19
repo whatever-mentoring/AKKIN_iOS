@@ -168,6 +168,18 @@ final class MyPageViewController: BaseViewController {
         present(safariViewController, animated: true, completion: nil)
     }
 
+    private func presentAlert(title: String, message: String?, cancelButton: String, actionButton: String, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancelButton = UIAlertAction(title: cancelButton, style: .default)
+        let actionButton = UIAlertAction(title: actionButton, style: style, handler: handler)
+        
+        alertController.addAction(cancelButton)
+        alertController.addAction(actionButton)
+
+        present(alertController, animated: true)
+    }
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
@@ -199,6 +211,14 @@ final class MyPageViewController: BaseViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(220)
             $0.leading.trailing.bottom.equalTo(view.safeAreaInsets)
         }
+    }
+
+    private func logout() {
+        router.popToRootViewController()
+    }
+
+    private func withdrawal() {
+        router.popToRootViewController()
     }
 }
 
@@ -260,7 +280,35 @@ extension MyPageViewController: UITableViewDataSource {
 
 extension MyPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presentSafariView(url: url[indexPath.row])
+        switch indexPath.section {
+        case 0:
+            presentSafariView(url: url[indexPath.row])
+        case 1:
+            switch indexPath.row {
+            case 0:
+                presentAlert(
+                    title: "로그아웃하시겠어요?",
+                    message: nil,
+                    cancelButton: "취소",
+                    actionButton: "확인",
+                    style: .cancel,
+                    handler: { action in self.logout() }
+                )
+            case 1:
+                presentAlert(
+                    title: "정말 탈퇴하시겠어요?",
+                    message: "이 동작은 취소할 수 없어요.",
+                    cancelButton: "취소",
+                    actionButton: "탈퇴하기",
+                    style: .destructive,
+                    handler: { action in self.withdrawal() }
+                )
+            default:
+                break
+            }
+        default:
+            break
+        }
     }
 }
 
