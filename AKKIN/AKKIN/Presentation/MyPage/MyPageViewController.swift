@@ -32,6 +32,7 @@ final class MyPageViewController: BaseViewController {
         $0.clearButtonMode = .whileEditing
         $0.tintColor = UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1)
         $0.underlined(viewSize: 200, color: .black)
+        $0.addLeftPadding()
     }
 
     private let editButton = BaseButton().then {
@@ -47,6 +48,13 @@ final class MyPageViewController: BaseViewController {
 
     private let backButton = BaseButton().then {
         $0.setImage(UIImage(named: "backButton"), for: .normal)
+    }
+
+    private let cancelButton = BaseButton().then {
+        $0.setTitle("취소", for: .normal)
+        $0.setTitleColor(UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1), for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 14)
+        $0.isHidden = true
     }
 
     private let confirmButton = BaseButton().then {
@@ -95,6 +103,11 @@ final class MyPageViewController: BaseViewController {
             guard let self else { return }
             self.confirmButtonTapped()
         }
+
+        cancelButton.tap = { [weak self] in
+            guard let self else { return }
+            self.cancelButtonTapped()
+        }
     }
 
     private func getNickName() {
@@ -103,8 +116,11 @@ final class MyPageViewController: BaseViewController {
     }
  
     private func editButtonTapped() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
         editButton.isHidden = true
         confirmButton.isHidden = false
+        cancelButton.isHidden = false
+        backButton.isHidden = true
         nickNameLabel.isHidden = true
         nickNameTextField.isEnabled = true
         nickNameTextField.isHidden = false
@@ -112,8 +128,11 @@ final class MyPageViewController: BaseViewController {
     }
 
     private func confirmButtonTapped() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         editButton.isHidden = false
         confirmButton.isHidden = true
+        cancelButton.isHidden = true
+        backButton.isHidden = false
         nickNameLabel.isHidden = false
         nickNameTextField.isEnabled = false
         nickNameTextField.isHidden = true
@@ -123,8 +142,20 @@ final class MyPageViewController: BaseViewController {
         getNickName()
     }
 
+    private func cancelButtonTapped() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        editButton.isHidden = false
+        confirmButton.isHidden = true
+        cancelButton.isHidden = true
+        backButton.isHidden = false
+        nickNameLabel.isHidden = false
+        nickNameTextField.isEnabled = false
+        nickNameTextField.isHidden = true
+    }
+
     private func setNavigationItem() {
         navigationItem.title = "마이페이지"
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: confirmButton)
     }
@@ -145,7 +176,7 @@ final class MyPageViewController: BaseViewController {
         }
 
         nickNameTextField.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(177)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(178)
             $0.centerX.equalToSuperview().offset(4)
             $0.width.equalTo(155)
         }
@@ -224,8 +255,14 @@ extension UITextField {
         let border = CALayer()
         let width = CGFloat(0.34)
         border.borderColor = color.cgColor
-        border.frame = CGRect(x: 0, y: self.frame.size.height + 28, width: viewSize - 48, height: width)
+        border.frame = CGRect(x: 0, y: self.frame.size.height + 29, width: viewSize - 48, height: width)
         border.borderWidth = width
         self.layer.addSublayer(border)
+    }
+
+    func addLeftPadding() {
+      let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: self.frame.height))
+      self.leftView = paddingView
+      self.leftViewMode = ViewMode.always
     }
 }
