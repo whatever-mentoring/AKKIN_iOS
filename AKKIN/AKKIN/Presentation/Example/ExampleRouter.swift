@@ -28,6 +28,11 @@ final class ExampleRouter {
         viewController?.navigationController?.pushViewController(inputViewController, animated: true)
     }
 
+    func presentCardDetailViewController() {
+        let cardDetailViewController = ExampleViewController()
+        viewController?.navigationController?.pushViewController(cardDetailViewController, animated: true)
+    }
+
     func presentWeeklyStatsViewController() {
         let weeklyStatsViewController = WeeklyStatsViewController()
         viewController?.navigationController?.pushViewController(weeklyStatsViewController, animated: true)

@@ -50,12 +50,14 @@ final class MainCardCollectionView: BaseView {
 
     // MARK: Properties
     var tapAdd: (() -> Void)?
-    
+    var tapCell: (() -> Void)?
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
         addButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
         cardCollectionView.dataSource = self
+        cardCollectionView.delegate = self
 
         addSubview(akkinLabel)
         addSubview(addButton)
@@ -87,6 +89,10 @@ final class MainCardCollectionView: BaseView {
     @objc private func handleAddEvent() {
         tapAdd?()
     }
+
+    func handleCellEvent() {
+        tapCell?()
+    }
 }
 
 extension MainCardCollectionView: UICollectionViewDataSource {
@@ -98,5 +104,11 @@ extension MainCardCollectionView: UICollectionViewDataSource {
         guard let cell = cardCollectionView.dequeueReusableCell(withReuseIdentifier: MainCardCollectionViewCell.identifier, for: indexPath) as? MainCardCollectionViewCell else { return UICollectionViewCell() }
         
         return cell
+    }
+}
+
+extension MainCardCollectionView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        handleCellEvent()
     }
 }
