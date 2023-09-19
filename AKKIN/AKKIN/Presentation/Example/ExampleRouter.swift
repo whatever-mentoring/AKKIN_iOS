@@ -46,4 +46,8 @@ final class ExampleRouter {
     func dismissViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }
+
+    func popToRootViewController() {
+        viewController?.navigationController?.popToRootViewController(animated: true)
+    }
 }
