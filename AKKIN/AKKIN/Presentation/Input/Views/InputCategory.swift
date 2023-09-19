@@ -42,28 +42,28 @@ final class InputCategory: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.layer.borderColor = UIColor(red: 1, green: 0.63, blue: 0.63, alpha: 1).cgColor
-        
         return stackView
     }()
+    
     private let categorySelectedStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill
-        stackView.layer.borderColor = UIColor(red: 1, green: 0.63, blue: 0.63, alpha: 1).cgColor
         stackView.spacing = 8
-        
         return stackView
     }()
+    
     var categoryButtons = [CategoryButton]()
+    
     private let categoryLabel = UILabel().then {
         $0.text = "카테고리"
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
+    
     private let categoryDiscriptionLabel = UILabel().then {
         $0.text = "(1개 이상의 소비 카테고리를 선택해주세요.)"
         $0.font = .systemFont(ofSize: 12, weight: .regular)
-        $0.textColor = UIColor(red: 0.137, green: 0.678, blue: 0.373, alpha: 1)
+        $0.textColor = .akkinGreen
     }
     
     // MARK: Initializer
@@ -92,9 +92,9 @@ final class InputCategory: UIView {
             button.layer.cornerRadius = 15
             button.setTitle(category.title, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-            button.setTitleColor(UIColor(red: 0.098, green: 0.098, blue: 0.106, alpha: 1), for: .normal)
+            button.setTitleColor(UIColor.akkinBlack, for: .normal)
             button.backgroundColor = .white
-            button.layer.shadowColor = UIColor(red: 0.617, green: 0.617, blue: 0.617, alpha: 0.15).cgColor
+            button.layer.shadowColor = UIColor.akkinShadow.cgColor
             button.layer.shadowOpacity = 1
             button.layer.shadowRadius = 4
             button.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -119,7 +119,6 @@ final class InputCategory: UIView {
     
     // MARK: Layout
     func makeConstraints() {
-        // let safeArea = self.safeAreaLayoutGuide
         categoryStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalTo(272)

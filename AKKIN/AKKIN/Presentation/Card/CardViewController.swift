@@ -18,7 +18,7 @@ class CardViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
+        view.backgroundColor = .akkinBackground
         router.viewController = self
     }
     

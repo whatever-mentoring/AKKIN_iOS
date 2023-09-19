@@ -16,7 +16,7 @@ class InputViewController: BaseViewController {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .akkinGray
         //imageView.image = UIImage(named: "cat-5767334_1280")
         imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ class InputViewController: BaseViewController {
         $0.setTitle("카드 만들기", for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = UIColor(red: 0.137, green: 0.678, blue: 0.373, alpha: 1)
+        $0.backgroundColor = .akkinGreen
         $0.layer.cornerRadius = 16
     }
     
@@ -62,7 +62,7 @@ class InputViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         router.viewController = self
-        view.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
+        view.backgroundColor = .akkinBackground
     }
     
     // MARK: Layout

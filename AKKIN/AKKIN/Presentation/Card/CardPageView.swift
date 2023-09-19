@@ -11,7 +11,7 @@ final class CardPageView: BaseView {
     
     // MARK: UI Components
     
-    let homeButton = UIButton().then {
+    private let homeButton = UIButton().then {
         $0.setImage(UIImage(named: "homeButton"), for: .normal)
     }
     

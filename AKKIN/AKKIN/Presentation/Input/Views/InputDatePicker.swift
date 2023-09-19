@@ -14,7 +14,6 @@ class InputDatePicker: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.layer.borderColor = UIColor(red: 1, green: 0.63, blue: 0.63, alpha: 1).cgColor
         stackView.spacing = 8
         return stackView
     }()

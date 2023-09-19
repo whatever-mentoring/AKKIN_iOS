@@ -84,9 +84,9 @@ final class InputIconSelectedView: BaseView{
             button.layer.cornerRadius = 8
             button.setTitle(icon.title, for: .normal)
             button.setImage(icon.image, for: .normal)
-            button.backgroundColor = .white
+            button.backgroundColor = .akkinWhite
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1).cgColor
+            button.layer.borderColor = UIColor.akkinGray.cgColor
             button.snp.makeConstraints {
                 $0.width.equalTo(44)
                 $0.height.equalTo(44)

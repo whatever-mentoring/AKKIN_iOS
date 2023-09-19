@@ -27,7 +27,6 @@ class InputCostContent: UIView, UITextFieldDelegate {
     private let expectCostTextField = UITextField().then {
         $0.placeholder = "100,000,000"
         $0.font = .systemFont(ofSize: 14, weight: .regular)
-        $0.textColor = UIColor(red: 0.692, green: 0.692, blue: 0.692, alpha: 1)
     }
     
     private let bottomStackView2 = UIStackView().then {
@@ -41,7 +40,6 @@ class InputCostContent: UIView, UITextFieldDelegate {
     private let realCostTextField = UITextField().then {
         $0.placeholder = "100,000,000"
         $0.font = .systemFont(ofSize: 14, weight: .regular)
-        $0.textColor = UIColor(red: 0.692, green: 0.692, blue: 0.692, alpha: 1)
     }
     
     // MARK: Initializer

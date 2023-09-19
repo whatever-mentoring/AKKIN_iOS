@@ -8,6 +8,8 @@
 import UIKit
 import Photos
 
+// FIXME: 아직구현중...
+// https://eunjin3786.tistory.com/567
 class ImageSaver: NSObject {
     private var isPermissionDenied = false
     private var imageSavedHandler: (() -> Void)?
@@ -19,10 +21,12 @@ class ImageSaver: NSObject {
         viewController = target
         
         isPermissionDenied = checkPhotoPermission()
-        UIImageWriteToSavedPhotosAlbum(image,
-                                       self,
-                                       #selector(imageSaved(image:didFinishSavingWithError:contextInfo:)),
-                                       nil)
+        UIImageWriteToSavedPhotosAlbum(
+            image,
+            self,
+            #selector(imageSaved(image:didFinishSavingWithError:contextInfo:)),
+            nil
+        )
     }
     
     /* 이미지 저장 후 */
