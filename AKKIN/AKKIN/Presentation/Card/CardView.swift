@@ -8,9 +8,6 @@
 import UIKit
 
 final class CardView: BaseView {
-    
-    var saveCost: Int = 100
-    
     // MARK: UI Components
     
     private let CardImageView = UIView().then {
@@ -22,13 +19,11 @@ final class CardView: BaseView {
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
     
-    private let CardStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.alignment = .center
-        return stackView
-    }()
+    private let CardStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 16
+        $0.alignment = .center
+    }
     
     private let dateTextLabel = UILabel().then {
         $0.text = "YYYY / MM / DD"
@@ -72,16 +67,24 @@ final class CardView: BaseView {
         super.makeConstraints()
         
         CardImageView.snp.makeConstraints {
-            $0.width.equalTo(293)
-            $0.height.equalTo(403)
-            $0.centerX.equalToSuperview()
+            $0.width
+                .equalTo(293)
+            $0.height
+                .equalTo(403)
+            $0.centerX
+                .equalToSuperview()
         }
         CardStackView.snp.makeConstraints {
-            $0.top.equalTo(CardImageView.snp.top).offset(30)
-            $0.centerX.equalToSuperview()
+            $0.top
+                .equalTo(CardImageView.snp.top)
+                .offset(30)
+            $0.centerX
+                .equalToSuperview()
         }
         iconImageView.snp.makeConstraints {
-            $0.width.height.equalTo(172)
+            $0.width
+                .height
+                .equalTo(172)
         }
     }
 }

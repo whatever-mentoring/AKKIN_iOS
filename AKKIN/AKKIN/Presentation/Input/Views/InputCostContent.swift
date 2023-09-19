@@ -70,14 +70,18 @@ class InputCostContent: UIView, UITextFieldDelegate {
     // MARK: Layout
     func makeConstraints() {
         bottomStackView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.width.equalTo(270)
+            $0.top
+                .equalToSuperview()
+            $0.width
+                .equalTo(270)
         }
         bottomStackView1.snp.makeConstraints {
-            $0.width.equalTo(123)
+            $0.width
+                .equalTo(123)
         }
         bottomStackView2.snp.makeConstraints {
-            $0.width.equalTo(123)
+            $0.width
+                .equalTo(123)
         }
     }
 }

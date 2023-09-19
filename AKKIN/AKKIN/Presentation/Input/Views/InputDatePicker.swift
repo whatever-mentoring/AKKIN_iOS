@@ -20,13 +20,17 @@ class InputDatePicker: UIView {
     
     private let dateNameLabel = UILabel().then {
         $0.text = "날짜"
-        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.font = .systemFont(
+            ofSize: 16, weight: .semibold
+        )
     }
     
     let dateTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "YYYY / MM / DD"
-        textField.font = .systemFont(ofSize: 14, weight: .regular)
+        textField.font = .systemFont(
+            ofSize: 14, weight: .regular
+        )
         return textField
     }()
     
@@ -62,10 +66,14 @@ class InputDatePicker: UIView {
         dateLabelStackView.addArrangedSubview(dateTextField)
     }
     
+    
+    // MARK: Properties
     func creatToolbar() -> UIToolbar { // custom Toolbar 만들기
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done, target: nil, action: #selector(donePressed)
+        )
         toolBar.setItems([doneButton], animated: true)
         return toolBar
     }
@@ -78,14 +86,17 @@ class InputDatePicker: UIView {
     @objc func donePressed() {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy / MM / dd"
-        dateTextField.text = formatter.string(from: datePicker.date)
+        dateTextField.text = formatter.string(
+            from: datePicker.date
+        )
         self.endEditing(true)
     }
     
     // MARK: Layout
     func makeConstraints() {
         dateLabelStackView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top
+                .equalToSuperview()
         }
     }
 }

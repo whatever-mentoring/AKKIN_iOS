@@ -10,26 +10,29 @@ import UIKit
 class InputSaveContent: UIView, UITextFieldDelegate {
     
     // MARK: UI Components
-    private let contentStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.spacing = 8
-        return stackView
-    }()
+    private let contentStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .fill
+        $0.spacing = 8
+    }
+    
     private let contentLabel = UILabel().then {
         $0.text = "소비내용"
-        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.font = .systemFont(
+            ofSize: 16, weight: .semibold
+        )
     }
-    private let contentTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "어떤 소비를 했는지 적어보세요."
-        textField.font = .systemFont(ofSize: 14, weight: .regular)
-        return textField
-    }()
+    private let contentTextField = UITextField().then {
+        $0.placeholder = "어떤 소비를 했는지 적어보세요."
+        $0.font = .systemFont(
+            ofSize: 14, weight: .regular
+        )
+    }
     
     var lineView1 = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: 342, height: 1)
+        $0.frame = CGRect(
+            x: 0, y: 0, width: 342, height: 1
+        )
         $0.layer.backgroundColor = UIColor.akkinGray.cgColor
     }
     
@@ -47,18 +50,22 @@ class InputSaveContent: UIView, UITextFieldDelegate {
     // MARK: Configuration
     func configureSubviews() {
         addSubview(contentStackView)
-        contentStackView.addArrangedSubview(contentLabel)
-        contentStackView.addArrangedSubview(contentTextField)
+        contentStackView
+            .addArrangedSubview(contentLabel)
+        contentStackView
+            .addArrangedSubview(contentTextField)
     }
     
     // MARK: Layout
     func makeConstraints() {
         contentTextField.delegate = self
         contentStackView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top
+                .equalToSuperview()
         }
         contentTextField.snp.makeConstraints {
-            $0.width.equalTo(294)
+            $0.width
+                .equalTo(294)
         }
     }
 }

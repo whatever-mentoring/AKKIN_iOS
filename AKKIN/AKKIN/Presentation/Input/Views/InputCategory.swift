@@ -86,6 +86,7 @@ final class InputCategory: UIView {
         addSubview(categorySelectedStackView)
     }
     
+    // MARK: Properties
     func iconButtonSetup() {
         let items = Category.allCases.map { category in
             let button = CategoryButton(category: category)

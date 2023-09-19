@@ -19,12 +19,16 @@ class InputHowContent: UIView, UITextFieldDelegate {
     }()
     private let howLabel = UILabel().then {
         $0.text = "어떻게 아꼈는지"
-        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.font = .systemFont(
+            ofSize: 16, weight: .semibold
+        )
     }
     private let howTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "어떤 방식으로 아끼셨나요?"
-        textField.font = .systemFont(ofSize: 14, weight: .regular)
+        textField.font = .systemFont(
+            ofSize: 14, weight: .regular
+        )
         return textField
     }()
     
@@ -51,10 +55,12 @@ class InputHowContent: UIView, UITextFieldDelegate {
         howTextField.delegate = self
         // let safeArea = self.safeAreaLayoutGuide
         howStackView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top
+                .equalToSuperview()
         }
         howTextField.snp.makeConstraints {
-            $0.width.equalTo(294)
+            $0.width
+                .equalTo(294)
         }
     }
 }

@@ -72,12 +72,12 @@ final class InputIconSelectedView: BaseView{
     }
     
     // MARK: Configuration
-    
     override func configureSubviews() {
         super.configureSubviews()
         addSubview(iconStackView)
     }
     
+    // MARK: Properties
     func iconButtonSetup() {
         let items = Icon.allCases.map { icon in
             let button = IconButton(icon: icon)
@@ -111,9 +111,12 @@ final class InputIconSelectedView: BaseView{
         super.makeConstraints()
         
         iconStackView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.width.equalTo(252)
-            $0.centerX.equalToSuperview()
+            $0.top
+                .equalToSuperview()
+            $0.width
+                .equalTo(252)
+            $0.centerX
+                .equalToSuperview()
         }
     }
 }
