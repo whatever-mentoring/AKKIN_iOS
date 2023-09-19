@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class MyPageViewController: BaseViewController {
 
@@ -13,6 +14,7 @@ final class MyPageViewController: BaseViewController {
     private let appInfo = ["서비스 이용약관", "개인 정보 처리 방침", "오픈소스 사용정보"]
     private let account = ["로그아웃", "회원탈퇴"]
     private var nickName = "거지"
+    private let url = ["https://www.kurly.com/", "https://www.google.com/", "https://www.naver.com/"]
 
     // MARK: UI Components
     private let profileImageView = UIImageView().then {
@@ -160,6 +162,12 @@ final class MyPageViewController: BaseViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: confirmButton)
     }
 
+    private func presentSafariView(url: String) {
+        guard let url = URL(string: url) else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
+    }
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
@@ -194,7 +202,7 @@ final class MyPageViewController: BaseViewController {
     }
 }
 
-extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
+extension MyPageViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -247,6 +255,12 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 73
+    }
+}
+
+extension MyPageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presentSafariView(url: url[indexPath.row])
     }
 }
 
