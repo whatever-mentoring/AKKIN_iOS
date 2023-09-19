@@ -168,11 +168,26 @@ final class MyPageViewController: BaseViewController {
         present(safariViewController, animated: true, completion: nil)
     }
 
-    private func presentAlert(title: String, message: String?, cancelButton: String, actionButton: String, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)?) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    private func presentAlert(
+        title: String,
+        message: String?,
+        cancelButton: String,
+        actionButton: String,
+        style: UIAlertAction.Style,
+        handler: ((UIAlertAction) -> Void)?
+    ) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert)
         
-        let cancelButton = UIAlertAction(title: cancelButton, style: .default)
-        let actionButton = UIAlertAction(title: actionButton, style: style, handler: handler)
+        let cancelButton = UIAlertAction(
+            title: cancelButton,
+            style: .default)
+        let actionButton = UIAlertAction(
+            title: actionButton,
+            style: style,
+            handler: handler)
         
         alertController.addAction(cancelButton)
         alertController.addAction(actionButton)
