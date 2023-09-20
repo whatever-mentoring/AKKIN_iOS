@@ -9,14 +9,16 @@ import UIKit
 
 class InputViewController: BaseViewController {
     
-    // MARK: Constants
-    
     // MARK: UI Components
+    private let backButton = BaseButton().then {
+        $0.setImage(UIImage(named: "backButton"), for: .normal)
+    }
+    
     private let inputIconSelectedView = InputIconSelectedView()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .akkinGray0
+        imageView.backgroundColor = .akkinGray1
         imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -58,13 +60,25 @@ class InputViewController: BaseViewController {
             }
             router.presentCardViewController()
         }
+        backButton.tap = { [weak self] in
+            guard let self else { return }
+            router.dismissViewController()
+        }
     }
+    
+    // MARK: Properties
+    private func setNavigationItem() {
+        navigationItem.title = "기록하기"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
     // MARK: Environment
     private let router = ExampleRouter()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationItem()
         router.viewController = self
         view.backgroundColor =
             .akkinGray0
@@ -75,9 +89,13 @@ class InputViewController: BaseViewController {
         super.makeConstraints()
         
         inputIconSelectedView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(83)
-            $0.height.equalTo(44)
-            $0.centerX.equalToSuperview()
+            $0.top
+                .equalTo(view.safeAreaLayoutGuide)
+                .offset(11)
+            $0.height
+                .equalTo(44)
+            $0.centerX
+                .equalToSuperview()
         }
         
         imageView.snp.makeConstraints {
