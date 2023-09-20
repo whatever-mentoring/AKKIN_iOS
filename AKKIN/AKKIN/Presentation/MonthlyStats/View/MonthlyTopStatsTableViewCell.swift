@@ -12,13 +12,14 @@ final class MonthlyTopStatsTableViewCell: UITableViewCell {
     static let identifier = "MonthlyTopStatsTableViewCell"
 
     private(set) var rankingLabel = UILabel().then {
-        $0.text = "식비"
-        $0.textColor = .black
+        $0.text = "NN일"
+        $0.textColor = .akkinBlack
         $0.font = .systemFont(ofSize: 20)
     }
 
     private(set) var moneyLabel = UILabel().then {
         $0.text = "000,000 원"
+        $0.textColor = .akkinBlack
         $0.font = .systemFont(ofSize: 20)
     }
     

@@ -17,16 +17,20 @@ extension UIColor {
     static var akkinWhite: UIColor {
         return UIColor(hex: "#FFFFFF")
     }
-    static var akkinBackground: UIColor {
+    // backgroundColor
+    static var akkinGray0: UIColor {
         return UIColor(hex: "#FCFCFC")
     }
-    static var akkinShadow: UIColor {
+    // shadowColor
+    static var akkinGray1: UIColor {
         return UIColor(hex: "#151515", alpha: 0.15)
     }
-    static var akkinGray: UIColor {
+    // gray textColor
+    static var akkinGray2: UIColor {
         return UIColor(hex: "#B0B0B0")
     }
-    static var akkinGray1: UIColor {
+    // borderColor
+    static var akkinGray3: UIColor {
         return UIColor(hex: "#E5E5E5")
     }
 }

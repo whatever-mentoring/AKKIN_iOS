@@ -17,11 +17,7 @@ final class MonthlyStatsViewController: BaseViewController {
     private let bestCategoryImageView = UIImageView().then {
         $0.backgroundColor = .white
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor(
-            red: 0.898,
-            green: 0.898,
-            blue: 0.898,
-            alpha: 1).cgColor
+        $0.layer.borderColor = UIColor.akkinGray3.cgColor
         $0.layer.cornerRadius = 8
     }
     
@@ -29,11 +25,7 @@ final class MonthlyStatsViewController: BaseViewController {
         $0.text = "총 100,000,000원 아꼈어요"
         $0.font = UIFont.systemFont(ofSize: 28,
                                     weight: .semibold)
-        $0.textColor = UIColor(
-            red: 0.137,
-            green: 0.678,
-            blue: 0.373,
-            alpha: 1)
+        $0.textColor = .akkinGreen
     }
     
     private let previousButton = BaseButton().then {
@@ -66,8 +58,7 @@ final class MonthlyStatsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
-        view.backgroundColor = UIColor(
-            red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
+        view.backgroundColor = .akkinGray0
 
         router.viewController = self
     }
