@@ -47,9 +47,12 @@ final class MainViewController: BaseViewController {
 
         view.addSubview(scrollView)
         scrollView.addSubview(contentStackView)
-        contentStackView.addArrangedSubview(mainCardCollectionView)
-        contentStackView.addArrangedSubview(mainWeeklyStatsView)
-        contentStackView.addArrangedSubview(mainMonthlyStatsView)
+        contentStackView
+            .addArrangedSubview(mainCardCollectionView)
+        contentStackView
+            .addArrangedSubview(mainWeeklyStatsView)
+        contentStackView
+            .addArrangedSubview(mainMonthlyStatsView)
     }
 
     // MARK: Layout

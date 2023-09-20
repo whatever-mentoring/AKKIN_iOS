@@ -21,9 +21,11 @@
 		6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7428092AB9580B00BA7E2C /* UIColor+Extension.swift */; };
 		6B117F582AB9DF8B000B03F7 /* MonthlyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F572AB9DF8B000B03F7 /* MonthlyStatsViewController.swift */; };
 		6B117F5A2AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F592AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift */; };
-		6B117F5C2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F5B2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift */; };
-		6B117F5E2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F5D2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift */; };
 		6B117F602ABA92AC000B03F7 /* MonthlyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F5F2ABA92AC000B03F7 /* MonthlyStatsView.swift */; };
+		6B117F622ABAC71B000B03F7 /* MonthlyDetailCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F612ABAC71B000B03F7 /* MonthlyDetailCategoryView.swift */; };
+		6B117F652ABAC976000B03F7 /* MonthlyTopStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F642ABAC976000B03F7 /* MonthlyTopStatsView.swift */; };
+		6B117F672ABACB60000B03F7 /* MonthlyDetailCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F662ABACB60000B03F7 /* MonthlyDetailCategoryTableViewCell.swift */; };
+		6B117F692ABAE9D0000B03F7 /* MonthlyTopStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F682ABAE9CF000B03F7 /* MonthlyTopStatsTableViewCell.swift */; };
 		9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1B82AB626CB00E026F9 /* MyPageView.swift */; };
 		9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */; };
 		9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */; };
@@ -85,9 +87,11 @@
 		6B7428092AB9580B00BA7E2C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		6B117F572AB9DF8B000B03F7 /* MonthlyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsViewController.swift; sourceTree = "<group>"; };
 		6B117F592AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsCollectionView.swift; sourceTree = "<group>"; };
-		6B117F5B2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsCategoryCell.swift; sourceTree = "<group>"; };
-		6B117F5D2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsListCell.swift; sourceTree = "<group>"; };
 		6B117F5F2ABA92AC000B03F7 /* MonthlyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsView.swift; sourceTree = "<group>"; };
+		6B117F612ABAC71B000B03F7 /* MonthlyDetailCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyDetailCategoryView.swift; sourceTree = "<group>"; };
+		6B117F642ABAC976000B03F7 /* MonthlyTopStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyTopStatsView.swift; sourceTree = "<group>"; };
+		6B117F662ABACB60000B03F7 /* MonthlyDetailCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyDetailCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		6B117F682ABAE9CF000B03F7 /* MonthlyTopStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyTopStatsTableViewCell.swift; sourceTree = "<group>"; };
 		9507C1B82AB626CB00E026F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
@@ -190,13 +194,23 @@
 		6B117F562AB9DEDD000B03F7 /* MonthlyStats */ = {
 			isa = PBXGroup;
 			children = (
+				6B117F632ABAC8D4000B03F7 /* View */,
 				6B117F572AB9DF8B000B03F7 /* MonthlyStatsViewController.swift */,
-				6B117F592AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift */,
-				6B117F5B2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift */,
-				6B117F5D2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift */,
-				6B117F5F2ABA92AC000B03F7 /* MonthlyStatsView.swift */,
 			);
 			path = MonthlyStats;
+			sourceTree = "<group>";
+		};
+		6B117F632ABAC8D4000B03F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B117F5F2ABA92AC000B03F7 /* MonthlyStatsView.swift */,
+				6B117F612ABAC71B000B03F7 /* MonthlyDetailCategoryView.swift */,
+				6B117F662ABACB60000B03F7 /* MonthlyDetailCategoryTableViewCell.swift */,
+				6B117F642ABAC976000B03F7 /* MonthlyTopStatsView.swift */,
+				6B117F682ABAE9CF000B03F7 /* MonthlyTopStatsTableViewCell.swift */,
+				6B117F592AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9507C1B72AB626C100E026F9 /* MyPage */ = {
@@ -465,6 +479,7 @@
 				9507C1C62AB62C1800E026F9 /* WeeklyStatsViewController.swift in Sources */,
 				9507C1C82AB62C2400E026F9 /* WeeklyStatsCategoryCell.swift in Sources */,
 				6B7427EE2AB878F500BA7E2C /* ImageSaver.swift in Sources */,
+				6B117F652ABAC976000B03F7 /* MonthlyTopStatsView.swift in Sources */,
 				95E535B52AB1D4CF00FA2492 /* MainCardCollectionView.swift in Sources */,
 				BC94AD4E2AA61CA500A77052 /* ExampleViewController.swift in Sources */,
 				95E535C12AB24A2300FA2492 /* MainMonthlyStatsView.swift in Sources */,
@@ -473,6 +488,7 @@
 				6B7427FA2AB87A0D00BA7E2C /* InputIconSelectedView.swift in Sources */,
 				6B7427EC2AB878E600BA7E2C /* CardViewController.swift in Sources */,
 				6B7427F82AB87A0100BA7E2C /* InputHowContent.swift in Sources */,
+				6B117F692ABAE9D0000B03F7 /* MonthlyTopStatsTableViewCell.swift in Sources */,
 				95E535B72AB1D4E000FA2492 /* MainCardCollectionViewCell.swift in Sources */,
 				9507C1CA2AB62C3500E026F9 /* WeeklyStatsCollectionView.swift in Sources */,
 				9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */,
@@ -480,17 +496,16 @@
 				6B7427FC2AB87A3400BA7E2C /* IconSaveContent.swift in Sources */,
 				6B117F582AB9DF8B000B03F7 /* MonthlyStatsViewController.swift in Sources */,
 				9507C1C32AB6271D00E026F9 /* MyPageTableViewCell.swift in Sources */,
-				6B117F5C2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift in Sources */,
 				9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */,
 				BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */,
 				6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */,
 				BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */,
+				6B117F672ABACB60000B03F7 /* MonthlyDetailCategoryTableViewCell.swift in Sources */,
 				95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */,
 				6B7427F22AB879B500BA7E2C /* InputCategory.swift in Sources */,
 				9507C1CC2AB62C4700E026F9 /* WeeklyStatsListCell.swift in Sources */,
 				6B117F602ABA92AC000B03F7 /* MonthlyStatsView.swift in Sources */,
 				9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */,
-				6B117F5E2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
 				6B7427FE2AB87A5000BA7E2C /* InputViewController.swift in Sources */,
@@ -499,6 +514,7 @@
 				95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */,
 				6B117F5A2AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift in Sources */,
 				BC94AD492AA61A8300A77052 /* BaseView.swift in Sources */,
+				6B117F622ABAC71B000B03F7 /* MonthlyDetailCategoryView.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
