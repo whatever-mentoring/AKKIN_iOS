@@ -30,10 +30,8 @@ class InputSaveContent: UIView, UITextFieldDelegate {
     }
     
     var lineView1 = UIView().then {
-        $0.frame = CGRect(
-            x: 0, y: 0, width: 342, height: 1
-        )
-        $0.layer.backgroundColor = UIColor.akkinGray.cgColor
+        $0.frame = CGRect(x: 0, y: 0, width: 342, height: 1)
+        $0.layer.backgroundColor = UIColor.akkinGray2.cgColor
     }
     
     // MARK: Initializer

@@ -13,7 +13,7 @@ final class CardView: BaseView {
     private let CardImageView = UIView().then {
         $0.backgroundColor = .akkinWhite
         $0.layer.cornerRadius = 16
-        $0.layer.shadowColor = UIColor.akkinShadow.cgColor
+        $0.layer.shadowColor = UIColor.akkinGray1.cgColor
         $0.layer.shadowOpacity = 1
         $0.layer.shadowRadius = 8
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -32,7 +32,7 @@ final class CardView: BaseView {
     }
     
     private let iconImageView = UIImageView().then {
-        $0.backgroundColor = .akkinGray
+        $0.backgroundColor = .akkinGray0
     }
     
     private let saveTextLabel = UILabel().then {
