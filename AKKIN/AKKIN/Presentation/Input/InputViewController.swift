@@ -16,7 +16,7 @@ class InputViewController: BaseViewController {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .akkinGray
+        imageView.backgroundColor = .akkinGray0
         imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -67,7 +67,7 @@ class InputViewController: BaseViewController {
         super.viewDidLoad()
         router.viewController = self
         view.backgroundColor =
-            .akkinBackground
+            .akkinGray0
     }
     
     // MARK: Layout

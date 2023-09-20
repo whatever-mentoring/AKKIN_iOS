@@ -64,7 +64,9 @@ final class MainMonthlyStatsView: BaseView {
         monthlyStatsTableView.dataSource = self
         monthlyStatsTableView.delegate = self
         setLabelColor()
-
+        
+        detailButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
+        
         addSubview(monthlyStatsLabel)
         addSubview(monthlyStatsView)
 
@@ -78,29 +80,47 @@ final class MainMonthlyStatsView: BaseView {
         super.makeConstraints()
 
         monthlyStatsLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
-            $0.leading.equalToSuperview().inset(24)
+            $0.top
+                .equalToSuperview()
+                .inset(10)
+            $0.leading
+                .equalToSuperview()
+                .inset(24)
         }
 
         monthlyStatsView.snp.makeConstraints {
-            $0.top.equalTo(monthlyStatsLabel.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(183)
+            $0.top
+                .equalTo(monthlyStatsLabel.snp.bottom)
+                .offset(8)
+            $0.leading.trailing
+                .equalToSuperview()
+                .inset(24)
+            $0.height
+                .equalTo(183)
         }
 
         monthLabel.snp.makeConstraints {
-            $0.top.leading.equalTo(monthlyStatsView).inset(16)
+            $0.top.leading
+                .equalTo(monthlyStatsView)
+                .inset(16)
         }
 
         detailButton.snp.makeConstraints {
-            $0.centerY.equalTo(monthLabel.snp.centerY)
-            $0.trailing.equalTo(monthlyStatsView).inset(15)
+            $0.centerY
+                .equalTo(monthLabel.snp.centerY)
+            $0.trailing
+                .equalTo(monthlyStatsView)
+                .inset(15)
         }
 
         monthlyStatsTableView.snp.makeConstraints {
-            $0.top.equalTo(monthLabel.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(128)
+            $0.top
+                .equalTo(monthLabel.snp.bottom)
+                .offset(16)
+            $0.leading.trailing
+                .equalToSuperview()
+            $0.height
+                .equalTo(128)
         }
     }
     
@@ -116,7 +136,7 @@ extension MainMonthlyStatsView: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 32
+        return 40
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

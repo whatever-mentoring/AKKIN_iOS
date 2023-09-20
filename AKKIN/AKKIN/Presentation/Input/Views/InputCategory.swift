@@ -95,7 +95,7 @@ final class InputCategory: UIView {
             button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
             button.setTitleColor(UIColor.akkinBlack, for: .normal)
             button.backgroundColor = .white
-            button.layer.shadowColor = UIColor.akkinShadow.cgColor
+            button.layer.shadowColor = UIColor.akkinGray1.cgColor
             button.layer.shadowOpacity = 1
             button.layer.shadowRadius = 4
             button.layer.shadowOffset = CGSize(width: 0, height: 2)

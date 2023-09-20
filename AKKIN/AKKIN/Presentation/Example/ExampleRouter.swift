@@ -39,7 +39,7 @@ final class ExampleRouter {
     }
 
     func presentMonthlyStatsViewController() {
-        let monthlyStatsViewController = ExampleViewController()
+        let monthlyStatsViewController = MonthlyStatsViewController()
         viewController?.navigationController?.pushViewController(monthlyStatsViewController, animated: true)
     }
 
