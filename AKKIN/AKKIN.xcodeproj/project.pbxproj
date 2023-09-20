@@ -19,6 +19,11 @@
 		6B7427FC2AB87A3400BA7E2C /* IconSaveContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427FB2AB87A3400BA7E2C /* IconSaveContent.swift */; };
 		6B7427FE2AB87A5000BA7E2C /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427FD2AB87A5000BA7E2C /* InputViewController.swift */; };
 		6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7428092AB9580B00BA7E2C /* UIColor+Extension.swift */; };
+		6B117F582AB9DF8B000B03F7 /* MonthlyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F572AB9DF8B000B03F7 /* MonthlyStatsViewController.swift */; };
+		6B117F5A2AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F592AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift */; };
+		6B117F5C2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F5B2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift */; };
+		6B117F5E2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F5D2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift */; };
+		6B117F602ABA92AC000B03F7 /* MonthlyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F5F2ABA92AC000B03F7 /* MonthlyStatsView.swift */; };
 		9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1B82AB626CB00E026F9 /* MyPageView.swift */; };
 		9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */; };
 		9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */; };
@@ -78,6 +83,11 @@
 		6B7428072AB9578700BA7E2C /* Pretendard-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.ttf"; sourceTree = "<group>"; };
 		6B7428082AB9578700BA7E2C /* Pretendard-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.ttf"; sourceTree = "<group>"; };
 		6B7428092AB9580B00BA7E2C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		6B117F572AB9DF8B000B03F7 /* MonthlyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsViewController.swift; sourceTree = "<group>"; };
+		6B117F592AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsCollectionView.swift; sourceTree = "<group>"; };
+		6B117F5B2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsCategoryCell.swift; sourceTree = "<group>"; };
+		6B117F5D2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsListCell.swift; sourceTree = "<group>"; };
+		6B117F5F2ABA92AC000B03F7 /* MonthlyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsView.swift; sourceTree = "<group>"; };
 		9507C1B82AB626CB00E026F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
@@ -177,6 +187,18 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		6B117F562AB9DEDD000B03F7 /* MonthlyStats */ = {
+			isa = PBXGroup;
+			children = (
+				6B117F572AB9DF8B000B03F7 /* MonthlyStatsViewController.swift */,
+				6B117F592AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift */,
+				6B117F5B2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift */,
+				6B117F5D2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift */,
+				6B117F5F2ABA92AC000B03F7 /* MonthlyStatsView.swift */,
+			);
+			path = MonthlyStats;
+			sourceTree = "<group>";
+		};
 		9507C1B72AB626C100E026F9 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +296,7 @@
 			children = (
 				6B7427EF2AB8799A00BA7E2C /* Input */,
 				6B7427DE2AB8787000BA7E2C /* Card */,
+				6B117F562AB9DEDD000B03F7 /* MonthlyStats */,
 				9507C1C42AB62C0800E026F9 /* WeeklyStats */,
 				9507C1B72AB626C100E026F9 /* MyPage */,
 				95E535CE2AB492E500FA2492 /* Splash */,
@@ -455,7 +478,9 @@
 				9507C1BF2AB626E900E026F9 /* MyPageTableViewHeader.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				6B7427FC2AB87A3400BA7E2C /* IconSaveContent.swift in Sources */,
+				6B117F582AB9DF8B000B03F7 /* MonthlyStatsViewController.swift in Sources */,
 				9507C1C32AB6271D00E026F9 /* MyPageTableViewCell.swift in Sources */,
+				6B117F5C2AB9DFBA000B03F7 /* MonthlyStatsCategoryCell.swift in Sources */,
 				9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */,
 				BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */,
 				6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */,
@@ -463,13 +488,16 @@
 				95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */,
 				6B7427F22AB879B500BA7E2C /* InputCategory.swift in Sources */,
 				9507C1CC2AB62C4700E026F9 /* WeeklyStatsListCell.swift in Sources */,
+				6B117F602ABA92AC000B03F7 /* MonthlyStatsView.swift in Sources */,
 				9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */,
+				6B117F5E2AB9DFCA000B03F7 /* MonthlyStatsListCell.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
 				6B7427FE2AB87A5000BA7E2C /* InputViewController.swift in Sources */,
 				BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */,
 				95E535A22AB18F3200FA2492 /* MainView.swift in Sources */,
 				95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */,
+				6B117F5A2AB9DFA2000B03F7 /* MonthlyStatsCollectionView.swift in Sources */,
 				BC94AD492AA61A8300A77052 /* BaseView.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
