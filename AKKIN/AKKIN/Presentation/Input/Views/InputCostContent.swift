@@ -24,7 +24,7 @@ class InputCostContent: UIView, UITextFieldDelegate {
         $0.text = "예상 비용"
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
-    private let expectCostTextField = UITextField().then {
+    let expectCostTextField = UITextField().then {
         $0.placeholder = "100,000,000"
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
@@ -37,7 +37,7 @@ class InputCostContent: UIView, UITextFieldDelegate {
         $0.text = "실제 비용"
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
-    private let realCostTextField = UITextField().then {
+    let realCostTextField = UITextField().then {
         $0.placeholder = "100,000,000"
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
