@@ -29,7 +29,7 @@ class CardViewController: BaseViewController {
 
         cardPageView.tap = { [weak self] in
             guard let self else { return }
-            router.dismissCardViewController()
+            router.popToRootViewController()
         }
     }
     
