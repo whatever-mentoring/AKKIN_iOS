@@ -9,6 +9,9 @@ import UIKit
 
 final class MonthlyDetailCategoryTableViewCell: UITableViewCell {
 
+    // MARK: Properties
+    var detailButtonAction: (() -> Void)?
+    
     static let identifier = "MonthlyDetailCategoryTableViewCell"
 
     private(set) var categoryLabel = UILabel().then {
@@ -35,8 +38,14 @@ final class MonthlyDetailCategoryTableViewCell: UITableViewCell {
         )
         configureSubviews()
         makeConstraints()
+        detailButton.addTarget(self, action: #selector(detailButtonTapped), for: .touchUpInside)
     }
 
+    // MARK: Event
+    @objc private func detailButtonTapped() {
+        detailButtonAction?()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

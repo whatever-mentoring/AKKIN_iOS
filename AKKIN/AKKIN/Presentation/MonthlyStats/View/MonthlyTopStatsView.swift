@@ -51,7 +51,6 @@ final class MonthlyTopStatsView: BaseView {
         addSubview(monthlyRangkingLabel)
         addSubview(monthlyStatsView)
         
-        //monthlyStatsView.addSubview(detailButton)
         monthlyStatsView.addSubview(monthlyTopRankingStatsTableView)
     }
     

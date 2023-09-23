@@ -52,6 +52,11 @@ final class ExampleRouter {
         let monthlyStatsViewController = MonthlyStatsViewController()
         viewController?.navigationController?.pushViewController(monthlyStatsViewController, animated: true)
     }
+    
+    func presentMonthlyDetailCategoryViewController() {
+        let monthlyDetailCategoryViewController = MonthlyDetailCategoryViewController(category: "TRAFFIC")
+        viewController?.navigationController?.pushViewController(monthlyDetailCategoryViewController, animated: true)
+    }
 
     func dismissViewController() {
         viewController?.navigationController?.popViewController(animated: true)

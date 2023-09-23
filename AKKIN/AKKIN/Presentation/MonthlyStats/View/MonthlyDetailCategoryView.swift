@@ -10,7 +10,9 @@ import UIKit
 final class MonthlyDetailCategoryView: BaseView {
     
     private let category = ["식비", "쇼핑", "교통", "기타"]
-
+    
+    var tap: (() -> Void)?
+    
     // MARK: UI Components
     private let monthlyStatsLabel = UILabel().then {
         $0.text = "상세 카테고리"
@@ -31,9 +33,6 @@ final class MonthlyDetailCategoryView: BaseView {
         $0.separatorStyle = .none
         $0.register(MonthlyDetailCategoryTableViewCell.self, forCellReuseIdentifier: MonthlyDetailCategoryTableViewCell.identifier)
     }
-
-    // MARK: Properties
-    var tapAdd: (() -> Void)?
     
     // MARK: Configuration
     override func configureSubviews() {
@@ -46,6 +45,9 @@ final class MonthlyDetailCategoryView: BaseView {
 
         monthlyStatsView.addSubview(monthlyStatsTableView)
     }
+    
+    // MARK: Environment
+    private let router = ExampleRouter()
     
     // MARK: Layout
     override func makeConstraints() {
@@ -83,11 +85,6 @@ final class MonthlyDetailCategoryView: BaseView {
                 .offset(-8)
         }
     }
-    
-    // MARK: Event
-    @objc private func handleAddEvent() {
-        tapAdd?()
-    }
 }
 
 extension MonthlyDetailCategoryView: UITableViewDataSource, UITableViewDelegate {
@@ -106,8 +103,15 @@ extension MonthlyDetailCategoryView: UITableViewDataSource, UITableViewDelegate 
         cell.selectionStyle = .none
         cell.categoryLabel.text = category[indexPath.row]
         cell.moneyLabel.text = "000,000 원"
-        
+        cell.detailButtonAction = { [weak self] in
+            self?.handleDetailButtonTap(indexPath: indexPath)
+        }
+        cell.tag = indexPath.row
         return cell
+    }
+    
+    private func handleDetailButtonTap(indexPath: IndexPath) {
+        tap?()
     }
 }
 

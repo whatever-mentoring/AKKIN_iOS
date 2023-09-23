@@ -24,6 +24,12 @@
 		6B5B83972AC1EE4800CD0AFC /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */; };
 		6B5B83992AC1EE8C00CD0AFC /* MainResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5B83982AC1EE8C00CD0AFC /* MainResponse.swift */; };
 		6B5B839B2AC1EEB300CD0AFC /* WeeklyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5B839A2AC1EEB300CD0AFC /* WeeklyService.swift */; };
+		6B555DAC2ABF357500E065F2 /* MonthlyDetailCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B555DAA2ABF357400E065F2 /* MonthlyDetailCategoryViewController.swift */; };
+		6B555DAD2ABF357500E065F2 /* MonthlyTopStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B555DAB2ABF357500E065F2 /* MonthlyTopStatsViewController.swift */; };
+		6B555DAF2ABF442800E065F2 /* MonthlyDetailCategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B555DAE2ABF442800E065F2 /* MonthlyDetailCategoryListCell.swift */; };
+		6B555DB12ABF47CA00E065F2 /* MonthlyDetailCategoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B555DB02ABF47CA00E065F2 /* MonthlyDetailCategoryCollectionView.swift */; };
+		6B555DB32ABF4DB600E065F2 /* MonthlyStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B555DB22ABF4DB600E065F2 /* MonthlyStatsModel.swift */; };
+		6B555DB52ABF591E00E065F2 /* MonthlyDetailCategoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B555DB42ABF591E00E065F2 /* MonthlyDetailCategoryCollectionViewDataSource.swift */; };
 		6B7427E82AB878B800BA7E2C /* CardPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427E72AB878B800BA7E2C /* CardPageView.swift */; };
 		6B7427EA2AB878D600BA7E2C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427E92AB878D600BA7E2C /* CardView.swift */; };
 		6B7427EC2AB878E600BA7E2C /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427EB2AB878E600BA7E2C /* CardViewController.swift */; };
@@ -106,6 +112,12 @@
 		6B117F6A2ABC865A000B03F7 /* UIResponder + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder + Extension.swift"; sourceTree = "<group>"; };
 		6B117F6C2ABD0E74000B03F7 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		6B117F6E2ABE6513000B03F7 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
+		6B555DAA2ABF357400E065F2 /* MonthlyDetailCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyDetailCategoryViewController.swift; sourceTree = "<group>"; };
+		6B555DAB2ABF357500E065F2 /* MonthlyTopStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyTopStatsViewController.swift; sourceTree = "<group>"; };
+		6B555DAE2ABF442800E065F2 /* MonthlyDetailCategoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyDetailCategoryListCell.swift; sourceTree = "<group>"; };
+		6B555DB02ABF47CA00E065F2 /* MonthlyDetailCategoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyDetailCategoryCollectionView.swift; sourceTree = "<group>"; };
+		6B555DB22ABF4DB600E065F2 /* MonthlyStatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatsModel.swift; sourceTree = "<group>"; };
+		6B555DB42ABF591E00E065F2 /* MonthlyDetailCategoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyDetailCategoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		6B5B83902AC1ED0C00CD0AFC /* ExpenseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItem.swift; sourceTree = "<group>"; };
 		6B5B83922AC1ED4300CD0AFC /* AkkinAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkkinAPI.swift; sourceTree = "<group>"; };
 		6B5B83942AC1EDB700CD0AFC /* AkkinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkkinResponse.swift; sourceTree = "<group>"; };
@@ -212,6 +224,7 @@
 			children = (
 				6B117F632ABAC8D4000B03F7 /* View */,
 				6B117F572AB9DF8B000B03F7 /* MonthlyStatsViewController.swift */,
+				6B555DB22ABF4DB600E065F2 /* MonthlyStatsModel.swift */,
 			);
 			path = MonthlyStats;
 			sourceTree = "<group>";
@@ -222,8 +235,13 @@
 				6B117F5F2ABA92AC000B03F7 /* MonthlyStatsView.swift */,
 				6B117F612ABAC71B000B03F7 /* MonthlyDetailCategoryView.swift */,
 				6B117F662ABACB60000B03F7 /* MonthlyDetailCategoryTableViewCell.swift */,
+				6B555DAE2ABF442800E065F2 /* MonthlyDetailCategoryListCell.swift */,
+				6B555DB02ABF47CA00E065F2 /* MonthlyDetailCategoryCollectionView.swift */,
+				6B555DAA2ABF357400E065F2 /* MonthlyDetailCategoryViewController.swift */,
 				6B117F642ABAC976000B03F7 /* MonthlyTopStatsView.swift */,
 				6B117F682ABAE9CF000B03F7 /* MonthlyTopStatsTableViewCell.swift */,
+				6B555DAB2ABF357500E065F2 /* MonthlyTopStatsViewController.swift */,
+				6B555DB42ABF591E00E065F2 /* MonthlyDetailCategoryCollectionViewDataSource.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -652,6 +670,7 @@
 				6B7427FA2AB87A0D00BA7E2C /* InputIconSelectedView.swift in Sources */,
 				951261892AC02DEF0012B5F9 /* DummyLoginAPI.swift in Sources */,
 				6B7427EC2AB878E600BA7E2C /* CardViewController.swift in Sources */,
+				6B555DB52ABF591E00E065F2 /* MonthlyDetailCategoryCollectionViewDataSource.swift in Sources */,
 				6B7427F82AB87A0100BA7E2C /* InputHowContent.swift in Sources */,
 				6B117F692ABAE9D0000B03F7 /* MonthlyTopStatsTableViewCell.swift in Sources */,
 				6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */,
@@ -681,6 +700,7 @@
 				6B7427F22AB879B500BA7E2C /* InputCategory.swift in Sources */,
 				951261872AC02D560012B5F9 /* URLConst.swift in Sources */,
 				951261C52AC1DE110012B5F9 /* UserDefault.swift in Sources */,
+				6B555DAC2ABF357500E065F2 /* MonthlyDetailCategoryViewController.swift in Sources */,
 				9507C1CC2AB62C4700E026F9 /* WeeklyStatsListCell.swift in Sources */,
 				6B117F602ABA92AC000B03F7 /* MonthlyStatsView.swift in Sources */,
 				6B5B83952AC1EDB700CD0AFC /* AkkinResponse.swift in Sources */,
@@ -716,6 +736,8 @@
 				6B7427EA2AB878D600BA7E2C /* CardView.swift in Sources */,
 				6B555DA72ABF2A1D00E065F2 /* (null) in Sources */,
 				95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */,
+				6B555DAF2ABF442800E065F2 /* MonthlyDetailCategoryListCell.swift in Sources */,
+				6B555DAD2ABF357500E065F2 /* MonthlyTopStatsViewController.swift in Sources */,
 				951261C72AC1DE280012B5F9 /* UserDefaultHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
