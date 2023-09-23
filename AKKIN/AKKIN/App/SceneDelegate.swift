@@ -30,8 +30,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func changeRootViewController() {
-         guard let window = window else { return }
-         window.rootViewController = UINavigationController(rootViewController: MainViewController())
-         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+        guard let window = window else { return }
+        if Storage.isFirstTime() {
+            window.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+        } else {
+            window.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        }
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
      }
 }
