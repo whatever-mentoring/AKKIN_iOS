@@ -18,6 +18,16 @@ final class ExampleRouter {
         viewController?.present(someViewController, animated: true)
     }
 
+    func presentLoginViewController() {
+        let loginViewController = LoginViewController()
+        viewController?.navigationController?.pushViewController(loginViewController, animated: true)
+    }
+
+    func presentMainViewController() {
+        let mainViewController = MainViewController()
+        viewController?.navigationController?.pushViewController(mainViewController, animated: true)
+    }
+
     func presentMyPageViewController() {
         let myPageViewController = MyPageViewController()
         viewController?.navigationController?.pushViewController(myPageViewController, animated: true)
