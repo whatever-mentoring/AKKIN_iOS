@@ -16,6 +16,8 @@
 		6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F6A2ABC865A000B03F7 /* UIResponder + Extension.swift */; };
 		6B555DA72ABF2A1D00E065F2 /* MonthlyDetailCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B555DA62ABF2A1D00E065F2 /* MonthlyDetailCategoryViewController.swift */; };
 		6B555DA92ABF2A5900E065F2 /* MonthlyTopStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B555DA82ABF2A5900E065F2 /* MonthlyTopStatsViewController.swift */; };
+		6B117F6D2ABD0E74000B03F7 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F6C2ABD0E74000B03F7 /* IconButton.swift */; };
+		6B117F6F2ABE6513000B03F7 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F6E2ABE6513000B03F7 /* CategoryButton.swift */; };
 		6B7427E82AB878B800BA7E2C /* CardPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427E72AB878B800BA7E2C /* CardPageView.swift */; };
 		6B7427EA2AB878D600BA7E2C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427E92AB878D600BA7E2C /* CardView.swift */; };
 		6B7427EC2AB878E600BA7E2C /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427EB2AB878E600BA7E2C /* CardViewController.swift */; };
@@ -72,6 +74,9 @@
 		6B117F642ABAC976000B03F7 /* MonthlyTopStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyTopStatsView.swift; sourceTree = "<group>"; };
 		6B117F662ABACB60000B03F7 /* MonthlyDetailCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyDetailCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		6B117F682ABAE9CF000B03F7 /* MonthlyTopStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyTopStatsTableViewCell.swift; sourceTree = "<group>"; };
+		6B117F6A2ABC865A000B03F7 /* UIResponder + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder + Extension.swift"; sourceTree = "<group>"; };
+		6B117F6C2ABD0E74000B03F7 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		6B117F6E2ABE6513000B03F7 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		6B7427E72AB878B800BA7E2C /* CardPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPageView.swift; sourceTree = "<group>"; };
 		6B7427E92AB878D600BA7E2C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6B7427EB2AB878E600BA7E2C /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +187,8 @@
 			children = (
 				6B7427F02AB879A200BA7E2C /* Views */,
 				6B7427FD2AB87A5000BA7E2C /* InputViewController.swift */,
+				6B117F6E2ABE6513000B03F7 /* CategoryButton.swift */,
+				6B117F6C2ABD0E74000B03F7 /* IconButton.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -506,7 +513,9 @@
 				6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */,
 				BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */,
 				6B117F672ABACB60000B03F7 /* MonthlyDetailCategoryTableViewCell.swift in Sources */,
+				6B117F6D2ABD0E74000B03F7 /* IconButton.swift in Sources */,
 				95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */,
+				6B117F6F2ABE6513000B03F7 /* CategoryButton.swift in Sources */,
 				6B7427F22AB879B500BA7E2C /* InputCategory.swift in Sources */,
 				9507C1CC2AB62C4700E026F9 /* WeeklyStatsListCell.swift in Sources */,
 				6B117F602ABA92AC000B03F7 /* MonthlyStatsView.swift in Sources */,
