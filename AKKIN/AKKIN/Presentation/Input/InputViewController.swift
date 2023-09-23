@@ -9,12 +9,15 @@ import UIKit
 import SnapKit
 
 class InputViewController: BaseViewController, UITextFieldDelegate {
+    var buttons = [CategoryButton]()
     
     // MARK: Constants
     private var isKeyboardVisible = false
 
     // MARK: UI Components
-    private let scrollView = UIScrollView()
+    private let scrollView = UIScrollView().then {
+        $0.delaysContentTouches = false
+    }
     
     private let backButton = BaseButton().then {
        $0.setImage(UIImage(named: "backButton"), for: .normal)
@@ -71,33 +74,58 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 return }
             router.dismissViewController()
         }
-    }
-    
-    // MARK: Properties
-    private func setNavigationItem() {
-        navigationItem.title = "기록하기"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        inputIconSelectedView.onIconTapped = { [weak self] icon in
+            guard let self else {
+                return }
+            tapIcon(icon)
+        }
+        
+        inputCategory.onCategoryTapped = { [weak self] category in
+            guard let self else {
+                return }
+        }
     }
     
     // MARK: Environment
     private let router = ExampleRouter()
     
     // MARK: Properties
+    
     private func setNavigationItem() {
         navigationItem.title = "기록하기"
         navigationItem.leftBarButtonItem =
         UIBarButtonItem(customView: backButton)
     }
     
+    func tapIcon(_ icon: Icon) {
+        switch icon {
+        case .iconThemeProfile1:
+            imageView.image = UIImage(named: "image_1")
+        case .iconThemeProfile2:
+            imageView.image = UIImage(named: "image_2")
+        case .iconThemeProfile3:
+            imageView.image = UIImage(named: "image_3")
+        case .iconThemeProfile4:
+            imageView.image = UIImage(named: "image_4")
+        case .iconThemeProfile5:
+            imageView.image = UIImage(named: "image_5")
+        }
+    }
+    
     @objc func keyboardWillShow(_ sender: Notification) {
-        guard let keyboardFrame = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-              let currentTextField = UIResponder.currentResponder as? UITextField else { return }
+        guard let keyboardFrame =
+                sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                as? NSValue,
+              let currentTextField = UIResponder.currentResponder
+                as? UITextField else { return }
         
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
         let convertedTextFieldFrame = view.convert(
             currentTextField.frame,
             from: currentTextField.superview)
-        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+        let textFieldBottomY =
+        convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
         if textFieldBottomY > keyboardTopY {
             let textFieldTopY = convertedTextFieldFrame.origin.y
             let newFrame = textFieldTopY - keyboardTopY/1.08
@@ -121,7 +149,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             self,
             selector: #selector(keyboardWillHide),
             name: UIResponder.keyboardWillHideNotification,
-            object: nil)    }
+            object: nil)
+    }
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -149,6 +178,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             $0.height
                 .equalTo(44)
             $0.centerX
+                .equalToSuperview()
+            $0.width
                 .equalToSuperview()
         }
         
@@ -182,6 +213,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 .offset(46)
             $0.height
                 .equalTo(78)
+            $0.width
+                .equalTo(272)
         }
         
         inputSaveContent.snp.makeConstraints {
@@ -193,6 +226,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 .offset(46)
             $0.height
                 .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
         
         inputHowContent.snp.makeConstraints {
@@ -204,6 +239,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 .offset(46)
             $0.height
                 .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
         
         inputCostContent.snp.makeConstraints {
@@ -215,6 +252,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 .offset(46)
             $0.height
                 .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
         
         makeCardButton.snp.makeConstraints {

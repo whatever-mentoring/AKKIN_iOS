@@ -7,20 +7,6 @@
 
 import UIKit
 
-final class CategoryButton: UIButton {
-    var tap: ((CategoryButton) -> Void)?
-    
-    let category: Category
-    init(category: Category) {
-        self.category = category
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 enum Category: CaseIterable {
     case categoryProfile1, categoryProfile2, categoryProfile3, categoryProfile4, categoryProfile5
     
@@ -36,6 +22,8 @@ enum Category: CaseIterable {
 }
 
 final class InputCategory: UIView {
+    
+    var onCategoryTapped: ((Category) -> Void)?
     
     // MARK: UI Components
     private let categoryStackView: UIStackView = {
@@ -53,7 +41,7 @@ final class InputCategory: UIView {
         return stackView
     }()
     
-    var categoryButtons = [CategoryButton]()
+    var buttons = [CategoryButton]()
     
     private let categoryLabel = UILabel().then {
         $0.text = "카테고리"
@@ -88,13 +76,13 @@ final class InputCategory: UIView {
     
     // MARK: Properties
     func iconButtonSetup() {
-        let items = Category.allCases.map { category in
+        self.buttons = Category.allCases.map { category in
             let button = CategoryButton(category: category)
             button.layer.cornerRadius = 15
             button.setTitle(category.title, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
+            button.backgroundColor = .akkinWhite
             button.setTitleColor(UIColor.akkinBlack, for: .normal)
-            button.backgroundColor = .white
             button.layer.shadowColor = UIColor.akkinGray1.cgColor
             button.layer.shadowOpacity = 1
             button.layer.shadowRadius = 4
@@ -106,16 +94,28 @@ final class InputCategory: UIView {
             return button
         }
     
-        for button in items {
+        for button in buttons {
             categorySelectedStackView.addArrangedSubview(button)
-            button.tap = { [weak self] categoryType in
-                guard let self else { return }
-                tapIcon(categoryType.category)
-            }
+            button.addAction(UIAction(handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.onCategoryTapped?(button.category)
+                self.setHighlightedState(button.category)
+            }), for: .touchUpInside)
         }
     }
     
-    func tapIcon(_ category: Category) {
+    func setHighlightedState(_ category: Category) {
+        for button in buttons {
+            if button.category == category {
+                print("\(category)")
+                button.setTitleColor(UIColor.akkinWhite, for: .normal)
+                button.backgroundColor = .akkinGreen
+            }
+            else {
+                button.setTitleColor(UIColor.akkinBlack, for: .normal)
+                button.backgroundColor = .akkinWhite
+            }
+        }
     }
     
     // MARK: Layout

@@ -7,47 +7,27 @@
 
 import UIKit
 
-final class IconButton: UIButton {
-    var tap: ((IconButton) -> Void)?
-    
-    let icon: Icon
-    init(icon: Icon) {
-        self.icon = icon
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 enum Icon: CaseIterable {
     case iconThemeProfile1, iconThemeProfile2, iconThemeProfile3, iconThemeProfile4, iconThemeProfile5
     
-    var title: String {
-        switch self {
-        case .iconThemeProfile1: return "1"
-        case .iconThemeProfile2: return "2"
-        case .iconThemeProfile3: return "3"
-        case .iconThemeProfile4: return "4"
-        case .iconThemeProfile5: return "5"
-        }
-    }
-    
     var image: UIImage {
         switch self {
-        case .iconThemeProfile1: return UIImage()
-        case .iconThemeProfile2: return UIImage()
-        case .iconThemeProfile3: return UIImage()
-        case .iconThemeProfile4: return UIImage()
-        case .iconThemeProfile5: return UIImage()
+        case .iconThemeProfile1: return UIImage(named: "icon_1") ?? UIImage()
+        case .iconThemeProfile2: return UIImage(named: "icon_2") ?? UIImage()
+        case .iconThemeProfile3: return UIImage(named: "icon_3") ?? UIImage()
+        case .iconThemeProfile4: return UIImage(named: "icon_4") ?? UIImage()
+        case .iconThemeProfile5: return UIImage(named: "icon_5") ?? UIImage()
         }
     }
 }
 
-final class InputIconSelectedView: BaseView{
+final class InputIconSelectedView: BaseView {
 
     // MARK: UI Components
+    var onIconTapped: ((Icon) -> Void)?
+    
+    var buttons: [IconButton] = []
+    
     private let iconStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -56,8 +36,6 @@ final class InputIconSelectedView: BaseView{
         stackView.distribution = .fillEqually
         return stackView
     }()
-    
-    var iconButtons = [IconButton]()
     
     // MARK: Initializer
     override init(frame: CGRect) {
@@ -79,11 +57,11 @@ final class InputIconSelectedView: BaseView{
     
     // MARK: Properties
     func iconButtonSetup() {
-        let items = Icon.allCases.map { icon in
+        self.buttons = Icon.allCases.map { icon in
             let button = IconButton(icon: icon)
             button.layer.cornerRadius = 8
-            button.setTitle(icon.title, for: .normal)
             button.setImage(icon.image, for: .normal)
+            button.imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
             button.backgroundColor = .akkinWhite
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor.akkinGray3.cgColor
@@ -93,17 +71,27 @@ final class InputIconSelectedView: BaseView{
             }
             return button
         }
-    
-        for button in items {
+        
+        for button in buttons {
             iconStackView.addArrangedSubview(button)
-            button.tap = { [weak self] iconType in
-                guard let self else { return }
-                tapIcon(iconType.icon)
-            }
+            button.addAction(UIAction(handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.onIconTapped?(button.icon)
+                self.setHighlightedState(button.icon)
+            }), for: .touchUpInside)
         }
     }
     
-    func tapIcon(_ icon: Icon) {
+    func setHighlightedState(_ icon: Icon) {
+        for button in buttons {
+            if button.icon == icon {
+                button.layer.borderWidth = 1
+                button.layer.borderColor = UIColor.akkinGreen.cgColor
+            }
+            else {
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.akkinGray3.cgColor}
+        }
     }
     
     // MARK: Layout
