@@ -26,7 +26,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .akkinGray1
+        imageView.backgroundColor = .akkinWhite
         imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -82,7 +82,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         }
         
         inputCategory.onCategoryTapped = { [weak self] category in
-            guard let self else {
+            guard self != nil else {
                 return }
         }
     }
@@ -202,6 +202,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 .offset(46)
             $0.height
                 .equalTo(47)
+            $0.width
+                .equalTo(294)
         }
         
         inputCategory.snp.makeConstraints {
