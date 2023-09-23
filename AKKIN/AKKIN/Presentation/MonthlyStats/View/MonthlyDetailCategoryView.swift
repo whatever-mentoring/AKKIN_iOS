@@ -14,7 +14,7 @@ final class MonthlyDetailCategoryView: BaseView {
     // MARK: UI Components
     private let monthlyStatsLabel = UILabel().then {
         $0.text = "상세 카테고리"
-        $0.font = .systemFont(ofSize: 24, weight: .semibold)
+        $0.font = .systemFont(ofSize: 20, weight: .semibold)
     }
 
     private let monthlyStatsView = UIView().then {
@@ -67,7 +67,7 @@ final class MonthlyDetailCategoryView: BaseView {
                 .equalToSuperview()
                 .inset(24)
             $0.height
-                .equalTo(168)
+                .equalTo(164)
         }
 
         monthlyStatsTableView.snp.makeConstraints {
@@ -77,7 +77,7 @@ final class MonthlyDetailCategoryView: BaseView {
             $0.leading.trailing
                 .equalToSuperview()
             $0.height
-                .equalTo(144)
+                .equalTo(148)
             $0.bottom
                 .equalTo(monthlyStatsView.snp.bottom)
                 .offset(-8)
@@ -96,7 +96,7 @@ extension MonthlyDetailCategoryView: UITableViewDataSource, UITableViewDelegate 
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 36
+        return 37
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

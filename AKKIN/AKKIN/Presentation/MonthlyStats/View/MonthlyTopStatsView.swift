@@ -15,7 +15,7 @@ final class MonthlyTopStatsView: BaseView {
     private let monthlyRangkingLabel = UILabel().then {
         $0.text = "랭킹 TOP3"
         $0.font = .systemFont(
-            ofSize: 24,
+            ofSize: 20,
             weight: .semibold
         )
     }
@@ -75,8 +75,7 @@ final class MonthlyTopStatsView: BaseView {
                 .trailing.equalToSuperview()
                 .inset(24)
             $0.height
-            
-                .equalTo(124)
+                .equalTo(127)
         }
 
         monthlyTopRankingStatsTableView.snp.makeConstraints {
@@ -86,7 +85,7 @@ final class MonthlyTopStatsView: BaseView {
             $0.leading.trailing
                 .equalToSuperview()
             $0.height
-                .equalTo(104)
+                .equalTo(111)
         }
     }
     
@@ -104,7 +103,7 @@ extension MonthlyTopStatsView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 36
+        return 37
     }
 
     func tableView(_ tableView: UITableView,

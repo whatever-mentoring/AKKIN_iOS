@@ -23,7 +23,7 @@ final class MonthlyStatsViewController: BaseViewController {
     
     private let monthlySaveText = UILabel().then {
         $0.text = "총 100,000,000원 아꼈어요"
-        $0.font = UIFont.systemFont(ofSize: 28,
+        $0.font = UIFont.systemFont(ofSize: 26,
                                     weight: .semibold)
         $0.textColor = .akkinGreen
     }
@@ -44,7 +44,7 @@ final class MonthlyStatsViewController: BaseViewController {
     
     private let contentStackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 20
+        $0.spacing = 24
     }
     
     let monthlyDetailCategoryView = MonthlyDetailCategoryView()
@@ -141,7 +141,7 @@ final class MonthlyStatsViewController: BaseViewController {
         scrollView.snp.makeConstraints {
             $0.top
                 .equalTo(monthlySaveText.snp.bottom)
-                .offset(24)
+                .offset(34)
             $0.leading.trailing.bottom
                 .equalTo(view.safeAreaLayoutGuide)
         }
@@ -152,12 +152,12 @@ final class MonthlyStatsViewController: BaseViewController {
         
         monthlyDetailCategoryView.snp.makeConstraints {
             $0.height
-                .equalTo(215)
+                .equalTo(198)
         }
         
         monthlyTopStatsView.snp.makeConstraints {
             $0.height
-                .equalTo(175)
+                .equalTo(168)
         }
     }
     
