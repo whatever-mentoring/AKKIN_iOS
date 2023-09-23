@@ -23,7 +23,7 @@ class InputHowContent: UIView, UITextFieldDelegate {
             ofSize: 16, weight: .semibold
         )
     }
-    private let howTextField: UITextField = {
+    let howTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "어떤 방식으로 아끼셨나요?"
         textField.font = .systemFont(

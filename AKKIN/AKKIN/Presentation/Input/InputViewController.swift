@@ -6,19 +6,27 @@
 //
 
 import UIKit
+import SnapKit
 
-class InputViewController: BaseViewController {
+class InputViewController: BaseViewController, UITextFieldDelegate {
+    var buttons = [CategoryButton]()
     
+    // MARK: Constants
+    private var isKeyboardVisible = false
+
     // MARK: UI Components
-    private let backButton = BaseButton().then {
-        $0.setImage(UIImage(named: "backButton"), for: .normal)
+    private let scrollView = UIScrollView().then {
+        $0.delaysContentTouches = false
     }
     
+    private let backButton = BaseButton().then {
+       $0.setImage(UIImage(named: "backButton"), for: .normal)
+   }
     private let inputIconSelectedView = InputIconSelectedView()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .akkinGray1
+        imageView.backgroundColor = .akkinWhite
         imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -45,40 +53,110 @@ class InputViewController: BaseViewController {
         inputDatePicker
             .translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(inputIconSelectedView)
-        view.addSubview(imageView)
-        view.addSubview(inputDatePicker)
-        view.addSubview(inputCategory)
-        view.addSubview(inputSaveContent)
-        view.addSubview(inputHowContent)
-        view.addSubview(inputCostContent)
-        view.addSubview(makeCardButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(inputIconSelectedView)
+        scrollView.addSubview(imageView)
+        scrollView.addSubview(inputDatePicker)
+        scrollView.addSubview(inputCategory)
+        scrollView.addSubview(inputSaveContent)
+        scrollView.addSubview(inputHowContent)
+        scrollView.addSubview(inputCostContent)
+        scrollView.addSubview(makeCardButton)
         
         makeCardButton.tap = { [weak self] in
             guard let self else {
-                return
-            }
+                return }
             router.presentCardViewController()
         }
+        
         backButton.tap = { [weak self] in
-            guard let self else { return }
+            guard let self else {
+                return }
             router.dismissViewController()
         }
-    }
-    
-    // MARK: Properties
-    private func setNavigationItem() {
-        navigationItem.title = "기록하기"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        inputIconSelectedView.onIconTapped = { [weak self] icon in
+            guard let self else {
+                return }
+            tapIcon(icon)
+        }
+        
+        inputCategory.onCategoryTapped = { [weak self] category in
+            guard self != nil else {
+                return }
+        }
     }
     
     // MARK: Environment
     private let router = ExampleRouter()
     
+    // MARK: Properties
+    
+    private func setNavigationItem() {
+        navigationItem.title = "기록하기"
+        navigationItem.leftBarButtonItem =
+        UIBarButtonItem(customView: backButton)
+    }
+    
+    func tapIcon(_ icon: Icon) {
+        switch icon {
+        case .iconThemeProfile1:
+            imageView.image = UIImage(named: "image_1")
+        case .iconThemeProfile2:
+            imageView.image = UIImage(named: "image_2")
+        case .iconThemeProfile3:
+            imageView.image = UIImage(named: "image_3")
+        case .iconThemeProfile4:
+            imageView.image = UIImage(named: "image_4")
+        case .iconThemeProfile5:
+            imageView.image = UIImage(named: "image_5")
+        }
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        guard let keyboardFrame =
+                sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                as? NSValue,
+              let currentTextField = UIResponder.currentResponder
+                as? UITextField else { return }
+        
+        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
+        let convertedTextFieldFrame = view.convert(
+            currentTextField.frame,
+            from: currentTextField.superview)
+        let textFieldBottomY =
+        convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+        if textFieldBottomY > keyboardTopY {
+            let textFieldTopY = convertedTextFieldFrame.origin.y
+            let newFrame = textFieldTopY - keyboardTopY/1.08
+            view.frame.origin.y -= newFrame
+        }
+    }
+
+    @objc func keyboardWillHide(_ sender: Notification) {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    func setupKeyboardEvent() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil)
+    }
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
+        setupKeyboardEvent()
         router.viewController = self
         view.backgroundColor =
             .akkinGray0
@@ -88,18 +166,26 @@ class InputViewController: BaseViewController {
     override func makeConstraints() {
         super.makeConstraints()
         
+        scrollView.snp.makeConstraints {
+            $0.edges
+                .equalToSuperview()
+        }
+        
         inputIconSelectedView.snp.makeConstraints {
             $0.top
-                .equalTo(view.safeAreaLayoutGuide)
+                .equalTo(scrollView.safeAreaLayoutGuide)
                 .offset(11)
             $0.height
                 .equalTo(44)
             $0.centerX
                 .equalToSuperview()
+            $0.width
+                .equalToSuperview()
         }
         
         imageView.snp.makeConstraints {
-            $0.width.height.equalTo(172)
+            $0.width.height
+                .equalTo(172)
             $0.top
                 .equalTo(inputIconSelectedView.snp.bottom)
                 .offset(16)
@@ -116,6 +202,8 @@ class InputViewController: BaseViewController {
                 .offset(46)
             $0.height
                 .equalTo(47)
+            $0.width
+                .equalTo(294)
         }
         
         inputCategory.snp.makeConstraints {
@@ -127,6 +215,8 @@ class InputViewController: BaseViewController {
                 .offset(46)
             $0.height
                 .equalTo(78)
+            $0.width
+                .equalTo(272)
         }
         
         inputSaveContent.snp.makeConstraints {
@@ -138,6 +228,8 @@ class InputViewController: BaseViewController {
                 .offset(46)
             $0.height
                 .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
         
         inputHowContent.snp.makeConstraints {
@@ -149,6 +241,8 @@ class InputViewController: BaseViewController {
                 .offset(46)
             $0.height
                 .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
         
         inputCostContent.snp.makeConstraints {
@@ -160,6 +254,8 @@ class InputViewController: BaseViewController {
                 .offset(46)
             $0.height
                 .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
         
         makeCardButton.snp.makeConstraints {

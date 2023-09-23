@@ -60,13 +60,14 @@ final class ExampleRouter {
     }
 
     func popToRootViewController() {
-//        viewController?.dismiss(animated: true) {
-//            self.viewController?.navigationController?.popViewController(animated: true)
-//        }
         viewController?.dismiss(animated: true, completion: {
-            if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
-                if let navigationController = rootViewController as? UINavigationController {
-                    navigationController.popToRootViewController(animated: true)
+            if let rootViewController =
+                UIApplication.shared.windows.first?
+                .rootViewController {
+                    if let navigationController =
+                        rootViewController as? UINavigationController {
+                        navigationController
+                            .popToRootViewController(animated: true)
                 }
             }
         })

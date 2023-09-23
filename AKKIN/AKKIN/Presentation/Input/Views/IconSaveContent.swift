@@ -22,7 +22,7 @@ class InputSaveContent: UIView, UITextFieldDelegate {
             ofSize: 16, weight: .semibold
         )
     }
-    private let contentTextField = UITextField().then {
+    let contentTextField = UITextField().then {
         $0.placeholder = "어떤 소비를 했는지 적어보세요."
         $0.font = .systemFont(
             ofSize: 14, weight: .regular
