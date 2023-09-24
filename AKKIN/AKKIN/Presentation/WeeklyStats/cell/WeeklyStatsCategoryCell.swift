@@ -10,8 +10,6 @@ final class WeeklyStatsCategoryCell: UICollectionViewCell {
     
     static let identifier = "WeeklyStatsCategoryCell"
     var categoryButtonAction : (() -> ())?
-    var selectedButtonIndex: Int = 0
-    var selectedButtonIndexs: Int = 0
 
     // MARK: UI Components
     private(set) var categoryButton = BaseButton().then {
@@ -74,3 +72,4 @@ final class WeeklyStatsCategoryCell: UICollectionViewCell {
         }
     }
 }
+
