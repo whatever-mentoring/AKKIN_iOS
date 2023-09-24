@@ -65,7 +65,7 @@ final class ExampleRouter {
 
     func dismissCardViewController() {
         viewController?.dismiss(animated: true, completion: {
-            self.viewController?.navigationController?.popToViewController(MainViewController(),animated: true)
+            self.viewController?.navigationController?.popToRootViewController(animated: true)
         })
     }
 

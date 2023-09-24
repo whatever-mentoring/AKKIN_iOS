@@ -52,7 +52,6 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         super.configureSubviews()
         inputDatePicker
             .translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(scrollView)
         scrollView.addSubview(inputIconSelectedView)
         scrollView.addSubview(imageView)
@@ -62,36 +61,12 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         scrollView.addSubview(inputHowContent)
         scrollView.addSubview(inputCostContent)
         scrollView.addSubview(makeCardButton)
-        
-        makeCardButton.tap = { [weak self] in
-            guard let self else {
-                return }
-            router.presentCardViewController()
-        }
-        
-        backButton.tap = { [weak self] in
-            guard let self else {
-                return }
-            router.dismissViewController()
-        }
-        
-        inputIconSelectedView.onIconTapped = { [weak self] icon in
-            guard let self else {
-                return }
-            tapIcon(icon)
-        }
-        
-        inputCategory.onCategoryTapped = { [weak self] category in
-            guard self != nil else {
-                return }
-        }
     }
     
     // MARK: Environment
     private let router = ExampleRouter()
     
     // MARK: Properties
-    
     private func setNavigationItem() {
         navigationItem.title = "기록하기"
         navigationItem.leftBarButtonItem =
@@ -117,28 +92,26 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         guard let keyboardFrame =
                 sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                 as? NSValue,
-              let currentTextField = UIResponder.currentResponder
+        let currentTextField = UIResponder.currentResponder
                 as? UITextField else { return }
-        
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
-        let convertedTextFieldFrame = view.convert(
-            currentTextField.frame,
-            from: currentTextField.superview)
-        let textFieldBottomY =
-        convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
-        if textFieldBottomY > keyboardTopY {
-            let textFieldTopY = convertedTextFieldFrame.origin.y
-            let newFrame = textFieldTopY - keyboardTopY/1.08
+        let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
+        let textFieldTopY = convertedTextFieldFrame.origin.y
+        if !isKeyboardVisible {
+            // 키보드가 처음 올라온 경우에만 처리
+            let newFrame = textFieldTopY - keyboardTopY / 1.05
             view.frame.origin.y -= newFrame
+            isKeyboardVisible = true
         }
     }
 
     @objc func keyboardWillHide(_ sender: Notification) {
         if view.frame.origin.y != 0 {
+            isKeyboardVisible = false
             view.frame.origin.y = 0
         }
     }
-    
+
     func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(
             self,
@@ -157,6 +130,11 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setNavigationItem()
         setupKeyboardEvent()
+        hideKeyboard()
+        inputSaveContent.contentTextField.delegate = self
+        inputHowContent.howTextField.delegate = self
+        inputCostContent.expectCostTextField.delegate = self
+        inputCostContent.realCostTextField.delegate = self
         router.viewController = self
         view.backgroundColor =
             .akkinGray0
@@ -268,6 +246,32 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 .equalTo(60)
             $0.centerX
                 .equalToSuperview()
+        }
+    }
+    
+    // MARK: View Transition
+    override func viewTransition() {
+        makeCardButton.tap = { [weak self] in
+            guard let self else {
+                return }
+            router.presentCardViewController()
+        }
+        
+        backButton.tap = { [weak self] in
+            guard let self else {
+                return }
+            router.dismissViewController()
+        }
+        
+        inputIconSelectedView.onIconTapped = { [weak self] icon in
+            guard let self else {
+                return }
+            tapIcon(icon)
+        }
+        
+        inputCategory.onCategoryTapped = { [weak self] category in
+            guard self != nil else {
+                return }
         }
     }
 }
