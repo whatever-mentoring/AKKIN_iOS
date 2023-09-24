@@ -14,9 +14,9 @@ final class MyPageViewController: BaseViewController {
     private let appInfo = ["서비스 이용약관", "개인 정보 처리 방침", "오픈소스 사용정보"]
     private let account = ["로그아웃", "회원탈퇴"]
     private var nickName = "거지"
-    private let url = ["https://www.kurly.com/",
-                       "https://tundra-operation-2d1.notion.site/3575a8becd474c6a93e066b8c442471d",
-                       "https://www.naver.com/"]
+    private let url = [URLConst.termsURL,
+                       URLConst.privacyPolicyURL,
+                       URLConst.openSourceURL]
 
     // MARK: UI Components
     private let profileImageView = UIImageView().then {
