@@ -16,4 +16,14 @@ enum URLConst {
     
     // MARK: - Login
     static let dummyLogin = "/login/dummy/101"
+    static let appleLogin = "/login/oauth2/apple"
+
+    // MARK: - Gulbis
+    static let gulbis = "/gulbis"
+
+    // MARK: - weekly Stats
+    static let weeklyStats = "/members/weekly"
+
+    // MARK: - monthly Stats
+    static let monthlyStats = "/members/monthly"
 }
