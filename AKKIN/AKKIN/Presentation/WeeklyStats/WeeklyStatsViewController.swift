@@ -6,7 +6,7 @@
 //
 import UIKit
 
-enum WEEK: CaseIterable {
+enum Week: CaseIterable {
     case mon
     case tue
     case wed
@@ -26,9 +26,37 @@ enum WEEK: CaseIterable {
         case .sun: return "SUN"
         }
     }
+
+    var content: Int {
+        switch self {
+        case .mon: return 3
+        case .tue: return 4
+        case .wed: return 5
+        case .thu: return 6
+        case .fri: return 7
+        case .sat: return 8
+        case .sun: return 9
+        }
+    }
+
+    var isExist: Bool {
+        switch self {
+        case .mon: return true
+        case .tue: return true
+        case .wed: return false
+        case .thu: return true
+        case .fri: return false
+        case .sat: return true
+        case .sun: return true
+        }
+    }
 }
 
 final class WeeklyStatsViewController: BaseViewController {
+
+    var onWeekTapped: ((Week) -> Void)?
+    let dayLabel = ["3", "4", "5", "6", "7", "8", "9"]
+    var weekViewArray: [UIView] = []
 
     // MARK: UI Components
     private let weekLabel = UILabel().then {
@@ -55,34 +83,9 @@ final class WeeklyStatsViewController: BaseViewController {
     }
 
     private let weekStackView = UIStackView().then {
-        $0.backgroundColor = .brown
         $0.axis = .horizontal
         $0.alignment = .fill
         $0.distribution = .fillEqually
-    }
-
-    private let dayView = UIView().then {
-        $0.backgroundColor = .white
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.red.cgColor
-    }
-
-    private let dayStringLabel = UILabel().then {
-        $0.text = "SUN"
-        $0.font = .systemFont(ofSize: 10)
-    }
-
-    private let dividerView = UIView().then {
-        $0.backgroundColor = .black
-    }
-
-    private let dayIntLabel = UILabel().then {
-        $0.text = "3"
-        $0.font = .systemFont(ofSize: 10)
-    }
-
-    private let checkImageView = UIImageView().then {
-        $0.image = UIImage(named: "checkButton")
     }
 
     // MARK: Environment
@@ -94,7 +97,7 @@ final class WeeklyStatsViewController: BaseViewController {
         super.viewDidLoad()
         setNavigationItem()
         view.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
-
+        create()
         router.viewController = self
     }
 
@@ -111,22 +114,68 @@ final class WeeklyStatsViewController: BaseViewController {
         view.addSubview(weekLabel)
         view.addSubview(previousButton)
         view.addSubview(nextButton)
-        // 달력
         view.addSubview(weekView)
-        // 컬렉션 뷰
         view.addSubview(weeklyStatsCollectionView)
 
         weekView.addSubview(weekStackView)
+    }
 
-        let dayViews = WEEK.allCases.map { week in
-            let dayVieww = UIView().then {
-                $0.backgroundColor = .white
+    func create() {
+        for day in Week.allCases {
+            let dayLabel = UILabel()
+            dayLabel.text = day.title
+            dayLabel.font = UIFont.systemFont(ofSize: 10)
+            dayLabel.textColor = .akkinBlack
+            dayLabel.textAlignment = .center
+
+            let dividerView = UIView()
+            dividerView.backgroundColor = .black
+
+            let dayIntLabel = UILabel()
+            dayIntLabel.text = "\(day.content)"
+            dayIntLabel.font = UIFont.systemFont(ofSize: 10)
+            dayIntLabel.textColor = .akkinBlack
+            dayIntLabel.textAlignment = .center
+
+            let dayView = UIView()
+            dayView.addSubview(dayLabel)
+            dayView.addSubview(dividerView)
+            dayView.addSubview(dayIntLabel)
+
+            dayLabel.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(11)
+                $0.centerX.equalToSuperview()
             }
 
-            return dayVieww
-        }
+            dividerView.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(36)
+                $0.width.equalToSuperview()
+                $0.height.equalTo(0.7)
+            }
 
-        for dayView in dayViews {
+            dayIntLabel.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(47)
+                $0.centerX.equalToSuperview()
+            }
+
+            if day.isExist {
+                let checkImageView = UIImageView()
+                checkImageView.image = UIImage(named: "checkButton")
+
+                dayView.addSubview(checkImageView)
+
+                checkImageView.snp.makeConstraints {
+                    $0.bottom.equalToSuperview().inset(10)
+                    $0.centerX.equalToSuperview()
+                    $0.width.height.equalTo(8)
+                }
+            }
+
+            weekViewArray.append(dayView)
+
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+
+            dayView.addGestureRecognizer(tapGesture)
             weekStackView.addArrangedSubview(dayView)
         }
     }
@@ -164,10 +213,6 @@ final class WeeklyStatsViewController: BaseViewController {
             $0.height.equalTo(82)
         }
 
-        dayStringLabel.snp.makeConstraints {
-            $0.width.height.equalTo(20)
-        }
-
         weeklyStatsCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(171)
             $0.leading.trailing.equalToSuperview().inset(24)
@@ -182,4 +227,14 @@ final class WeeklyStatsViewController: BaseViewController {
             router.dismissViewController()
         }
     }
+
+    // MARK: Event
+    @objc func viewTapped(_ sender: UITapGestureRecognizer) {
+        if let tappedView = sender.view {
+            if let index = weekViewArray.firstIndex(of: tappedView) {
+                print("Tapped view index: \(index)")
+            }
+        }
+    }
 }
+

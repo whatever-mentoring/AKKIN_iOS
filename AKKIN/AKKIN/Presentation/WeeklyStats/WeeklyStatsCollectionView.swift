@@ -8,12 +8,9 @@ import UIKit
 
 final class WeeklyStatsCollectionView: BaseView, UICollectionViewDelegate {
 
-    private let dayString = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
-    private let dayInt = ["3", "4", "5", "6", "7", "8", "9"]
-    private let category = ["전체", "식비", "교통", "쇼핑", "취미", "기타"]
-    var selectedButtonIndex = 0
-    var selectedButton: UIButton?
- 
+    private let category = ["전체", "식비", "교통", "쇼핑", "기타"]
+    var selectedButtonIndex: Int? = 0
+
     // MARK: UI Components
     public lazy var weekCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: createLayout())
@@ -73,6 +70,7 @@ final class WeeklyStatsCollectionView: BaseView, UICollectionViewDelegate {
     override func configureSubviews() {
         super.configureSubviews()
         weekCollectionView.dataSource = self
+        weekCollectionView.delegate = self
 
         addSubview(weekCollectionView)
     }
@@ -100,7 +98,7 @@ extension WeeklyStatsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 6
+            return 5
         case 1:
             return 10
         default:
@@ -113,13 +111,19 @@ extension WeeklyStatsCollectionView: UICollectionViewDataSource {
         case 0:
             guard let cell = weekCollectionView.dequeueReusableCell(withReuseIdentifier: WeeklyStatsCategoryCell.identifier, for: indexPath) as? WeeklyStatsCategoryCell else { return UICollectionViewCell() }
 
-            if indexPath.row == self.selectedButtonIndex {
-                cell.categoryButton.isSelected = true
-                cell.selectedCategory()
-            }
-
-            cell.categoryButton.setTitle(category[indexPath.row], for: .normal)
+            cell.categoryButton.tag = indexPath.item
+                cell.categoryButton.addTarget(self, action: #selector(checkButtonTapped(_:)), for: .touchUpInside)
+                
+                if indexPath.item == selectedButtonIndex {
+                    cell.categoryButton.isSelected = true
+                    cell.selectedCategory()
+                } else {
+                    cell.categoryButton.isSelected = false
+                    cell.selectedCategory()
+                }
+                
             cell.categoryButton.addTarget(self, action: #selector(checkButtonTapped(_:)), for: .touchUpInside)
+            cell.categoryButton.setTitle(category[indexPath.row], for: .normal)
 
             return cell
         default:
@@ -130,19 +134,13 @@ extension WeeklyStatsCollectionView: UICollectionViewDataSource {
     }
 
     @objc func checkButtonTapped(_ sender: UIButton) {
-        guard let cell = sender.superview?.superview as? WeeklyStatsCategoryCell,
-              let indexPath = weekCollectionView.indexPath(for: cell) else {
-            return
+        let indexPath = IndexPath(item: sender.tag, section: 0)
+        
+        if selectedButtonIndex != indexPath.item {
+            selectedButtonIndex = indexPath.item
         }
 
-        if indexPath.row != self.selectedButtonIndex {
-            if cell.categoryButton.isSelected == false {
-                cell.categoryButton.isSelected.toggle()
-                cell.selectedCategory()
-            }
-
-            self.selectedButtonIndex = indexPath.row
-        }
+        weekCollectionView.reloadData()
     }
-    
 }
+
