@@ -48,7 +48,6 @@ final class LoginView: BaseView {
         loginButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview().inset(50)
-            $0.width.equalTo(350)
             $0.height.equalTo(56)
         }
     }
