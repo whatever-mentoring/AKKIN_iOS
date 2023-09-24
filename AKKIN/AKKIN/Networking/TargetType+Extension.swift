@@ -14,12 +14,12 @@ extension TargetType {
         URL(string: URLConst.base)!
     }
     
-    var headers: [String : String]? {
+//    var headers: [String : String]? {
 //        let header = [
 //            "Content-Type": "application/json",
 //            "Authorization": "accessToken"
 //        ]
 //        return header
-        nil
-    }
+//        nil
+//    }
 }
