@@ -255,18 +255,18 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         makeCardButton.tap = { [weak self] in
             guard let self else {
                 return }
-            postGulbi()
+            postAkkin(year: inputDatePicker.selectedYear ?? 0, month: inputDatePicker.selectedMonth ?? 0, day: inputDatePicker.selectedDay ?? 0, category: inputCategory.selectedCategory ?? "DINING", saveContent: inputSaveContent.contentTextField.text ?? "개발 힘들어", how: inputHowContent.howTextField.text ?? "개발 힘들어", expectCost: Int(inputCostContent.expectCostTextField.text ?? "3") ?? 0, realCost: Int(inputCostContent.realCostTextField.text ?? "3") ?? 0)
             presentCardViewControllerWithArgs(
-                    from: self,
-                    selectedYear: inputDatePicker.selectedYear,
-                    selectedMonth: inputDatePicker.selectedMonth,
-                    selectedDay: inputDatePicker.selectedDay,
-                    selectedImage: imageView.image,
-                    selectedSaveContent: inputSaveContent.contentTextField.text,
-                    selectedHow: inputHowContent.howTextField.text,
-                    selectedExpectCost: Int(inputCostContent.expectCostTextField.text ?? "0"),
-                    selectedRealCost: Int(inputCostContent.realCostTextField.text ?? "0")
-                )
+                from: self,
+                selectedYear: inputDatePicker.selectedYear,
+                selectedMonth: inputDatePicker.selectedMonth,
+                selectedDay: inputDatePicker.selectedDay,
+                selectedImage: imageView.image,
+                selectedSaveContent: inputSaveContent.contentTextField.text,
+                selectedHow: inputHowContent.howTextField.text,
+                selectedExpectCost: Int(inputCostContent.expectCostTextField.text ?? "0"),
+                selectedRealCost: Int(inputCostContent.realCostTextField.text ?? "0")
+            )
         }
         
         backButton.tap = { [weak self] in
@@ -316,84 +316,23 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
 
     
     // MARK: Networking
-
-    func getDummyToken(completion: @escaping (Result<String, Error>) -> Void) {
-        // 더미 토큰을 받을 URL
-        guard let url = URL(string: "https://www.example.com/get_data_endpoint") else {
-                completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
-                return
-            }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            // HTTP 응답 코드 확인
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                // HTTP 응답이 성공적이지 않은 경우에 대한 처리
-                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
-                let error = NSError(domain: "HTTPError", code: statusCode, userInfo: nil)
-                completion(.failure(error))
-                return
-            }
-            
-            if let data = data, let token = String(data: data, encoding: .utf8) {
-                completion(.success(token))
-            } else {
-                let error = NSError(domain: "DataParsingError", code: -1, userInfo: nil)
-                completion(.failure(error))
+    func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
+        NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? AkkinResponse else { return }
+                print(data)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
             }
         }
-        
-        task.resume()
-    }
-    
-    func postGulbi() {
-        guard
-            let year = inputDatePicker.selectedYear,
-            let month = inputDatePicker.selectedMonth,
-            let day = inputDatePicker.selectedDay,
-            let category = inputCategory.selectedCategory,
-            let saveContent = inputSaveContent.contentTextField.text,
-            let how = inputHowContent.howTextField.text,
-            let expectCostText = inputCostContent.expectCostTextField.text,
-            let realCostText = inputCostContent.realCostTextField.text,
-            let expectCost = Int(expectCostText),
-            let realCost = Int(realCostText)
-        else {
-            // 필요한 값이 모두 유효하지 않을 때 처리
-            return
-        }
-        let gulbi = Gulbis(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)
-        guard let uploadData = try? JSONEncoder().encode(gulbi)
-        else {return}
-        
-        // URL 객체 정의
-        let url = URL(string: "https://www.seuleuleug.site/api/gulbis")
-        
-        var request = URLRequest(url: url!)
-        request.httpMethod = "POST"
-        
-        // HTTP 메시지 헤더
-        request.setValue("Bearer \(UserDefaultHandler.accessToken)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.uploadTask(with: request, from: uploadData) { (data, response, error) in
-            
-            if let e = error {
-                NSLog("An error has occured: \(e.localizedDescription)")
-                return
-            }
-            // 응답 처리 로직
-            print("굴비 post success")
-        }
-        
-        // POST 전송
-        task.resume()
     }
 }

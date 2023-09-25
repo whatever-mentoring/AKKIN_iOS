@@ -11,7 +11,7 @@ struct AkkinResponse: Codable {
     let month: Int
     let day: Int
     let category: String
-    let content: String
+    let saveContent: String
     let how: String
     let expectCost: Int
     let realCost: Int
