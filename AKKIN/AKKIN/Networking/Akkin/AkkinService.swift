@@ -13,6 +13,7 @@ final class AkkinService {
 
     private enum ResponseData {
         case getAkkin
+        case postAkkin
     }
 
     public func getAkkin(completion: @escaping (NetworkResult<Any>) -> Void) {
@@ -32,13 +33,29 @@ final class AkkinService {
         }
     }
 
+    public func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        akkinProvider.request(.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postAkkin)
+                completion(networkResult)
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+    }
     private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
 
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getAkkin:
+            case .getAkkin, .postAkkin:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -60,6 +77,11 @@ final class AkkinService {
         case .getAkkin:
             let decodedData = try? decoder.decode(AkkineEntireResponse.self, from: data)
             return .success(decodedData ?? "success")
+        case .postAkkin:
+            guard let decodedData = try? decoder.decode(AkkinResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
         }
     }
 }
@@ -85,3 +107,4 @@ final class AkkinService {
 //        }
 //    }
 //}
+
