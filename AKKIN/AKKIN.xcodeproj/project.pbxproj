@@ -67,6 +67,8 @@
 		951261C12AC1B00D0012B5F9 /* AkkinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261C02AC1B00D0012B5F9 /* AkkinService.swift */; };
 		951261C52AC1DE110012B5F9 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261C42AC1DE110012B5F9 /* UserDefault.swift */; };
 		951261C72AC1DE280012B5F9 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261C62AC1DE280012B5F9 /* UserDefaultHandler.swift */; };
+		951261CA2AC1FE4C0012B5F9 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261C92AC1FE4C0012B5F9 /* CardDetailViewController.swift */; };
+		951261CC2AC1FE610012B5F9 /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261CB2AC1FE610012B5F9 /* CardDetailView.swift */; };
 		95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5359F2AB18F1700FA2492 /* MainViewController.swift */; };
 		95E535A22AB18F3200FA2492 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535A12AB18F3200FA2492 /* MainView.swift */; };
 		95E535B52AB1D4CF00FA2492 /* MainCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */; };
@@ -165,6 +167,7 @@
 		951261C02AC1B00D0012B5F9 /* AkkinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkkinService.swift; sourceTree = "<group>"; };
 		951261C42AC1DE110012B5F9 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		951261C62AC1DE280012B5F9 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
+		951261C92AC1FE4C0012B5F9 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		95E5359F2AB18F1700FA2492 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		95E535A12AB18F3200FA2492 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCollectionView.swift; sourceTree = "<group>"; };
@@ -385,6 +388,15 @@
 			path = Akkin;
 			sourceTree = "<group>";
 		};
+		951261C82AC1FE380012B5F9 /* CardDetail */ = {
+			isa = PBXGroup;
+			children = (
+				951261C92AC1FE4C0012B5F9 /* CardDetailViewController.swift */,
+				951261CB2AC1FE610012B5F9 /* CardDetailView.swift */,
+			);
+			path = CardDetail;
+			sourceTree = "<group>";
+		};
 		95E535A42AB1910900FA2492 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +470,7 @@
 				951261612ABD96FB0012B5F9 /* Login */,
 				6B7427EF2AB8799A00BA7E2C /* Input */,
 				6B7427DE2AB8787000BA7E2C /* Card */,
+				951261C82AC1FE380012B5F9 /* CardDetail */,
 				6B117F562AB9DEDD000B03F7 /* MonthlyStats */,
 				9507C1C42AB62C0800E026F9 /* WeeklyStats */,
 				9507C1B72AB626C100E026F9 /* MyPage */,
@@ -651,6 +664,7 @@
 				6B7427E82AB878B800BA7E2C /* CardPageView.swift in Sources */,
 				6B7427FA2AB87A0D00BA7E2C /* InputIconSelectedView.swift in Sources */,
 				951261892AC02DEF0012B5F9 /* DummyLoginAPI.swift in Sources */,
+				951261CC2AC1FE610012B5F9 /* CardDetailView.swift in Sources */,
 				6B7427EC2AB878E600BA7E2C /* CardViewController.swift in Sources */,
 				6B7427F82AB87A0100BA7E2C /* InputHowContent.swift in Sources */,
 				6B117F692ABAE9D0000B03F7 /* MonthlyTopStatsTableViewCell.swift in Sources */,
@@ -661,6 +675,7 @@
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */,
 				6B7427FC2AB87A3400BA7E2C /* IconSaveContent.swift in Sources */,
+				951261CA2AC1FE4C0012B5F9 /* CardDetailViewController.swift in Sources */,
 				6B117F582AB9DF8B000B03F7 /* MonthlyStatsViewController.swift in Sources */,
 				9507C1C32AB6271D00E026F9 /* MyPageTableViewCell.swift in Sources */,
 				9507C1BB2AB626D200E026F9 /* MyPageViewController.swift in Sources */,
