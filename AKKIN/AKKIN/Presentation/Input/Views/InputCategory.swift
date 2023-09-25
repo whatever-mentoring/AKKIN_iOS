@@ -8,15 +8,14 @@
 import UIKit
 
 enum Category: CaseIterable {
-    case categoryProfile1, categoryProfile2, categoryProfile3, categoryProfile4, categoryProfile5
+    case DINING, TRAFFIC, SHOPPING, ETC
     
     var title: String {
         switch self {
-        case .categoryProfile1: return "식비"
-        case .categoryProfile2: return "교통"
-        case .categoryProfile3: return "쇼핑"
-        case .categoryProfile4: return "취미"
-        case .categoryProfile5: return "기타"
+        case .DINING: return "식비"
+        case .TRAFFIC: return "교통"
+        case .SHOPPING: return "쇼핑"
+        case .ETC: return "기타"
         }
     }
 }
@@ -24,6 +23,7 @@ enum Category: CaseIterable {
 final class InputCategory: UIView {
     
     var onCategoryTapped: ((Category) -> Void)?
+    var selectedCategory: String?
     
     // MARK: UI Components
     private let categoryStackView: UIStackView = {
@@ -108,6 +108,7 @@ final class InputCategory: UIView {
         for button in buttons {
             if button.category == category {
                 print("\(category)")
+                selectedCategory = "\(category)"
                 button.setTitleColor(UIColor.akkinWhite, for: .normal)
                 button.backgroundColor = .akkinGreen
             }
@@ -122,11 +123,11 @@ final class InputCategory: UIView {
     func makeConstraints() {
         categoryStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.width.equalTo(272)
+            $0.width.equalTo(216)
         }
         categorySelectedStackView.snp.makeConstraints {
             $0.top.equalTo(categoryStackView.snp.bottom).offset(8)
-            $0.width.equalTo(272)
+            $0.width.equalTo(216)
         }
     }
 }

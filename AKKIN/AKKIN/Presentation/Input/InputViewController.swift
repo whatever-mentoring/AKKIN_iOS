@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class InputViewController: BaseViewController, UITextFieldDelegate {
-    var buttons = [CategoryButton]()
     
     // MARK: Constants
     private var isKeyboardVisible = false
@@ -52,7 +51,6 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         super.configureSubviews()
         inputDatePicker
             .translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(scrollView)
         scrollView.addSubview(inputIconSelectedView)
         scrollView.addSubview(imageView)
@@ -62,58 +60,11 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         scrollView.addSubview(inputHowContent)
         scrollView.addSubview(inputCostContent)
         scrollView.addSubview(makeCardButton)
-        
-        makeCardButton.tap = { [weak self] in
-            guard let self else {
-                return }
-            // MARK: - 사용자가 입력한 데이터 연결 필요
-            postAkkin(year: 0, month: 0, day: 0, category: "DINING", saveContent: "dd", how: "ddd", expectCost: 3, realCost: 3)
-//            router.presentCardViewController()
-        }
-
-        func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
-            NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
-                switch result {
-                case .success(let response):
-                    guard let data = response as? AkkinResponse else { return }
-                    print(data)
-                case .requestErr(let errorResponse):
-                    dump(errorResponse)
-                    guard let data = errorResponse as? ErrorResponse else { return }
-                    print(data)
-                case .serverErr:
-                    print("serverErr")
-                case .networkFail:
-                    print("networkFail")
-                case .pathErr:
-                    print("pathErr")
-                }
-            }
-        }
-
-        backButton.tap = { [weak self] in
-            guard let self else {
-                return }
-            router.dismissViewController()
-        }
-        
-        inputIconSelectedView.onIconTapped = { [weak self] icon in
-            guard let self else {
-                return }
-            tapIcon(icon)
-        }
-        
-        inputCategory.onCategoryTapped = { [weak self] category in
-            guard self != nil else {
-                return }
-        }
-    }
     
     // MARK: Environment
     private let router = ExampleRouter()
     
     // MARK: Properties
-    
     private func setNavigationItem() {
         navigationItem.title = "기록하기"
         navigationItem.leftBarButtonItem =
@@ -139,28 +90,28 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         guard let keyboardFrame =
                 sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                 as? NSValue,
-              let currentTextField = UIResponder.currentResponder
+        let currentTextField = UIResponder.currentResponder
                 as? UITextField else { return }
-        
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
-        let convertedTextFieldFrame = view.convert(
-            currentTextField.frame,
-            from: currentTextField.superview)
-        let textFieldBottomY =
-        convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
-        if textFieldBottomY > keyboardTopY {
-            let textFieldTopY = convertedTextFieldFrame.origin.y
-            let newFrame = textFieldTopY - keyboardTopY/1.08
-            view.frame.origin.y -= newFrame
+        let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
+        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+        if !isKeyboardVisible {
+            if textFieldBottomY > keyboardTopY {
+                let textFieldTopY = convertedTextFieldFrame.origin.y
+                let newFrame = textFieldTopY - keyboardTopY / 1.1
+                view.frame.origin.y -= newFrame
+                isKeyboardVisible = true
+            }
         }
     }
 
     @objc func keyboardWillHide(_ sender: Notification) {
         if view.frame.origin.y != 0 {
+            isKeyboardVisible = false
             view.frame.origin.y = 0
         }
     }
-    
+
     func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(
             self,
@@ -179,6 +130,11 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setNavigationItem()
         setupKeyboardEvent()
+        hideKeyboard()
+        inputSaveContent.contentTextField.delegate = self
+        inputHowContent.howTextField.delegate = self
+        inputCostContent.expectCostTextField.delegate = self
+        inputCostContent.realCostTextField.delegate = self
         router.viewController = self
         view.backgroundColor =
             .akkinGray0
@@ -238,7 +194,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             $0.height
                 .equalTo(78)
             $0.width
-                .equalTo(272)
+                .equalTo(216)
         }
         
         inputSaveContent.snp.makeConstraints {
@@ -290,6 +246,92 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 .equalTo(60)
             $0.centerX
                 .equalToSuperview()
+        }
+    }
+    
+    // MARK: View Transition
+    override func viewTransition() {
+        makeCardButton.tap = { [weak self] in
+            guard let self else {
+                return }
+            postAkkin(year: inputDatePicker.selectedYear ?? 0, month: inputDatePicker.selectedMonth ?? 0, day: inputDatePicker.selectedDay ?? 0, category: inputCategory.selectedCategory ?? "DINING", saveContent: inputSaveContent.contentTextField.text ?? "개발 힘들어", how: inputHowContent.howTextField.text ?? "개발 힘들어", expectCost: Int(inputCostContent.expectCostTextField.text ?? "3") ?? 0, realCost: Int(inputCostContent.realCostTextField.text ?? "3") ?? 0)
+            presentCardViewControllerWithArgs(
+                from: self,
+                selectedYear: inputDatePicker.selectedYear,
+                selectedMonth: inputDatePicker.selectedMonth,
+                selectedDay: inputDatePicker.selectedDay,
+                selectedImage: imageView.image,
+                selectedSaveContent: inputSaveContent.contentTextField.text,
+                selectedHow: inputHowContent.howTextField.text,
+                selectedExpectCost: Int(inputCostContent.expectCostTextField.text ?? "0"),
+                selectedRealCost: Int(inputCostContent.realCostTextField.text ?? "0")
+            )
+        }
+        
+        backButton.tap = { [weak self] in
+            guard let self else {
+                return }
+            router.dismissViewController()
+        }
+        
+        inputIconSelectedView.onIconTapped = { [weak self] icon in
+            guard let self else {
+                return }
+            tapIcon(icon)
+        }
+        
+        inputCategory.onCategoryTapped = { [weak self] category in
+            guard self != nil else {
+                return }
+        }
+    }
+    func presentCardViewControllerWithArgs(
+        from viewController: UIViewController?,
+        selectedYear: Int?,
+        selectedMonth: Int?,
+        selectedDay: Int?,
+        selectedImage: UIImage?,
+        selectedSaveContent: String?,
+        selectedHow: String?,
+        selectedExpectCost: Int?,
+        selectedRealCost: Int?
+    ) {
+        let cardViewController = CardViewController()
+        
+        // CardViewController에 전달할 값들을 설정
+        cardViewController.selectedYear = selectedYear
+        cardViewController.selectedMonth = selectedMonth
+        cardViewController.selectedDay = selectedDay
+        cardViewController.selectedImage = imageView.image
+        cardViewController.selectedSaveContent = selectedSaveContent
+        cardViewController.selectedHow = selectedHow
+        cardViewController.selectedExpectCost = selectedExpectCost
+        cardViewController.selectedRealCost = selectedRealCost
+        
+        // Modal로 표시
+        cardViewController.modalPresentationStyle = .fullScreen
+        viewController?.present(cardViewController, animated: true)
+    }
+
+    
+    // MARK: Networking
+    func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
+        NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? AkkinResponse else { return }
+                print(data)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
         }
     }
 }
