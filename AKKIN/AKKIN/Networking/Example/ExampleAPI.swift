@@ -33,4 +33,8 @@ enum ExampleAPI: TargetType {
             return .requestJSONEncodable(request)
         }
     }
+
+    var headers: [String : String]? {
+        nil
+    }
 }
