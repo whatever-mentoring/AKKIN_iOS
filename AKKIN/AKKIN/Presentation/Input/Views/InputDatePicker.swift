@@ -8,6 +8,10 @@
 import UIKit
 
 class InputDatePicker: UIView {
+    var selectedYear: Int?
+    var selectedMonth: Int?
+    var selectedDay: Int?
+    
     
     // MARK: UI Components
     private let dateLabelStackView: UIStackView = {
@@ -89,6 +93,11 @@ class InputDatePicker: UIView {
         dateTextField.text = formatter.string(
             from: datePicker.date
         )
+        let calendar = Calendar.current
+        selectedYear = calendar.component(.year, from: datePicker.date)
+        selectedMonth = calendar.component(.month, from: datePicker.date)
+        selectedDay = calendar.component(.day, from: datePicker.date)
+        
         self.endEditing(true)
     }
     

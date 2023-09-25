@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class InputViewController: BaseViewController, UITextFieldDelegate {
-    var buttons = [CategoryButton]()
     
     // MARK: Constants
     private var isKeyboardVisible = false
@@ -96,12 +95,14 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 as? UITextField else { return }
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
         let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
-        let textFieldTopY = convertedTextFieldFrame.origin.y
+        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
         if !isKeyboardVisible {
-            // 키보드가 처음 올라온 경우에만 처리
-            let newFrame = textFieldTopY - keyboardTopY / 1.05
-            view.frame.origin.y -= newFrame
-            isKeyboardVisible = true
+            if textFieldBottomY > keyboardTopY {
+                let textFieldTopY = convertedTextFieldFrame.origin.y
+                let newFrame = textFieldTopY - keyboardTopY / 1.1
+                view.frame.origin.y -= newFrame
+                isKeyboardVisible = true
+            }
         }
     }
 
@@ -194,7 +195,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             $0.height
                 .equalTo(78)
             $0.width
-                .equalTo(272)
+                .equalTo(216)
         }
         
         inputSaveContent.snp.makeConstraints {
@@ -254,7 +255,18 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         makeCardButton.tap = { [weak self] in
             guard let self else {
                 return }
-            router.presentCardViewController()
+            postGulbi()
+            presentCardViewControllerWithArgs(
+                    from: self,
+                    selectedYear: inputDatePicker.selectedYear,
+                    selectedMonth: inputDatePicker.selectedMonth,
+                    selectedDay: inputDatePicker.selectedDay,
+                    selectedImage: imageView.image,
+                    selectedSaveContent: inputSaveContent.contentTextField.text,
+                    selectedHow: inputHowContent.howTextField.text,
+                    selectedExpectCost: Int(inputCostContent.expectCostTextField.text ?? "0"),
+                    selectedRealCost: Int(inputCostContent.realCostTextField.text ?? "0")
+                )
         }
         
         backButton.tap = { [weak self] in
@@ -272,6 +284,123 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         inputCategory.onCategoryTapped = { [weak self] category in
             guard self != nil else {
                 return }
+        }
+    }
+    func presentCardViewControllerWithArgs(
+        from viewController: UIViewController?,
+        selectedYear: Int?,
+        selectedMonth: Int?,
+        selectedDay: Int?,
+        selectedImage: UIImage?,
+        selectedSaveContent: String?,
+        selectedHow: String?,
+        selectedExpectCost: Int?,
+        selectedRealCost: Int?
+    ) {
+        let cardViewController = CardViewController()
+        
+        // CardViewController에 전달할 값들을 설정
+        cardViewController.selectedYear = selectedYear
+        cardViewController.selectedMonth = selectedMonth
+        cardViewController.selectedDay = selectedDay
+        cardViewController.selectedImage = imageView.image
+        cardViewController.selectedSaveContent = selectedSaveContent
+        cardViewController.selectedHow = selectedHow
+        cardViewController.selectedExpectCost = selectedExpectCost
+        cardViewController.selectedRealCost = selectedRealCost
+        
+        // Modal로 표시
+        cardViewController.modalPresentationStyle = .fullScreen
+        viewController?.present(cardViewController, animated: true)
+    }
+
+    
+    // MARK: Networking
+
+    func getDummyToken(completion: @escaping (Result<String, Error>) -> Void) {
+        // 더미 토큰을 받을 URL
+        guard let url = URL(string: "https://www.example.com/get_data_endpoint") else {
+                completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+                return
+            }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            // HTTP 응답 코드 확인
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                // HTTP 응답이 성공적이지 않은 경우에 대한 처리
+                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+                let error = NSError(domain: "HTTPError", code: statusCode, userInfo: nil)
+                completion(.failure(error))
+                return
+            }
+            
+            if let data = data, let token = String(data: data, encoding: .utf8) {
+                completion(.success(token))
+            } else {
+                let error = NSError(domain: "DataParsingError", code: -1, userInfo: nil)
+                completion(.failure(error))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func postGulbi() {
+        guard
+            let year = inputDatePicker.selectedYear,
+            let month = inputDatePicker.selectedMonth,
+            let day = inputDatePicker.selectedDay,
+            let category = inputCategory.selectedCategory,
+            let saveContent = inputSaveContent.contentTextField.text,
+            let how = inputHowContent.howTextField.text,
+            let expectCostText = inputCostContent.expectCostTextField.text,
+            let realCostText = inputCostContent.realCostTextField.text,
+            let expectCost = Int(expectCostText),
+            let realCost = Int(realCostText)
+        else {
+            // 필요한 값이 모두 유효하지 않을 때 처리
+            return
+        }
+        
+        getDummyToken { result in
+            switch result {
+            case .success(let data):
+                    let gulbi = Gulbis(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)
+                    guard let uploadData = try? JSONEncoder().encode(gulbi)
+                    else {return}
+                    
+                    // URL 객체 정의
+                    let url = URL(string: "https://www.seuleuleug.site/api/gulbis")
+                    
+                    var request = URLRequest(url: url!)
+                    request.httpMethod = "POST"
+                    
+                    // HTTP 메시지 헤더
+                    request.setValue("Bearer \(data)", forHTTPHeaderField: "Authorization")
+                    let task = URLSession.shared.uploadTask(with: request, from: uploadData) { (data, response, error) in
+                        
+                        if let e = error {
+                            NSLog("An error has occured: \(e.localizedDescription)")
+                            return
+                        }
+                        // 응답 처리 로직
+                        print("굴비 post success")
+                    }
+                    
+                    // POST 전송
+                    task.resume()
+            case .failure(let error):
+                // 토큰을 받지 못했을 때 에러 처리
+                print("Failed to get token: \(error.localizedDescription)")
+            }
         }
     }
 }

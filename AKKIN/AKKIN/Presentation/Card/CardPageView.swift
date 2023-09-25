@@ -9,6 +9,16 @@ import UIKit
 
 final class CardPageView: BaseView {
     
+    var selectedYear: Int?
+    var selectedMonth: Int?
+    var selectedDay: Int?
+    var selectedCategory: String?
+    var selectedSaveContent: String?
+    var selectedHow: String?
+    var selectedExpectCost: Int?
+    var selectedRealCost: Int?
+    
+    
     // MARK: UI Components
     
     private let homeButton = UIButton().then {
@@ -46,6 +56,7 @@ final class CardPageView: BaseView {
     
     // MARK: Properties
     var tap: (() -> Void)?
+    var tapImage: (() -> Void)?
     
     // MARK: Configuration
     override func configureSubviews() {
@@ -57,6 +68,7 @@ final class CardPageView: BaseView {
         addSubview(imageShareButton)
         
         homeButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
+        imageSaveButton.addTarget(self, action: #selector(handleTapEvent), for: .touchUpInside)
     }
     
     // MARK: Layout
@@ -94,5 +106,17 @@ final class CardPageView: BaseView {
     // MARK: Event
     @objc private func handleAddEvent() {
         tap?()
+    }
+    @objc private func handleTapEvent() {
+        tapImage?()
+    }
+    
+    func saveCardViewAsImage() -> UIImage {
+        print("hi")
+        return cardView.asImage()
+    }
+    
+    func configureCardView(selectedYear: Int?, selectedMonth: Int?, selectedDay: Int?, selectedImage: UIImage?, selectedSaveContent: String?, selectedHow: String?, selectedExpectCost: Int?, selectedRealCost: Int?) {
+        cardView.configure(selectedYear: selectedYear, selectedMonth: selectedMonth, selectedDay: selectedDay, selectedImage: selectedImage, selectedSaveContent: selectedSaveContent, selectedHow: selectedHow, selectedExpectCost: selectedExpectCost, selectedRealCost: selectedRealCost)
     }
 }

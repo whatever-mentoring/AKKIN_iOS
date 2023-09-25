@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExpenseItem: Codable {
+struct Gulbis: Codable {
     let year: Int
     let month: Int
     let day: Int
@@ -16,5 +16,4 @@ struct ExpenseItem: Codable {
     let how: String
     let expectCost: Int
     let realCost: Int
-    let createAt: String
 }
