@@ -11,4 +11,9 @@ final class NetworkService {
     private init() { }
     
     let appleLogin = AppleLoginService()
+    let main = MainService()
+    let weekly = WeeklyService()
+    let monthly = MonthlyService()
+    let akkin = AkkinService()
+
 }
