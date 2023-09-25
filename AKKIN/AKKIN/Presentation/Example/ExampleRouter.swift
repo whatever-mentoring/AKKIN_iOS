@@ -39,7 +39,7 @@ final class ExampleRouter {
     }
 
     func presentCardDetailViewController() {
-        let cardDetailViewController = ExampleViewController()
+        let cardDetailViewController = CardDetailViewController()
         viewController?.navigationController?.pushViewController(cardDetailViewController, animated: true)
     }
 
