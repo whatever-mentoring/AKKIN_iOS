@@ -43,6 +43,11 @@ final class ExampleRouter {
         viewController?.navigationController?.pushViewController(cardDetailViewController, animated: true)
     }
 
+    func presentCardPatchViewController() {
+        let cardPatchViewController = CardPatchViewController()
+        viewController?.navigationController?.pushViewController(cardPatchViewController, animated: true)
+    }
+
     func presentWeeklyStatsViewController() {
         let weeklyStatsViewController = WeeklyStatsViewController()
         viewController?.navigationController?.pushViewController(weeklyStatsViewController, animated: true)
