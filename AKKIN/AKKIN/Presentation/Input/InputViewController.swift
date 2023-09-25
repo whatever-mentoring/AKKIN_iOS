@@ -12,15 +12,15 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     
     // MARK: Constants
     private var isKeyboardVisible = false
-
+    
     // MARK: UI Components
     private let scrollView = UIScrollView().then {
         $0.delaysContentTouches = false
     }
     
     private let backButton = BaseButton().then {
-       $0.setImage(UIImage(named: "backButton"), for: .normal)
-   }
+        $0.setImage(UIImage(named: "backButton"), for: .normal)
+    }
     private let inputIconSelectedView = InputIconSelectedView()
     
     private let imageView: UIImageView = {
@@ -60,7 +60,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         scrollView.addSubview(inputHowContent)
         scrollView.addSubview(inputCostContent)
         scrollView.addSubview(makeCardButton)
-    
+    }
+        
     // MARK: Environment
     private let router = ExampleRouter()
     
@@ -85,12 +86,12 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             imageView.image = UIImage(named: "image_5")
         }
     }
-    
+        
     @objc func keyboardWillShow(_ sender: Notification) {
         guard let keyboardFrame =
                 sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                 as? NSValue,
-        let currentTextField = UIResponder.currentResponder
+              let currentTextField = UIResponder.currentResponder
                 as? UITextField else { return }
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
         let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
@@ -104,14 +105,14 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             }
         }
     }
-
+    
     @objc func keyboardWillHide(_ sender: Notification) {
         if view.frame.origin.y != 0 {
             isKeyboardVisible = false
             view.frame.origin.y = 0
         }
     }
-
+    
     func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(
             self,
@@ -285,6 +286,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 return }
         }
     }
+    
     func presentCardViewControllerWithArgs(
         from viewController: UIViewController?,
         selectedYear: Int?,
@@ -312,7 +314,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         cardViewController.modalPresentationStyle = .fullScreen
         viewController?.present(cardViewController, animated: true)
     }
-
+    
     
     // MARK: Networking
     func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
