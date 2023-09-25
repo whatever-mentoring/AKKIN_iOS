@@ -408,9 +408,10 @@
 			children = (
 				BC94AD532AA61F4800A77052 /* Example */,
 				9512618C2AC02E380012B5F9 /* AppleLogin */,
-				BC94AD562AA61FC300A77052 /* TargetType+Extension.swift */,
+				951261A52AC19A0C0012B5F9 /* Main */,
 				9512618A2AC02E090012B5F9 /* MoyaLoggerPlugin.swift */,
 				9512618F2AC02EA70012B5F9 /* NetworkResult.swift */,
+				BC94AD562AA61FC300A77052 /* TargetType+Extension.swift */,
 				BC94AD512AA61F2000A77052 /* RequestProvider.swift */,
 				951261A12AC061560012B5F9 /* NetworkService.swift */,
 				951261932AC02EC60012B5F9 /* BlankDataResponse.swift */,
