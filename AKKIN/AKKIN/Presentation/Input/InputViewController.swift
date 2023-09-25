@@ -66,9 +66,31 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         makeCardButton.tap = { [weak self] in
             guard let self else {
                 return }
-            router.presentCardViewController()
+            // MARK: - 사용자가 입력한 데이터 연결 필요
+            postAkkin(year: 0, month: 0, day: 0, category: "DINING", saveContent: "dd", how: "ddd", expectCost: 3, realCost: 3)
+//            router.presentCardViewController()
         }
-        
+
+        func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
+            NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
+                switch result {
+                case .success(let response):
+                    guard let data = response as? AkkinResponse else { return }
+                    print(data)
+                case .requestErr(let errorResponse):
+                    dump(errorResponse)
+                    guard let data = errorResponse as? ErrorResponse else { return }
+                    print(data)
+                case .serverErr:
+                    print("serverErr")
+                case .networkFail:
+                    print("networkFail")
+                case .pathErr:
+                    print("pathErr")
+                }
+            }
+        }
+
         backButton.tap = { [weak self] in
             guard let self else {
                 return }
