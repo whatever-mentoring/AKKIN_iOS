@@ -15,13 +15,12 @@ final class LoginViewController: BaseViewController {
 
     // MARK: Environment
     private let router = ExampleRouter()
-    private let provider = MoyaProvider<DummyLoginAPI>(plugins: [MoyaLoggerPlugin]())
+    private let dummyProvider = MoyaProvider<DummyLoginAPI>(plugins: [MoyaLoggerPlugin]())
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        getDummyAccount()
         router.viewController = self
     }
 
@@ -29,10 +28,10 @@ final class LoginViewController: BaseViewController {
     override func configureSubviews() {
         super.configureSubviews()
         view.addSubview(loginView)
-
+        
         loginView.tapAdd = { [weak self] in
             guard let self else { return }
-            router.presentMainViewController()
+            getDummyAccount()
         }
     }
 
@@ -45,20 +44,23 @@ final class LoginViewController: BaseViewController {
 
     // MARK: Network
     private func getDummyAccount() {
-        provider.request(.getDummyAccount) { result in
+        dummyProvider.request(.getDummyAccount) { result in
             switch result {
             case .success(let response):
                 if let accessToken = response.response?.allHeaderFields["accessToken"] as? String {
                             print("accessToken: \(accessToken)")
+                    UserDefaultHandler.accessToken = accessToken
                 } else {
                     print("accessToken 헤더를 찾을 수 없습니다.")
                 }
 
                 if let refreshToken = response.response?.allHeaderFields["refreshToken"] as? String {
                             print("refreshToken: \(refreshToken)")
+                    UserDefaultHandler.refreshToken = refreshToken
                 } else {
                     print("refreshToken 헤더를 찾을 수 없습니다.")
                 }
+                self.router.presentMainViewController()
             case .failure(let error):
                 print("API 호출 실패: \(error)")
             }
