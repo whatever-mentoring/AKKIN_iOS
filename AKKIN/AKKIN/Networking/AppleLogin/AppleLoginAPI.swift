@@ -35,13 +35,4 @@ extension AppleLoginAPI: TargetType {
             ], encoding: JSONEncoding.default)
         }
     }
-
-    var headers: [String: String]? {
-        switch self {
-        case .postAppleLogin:
-            return [
-                "Content-Type": "application/json"
-            ]
-        }
-    }
 }
