@@ -14,6 +14,9 @@ enum URLConst {
     static let privacyPolicyURL = "https://tundra-operation-2d1.notion.site/3575a8becd474c6a93e066b8c442471d"
     static let openSourceURL = "https://tundra-operation-2d1.notion.site/b51ed92b2e7b4e09a6a1e4a80d112b2d?pvs=25"
     
+    // MARK: - Main
+    static let main = ""
+
     // MARK: - Login
     static let dummyLogin = "/login/dummy/101"
     static let appleLogin = "/login/oauth2/apple"
