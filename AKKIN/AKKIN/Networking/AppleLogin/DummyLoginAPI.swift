@@ -16,7 +16,7 @@ extension DummyLoginAPI: TargetType {
     var path: String {
         switch self {
         case .getDummyAccount:
-            return "/login/dummy/101"
+            return URLConst.dummyLogin
         }
     }
     
