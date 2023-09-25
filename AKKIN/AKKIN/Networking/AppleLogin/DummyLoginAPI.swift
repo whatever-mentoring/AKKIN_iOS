@@ -33,11 +33,4 @@ extension DummyLoginAPI: TargetType {
             return .requestPlain
         }
     }
-
-    var headers: [String: String]? {
-        switch self {
-        case .getDummyAccount:
-            return nil
-        }
-    }
 }
