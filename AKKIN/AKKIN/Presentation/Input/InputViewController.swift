@@ -60,7 +60,6 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         scrollView.addSubview(inputHowContent)
         scrollView.addSubview(inputCostContent)
         scrollView.addSubview(makeCardButton)
-    }
     
     // MARK: Environment
     private let router = ExampleRouter()
