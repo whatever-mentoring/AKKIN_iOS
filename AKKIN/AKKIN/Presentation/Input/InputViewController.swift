@@ -369,38 +369,31 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             // 필요한 값이 모두 유효하지 않을 때 처리
             return
         }
+        let gulbi = Gulbis(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)
+        guard let uploadData = try? JSONEncoder().encode(gulbi)
+        else {return}
         
-        getDummyToken { result in
-            switch result {
-            case .success(let data):
-                    let gulbi = Gulbis(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)
-                    guard let uploadData = try? JSONEncoder().encode(gulbi)
-                    else {return}
-                    
-                    // URL 객체 정의
-                    let url = URL(string: "https://www.seuleuleug.site/api/gulbis")
-                    
-                    var request = URLRequest(url: url!)
-                    request.httpMethod = "POST"
-                    
-                    // HTTP 메시지 헤더
-                    request.setValue("Bearer \(data)", forHTTPHeaderField: "Authorization")
-                    let task = URLSession.shared.uploadTask(with: request, from: uploadData) { (data, response, error) in
-                        
-                        if let e = error {
-                            NSLog("An error has occured: \(e.localizedDescription)")
-                            return
-                        }
-                        // 응답 처리 로직
-                        print("굴비 post success")
-                    }
-                    
-                    // POST 전송
-                    task.resume()
-            case .failure(let error):
-                // 토큰을 받지 못했을 때 에러 처리
-                print("Failed to get token: \(error.localizedDescription)")
+        // URL 객체 정의
+        let url = URL(string: "https://www.seuleuleug.site/api/gulbis")
+        
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        
+        // HTTP 메시지 헤더
+        request.setValue("Bearer \(UserDefaultHandler.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.uploadTask(with: request, from: uploadData) { (data, response, error) in
+            
+            if let e = error {
+                NSLog("An error has occured: \(e.localizedDescription)")
+                return
             }
+            // 응답 처리 로직
+            print("굴비 post success")
         }
+        
+        // POST 전송
+        task.resume()
     }
 }
