@@ -71,6 +71,7 @@
 		951261CC2AC1FE610012B5F9 /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261CB2AC1FE610012B5F9 /* CardDetailView.swift */; };
 		951261D32AC21D1B0012B5F9 /* CardPatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261D22AC21D1B0012B5F9 /* CardPatchView.swift */; };
 		951261D72AC220760012B5F9 /* CardPatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261D62AC220760012B5F9 /* CardPatchViewController.swift */; };
+		951261DA2AC2A9380012B5F9 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 951261D92AC2A9380012B5F9 /* Toast */; };
 		95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5359F2AB18F1700FA2492 /* MainViewController.swift */; };
 		95E535A22AB18F3200FA2492 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535A12AB18F3200FA2492 /* MainView.swift */; };
 		95E535B52AB1D4CF00FA2492 /* MainCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */; };
@@ -206,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				951261DA2AC2A9380012B5F9 /* Toast in Frameworks */,
 				BC94AD452AA619FC00A77052 /* SnapKit in Frameworks */,
 				BC94AD3F2AA619CE00A77052 /* Moya in Frameworks */,
 				BC94AD422AA619DC00A77052 /* Then in Frameworks */,
@@ -603,6 +605,7 @@
 				BC94AD3E2AA619CE00A77052 /* Moya */,
 				BC94AD412AA619DC00A77052 /* Then */,
 				BC94AD442AA619FC00A77052 /* SnapKit */,
+				951261D92AC2A9380012B5F9 /* Toast */,
 			);
 			productName = AKKIN;
 			productReference = BC94AD1D2AA5FE3A00A77052 /* AKKIN.app */;
@@ -636,6 +639,7 @@
 				BC94AD3D2AA619CE00A77052 /* XCRemoteSwiftPackageReference "Moya" */,
 				BC94AD402AA619DC00A77052 /* XCRemoteSwiftPackageReference "Then" */,
 				BC94AD432AA619FC00A77052 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				951261D82AC2A9380012B5F9 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = BC94AD1E2AA5FE3A00A77052 /* Products */;
 			projectDirPath = "";
@@ -958,6 +962,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		951261D82AC2A9380012B5F9 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		BC94AD3D2AA619CE00A77052 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -985,6 +997,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		951261D92AC2A9380012B5F9 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 951261D82AC2A9380012B5F9 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		BC94AD3E2AA619CE00A77052 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC94AD3D2AA619CE00A77052 /* XCRemoteSwiftPackageReference "Moya" */;
