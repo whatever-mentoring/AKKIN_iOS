@@ -8,7 +8,9 @@
 import UIKit
 
 final class MainCardCollectionView: BaseView {
-    
+
+    var mainEntries: [MainEntries] = []
+
     // MARK: UI Components
     private let akkinLabel = UILabel().then {
         $0.text = "오늘 얼마 아낀거지?"
@@ -55,6 +57,8 @@ final class MainCardCollectionView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+        getMain()
+
         addButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
         cardCollectionView.dataSource = self
         cardCollectionView.delegate = self
@@ -97,12 +101,33 @@ final class MainCardCollectionView: BaseView {
 
 extension MainCardCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if mainEntries.count == 0 {
+            return 1
+        } else {
+            return mainEntries.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = cardCollectionView.dequeueReusableCell(withReuseIdentifier: MainCardCollectionViewCell.identifier, for: indexPath) as? MainCardCollectionViewCell else { return UICollectionViewCell() }
-        
+        if mainEntries.count == 0 {
+            cell.cardImageView.isHidden = true
+            cell.moneyLabel.isHidden = true
+            cell.cardLabel.isHidden = true
+            cell.contentLabel.isHidden = true
+            cell.emptyLabel.isHidden = false
+            cell.contentView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1).cgColor
+            cell.contentView.layer.borderWidth = 1
+            cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
+            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
+            cardCollectionView.reloadData()
+        } else {
+            let entry = mainEntries[indexPath.row]
+            cell.cardLabel.text = entry.how
+            cell.contentLabel.text = entry.saveContent
+            cardCollectionView.reloadData()
+        }
+
         return cell
     }
 }
@@ -110,5 +135,33 @@ extension MainCardCollectionView: UICollectionViewDataSource {
 extension MainCardCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         handleCellEvent()
+    }
+}
+
+extension MainCardCollectionView {
+    // MARK: Networking
+    private func getMain() {
+        print("getMain")
+        NetworkService.shared.main.getMain() { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? MainResponse else { return }
+                self.mainEntries = data.entries
+                print(data)
+                print(data.entries)
+                print(data.entries.count)
+                self.cardCollectionView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }
