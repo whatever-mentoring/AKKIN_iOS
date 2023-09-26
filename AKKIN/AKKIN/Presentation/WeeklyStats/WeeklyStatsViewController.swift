@@ -7,6 +7,7 @@
 import UIKit
 
 enum Week: CaseIterable {
+
     case mon
     case tue
     case wed
@@ -29,13 +30,13 @@ enum Week: CaseIterable {
 
     var content: Int {
         switch self {
-        case .mon: return 3
-        case .tue: return 4
-        case .wed: return 5
-        case .thu: return 6
-        case .fri: return 7
-        case .sat: return 8
-        case .sun: return 9
+        case .mon: return 24
+        case .tue: return 25
+        case .wed: return 26
+        case .thu: return 27
+        case .fri: return 28
+        case .sat: return 29
+        case .sun: return 30
         }
     }
 
@@ -54,13 +55,15 @@ enum Week: CaseIterable {
 
 final class WeeklyStatsViewController: BaseViewController {
 
+    var weeklyEntries: [WeeklyEntries] = []
+
     var onWeekTapped: ((Week) -> Void)?
     let dayLabel = ["3", "4", "5", "6", "7", "8", "9"]
     var weekViewArray: [UIView] = []
 
     // MARK: UI Components
     private let weekLabel = UILabel().then {
-        $0.text = "9월 둘째주"
+        $0.text = "9월 2주"
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
     }
@@ -93,6 +96,11 @@ final class WeeklyStatsViewController: BaseViewController {
     private let weeklyStatsCollectionView = WeeklyStatsCollectionView()
 
     // MARK: ViewDidLoad
+    override func loadView() {
+        super.loadView()
+        getWeekly()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
@@ -238,3 +246,29 @@ final class WeeklyStatsViewController: BaseViewController {
     }
 }
 
+extension WeeklyStatsViewController {
+    // MARK: Networking
+    private func getWeekly() {
+        print("getWeekly")
+        NetworkService.shared.weekly.getWeekly() { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? WeeklyResponse else { return }
+                self.weeklyEntries = data.entries
+                print(data.entries[0].saveContent)
+                self.weekLabel.text = "\(data.month)월 \(data.weekOfMonth)주"
+                print(data)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+}

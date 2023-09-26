@@ -8,6 +8,7 @@ import UIKit
 
 final class WeeklyStatsCollectionView: BaseView, UICollectionViewDelegate {
 
+    var weeklyEntries: [WeeklyEntries] = []
     private let category = ["전체", "식비", "교통", "쇼핑", "기타"]
     var selectedButtonIndex: Int? = 0
 
@@ -144,3 +145,27 @@ extension WeeklyStatsCollectionView: UICollectionViewDataSource {
     }
 }
 
+extension WeeklyStatsCollectionView {
+    // MARK: Networking
+    private func getWeekly() {
+        print("getWeekly")
+        NetworkService.shared.weekly.getWeekly() { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? WeeklyResponse else { return }
+                self.weeklyEntries = data.entries
+                print(data)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+}
