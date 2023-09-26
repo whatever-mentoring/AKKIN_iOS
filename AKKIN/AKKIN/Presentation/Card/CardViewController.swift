@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import Toast
 
 class CardViewController: BaseViewController {
     var selectedYear: Int?
@@ -67,7 +68,9 @@ class CardViewController: BaseViewController {
                 print("이미지 저장 실패: \(error.localizedDescription)")
             } else {
                 // 이미지 저장 성공
-                print("이미지가 성공적으로 저장되었습니다.")
+                DispatchQueue.main.async {
+                    self.view.makeToast(" 이미지가 성공적으로 저장되었습니다. ", duration: 1.0, position: .bottom)
+                }
             }
         }
 
