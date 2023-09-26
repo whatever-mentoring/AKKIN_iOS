@@ -24,8 +24,8 @@ final class MainWeeklyStatsView: BaseView {
         $0.layer.shadowRadius = 8
     }
 
-    private let weekLabel = UILabel().then {
-        $0.text = "M월 n째주"
+    private var weekLabel = UILabel().then {
+        $0.text = "M월 n주"
         $0.font = .systemFont(ofSize: 16)
     }
 
@@ -60,6 +60,7 @@ final class MainWeeklyStatsView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
         setLabelColor()
+        getMain()
 
         detailButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
 
@@ -103,5 +104,31 @@ final class MainWeeklyStatsView: BaseView {
     // MARK: Event
     @objc private func handleAddEvent() {
         tapAdd?()
+    }
+}
+
+extension MainWeeklyStatsView {
+    // MARK: Networking
+    private func getMain() {
+        NetworkService.shared.main.getMain() { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? MainResponse else { return }
+                self.weekLabel.text = "\(data.month)월 \(data.weekOfMonth)주"
+                self.saveLabel.text = "\(data.weeklyTotalCost)원 아꼈어요."
+                self.setLabelColor()
+                print(data)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }
