@@ -38,7 +38,7 @@ final class MainViewController: BaseViewController {
         setNavigationItem()
 
         router.viewController = self
-        view.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
+        view.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
     }
     
     // MARK: Configuration
@@ -101,13 +101,6 @@ final class MainViewController: BaseViewController {
 
         mainMonthlyStatsView.tapAdd = { [self] in
             router.presentMonthlyStatsViewController()
-        }
-    }
-
-    // MARK: Networking
-    private func loadSomething() {
-        provider.request(.getSomething) { result in
-            /// Do Something
         }
     }
 
