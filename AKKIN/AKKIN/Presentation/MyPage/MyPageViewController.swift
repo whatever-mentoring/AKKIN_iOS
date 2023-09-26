@@ -10,7 +10,7 @@ import SafariServices
 
 final class MyPageViewController: BaseViewController {
 
-    private let headerTitle = ["앱 정보", "계정 관리"]
+    private let headerTitle = ["가입된 계정", "앱 정보", "계정 관리"]
     private let appInfo = ["서비스 이용약관", "개인 정보 처리 방침", "오픈소스 사용정보"]
     private let account = ["로그아웃", "회원탈퇴"]
     private var nickName = "거지"
@@ -19,30 +19,6 @@ final class MyPageViewController: BaseViewController {
                        URLConst.openSourceURL]
 
     // MARK: UI Components
-    private let profileImageView = UIImageView().then {
-        $0.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
-        $0.layer.cornerRadius = 70
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1).cgColor
-    }
-
-    private let nickNameLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 20)
-    }
-
-    private let nickNameTextField = UITextField().then {
-        $0.font = UIFont.systemFont(ofSize: 20)
-        $0.isHidden = true
-        $0.clearButtonMode = .whileEditing
-        $0.tintColor = UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1)
-        $0.underlined(viewSize: 200, color: .black)
-        $0.addLeftPadding()
-    }
-
-    private let editButton = BaseButton().then {
-        $0.setImage(UIImage(named: "editButton"), for: .normal)
-    }
-
     private let myPageTableView = UITableView().then {
         $0.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
         $0.register(MyPageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: MyPageTableViewHeader.identifier)
@@ -54,20 +30,6 @@ final class MyPageViewController: BaseViewController {
         $0.setImage(UIImage(named: "backButton"), for: .normal)
     }
 
-    private let cancelButton = BaseButton().then {
-        $0.setTitle("취소", for: .normal)
-        $0.setTitleColor(UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1), for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 14)
-        $0.isHidden = true
-    }
-
-    private let confirmButton = BaseButton().then {
-        $0.setTitle("완료", for: .normal)
-        $0.setTitleColor(UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1), for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 14)
-        $0.isHidden = true
-    }
-
     // MARK: Environment
     private let router = ExampleRouter()
 
@@ -75,7 +37,6 @@ final class MyPageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
-        getNickName()
 
         router.viewController = self
     }
@@ -87,81 +48,18 @@ final class MyPageViewController: BaseViewController {
         myPageTableView.dataSource = self
         myPageTableView.delegate = self
 
-        view.addSubview(profileImageView)
-        view.addSubview(nickNameLabel)
-        view.addSubview(nickNameTextField)
-        view.addSubview(editButton)
         view.addSubview(myPageTableView)
 
         backButton.tap = { [weak self] in
             guard let self else { return }
             router.dismissViewController()
         }
-
-        editButton.tap = { [weak self] in
-            guard let self else { return }
-            self.editButtonTapped()
-        }
-
-        confirmButton.tap = { [weak self] in
-            guard let self else { return }
-            self.confirmButtonTapped()
-        }
-
-        cancelButton.tap = { [weak self] in
-            guard let self else { return }
-            self.cancelButtonTapped()
-        }
-    }
-
-    private func getNickName() {
-        nickNameLabel.text = nickName
-        nickNameTextField.placeholder = nickName
-    }
- 
-    private func editButtonTapped() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
-        editButton.isHidden = true
-        confirmButton.isHidden = false
-        cancelButton.isHidden = false
-        backButton.isHidden = true
-        nickNameLabel.isHidden = true
-        nickNameTextField.isEnabled = true
-        nickNameTextField.isHidden = false
-        nickNameTextField.text = nickNameLabel.text
-    }
-
-    private func confirmButtonTapped() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        editButton.isHidden = false
-        confirmButton.isHidden = true
-        cancelButton.isHidden = true
-        backButton.isHidden = false
-        nickNameLabel.isHidden = false
-        nickNameTextField.isEnabled = false
-        nickNameTextField.isHidden = true
-        if nickNameTextField.text != "" {
-        nickName = nickNameTextField.text ?? nickName
-        }
-        getNickName()
-    }
-
-    private func cancelButtonTapped() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        editButton.isHidden = false
-        confirmButton.isHidden = true
-        cancelButton.isHidden = true
-        backButton.isHidden = false
-        nickNameLabel.isHidden = false
-        nickNameTextField.isEnabled = false
-        nickNameTextField.isHidden = true
     }
 
     private func setNavigationItem() {
         navigationItem.title = "마이페이지"
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: confirmButton)
     }
 
     private func presentSafariView(url: String) {
@@ -201,31 +99,8 @@ final class MyPageViewController: BaseViewController {
     override func makeConstraints() {
         super.makeConstraints()
 
-        profileImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(20)
-            $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(140)
-        }
-
-        nickNameLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(177)
-            $0.centerX.equalToSuperview().offset(-2)
-        }
-
-        nickNameTextField.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(178)
-            $0.centerX.equalToSuperview().offset(4)
-            $0.width.equalTo(155)
-        }
-
-        editButton.snp.makeConstraints {
-            $0.leading.equalTo(nickNameLabel.snp.trailing).offset(2)
-            $0.centerY.equalTo(nickNameLabel.snp.centerY)
-            $0.width.height.equalTo(20)
-        }
-
         myPageTableView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(220)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.leading.trailing.bottom.equalTo(view.safeAreaInsets)
         }
     }
@@ -241,7 +116,7 @@ final class MyPageViewController: BaseViewController {
 
 extension MyPageViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -251,6 +126,8 @@ extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
+            return 1
+        case 1:
             return 3
         default:
             return 2
@@ -262,8 +139,11 @@ extension MyPageViewController: UITableViewDataSource {
 
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = appInfo[indexPath.row]
+            cell.contentLabel.text = "${mail}"
+            cell.detailButton.isHidden = true
         case 1:
+            cell.contentLabel.text = appInfo[indexPath.row]
+        case 2:
             cell.contentLabel.text = account[indexPath.row]
             cell.detailButton.isHidden = true
             switch indexPath.row {
@@ -285,13 +165,24 @@ extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = myPageTableView.dequeueReusableHeaderFooterView(withIdentifier: MyPageTableViewHeader.identifier) as? MyPageTableViewHeader else { return UITableViewHeaderFooterView() }
 
+        if section == 0 {
+            header.dividerView.isHidden = true
+            header.titleLabel.snp.makeConstraints {
+                $0.top.equalToSuperview()
+                $0.leading.equalToSuperview().inset(28)
+            }
+        }
         header.titleLabel.text = headerTitle[section]
 
         return header
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 73
+        if section == 0 {
+            return 33
+        } else {
+            return 73
+        }
     }
 }
 
