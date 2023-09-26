@@ -11,24 +11,44 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "MainCardCollectionViewCell"
 
-    private let cardImageView = UIImageView().then {
+    private(set) var cardImageView = UIImageView().then {
         $0.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
     }
 
-    private let moneyLabel = UILabel().then {
+    private(set) var moneyLabel = UILabel().then {
         $0.text = "무려 000,000 원"
         $0.textColor = UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1)
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
     }
 
-    private let cardLabel = UILabel().then {
+    private(set) var cardLabel = UILabel().then {
         $0.text = "[ 헝그리 정신 실천 ]"
         $0.font = .systemFont(ofSize: 16)
     }
 
-    private let contentLabel = UILabel().then {
+    private(set) var contentLabel = UILabel().then {
         $0.text = "밥 대신 공기 먹기"
         $0.font = .systemFont(ofSize: 16)
+    }
+
+    private(set) var emptyLabel = UILabel().then {
+        $0.text = """
+        만들어진 카드가 없어요.
+        우측 상단의 + 버튼을 통해
+        아낀 내역을 추가해보세요.
+        """
+        $0.textColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1)
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 16)
+    }
+
+    private func setLineSpacing() {
+        let attrString = NSMutableAttributedString(string: emptyLabel.text ?? "")
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        emptyLabel.attributedText = attrString
     }
 
     override init(frame: CGRect) {
@@ -36,6 +56,7 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         setContentView()
         configureSubviews()
         makeConstraints()
+        setLineSpacing()
     }
 
     required init?(coder: NSCoder) {
@@ -61,6 +82,7 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(moneyLabel)
         contentView.addSubview(cardLabel)
         contentView.addSubview(contentLabel)
+        contentView.addSubview(emptyLabel)
     }
 
     private func makeConstraints() {
@@ -83,6 +105,10 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         contentLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(227)
             $0.centerX.equalToSuperview()
+        }
+
+        emptyLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
 }
