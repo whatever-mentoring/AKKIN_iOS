@@ -23,10 +23,9 @@ final class MonthlyTopStatsView: BaseView {
     private let monthlyStatsView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 16
-        $0.layer.shadowColor = UIColor.akkinGray1.cgColor
-        $0.layer.shadowOpacity = 1
-        $0.layer.shadowOffset = CGSize.zero
-        $0.layer.shadowRadius = 12
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOpacity = 0.13
+        $0.layer.shadowOffset = .zero
     }
 
     private let monthlyTopRankingStatsTableView = UITableView().then {
