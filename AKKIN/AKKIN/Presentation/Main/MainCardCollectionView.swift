@@ -62,6 +62,7 @@ final class MainCardCollectionView: BaseView {
         addButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
         cardCollectionView.dataSource = self
         cardCollectionView.delegate = self
+        cardCollectionView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
 
         addSubview(akkinLabel)
         addSubview(addButton)
