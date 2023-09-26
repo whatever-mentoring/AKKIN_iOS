@@ -9,7 +9,7 @@ import UIKit
 
 final class MainMonthlyStatsView: BaseView {
     
-    var monthlyCost = [0, 0, 0, 0]
+    var monthlyCost = ["0", "0", "0", "0"]
     private let category = ["식비", "쇼핑", "교통", "기타"]
 
     // MARK: UI Components
@@ -144,10 +144,10 @@ extension MainMonthlyStatsView {
                 guard let data = response as? MainResponse else { return }
                 self.monthLabel.text = "\(data.month)월은 교통에서 가장 많이 아꼈어요."
                 self.setLabelColor()
-                self.monthlyCost[0] = data.monthlyDining
-                self.monthlyCost[1] = data.monthlyTraffic
-                self.monthlyCost[2] = data.monthlyShopping
-                self.monthlyCost[3] = data.monthlyEtc
+                self.monthlyCost[0] = data.monthlyDining.toPriceFormat
+                self.monthlyCost[1] = data.monthlyTraffic.toPriceFormat
+                self.monthlyCost[2] = data.monthlyShopping.toPriceFormat
+                self.monthlyCost[3] = data.monthlyEtc.toPriceFormat
                 self.monthlyStatsTableView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)

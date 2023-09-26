@@ -115,7 +115,7 @@ extension MainWeeklyStatsView {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
                 self.weekLabel.text = "\(data.month)월 \(data.weekOfMonth)주"
-                self.saveLabel.text = "\(data.weeklyTotalCost)원 아꼈어요."
+                self.saveLabel.text = "\(data.weeklyTotalCost.toPriceFormat)원 아꼈어요."
                 self.setLabelColor()
                 print(data)
             case .requestErr(let errorResponse):
