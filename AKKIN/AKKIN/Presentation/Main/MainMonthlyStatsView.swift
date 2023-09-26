@@ -9,6 +9,7 @@ import UIKit
 
 final class MainMonthlyStatsView: BaseView {
     
+    var monthlyCost = [0, 0, 0, 0]
     private let category = ["식비", "쇼핑", "교통", "기타"]
 
     // MARK: UI Components
@@ -27,7 +28,7 @@ final class MainMonthlyStatsView: BaseView {
     }
 
     private let monthLabel = UILabel().then {
-        $0.text = "M월은 식비에서 가장 많이 아꼈어요."
+        $0.text = "M월은 교통에서 가장 많이 아꼈어요."
         $0.font = .systemFont(ofSize: 16)
     }
 
@@ -48,8 +49,8 @@ final class MainMonthlyStatsView: BaseView {
 
         let attributedText = NSMutableAttributedString(string: text)
 
-        let range = (text as NSString).range(of: "식비")
-        attributedText.addAttribute(.foregroundColor, value: UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1), range: range)
+        let range = (text as NSString).range(of: "교통")
+        attributedText.addAttribute(.foregroundColor, value: UIColor.akkinGreen, range: range)
         attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .semibold), range: range)
 
         monthLabel.attributedText = attributedText
@@ -64,7 +65,8 @@ final class MainMonthlyStatsView: BaseView {
         monthlyStatsTableView.dataSource = self
         monthlyStatsTableView.delegate = self
         setLabelColor()
-        
+        getMain()
+
         detailButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
         
         addSubview(monthlyStatsLabel)
@@ -80,47 +82,29 @@ final class MainMonthlyStatsView: BaseView {
         super.makeConstraints()
 
         monthlyStatsLabel.snp.makeConstraints {
-            $0.top
-                .equalToSuperview()
-                .inset(10)
-            $0.leading
-                .equalToSuperview()
-                .inset(24)
+            $0.top.equalToSuperview().inset(10)
+            $0.leading.equalToSuperview().inset(24)
         }
 
         monthlyStatsView.snp.makeConstraints {
-            $0.top
-                .equalTo(monthlyStatsLabel.snp.bottom)
-                .offset(8)
-            $0.leading.trailing
-                .equalToSuperview()
-                .inset(24)
-            $0.height
-                .equalTo(183)
+            $0.top.equalTo(monthlyStatsLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.height.equalTo(185)
         }
 
         monthLabel.snp.makeConstraints {
-            $0.top.leading
-                .equalTo(monthlyStatsView)
-                .inset(16)
+            $0.top.leading.equalTo(monthlyStatsView).inset(16)
         }
 
         detailButton.snp.makeConstraints {
-            $0.centerY
-                .equalTo(monthLabel.snp.centerY)
-            $0.trailing
-                .equalTo(monthlyStatsView)
-                .inset(15)
+            $0.centerY.equalTo(monthLabel.snp.centerY)
+            $0.trailing.equalTo(monthlyStatsView).inset(15)
         }
 
         monthlyStatsTableView.snp.makeConstraints {
-            $0.top
-                .equalTo(monthLabel.snp.bottom)
-                .offset(16)
-            $0.leading.trailing
-                .equalToSuperview()
-            $0.height
-                .equalTo(128)
+            $0.top.equalTo(monthLabel.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(125)
         }
     }
     
@@ -132,11 +116,11 @@ final class MainMonthlyStatsView: BaseView {
 
 extension MainMonthlyStatsView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        category.count
+        return category.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 30
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,8 +129,37 @@ extension MainMonthlyStatsView: UITableViewDataSource, UITableViewDelegate {
         cell.prepareForReuse()
         cell.selectionStyle = .none
         cell.categoryLabel.text = category[indexPath.row]
-        cell.moneyLabel.text = "000,000 원"
+        cell.moneyLabel.text = "\(monthlyCost[indexPath.row])원"
         
         return cell
+    }
+}
+
+extension MainMonthlyStatsView {
+    // MARK: Networking
+    private func getMain() {
+        NetworkService.shared.main.getMain() { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? MainResponse else { return }
+                self.monthLabel.text = "\(data.month)월은 교통에서 가장 많이 아꼈어요."
+                self.setLabelColor()
+                self.monthlyCost[0] = data.monthlyDining
+                self.monthlyCost[1] = data.monthlyTraffic
+                self.monthlyCost[2] = data.monthlyShopping
+                self.monthlyCost[3] = data.monthlyEtc
+                self.monthlyStatsTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }
