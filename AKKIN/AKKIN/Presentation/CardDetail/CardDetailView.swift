@@ -94,7 +94,7 @@ final class CardDetailView: BaseView {
         }
     }
 
-    private let transportButton = BaseButton().then {
+    private let trafficButton = BaseButton().then {
         $0.setTitle("교통", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -155,7 +155,7 @@ final class CardDetailView: BaseView {
 
         cardImageView.addSubview(buttonStackView)
         buttonStackView.addArrangedSubview(diningButton)
-        buttonStackView.addArrangedSubview(transportButton)
+        buttonStackView.addArrangedSubview(trafficButton)
         buttonStackView.addArrangedSubview(shoppingButton)
         buttonStackView.addArrangedSubview(etcButton)
     }
