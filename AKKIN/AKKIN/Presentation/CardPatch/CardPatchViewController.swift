@@ -20,7 +20,7 @@ class CardPatchViewController: BaseViewController {
     }
     
     private let backButton = BaseButton().then {
-       $0.setImage(UIImage(named: "backButton"), for: .normal)
+        $0.setImage(AkkinButton.backButton, for: .normal)
     }
 
     private let confirmButton = BaseButton().then {
@@ -130,15 +130,15 @@ class CardPatchViewController: BaseViewController {
     private func tapIcon(_ icon: Icon) {
         switch icon {
         case .iconThemeProfile1:
-            imageView.image = UIImage(named: "image_1")
+            imageView.image = AkkinImage.akkinImage1
         case .iconThemeProfile2:
-            imageView.image = UIImage(named: "image_2")
+            imageView.image = AkkinImage.akkinImage2
         case .iconThemeProfile3:
-            imageView.image = UIImage(named: "image_3")
+            imageView.image = AkkinImage.akkinImage3
         case .iconThemeProfile4:
-            imageView.image = UIImage(named: "image_4")
+            imageView.image = AkkinImage.akkinImage4
         case .iconThemeProfile5:
-            imageView.image = UIImage(named: "image_5")
+            imageView.image = AkkinImage.akkinImage5
         }
     }
 

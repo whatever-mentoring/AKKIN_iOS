@@ -22,7 +22,7 @@ final class CardPageView: BaseView {
     // MARK: UI Components
     
     private let homeButton = UIButton().then {
-        $0.setImage(UIImage(named: "homeButton"), for: .normal)
+        $0.setImage(AkkinButton.homeButton, for: .normal)
     }
     
     private let cardTopText = UILabel().then {

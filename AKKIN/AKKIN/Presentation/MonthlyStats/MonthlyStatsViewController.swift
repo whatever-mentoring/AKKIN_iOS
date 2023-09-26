@@ -29,15 +29,15 @@ final class MonthlyStatsViewController: BaseViewController {
     }
     
     private let previousButton = BaseButton().then {
-        $0.setImage(UIImage(named: "previousButton"), for: .normal)
+        $0.setImage(AkkinButton.previousButton, for: .normal)
     }
 
     private let nextButton = BaseButton().then {
-        $0.setImage(UIImage(named: "detailButton"), for: .normal)
+        $0.setImage(AkkinButton.detailButton, for: .normal)
     }
     
     private let backButton = BaseButton().then {
-        $0.setImage(UIImage(named: "backButton"), for: .normal)
+        $0.setImage(AkkinButton.backButton, for: .normal)
     }
     
     private let scrollView = UIScrollView()

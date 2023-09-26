@@ -11,11 +11,11 @@ final class MainViewController: BaseViewController {
 
     // MARK: UI Components
     private let navigationTitleImageView = UIImageView().then {
-        $0.image = UIImage(named: "AKKIN_Title")
+        $0.image = AkkinImage.akkinTitle
     }
 
     private let myPageButton = BaseButton().then {
-        $0.setImage(UIImage(named: "myPageButton"), for: .normal)
+        $0.setImage(AkkinButton.myPageButton, for: .normal)
     }
 
     private let scrollView = UIScrollView()

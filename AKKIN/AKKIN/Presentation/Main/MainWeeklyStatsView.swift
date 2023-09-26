@@ -30,7 +30,7 @@ final class MainWeeklyStatsView: BaseView {
     }
 
     private let detailButton = BaseButton().then {
-        $0.setImage(UIImage(named: "detailButton"), for: .normal)
+        $0.setImage(AkkinButton.detailButton, for: .normal)
     }
 
     private let saveLabel = UILabel().then {
