@@ -12,7 +12,7 @@ final class SplashViewController: BaseViewController {
     // MARK: UI Components
     private let splashImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "splash")
+        imageView.image = AkkinImage.akkinSplash
         return imageView
     }()
 

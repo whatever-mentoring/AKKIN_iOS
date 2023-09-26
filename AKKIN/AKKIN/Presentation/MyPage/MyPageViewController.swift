@@ -27,7 +27,7 @@ final class MyPageViewController: BaseViewController {
     }
 
     private let backButton = BaseButton().then {
-        $0.setImage(UIImage(named: "backButton"), for: .normal)
+        $0.setImage(AkkinButton.backButton, for: .normal)
     }
 
     // MARK: Environment

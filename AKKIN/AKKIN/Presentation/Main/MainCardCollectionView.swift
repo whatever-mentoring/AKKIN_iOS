@@ -18,7 +18,7 @@ final class MainCardCollectionView: BaseView {
     }
 
     private let addButton = BaseButton().then {
-        $0.setImage(UIImage(named: "addButton"), for: .normal)
+        $0.setImage(AkkinButton.addButton, for: .normal)
     }
 
     public lazy var cardCollectionView: UICollectionView = {
@@ -102,32 +102,32 @@ final class MainCardCollectionView: BaseView {
 
 extension MainCardCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if mainEntries.count == 0 {
-            return 1
-        } else {
+//        if mainEntries.count == 0 {
+//            return 1
+//        } else {
             return mainEntries.count
-        }
+//        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = cardCollectionView.dequeueReusableCell(withReuseIdentifier: MainCardCollectionViewCell.identifier, for: indexPath) as? MainCardCollectionViewCell else { return UICollectionViewCell() }
-        if mainEntries.count == 0 {
-            cell.cardImageView.isHidden = true
-            cell.moneyLabel.isHidden = true
-            cell.cardLabel.isHidden = true
-            cell.contentLabel.isHidden = true
-            cell.emptyLabel.isHidden = false
-            cell.contentView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1).cgColor
-            cell.contentView.layer.borderWidth = 1
-            cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
-            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
-            cardCollectionView.reloadData()
-        } else {
+//        if mainEntries.count == 0 {
+//            cell.cardImageView.isHidden = true
+//            cell.moneyLabel.isHidden = true
+//            cell.cardLabel.isHidden = true
+//            cell.contentLabel.isHidden = true
+//            cell.emptyLabel.isHidden = false
+//            cell.contentView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1).cgColor
+//            cell.contentView.layer.borderWidth = 1
+//            cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
+//            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
+//            cardCollectionView.reloadData()
+//        } else {
             let entry = mainEntries[indexPath.row]
             cell.cardLabel.text = entry.how
             cell.contentLabel.text = entry.saveContent
             cardCollectionView.reloadData()
-        }
+//        }
 
         return cell
     }

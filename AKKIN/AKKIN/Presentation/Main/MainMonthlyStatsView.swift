@@ -39,7 +39,7 @@ final class MainMonthlyStatsView: BaseView {
     }
 
     private let detailButton = UIButton().then {
-        $0.setImage(UIImage(named: "detailButton"), for: .normal)
+        $0.setImage(AkkinButton.detailButton, for: .normal)
     }
 
     private func setLabelColor() {

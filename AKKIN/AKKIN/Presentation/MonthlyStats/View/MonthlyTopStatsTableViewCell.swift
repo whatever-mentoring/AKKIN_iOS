@@ -24,7 +24,7 @@ final class MonthlyTopStatsTableViewCell: UITableViewCell {
     }
     
     private(set) var detailButton = UIButton().then {
-        $0.setImage(UIImage(named: "detailButton"), for: .normal)
+        $0.setImage(AkkinButton.detailButton, for: .normal)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

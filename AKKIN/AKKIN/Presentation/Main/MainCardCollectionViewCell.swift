@@ -41,6 +41,7 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 16)
+        $0.isHidden = true
     }
 
     private func setLineSpacing() {

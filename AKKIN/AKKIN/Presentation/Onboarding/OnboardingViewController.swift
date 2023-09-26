@@ -10,7 +10,7 @@ import UIKit
 final class OnboardingViewController: BaseViewController {
     
     // MARK: UI Components
-    var imageArr = [UIImage(named: "onboarding1"), UIImage(named: "onboarding2"), UIImage(named: "onboarding3")]
+    var imageArr = [AkkinImage.akkinOnboarding1, AkkinImage.akkinOnboarding2, AkkinImage.akkinOnboarding3]
     
     public lazy var onboardingCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())

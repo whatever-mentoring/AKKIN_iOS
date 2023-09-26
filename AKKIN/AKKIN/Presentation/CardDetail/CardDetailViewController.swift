@@ -11,11 +11,11 @@ class CardDetailViewController: BaseViewController {
     
     // MARK: UI Components
     private let backButton = BaseButton().then {
-        $0.setImage(UIImage(named: "backButton"), for: .normal)
+        $0.setImage(AkkinButton.backButton, for: .normal)
     }
 
     private let optionButton = BaseButton().then {
-        $0.setImage(UIImage(named: "optionButton"), for: .normal)
+        $0.setImage(AkkinButton.optionButton, for: .normal)
     }
 
     private let cardDetailView = CardDetailView()

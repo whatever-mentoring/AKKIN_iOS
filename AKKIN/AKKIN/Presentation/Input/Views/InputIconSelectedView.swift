@@ -12,11 +12,11 @@ enum Icon: CaseIterable {
     
     var image: UIImage {
         switch self {
-        case .iconThemeProfile1: return UIImage(named: "icon_1") ?? UIImage()
-        case .iconThemeProfile2: return UIImage(named: "icon_2") ?? UIImage()
-        case .iconThemeProfile3: return UIImage(named: "icon_3") ?? UIImage()
-        case .iconThemeProfile4: return UIImage(named: "icon_4") ?? UIImage()
-        case .iconThemeProfile5: return UIImage(named: "icon_5") ?? UIImage()
+        case .iconThemeProfile1: return AkkinImage.akkinIcon1
+        case .iconThemeProfile2: return AkkinImage.akkinIcon2
+        case .iconThemeProfile3: return AkkinImage.akkinIcon3
+        case .iconThemeProfile4: return AkkinImage.akkinIcon4 
+        case .iconThemeProfile5: return AkkinImage.akkinIcon5 
         }
     }
 }
