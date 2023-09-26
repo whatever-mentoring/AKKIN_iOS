@@ -18,7 +18,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
     static let identifier = "MyPageTableViewHeader"
 
     // MARK: UI Components
-    private let dividerView = UIView().then {
+    private(set) var dividerView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
     }
 
