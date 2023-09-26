@@ -189,9 +189,9 @@ extension MyPageViewController: UITableViewDataSource {
 extension MyPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0:
-            presentSafariView(url: url[indexPath.row])
         case 1:
+            presentSafariView(url: url[indexPath.row])
+        case 2:
             switch indexPath.row {
             case 0:
                 presentAlert(
