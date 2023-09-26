@@ -49,7 +49,7 @@ final class InputCategory: UIView {
     }
     
     private let categoryDiscriptionLabel = UILabel().then {
-        $0.text = "(1개 이상의 소비 카테고리를 선택해주세요.)"
+        $0.text = "(1개의 소비 카테고리를 선택해주세요.)"
         $0.font = .systemFont(ofSize: 12, weight: .regular)
         $0.textColor = .akkinGreen
     }
