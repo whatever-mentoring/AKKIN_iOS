@@ -100,7 +100,7 @@ final class MyPageViewController: BaseViewController {
         super.makeConstraints()
 
         myPageTableView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(10)
             $0.leading.trailing.bottom.equalTo(view.safeAreaInsets)
         }
     }
