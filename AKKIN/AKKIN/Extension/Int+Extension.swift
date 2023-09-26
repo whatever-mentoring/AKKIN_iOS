@@ -9,7 +9,8 @@ import Foundation
 
 extension Int {
     var toPriceFormat: String {
-        /// 가격 포맷으로 변경
-        return ""
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: self)) ?? ""
     }
 }
