@@ -107,7 +107,7 @@ final class CardView: UIView {
         if let year = selectedYear, let month = selectedMonth, let day = selectedDay, let image = selectedImage, let saveContent = selectedSaveContent, let how = selectedHow, let expectCost = selectedExpectCost, let realCost = selectedRealCost {
             dateTextLabel.text = "\(year) / \(month) / \(day)"
             if expectCost - realCost >= 0 {
-                saveTextLabel.text = "무려 \(expectCost - realCost)원"
+                saveTextLabel.text = "무려 \((expectCost - realCost).toPriceFormat)원"
             }
             scriptTextLabel.text = "[\(saveContent)]\n\(how)"
             iconImageView.image = image
