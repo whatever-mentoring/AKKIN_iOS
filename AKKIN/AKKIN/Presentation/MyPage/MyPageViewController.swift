@@ -139,7 +139,7 @@ extension MyPageViewController: UITableViewDataSource {
 
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = "${mail}"
+            cell.contentLabel.text = " akkin"
             cell.detailButton.isHidden = true
         case 1:
             cell.contentLabel.text = appInfo[indexPath.row]

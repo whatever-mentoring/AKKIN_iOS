@@ -20,18 +20,19 @@ final class CardDetailView: BaseView {
     }
     
     private let dateTextLabel = UILabel().then {
-        $0.text = "YYYY.MM.DD"
+        $0.text = "2023.09.26"
         $0.textColor = .akkinBlack
         $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
     private let iconImageView = UIImageView().then {
-        $0.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
+//        $0.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
         $0.layer.cornerRadius = 8
+        $0.image = AkkinImage.akkinIcon1
     }
     
     private let savePriceLabel = UILabel().then {
-        $0.text = "무려 100,000,000 원"
+        $0.text = "무려 9,000원"
         $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 28, weight: .semibold)
         $0.textAlignment = .center
@@ -58,7 +59,7 @@ final class CardDetailView: BaseView {
     }
 
     private let expectPriceLabel = UILabel().then {
-        $0.text = "1,000,000,000"
+        $0.text = "10,000"
         $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
@@ -70,7 +71,7 @@ final class CardDetailView: BaseView {
     }
 
     private let realPriceLabel = UILabel().then {
-        $0.text = "1,000,000,000"
+        $0.text = "1,000"
         $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
@@ -86,7 +87,7 @@ final class CardDetailView: BaseView {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
         $0.backgroundColor = .akkinGreen
-        $0.layer.borderWidth = 0.5
+//        $0.layer.borderWidth = 0.5
 //        $0.layer.borderColor = UIColor.akkinGray3.cgColor
         $0.snp.makeConstraints {
             $0.width.equalTo(48)

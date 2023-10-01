@@ -53,7 +53,7 @@ final class WeeklyStatsListCell: UICollectionViewCell {
         }
 
         contentLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(12)
+            $0.bottom.equalToSuperview().inset(15)
             $0.leading.equalToSuperview().inset(16)
         }
     }
