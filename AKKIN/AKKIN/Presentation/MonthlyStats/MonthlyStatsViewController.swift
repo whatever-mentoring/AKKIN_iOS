@@ -16,6 +16,7 @@ final class MonthlyStatsViewController: BaseViewController {
     
     private let bestCategoryImageView = UIImageView().then {
         $0.backgroundColor = .white
+        $0.image = AkkinImage.akkinIcon5
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.akkinGray3.cgColor
         $0.layer.cornerRadius = 8

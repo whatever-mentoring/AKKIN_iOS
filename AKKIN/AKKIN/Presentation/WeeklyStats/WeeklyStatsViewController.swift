@@ -42,13 +42,13 @@ enum Week: CaseIterable {
 
     var isExist: Bool {
         switch self {
-        case .mon: return true
-        case .tue: return true
-        case .wed: return false
-        case .thu: return true
+        case .mon: return false
+        case .tue: return false
+        case .wed: return true
+        case .thu: return false
         case .fri: return false
-        case .sat: return true
-        case .sun: return true
+        case .sat: return false
+        case .sun: return false
         }
     }
 }

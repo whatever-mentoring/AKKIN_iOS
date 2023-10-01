@@ -54,10 +54,10 @@ final class WeeklyStatsCollectionView: BaseView, UICollectionViewDelegate {
                 let group = NSCollectionLayoutGroup.vertical(
                     layoutSize: .init(
                         widthDimension: .fractionalWidth(1),
-                        heightDimension: .fractionalHeight(1/6)), subitems: [item])
+                        heightDimension: .fractionalHeight(1/7)), subitems: [item])
 
                 let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets = .init(top: 0, leading: 0, bottom: 16, trailing: 0)
+                section.contentInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
 
                 return section
             }
@@ -101,7 +101,7 @@ extension WeeklyStatsCollectionView: UICollectionViewDataSource {
         case 0:
             return 5
         case 1:
-            return 10
+            return 4
         default:
             return 0
         }
@@ -129,7 +129,19 @@ extension WeeklyStatsCollectionView: UICollectionViewDataSource {
             return cell
         default:
             guard let cell = weekCollectionView.dequeueReusableCell(withReuseIdentifier: WeeklyStatsListCell.identifier, for: indexPath) as? WeeklyStatsListCell else { return UICollectionViewCell() }
-
+            if indexPath.row == 0 {
+                cell.contentLabel.text = "헝그리 정신 실천"
+                cell.moneyLabel.text = "9,000원"
+            } else if indexPath.row == 1 {
+                cell.contentLabel.text = "쓰지 않을 결심"
+                cell.moneyLabel.text = "17,000원"
+            } else if indexPath.row == 2 {
+                cell.contentLabel.text = "쾌락 추구"
+                cell.moneyLabel.text = "2,000원"
+            } else {
+                cell.contentLabel.text = "힐링 여행"
+                cell.moneyLabel.text = "200,000원"
+            }
             return cell
         }
     }

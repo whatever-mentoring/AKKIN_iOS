@@ -76,27 +76,27 @@ final class CardPageView: BaseView {
         super.makeConstraints()
         
         homeButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(40)
+            $0.top.equalTo(safeAreaLayoutGuide)
             $0.leading.equalToSuperview().offset(18)
         }
         cardTopText.snp.makeConstraints {
-            $0.top.equalTo(homeButton.snp.bottom).offset(33)
+            $0.top.equalTo(safeAreaLayoutGuide).inset(40)
             $0.leading.equalToSuperview().offset(24)
         }
         cardView.snp.makeConstraints {
-            $0.top.equalTo(cardTopText.snp.bottom).offset(49)
+            $0.top.equalTo(safeAreaLayoutGuide).inset(135)
             $0.width.equalTo(293)
             $0.height.equalTo(403)
             $0.centerX.equalToSuperview()
         }
         imageSaveButton.snp.makeConstraints {
-            $0.top.equalTo(cardView.snp.bottom).offset(50)
+            $0.top.equalTo(safeAreaLayoutGuide).inset(584)
             $0.width.equalTo(342)
             $0.height.equalTo(60)
             $0.centerX.equalToSuperview()
         }
         imageShareButton.snp.makeConstraints {
-            $0.top.equalTo(imageSaveButton.snp.bottom).offset(12)
+            $0.top.equalTo(safeAreaLayoutGuide).inset(656)
             $0.width.equalTo(342)
             $0.height.equalTo(60)
             $0.centerX.equalToSuperview()

@@ -11,9 +11,7 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "MainCardCollectionViewCell"
 
-    private(set) var cardImageView = UIImageView().then {
-        $0.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
-    }
+    private(set) var cardImageView = UIImageView()
 
     private(set) var moneyLabel = UILabel().then {
         $0.text = "무려 000,000 원"

@@ -63,9 +63,9 @@ final class ExampleRouter {
     }
         
     func presentCardViewController() {
-        let someViewController = CardViewController()
-        someViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        viewController?.present(someViewController, animated: true)
+        let cardViewController = CardViewController()
+        cardViewController.modalPresentationStyle = .fullScreen
+        viewController?.present(cardViewController, animated: true)
     }
 
     func dismissCardViewController() {

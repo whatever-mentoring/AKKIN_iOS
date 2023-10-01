@@ -104,8 +104,15 @@ extension MonthlyDetailCategoryView: UITableViewDataSource, UITableViewDelegate 
         cell.prepareForReuse()
         cell.selectionStyle = .none
         cell.categoryLabel.text = category[indexPath.row]
-        cell.moneyLabel.text = "000,000 원"
-        
+        if indexPath.row == 0 {
+            cell.moneyLabel.text = "24,000 원"
+        } else if indexPath.row == 1 {
+            cell.moneyLabel.text = "30,000 원"
+        } else if indexPath.row == 2 {
+            cell.moneyLabel.text = "70,000 원"
+        } else {
+            cell.moneyLabel.text = "50,000 원"
+        }
         return cell
     }
 }

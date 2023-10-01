@@ -9,7 +9,7 @@ import UIKit
 
 final class MonthlyTopStatsView: BaseView {
     
-    private let ranking = ["NN일", "NN일", "NN일"]
+    private let ranking = ["5일", "9일", "14일"]
 
     // MARK: UI Components
     private let monthlyRangkingLabel = UILabel().then {
@@ -112,8 +112,14 @@ extension MonthlyTopStatsView: UITableViewDataSource, UITableViewDelegate {
         cell.prepareForReuse()
         cell.selectionStyle = .none
         cell.rankingLabel.text = ranking[indexPath.row]
-        cell.moneyLabel.text = "000,000 원"
-        
+        if indexPath.row == 0 {
+            cell.moneyLabel.text = "12,000 원"
+        } else if indexPath.row == 1 {
+            cell.moneyLabel.text = "30,000 원"
+        } else {
+            cell.moneyLabel.text = "43,000 원"
+        }
+
         return cell
     }
 }
