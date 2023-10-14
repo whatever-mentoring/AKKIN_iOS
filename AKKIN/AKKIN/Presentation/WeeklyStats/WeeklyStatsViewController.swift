@@ -255,7 +255,7 @@ extension WeeklyStatsViewController {
             case .success(let response):
                 guard let data = response as? WeeklyResponse else { return }
                 self.weeklyEntries = data.entries
-                print(data.entries[0].saveContent)
+                print("hi")
                 self.weekLabel.text = "\(data.month)월 \(data.weekOfMonth)주"
                 print(data)
             case .requestErr(let errorResponse):

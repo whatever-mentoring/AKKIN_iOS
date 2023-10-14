@@ -34,6 +34,9 @@ final class MonthlyDetailCategoryView: BaseView {
     // MARK: Properties
     var tapAdd: (() -> Void)?
     
+    // MARK: Environment
+    private let router = ExampleRouter()
+    
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
@@ -104,6 +107,10 @@ extension MonthlyDetailCategoryView: UITableViewDataSource, UITableViewDelegate 
         cell.prepareForReuse()
         cell.selectionStyle = .none
         cell.categoryLabel.text = category[indexPath.row]
+        cell.detailButton.addAction(UIAction(handler: { [weak self] _ in guard let self = self else { return }
+            self.handleAddEvent()
+        }), for: .touchUpInside)
+        
         if indexPath.row == 0 {
             cell.moneyLabel.text = "24,000 원"
         } else if indexPath.row == 1 {
@@ -114,6 +121,9 @@ extension MonthlyDetailCategoryView: UITableViewDataSource, UITableViewDelegate 
             cell.moneyLabel.text = "50,000 원"
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("test tap cell \(indexPath.row)")
     }
 }
 

@@ -103,7 +103,7 @@ extension WeeklyStatsCollectionView: UICollectionViewDataSource {
         case 1:
             return 4
         default:
-            return 0
+            return 5
         }
     }
 

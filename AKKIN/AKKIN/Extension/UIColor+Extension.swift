@@ -33,6 +33,10 @@ extension UIColor {
     static var akkinGray3: UIColor {
         return UIColor(hex: "#E5E5E5")
     }
+    // date textColor
+    static var akkinGray4: UIColor {
+        return UIColor(hex: "#C5C5C5")
+    }
 }
 
 extension UIColor {

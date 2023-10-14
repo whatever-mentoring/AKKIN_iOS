@@ -35,7 +35,7 @@ final class MainWeeklyStatsView: BaseView {
 
     private let saveLabel = UILabel().then {
         $0.text = "000,000,000원 아꼈어요."
-        $0.textColor = UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1)
+        $0.textColor = UIColor.akkinGreen
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
     }
 
@@ -47,7 +47,7 @@ final class MainWeeklyStatsView: BaseView {
         let attributedText = NSMutableAttributedString(string: text)
 
         let range = (text as NSString).range(of: "원 아꼈어요.")
-        attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: range)
+        attributedText.addAttribute(.foregroundColor, value: UIColor.akkinBlack, range: range)
         attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 20, weight: .regular), range: range)
 
         saveLabel.attributedText = attributedText

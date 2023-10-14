@@ -87,4 +87,9 @@ final class ExampleRouter {
             }
         })
     }
+    
+    func presentMonthlyDetailCategoryViewController() {
+        let monthlyDetailCategoryViewController = MonthlyDetailCategoryViewController()
+        viewController?.navigationController?.pushViewController(monthlyDetailCategoryViewController, animated: true)
+    }
 }

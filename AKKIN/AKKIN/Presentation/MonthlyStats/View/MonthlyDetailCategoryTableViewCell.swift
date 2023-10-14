@@ -36,7 +36,10 @@ final class MonthlyDetailCategoryTableViewCell: UITableViewCell {
         configureSubviews()
         makeConstraints()
     }
-
+    
+    // MARK: Properties
+    var tap: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -81,6 +84,11 @@ final class MonthlyDetailCategoryTableViewCell: UITableViewCell {
             $0.centerY
                 .equalToSuperview()
         }
+    }
+    
+    // MARK: Event
+    @objc private func handleAddEvent() {
+        tap?()
     }
 }
 
