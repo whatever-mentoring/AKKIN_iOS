@@ -105,6 +105,8 @@
 		BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5A2AA621E200A77052 /* AppDependency.swift */; };
 		BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */; };
 		BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */; };
+		C37AC5A22AE2454C005E3593 /* MonthlyTopStatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37AC5A12AE2454C005E3593 /* MonthlyTopStatsCollectionView.swift */; };
+		C37AC5A42AE26303005E3593 /* MonthlyTopStatsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37AC5A32AE26303005E3593 /* MonthlyTopStatsListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -212,6 +214,8 @@
 		BC94AD5A2AA621E200A77052 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCustomView.swift; sourceTree = "<group>"; };
 		BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C37AC5A12AE2454C005E3593 /* MonthlyTopStatsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyTopStatsCollectionView.swift; sourceTree = "<group>"; };
+		C37AC5A32AE26303005E3593 /* MonthlyTopStatsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyTopStatsListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +254,8 @@
 				6BBA4EE42ADAE6D100BC1923 /* MonthlyDetailCategoryListCell.swift */,
 				6B117F642ABAC976000B03F7 /* MonthlyTopStatsView.swift */,
 				6B117F682ABAE9CF000B03F7 /* MonthlyTopStatsTableViewCell.swift */,
+				C37AC5A12AE2454C005E3593 /* MonthlyTopStatsCollectionView.swift */,
+				C37AC5A32AE26303005E3593 /* MonthlyTopStatsListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -746,6 +752,7 @@
 				9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
 				9512615A2ABB1CA20012B5F9 /* OnboardingViewController.swift in Sources */,
+				C37AC5A22AE2454C005E3593 /* MonthlyTopStatsCollectionView.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
 				951261A22AC061560012B5F9 /* NetworkService.swift in Sources */,
 				6B5B83972AC1EE4800CD0AFC /* ErrorResponse.swift in Sources */,
@@ -769,6 +776,7 @@
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,
 				951261902AC02EA70012B5F9 /* NetworkResult.swift in Sources */,
+				C37AC5A42AE26303005E3593 /* MonthlyTopStatsListCell.swift in Sources */,
 				95E535C32AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift in Sources */,
 				6B5B83992AC1EE8C00CD0AFC /* MainResponse.swift in Sources */,
 				951261682ABF4ED20012B5F9 /* Storage.swift in Sources */,

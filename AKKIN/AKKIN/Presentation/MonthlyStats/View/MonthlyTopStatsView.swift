@@ -50,7 +50,6 @@ final class MonthlyTopStatsView: BaseView {
         addSubview(monthlyRangkingLabel)
         addSubview(monthlyStatsView)
         
-        //monthlyStatsView.addSubview(detailButton)
         monthlyStatsView.addSubview(monthlyTopRankingStatsTableView)
     }
     
@@ -112,6 +111,9 @@ extension MonthlyTopStatsView: UITableViewDataSource, UITableViewDelegate {
         cell.prepareForReuse()
         cell.selectionStyle = .none
         cell.rankingLabel.text = ranking[indexPath.row]
+        cell.detailButton.addAction(UIAction(handler: { [weak self] _ in guard let self = self else { return }
+            self.handleAddEvent()
+        }), for: .touchUpInside)
         if indexPath.row == 0 {
             cell.moneyLabel.text = "12,000 원"
         } else if indexPath.row == 1 {

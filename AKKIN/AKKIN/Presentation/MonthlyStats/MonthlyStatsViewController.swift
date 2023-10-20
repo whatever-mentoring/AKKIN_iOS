@@ -173,5 +173,10 @@ final class MonthlyStatsViewController: BaseViewController {
             guard let self else { return }
             router.presentMonthlyDetailCategoryViewController()
         }
+        monthlyTopStatsView.tapAdd
+        = { [weak self] in
+            guard let self else { return }
+            router.presentMonthlyTopStatsViewController()
+        }
     }
 }

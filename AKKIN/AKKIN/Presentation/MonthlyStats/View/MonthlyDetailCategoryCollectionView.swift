@@ -66,6 +66,7 @@ final class MonthlyDetailCategoryCollectionView: BaseView, UICollectionViewDeleg
         tapAdd?()
     }
 }
+
 extension MonthlyDetailCategoryCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

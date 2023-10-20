@@ -92,4 +92,9 @@ final class ExampleRouter {
         let monthlyDetailCategoryViewController = MonthlyDetailCategoryViewController()
         viewController?.navigationController?.pushViewController(monthlyDetailCategoryViewController, animated: true)
     }
+    
+    func presentMonthlyTopStatsViewController() {
+        let monthlyTopStatsViewController = MonthlyTopStatsViewController()
+        viewController?.navigationController?.pushViewController(monthlyTopStatsViewController, animated: true)
+    }
 }
