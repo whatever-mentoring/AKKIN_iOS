@@ -101,18 +101,32 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             
             let userIdentifier = appleIDCredential.user
             let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-            let token = appleIDCredential.identityToken
-            let tokenString = String(data: token!, encoding: .utf8) ?? ""
+            if let email = appleIDCredential.email {
+                print("이메일 : \(email)")
+            }
+            // 두번째부터는 credential.email은 nil이고, credential.identityToken에 들어있다.
+            else {
+                // credential.identityToken은 jwt로 되어있고, 해당 토큰을 decode 후 email에 접근해야한다.
+                if let tokenString = String(data: appleIDCredential.identityToken ?? Data(), encoding: .utf8) {
+                    let email2 = Utils.decode(jwtToken: tokenString)["email"] as? String ?? ""
+                    print("이메일 - \(email2)")
+                }
+            }
+            let identityToken = appleIDCredential.identityToken
+            let authorizationToken = appleIDCredential.authorizationCode
+            let tokenString2 = String(data: authorizationToken!, encoding: .utf8) ?? ""
+            let tokenString = String(data: identityToken!, encoding: .utf8) ?? ""
             
             print("User ID : \(userIdentifier)")
-            print("User Email : \(email ?? "")")
             print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
-            print("User Token : \((token?.base64EncodedString())!)")
+            print("User authToken : \(tokenString2)")
+            print("User Token : \((identityToken?.base64EncodedString())!)")
         
             postAppleLogin(appleToken: tokenString)
             
-            self.router.presentMainViewController()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+                self.router.presentMainViewController()
+            }
             
         default:
             break

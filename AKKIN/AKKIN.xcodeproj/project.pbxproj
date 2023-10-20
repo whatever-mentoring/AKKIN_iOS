@@ -101,6 +101,7 @@
 		BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5A2AA621E200A77052 /* AppDependency.swift */; };
 		BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */; };
 		BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */; };
+		C37AC5A02AE15881005E3593 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37AC59F2AE15881005E3593 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,6 +205,7 @@
 		BC94AD5A2AA621E200A77052 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCustomView.swift; sourceTree = "<group>"; };
 		BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C37AC59F2AE15881005E3593 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -521,6 +523,7 @@
 				951261A12AC061560012B5F9 /* NetworkService.swift */,
 				951261932AC02EC60012B5F9 /* BlankDataResponse.swift */,
 				6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */,
+				C37AC59F2AE15881005E3593 /* Utils.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				6B5B83952AC1EDB700CD0AFC /* AkkinResponse.swift in Sources */,
 				951261A92AC19A2B0012B5F9 /* MainAPI.swift in Sources */,
 				95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */,
+				C37AC5A02AE15881005E3593 /* Utils.swift in Sources */,
 				9512619E2AC055190012B5F9 /* AppleLoginAPI.swift in Sources */,
 				9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
