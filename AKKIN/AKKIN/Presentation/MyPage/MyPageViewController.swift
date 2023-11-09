@@ -110,7 +110,7 @@ final class MyPageViewController: BaseViewController {
     }
 
     private func withdrawal() {
-        router.popToRootViewController()
+        
     }
 }
 

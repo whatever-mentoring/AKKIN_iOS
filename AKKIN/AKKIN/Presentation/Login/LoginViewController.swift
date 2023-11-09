@@ -142,8 +142,10 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             NetworkService.shared.appleLogin.postAppleLogin(appleToken: appleToken) { result in
                 switch result {
                 case .success(let response):
-                    guard let data = response as? AkkinResponse else { return }
-                    print(data)
+                    guard let data = response as? AppleLoginResponse else { return }
+                    UserDefaultHandler.accessToken = data.accessToken
+                    UserDefaultHandler.refreshToken = data.refreshToken
+                    print("success")
                 case .requestErr(let errorResponse):
                     dump(errorResponse)
                     guard let data = errorResponse as? ErrorResponse else { return }

@@ -10,6 +10,7 @@ import Foundation
 
 enum AppleLoginAPI {
     case postAppleLogin(appleToken: String)
+    case postAppleRevoke(appleToken: String)
 }
 
 extension AppleLoginAPI: TargetType {
@@ -17,12 +18,16 @@ extension AppleLoginAPI: TargetType {
         switch self {
         case .postAppleLogin:
             return URLConst.appleLogin
+        case .postAppleRevoke:
+            return URLConst.appleRevoke
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .postAppleLogin:
+            return .post
+        case .postAppleRevoke:
             return .post
         }
     }
@@ -33,13 +38,10 @@ extension AppleLoginAPI: TargetType {
             return .requestParameters(parameters: [
                 "appleToken": appleToken
             ], encoding: JSONEncoding.default)
+        case .postAppleRevoke(let appleToken):
+            return .requestParameters(parameters: [
+                "appleToken": appleToken
+            ], encoding: JSONEncoding.default)
         }
     }
-    
-//    var headers: [String : String]? {
-//        return [
-//            "Conten-Type": "application/json",
-//            "token": UserDefaults.standard.string(forKey: "fcmToken") ?? ""
-//        ]
-//    }
 }

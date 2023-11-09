@@ -101,6 +101,7 @@
 		BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5A2AA621E200A77052 /* AppDependency.swift */; };
 		BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */; };
 		BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */; };
+		C37087452AFCE7E5002716E8 /* AppleLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37087442AFCE7E5002716E8 /* AppleLoginResponse.swift */; };
 		C37AC5A02AE15881005E3593 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37AC59F2AE15881005E3593 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,7 @@
 		BC94AD5A2AA621E200A77052 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCustomView.swift; sourceTree = "<group>"; };
 		BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C37087442AFCE7E5002716E8 /* AppleLoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginResponse.swift; sourceTree = "<group>"; };
 		C37AC59F2AE15881005E3593 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -349,6 +351,7 @@
 				951261882AC02DEF0012B5F9 /* DummyLoginAPI.swift */,
 				9512619D2AC055190012B5F9 /* AppleLoginAPI.swift */,
 				9512619F2AC05B6F0012B5F9 /* AppleLoginService.swift */,
+				C37087442AFCE7E5002716E8 /* AppleLoginResponse.swift */,
 			);
 			path = AppleLogin;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				951261D32AC21D1B0012B5F9 /* CardPatchView.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */,
+				C37087452AFCE7E5002716E8 /* AppleLoginResponse.swift in Sources */,
 				6B7427FC2AB87A3400BA7E2C /* IconSaveContent.swift in Sources */,
 				951261CA2AC1FE4C0012B5F9 /* CardDetailViewController.swift in Sources */,
 				6B117F582AB9DF8B000B03F7 /* MonthlyStatsViewController.swift in Sources */,
