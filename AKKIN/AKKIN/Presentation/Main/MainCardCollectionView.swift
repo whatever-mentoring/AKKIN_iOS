@@ -124,6 +124,7 @@ extension MainCardCollectionView: UICollectionViewDataSource {
 //            cardCollectionView.reloadData()
 //        } else {
             let entry = mainEntries[indexPath.row]
+            cell.moneyLabel.text = "무려 \(entry.expectCost - entry.realCost)"
             cell.cardLabel.text = entry.how
             cell.contentLabel.text = entry.saveContent
             cardCollectionView.reloadData()

@@ -33,4 +33,12 @@ extension MainAPI: TargetType {
             return .requestPlain
         }
     }
+    
+    var headers: [String : String]? {
+        return [
+            "accessToken": UserDefaultHandler.accessToken,
+            "Content-Type": "application/json",
+            "refreshToken": UserDefaultHandler.refreshToken
+        ]
+    }
 }

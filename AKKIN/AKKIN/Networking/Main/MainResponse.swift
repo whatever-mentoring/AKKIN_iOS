@@ -19,6 +19,8 @@ struct MainResponse: Codable {
 
 struct MainEntries: Codable {
     let id: Int
+    let expectCost: Int
+    let realCost: Int
     let saveContent: String
     let how: String
 }
