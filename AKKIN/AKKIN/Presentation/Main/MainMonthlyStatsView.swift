@@ -65,7 +65,7 @@ final class MainMonthlyStatsView: BaseView {
         monthlyStatsTableView.dataSource = self
         monthlyStatsTableView.delegate = self
         setLabelColor()
-        getMain()
+//        getMain()
 
         detailButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
         

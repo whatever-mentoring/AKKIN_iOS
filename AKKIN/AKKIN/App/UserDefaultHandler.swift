@@ -11,4 +11,10 @@ struct UserDefaultHandler {
     
     @UserDefault(key: "refreshToken", defaultValue: "")
     static var refreshToken: String
+
+    @UserDefault(key: "appleToken", defaultValue: "")
+    static var appleToken: String
+
+    @UserDefault(key: "authorizationCode", defaultValue: "")
+    static var authorizationCode: String
 }
