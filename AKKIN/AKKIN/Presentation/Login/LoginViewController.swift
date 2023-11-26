@@ -16,7 +16,6 @@ final class LoginViewController: BaseViewController {
 
     // MARK: Environment
     private let router = ExampleRouter()
-    private let dummyProvider = MoyaProvider<DummyLoginAPI>(plugins: [MoyaLoggerPlugin]())
     private var appleLoginProvider = MoyaProvider<AppleLoginAPI>(plugins: [MoyaLoggerPlugin()])
 
     // MARK: Life Cycle
@@ -54,30 +53,6 @@ final class LoginViewController: BaseViewController {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
-
-//    private func getDummyAccount() {
-//        dummyProvider.request(.getDummyAccount) { result in
-//            switch result {
-//            case .success(let response):
-//                if let accessToken = response.response?.allHeaderFields["accessToken"] as? String {
-//                            print("accessToken: \(accessToken)")
-//                    UserDefaultHandler.accessToken = accessToken
-//                } else {
-//                    print("accessToken 헤더를 찾을 수 없습니다.")
-//                }
-//
-//                if let refreshToken = response.response?.allHeaderFields["refreshToken"] as? String {
-//                            print("refreshToken: \(refreshToken)")
-//                    UserDefaultHandler.refreshToken = refreshToken
-//                } else {
-//                    print("refreshToken 헤더를 찾을 수 없습니다.")
-//                }
-//                self.router.presentMainViewController()
-//            case .failure(let error):
-//                print("API 호출 실패: \(error)")
-//            }
-//        }
-//    }
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
@@ -96,14 +71,21 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             guard let appleTokenToString = String(data: appleToken!, encoding: .utf8) else {
                 return
             }
+            let authorizationCode = appleIDCredential.authorizationCode
+            guard let authorizationCodeToString = String(data: authorizationCode!, encoding: .utf8) else {
+                return
+            }
 
             print("User ID : \(userIdentifier)")
             print("User Email : \(email ?? "")")
             print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
-            print("User appleToken : \(appleToken)")
             print("User appleTokenToString : \(appleTokenToString)")
+            print("User authorizationCode : \(authorizationCodeToString)")
 
-            postAppleLogin(appleToken: appleTokenToString)
+            UserDefaultHandler.appleToken = appleTokenToString
+            UserDefaultHandler.authorizationCode = authorizationCodeToString
+
+            postAppleLogin(appleTokenToString)
         default:
             break
         }
@@ -113,7 +95,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         print("apple login failed")
     }
     
-    public func postAppleLogin(appleToken: String) {
+    public func postAppleLogin(_ appleToken: String) {
         print("apple login try")
         NetworkService.shared.appleLogin.postAppleLogin(appleToken: appleToken) { result in
             switch result {
@@ -122,7 +104,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 UserDefaultHandler.accessToken = data.accessToken
                 UserDefaultHandler.refreshToken = data.refreshToken
                 print("success")
-                //        self.router.presentMainViewController()
+
+                self.router.presentMainViewController()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }

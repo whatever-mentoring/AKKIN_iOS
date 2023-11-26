@@ -14,6 +14,8 @@ final class AppleLoginService {
     
     private enum ResponseData {
         case postAppleLogin
+        case postAppleRevoke
+        case getAppleLogout
     }
     
     public func postAppleLogin(appleToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
@@ -28,7 +30,38 @@ final class AppleLoginService {
                 
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+
+    public func postAppleRevoke(appleToken: String, authorizationCode: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        appleLoginProvider.request(.postAppleLogin(appleToken: appleToken)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
                 
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postAppleRevoke)
+                completion(networkResult)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    public func getAppleLogout(completion: @escaping (NetworkResult<Any>) -> Void) {
+        appleLoginProvider.request(.getAppleLogout) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getAppleLogout)
+                completion(networkResult)
+                
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -39,7 +72,7 @@ final class AppleLoginService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .postAppleLogin:
+            case .postAppleLogin, .postAppleRevoke, .getAppleLogout:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -60,6 +93,12 @@ final class AppleLoginService {
         switch responseData {
         case .postAppleLogin:
             let decodedData = try? decoder.decode(AppleLoginResponse.self, from: data)
+            return .success(decodedData ?? "success")
+        case .postAppleRevoke:
+            let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
+            return .success(decodedData ?? "success")
+        case .getAppleLogout:
+            let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
             return .success(decodedData ?? "success")
         }
     }

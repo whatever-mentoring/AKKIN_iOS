@@ -10,6 +10,8 @@ import Foundation
 
 enum AppleLoginAPI {
     case postAppleLogin(appleToken: String)
+    case postAppleRevoke(appleToken: String, authorizationCode: String)
+    case getAppleLogout
 }
 
 extension AppleLoginAPI: TargetType {
@@ -17,6 +19,10 @@ extension AppleLoginAPI: TargetType {
         switch self {
         case .postAppleLogin:
             return URLConst.appleLogin
+        case .postAppleRevoke:
+            return URLConst.appleRevoke
+        case .getAppleLogout:
+            return URLConst.appleLogout
         }
     }
     
@@ -24,6 +30,10 @@ extension AppleLoginAPI: TargetType {
         switch self {
         case .postAppleLogin:
             return .post
+        case .postAppleRevoke:
+            return .post
+        case .getAppleLogout:
+            return .get
         }
     }
 
@@ -33,6 +43,13 @@ extension AppleLoginAPI: TargetType {
             return .requestParameters(parameters: [
                 "appleToken": appleToken
             ], encoding: JSONEncoding.default)
+        case .postAppleRevoke(let appleToken, let authorizationCode):
+            return .requestParameters(parameters: [
+                "appleToken": appleToken,
+                "authorizationCode": authorizationCode
+            ], encoding: JSONEncoding.default)
+        case .getAppleLogout:
+            return .requestPlain
         }
     }
 }

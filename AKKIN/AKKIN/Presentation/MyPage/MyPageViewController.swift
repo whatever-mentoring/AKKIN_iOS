@@ -106,11 +106,59 @@ final class MyPageViewController: BaseViewController {
     }
 
     private func logout() {
+        getAppleLogout()
         router.popToRootViewController()
     }
 
     private func withdrawal() {
+        postAppleRevoke(UserDefaultHandler.appleToken, UserDefaultHandler.appleToken)
         router.popToRootViewController()
+    }
+
+    func getAppleLogout() {
+        print("apple logout try")
+        NetworkService.shared.appleLogin.getAppleLogout() { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? BlankDataResponse else { return }
+                print("success")
+
+                self.router.presentLoginViewController()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    func postAppleRevoke(_ appleToken: String, _ authorizationCode: String) {
+        print("apple revoke try")
+        NetworkService.shared.appleLogin.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode) { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? AppleLoginResponse else { return }
+                print("success")
+
+                self.router.presentLoginViewController()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }
 

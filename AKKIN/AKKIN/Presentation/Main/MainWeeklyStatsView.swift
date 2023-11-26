@@ -60,7 +60,7 @@ final class MainWeeklyStatsView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
         setLabelColor()
-        getMain()
+//        getMain()
 
         detailButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
 
