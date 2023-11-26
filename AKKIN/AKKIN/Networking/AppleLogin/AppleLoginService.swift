@@ -59,7 +59,7 @@ final class AppleLoginService {
         
         switch responseData {
         case .postAppleLogin:
-            let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
+            let decodedData = try? decoder.decode(AppleLoginResponse.self, from: data)
             return .success(decodedData ?? "success")
         }
     }

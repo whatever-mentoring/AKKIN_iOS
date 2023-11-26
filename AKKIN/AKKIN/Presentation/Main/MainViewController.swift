@@ -49,10 +49,10 @@ final class MainViewController: BaseViewController {
         scrollView.addSubview(contentStackView)
         contentStackView
             .addArrangedSubview(mainCardCollectionView)
-        contentStackView
-            .addArrangedSubview(mainWeeklyStatsView)
-        contentStackView
-            .addArrangedSubview(mainMonthlyStatsView)
+//        contentStackView
+//            .addArrangedSubview(mainWeeklyStatsView)
+//        contentStackView
+//            .addArrangedSubview(mainMonthlyStatsView)
     }
 
     // MARK: Layout
@@ -71,13 +71,13 @@ final class MainViewController: BaseViewController {
             $0.height.equalTo(334)
         }
 
-        mainWeeklyStatsView.snp.makeConstraints {
-            $0.height.equalTo(150)
-        }
-
-        mainMonthlyStatsView.snp.makeConstraints {
-            $0.height.equalTo(245)
-        }
+//        mainWeeklyStatsView.snp.makeConstraints {
+//            $0.height.equalTo(150)
+//        }
+//
+//        mainMonthlyStatsView.snp.makeConstraints {
+//            $0.height.equalTo(245)
+//        }
     }
 
     // MARK: View Transition
