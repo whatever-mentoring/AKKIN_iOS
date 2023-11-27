@@ -35,7 +35,7 @@ final class AppleLoginService {
     }
 
     public func postAppleRevoke(appleToken: String, authorizationCode: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        appleLoginProvider.request(.postAppleLogin(appleToken: appleToken)) { result in
+        appleLoginProvider.request(.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
