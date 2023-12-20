@@ -6,19 +6,40 @@
 //
 
 struct MainResponse: Codable {
-    let month: Int
-    let weekOfMonth: Int
-    let weeklyTotalCost: Int
-    let monthlyDining: Int
-    let monthlyTraffic: Int
-    let monthlyShopping: Int
-    let monthlyEtc: Int
-    let monthlyTotalCost: Int
-    let entries: [MainEntries]
+    let today: Today
+    let firstPage: FirstPage
 }
 
-struct MainEntries: Codable {
+struct Today: Codable {
+    let entries: [TodayEntries]
+    let lastId: Int
+}
+
+struct FirstPage: Codable {
+    let entries: [FirstPageEntries]
+    let lastId: Int
+}
+
+struct TodayEntries: Codable {
     let id: Int
+    let year: Int
+    let month: Int
+    let day: Int
+    let category: String
     let saveContent: String
     let how: String
+    let expectCost: Int
+    let realCost: Int
+}
+
+struct FirstPageEntries: Codable {
+    let id: Int
+    let year: Int
+    let month: Int
+    let day: Int
+    let category: String
+    let saveContent: String
+    let how: String
+    let expectCost: Int
+    let realCost: Int
 }
