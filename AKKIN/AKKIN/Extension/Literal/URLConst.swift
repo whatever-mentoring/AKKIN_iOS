@@ -18,7 +18,6 @@ enum URLConst {
     static let main = ""
 
     // MARK: - Login
-    static let dummyLogin = "/login/dummy/101"
     static let appleLogin = "/login/oauth2/apple"
     static let appleRevoke = "/revoke"
     static let appleLogout = "/logout"
