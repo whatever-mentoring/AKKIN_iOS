@@ -24,7 +24,7 @@ final class MainCardCollectionView: BaseView {
     public lazy var cardCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: createLayout())
         collectionView.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
-        collectionView.isScrollEnabled = false
+        collectionView.isScrollEnabled = true
         collectionView.register(MainCardCollectionViewCell.self, forCellWithReuseIdentifier: MainCardCollectionViewCell.identifier)
         return collectionView
     }()
@@ -124,8 +124,8 @@ extension MainCardCollectionView: UICollectionViewDataSource {
 //            cardCollectionView.reloadData()
 //        } else {
             let entry = todayEntries[indexPath.row]
-//        cell.cardImageView.image = entry.
-            cell.saveContentLabel.text = entry.how
+            cell.cardImageView.image = AkkinImage.akkinIcon1
+            cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
             cell.howLabel.text = entry.saveContent
             cell.moneyLabel.text = "무려 " + "\(entry.expectCost - entry.realCost)" + " 원"
 //        }
@@ -143,7 +143,7 @@ extension MainCardCollectionView: UICollectionViewDelegate {
 extension MainCardCollectionView {
     // MARK: Networking
     private func getMain() {
-        print("getMain")
+        print("card - getMain called")
         NetworkService.shared.main.getMain() { result in
             switch result {
             case .success(let response):
