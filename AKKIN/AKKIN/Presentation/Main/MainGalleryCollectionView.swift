@@ -100,7 +100,6 @@ final class MainGalleryCollectionView: BaseView {
     }()
 
     // MARK: Properties
-    var tapAdd: (() -> Void)?
     var tapCell: (() -> Void)?
 
     // MARK: Configuration
@@ -165,10 +164,6 @@ final class MainGalleryCollectionView: BaseView {
     }
     
     // MARK: Event
-    @objc private func handleAddEvent() {
-        tapAdd?()
-    }
-
     func handleCellEvent() {
         tapCell?()
     }

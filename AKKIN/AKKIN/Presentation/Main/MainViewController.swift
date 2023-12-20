@@ -71,6 +71,10 @@ final class MainViewController: BaseViewController {
         mainCardCollectionView.tapCell = { [self] in
             router.presentCardDetailViewController()
         }
+
+        mainGalleryCollectionView.tapCell = { [self] in
+            router.presentCardDetailViewController()
+        }
     }
 
     private func setNavigationItem() {
