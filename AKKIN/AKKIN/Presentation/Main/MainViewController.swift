@@ -19,6 +19,7 @@ final class MainViewController: BaseViewController {
     }
 
     let mainCardCollectionView = MainCardCollectionView()
+    let mainGalleryCollectionView = MainGalleryCollectionView()
 
     // MARK: Environment
     private let router = ExampleRouter()
@@ -38,6 +39,7 @@ final class MainViewController: BaseViewController {
         super.configureSubviews()
 
         view.addSubview(mainCardCollectionView)
+        view.addSubview(mainGalleryCollectionView)
     }
 
     // MARK: Layout
@@ -47,6 +49,11 @@ final class MainViewController: BaseViewController {
         mainCardCollectionView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(345)
+        }
+
+        mainGalleryCollectionView.snp.makeConstraints {
+            $0.top.equalTo(mainCardCollectionView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 
