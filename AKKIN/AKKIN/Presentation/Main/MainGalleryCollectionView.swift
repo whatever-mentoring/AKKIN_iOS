@@ -10,7 +10,11 @@ import UIKit
 final class MainGalleryCollectionView: BaseView {
 
     var firstPageEntries: [FirstPageEntries] = []
-
+    var diningEntries: [FirstPageEntries] = []
+    var trafficEntries: [FirstPageEntries] = []
+    var shoppingEntries: [FirstPageEntries] = []
+    var etcEntries: [FirstPageEntries] = []
+    
     // MARK: UI Components
     private let categoryButtonStackView = UIStackView().then {
         $0.axis = .horizontal
@@ -19,7 +23,9 @@ final class MainGalleryCollectionView: BaseView {
 
     private let totalButton = BaseButton().then {
         $0.setTitle("전체", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
+        $0.isSelected = true
+        $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
@@ -32,6 +38,7 @@ final class MainGalleryCollectionView: BaseView {
     private let diningButton = BaseButton().then {
         $0.setTitle("식비", for: .normal)
         $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
@@ -47,6 +54,7 @@ final class MainGalleryCollectionView: BaseView {
     private let trafficButton = BaseButton().then {
         $0.setTitle("교통", for: .normal)
         $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
@@ -62,6 +70,7 @@ final class MainGalleryCollectionView: BaseView {
     private let shoppingButton = BaseButton().then {
         $0.setTitle("쇼핑", for: .normal)
         $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
@@ -77,6 +86,7 @@ final class MainGalleryCollectionView: BaseView {
     private let etcButton = BaseButton().then {
         $0.setTitle("기타", for: .normal)
         $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
@@ -106,7 +116,12 @@ final class MainGalleryCollectionView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
         getMain()
-        print("printtttt" + "\(firstPageEntries)")
+
+        totalButton.addTarget(self, action: #selector(totalButtonTapped), for: .touchUpInside)
+        diningButton.addTarget(self, action: #selector(diningButtonTapped), for: .touchUpInside)
+        trafficButton.addTarget(self, action: #selector(trafficButtonTapped), for: .touchUpInside)
+        shoppingButton.addTarget(self, action: #selector(shoppingButtonTapped), for: .touchUpInside)
+        etcButton.addTarget(self, action: #selector(etcButtonTapped), for: .touchUpInside)
 
         galleryCollectionView.dataSource = self
         galleryCollectionView.delegate = self
@@ -121,6 +136,110 @@ final class MainGalleryCollectionView: BaseView {
         categoryButtonStackView.addArrangedSubview(etcButton)
     }
     
+    @objc func totalButtonTapped() {
+        if !totalButton.isSelected {
+            totalButton.isSelected = true
+            totalButton.setTitleColor(.white, for: .selected)
+            totalButton.backgroundColor = UIColor.akkinGreen
+        }
+
+        diningButton.isSelected = false
+        trafficButton.isSelected = false
+        shoppingButton.isSelected = false
+        etcButton.isSelected = false
+
+        diningButton.backgroundColor = UIColor.white
+        trafficButton.backgroundColor = UIColor.white
+        shoppingButton.backgroundColor = UIColor.white
+        etcButton.backgroundColor = UIColor.white
+
+        galleryCollectionView.reloadData()
+    }
+
+    @objc func diningButtonTapped() {
+        if !diningButton.isSelected {
+            diningButton.isSelected = true
+            diningButton.setTitleColor(.white, for: .selected)
+            diningButton.backgroundColor = UIColor.akkinGreen
+        }
+
+        totalButton.isSelected = false
+        trafficButton.isSelected = false
+        shoppingButton.isSelected = false
+        etcButton.isSelected = false
+
+        totalButton.backgroundColor = UIColor.white
+        trafficButton.backgroundColor = UIColor.white
+        shoppingButton.backgroundColor = UIColor.white
+        etcButton.backgroundColor = UIColor.white
+
+        diningEntries = firstPageEntries.filter { $0.category == "DINING" }
+        galleryCollectionView.reloadData()
+    }
+
+    @objc func trafficButtonTapped() {
+        if !trafficButton.isSelected {
+            trafficButton.isSelected = true
+            trafficButton.setTitleColor(.white, for: .selected)
+            trafficButton.backgroundColor = UIColor.akkinGreen
+        }
+
+        totalButton.isSelected = false
+        diningButton.isSelected = false
+        shoppingButton.isSelected = false
+        etcButton.isSelected = false
+
+        totalButton.backgroundColor = UIColor.white
+        diningButton.backgroundColor = UIColor.white
+        shoppingButton.backgroundColor = UIColor.white
+        etcButton.backgroundColor = UIColor.white
+
+        trafficEntries = firstPageEntries.filter { $0.category == "TRAFFIC" }
+        galleryCollectionView.reloadData()
+    }
+
+    @objc func shoppingButtonTapped() {
+        if !shoppingButton.isSelected {
+            shoppingButton.isSelected = true
+            shoppingButton.setTitleColor(.white, for: .selected)
+            shoppingButton.backgroundColor = UIColor.akkinGreen
+        }
+
+        totalButton.isSelected = false
+        diningButton.isSelected = false
+        trafficButton.isSelected = false
+        etcButton.isSelected = false
+
+        totalButton.backgroundColor = UIColor.white
+        diningButton.backgroundColor = UIColor.white
+        trafficButton.backgroundColor = UIColor.white
+        etcButton.backgroundColor = UIColor.white
+
+        shoppingEntries = firstPageEntries.filter { $0.category == "SHOPPING" }
+        galleryCollectionView.reloadData()
+    }
+
+    @objc func etcButtonTapped() {
+        if !etcButton.isSelected {
+            etcButton.isSelected = true
+            etcButton.setTitleColor(.white, for: .selected)
+            etcButton.backgroundColor = UIColor.akkinGreen
+        }
+
+        totalButton.isSelected = false
+        diningButton.isSelected = false
+        trafficButton.isSelected = false
+        shoppingButton.isSelected = false
+
+        totalButton.backgroundColor = UIColor.white
+        diningButton.backgroundColor = UIColor.white
+        trafficButton.backgroundColor = UIColor.white
+        shoppingButton.backgroundColor = UIColor.white
+
+        etcEntries = firstPageEntries.filter { $0.category == "ETC" }
+        galleryCollectionView.reloadData()
+    }
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
@@ -174,30 +293,53 @@ extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionVie
 //        if mainEntries.count == 0 {
 //            return 1
 //        } else {
-        return firstPageEntries.count
+//        return firstPageEntries.count
 //        }
+        if totalButton.isSelected {
+            return firstPageEntries.count
+        } else if diningButton.isSelected {
+            return diningEntries.count
+        } else if trafficButton.isSelected {
+            return trafficEntries.count
+        } else if shoppingButton.isSelected {
+            return shoppingEntries.count
+        } else {
+            return etcEntries.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: MainGalleryCollectionViewCell.identifier, for: indexPath) as? MainGalleryCollectionViewCell else { return UICollectionViewCell() }
-//        if mainEntries.count == 0 {
-//            cell.cardImageView.isHidden = true
-//            cell.moneyLabel.isHidden = true
-//            cell.cardLabel.isHidden = true
-//            cell.contentLabel.isHidden = true
-//            cell.emptyLabel.isHidden = false
-//            cell.contentView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1).cgColor
-//            cell.contentView.layer.borderWidth = 1
-//            cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
-//            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
-//            cardCollectionView.reloadData()
-//        } else {
-            let entry = firstPageEntries[indexPath.row]
-            cell.cardImageView.image = AkkinImage.akkinIcon1
-            cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
-            cell.howLabel.text = entry.saveContent
-//        }
+        //        if mainEntries.count == 0 {
+        //            cell.cardImageView.isHidden = true
+        //            cell.moneyLabel.isHidden = true
+        //            cell.cardLabel.isHidden = true
+        //            cell.contentLabel.isHidden = true
+        //            cell.emptyLabel.isHidden = false
+        //            cell.contentView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1).cgColor
+        //            cell.contentView.layer.borderWidth = 1
+        //            cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
+        //            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
+        //            cardCollectionView.reloadData()
+        //        } else {
 
+        var entry = firstPageEntries[indexPath.row]
+
+        if diningButton.isSelected {
+            entry = diningEntries[indexPath.row]
+        } else if trafficButton.isSelected {
+            entry = trafficEntries[indexPath.row]
+        } else if shoppingButton.isSelected {
+            entry = shoppingEntries[indexPath.row]
+        } else if etcButton.isSelected {
+            entry = etcEntries[indexPath.row]
+        }
+
+        cell.cardImageView.image = AkkinImage.akkinIcon1
+        cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
+        cell.howLabel.text = entry.saveContent
+        //        }
+        
         return cell
     }
 
