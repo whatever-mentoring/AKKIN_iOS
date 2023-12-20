@@ -9,7 +9,7 @@ import UIKit
 
 final class MainCardCollectionView: BaseView {
 
-    var mainEntries: [MainEntries] = []
+    var todayEntries: [FirstPageEntries] = []
 
     // MARK: UI Components
     private let akkinLabel = UILabel().then {
@@ -105,7 +105,7 @@ extension MainCardCollectionView: UICollectionViewDataSource {
 //        if mainEntries.count == 0 {
 //            return 1
 //        } else {
-            return mainEntries.count
+            return todayEntries.count
 //        }
     }
 
@@ -123,10 +123,11 @@ extension MainCardCollectionView: UICollectionViewDataSource {
 //            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
 //            cardCollectionView.reloadData()
 //        } else {
-            let entry = mainEntries[indexPath.row]
-            cell.cardLabel.text = entry.how
-            cell.contentLabel.text = entry.saveContent
-            cardCollectionView.reloadData()
+            let entry = todayEntries[indexPath.row]
+//        cell.cardImageView.image = entry.
+            cell.saveContentLabel.text = entry.how
+            cell.howLabel.text = entry.saveContent
+            cell.moneyLabel.text = "무려 " + "\(entry.expectCost - entry.realCost)" + " 원"
 //        }
 
         return cell
@@ -147,10 +148,8 @@ extension MainCardCollectionView {
             switch result {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
-                self.mainEntries = data.entries
+                self.todayEntries = data.firstPage.entries
                 print(data)
-                print(data.entries)
-                print(data.entries.count)
                 self.cardCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
