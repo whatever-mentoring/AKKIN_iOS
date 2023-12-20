@@ -18,15 +18,7 @@ final class MainViewController: BaseViewController {
         $0.setImage(AkkinButton.myPageButton, for: .normal)
     }
 
-    private let scrollView = UIScrollView()
-    
-    private let contentStackView = UIStackView().then {
-        $0.axis = .vertical
-    }
-
     let mainCardCollectionView = MainCardCollectionView()
-    let mainWeeklyStatsView = MainWeeklyStatsView()
-    let mainMonthlyStatsView = MainMonthlyStatsView()
 
     // MARK: Environment
     private let router = ExampleRouter()
@@ -45,39 +37,17 @@ final class MainViewController: BaseViewController {
     override func configureSubviews() {
         super.configureSubviews()
 
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentStackView)
-        contentStackView
-            .addArrangedSubview(mainCardCollectionView)
-//        contentStackView
-//            .addArrangedSubview(mainWeeklyStatsView)
-//        contentStackView
-//            .addArrangedSubview(mainMonthlyStatsView)
+        view.addSubview(mainCardCollectionView)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
         
-        scrollView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        contentStackView.snp.makeConstraints { make in
-            make.edges.width.equalToSuperview()
-        }
-
         mainCardCollectionView.snp.makeConstraints {
-            $0.height.equalTo(334)
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(345)
         }
-
-//        mainWeeklyStatsView.snp.makeConstraints {
-//            $0.height.equalTo(150)
-//        }
-//
-//        mainMonthlyStatsView.snp.makeConstraints {
-//            $0.height.equalTo(245)
-//        }
     }
 
     // MARK: View Transition
@@ -93,14 +63,6 @@ final class MainViewController: BaseViewController {
 
         mainCardCollectionView.tapCell = { [self] in
             router.presentCardDetailViewController()
-        }
-
-        mainWeeklyStatsView.tapAdd = { [self] in
-            router.presentWeeklyStatsViewController()
-        }
-
-        mainMonthlyStatsView.tapAdd = { [self] in
-            router.presentMonthlyStatsViewController()
         }
     }
 
