@@ -19,12 +19,12 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
     }
 
-    private(set) var cardLabel = UILabel().then {
+    private(set) var saveContentLabel = UILabel().then {
         $0.text = "[ 헝그리 정신 실천 ]"
         $0.font = .systemFont(ofSize: 16)
     }
 
-    private(set) var contentLabel = UILabel().then {
+    private(set) var howLabel = UILabel().then {
         $0.text = "밥 대신 공기 먹기"
         $0.font = .systemFont(ofSize: 16)
     }
@@ -79,8 +79,8 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
     private func configureSubviews() {
         contentView.addSubview(cardImageView)
         contentView.addSubview(moneyLabel)
-        contentView.addSubview(cardLabel)
-        contentView.addSubview(contentLabel)
+        contentView.addSubview(saveContentLabel)
+        contentView.addSubview(howLabel)
         contentView.addSubview(emptyLabel)
     }
 
@@ -96,12 +96,12 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
             $0.centerX.equalToSuperview()
         }
 
-        cardLabel.snp.makeConstraints {
+        saveContentLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(202)
             $0.centerX.equalToSuperview()
         }
 
-        contentLabel.snp.makeConstraints {
+        howLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(227)
             $0.centerX.equalToSuperview()
         }
