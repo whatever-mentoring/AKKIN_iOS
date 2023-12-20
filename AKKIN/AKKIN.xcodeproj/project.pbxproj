@@ -307,6 +307,9 @@
 		9507C1C42AB62C0800E026F9 /* WeeklyStats */ = {
 			isa = PBXGroup;
 			children = (
+				95E535BE2AB23EED00FA2492 /* MainWeeklyStatsView.swift */,
+				95E535C02AB24A2300FA2492 /* MainMonthlyStatsView.swift */,
+				95E535C22AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift */,
 				9507C1CF2AB62C7C00E026F9 /* cell */,
 				9507C1C52AB62C1800E026F9 /* WeeklyStatsViewController.swift */,
 				9507C1C92AB62C3500E026F9 /* WeeklyStatsCollectionView.swift */,
@@ -375,8 +378,8 @@
 			isa = PBXGroup;
 			children = (
 				951261B92AC1A8AC0012B5F9 /* WeeklyAPI.swift */,
-				951261B12AC1A8890012B5F9 /* WeeklyResponse.swift */,
 				6B5B839A2AC1EEB300CD0AFC /* WeeklyService.swift */,
+				951261B12AC1A8890012B5F9 /* WeeklyResponse.swift */,
 			);
 			path = Weekly;
 			sourceTree = "<group>";
@@ -419,6 +422,15 @@
 			path = CardPatch;
 			sourceTree = "<group>";
 		};
+		95B10FB72B3326CD005319F6 /* Gone */ = {
+			isa = PBXGroup;
+			children = (
+				9507C1C42AB62C0800E026F9 /* WeeklyStats */,
+				6B117F562AB9DEDD000B03F7 /* MonthlyStats */,
+			);
+			path = Gone;
+			sourceTree = "<group>";
+		};
 		95E535A42AB1910900FA2492 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,9 +438,8 @@
 				95E535A12AB18F3200FA2492 /* MainView.swift */,
 				95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */,
 				95E535B62AB1D4E000FA2492 /* MainCardCollectionViewCell.swift */,
-				95E535BE2AB23EED00FA2492 /* MainWeeklyStatsView.swift */,
-				95E535C02AB24A2300FA2492 /* MainMonthlyStatsView.swift */,
-				95E535C22AB24B1200FA2492 /* MainMonthlyStatsTableViewCell.swift */,
+				95B10FBA2B3344B2005319F6 /* MainGalleryCollectionView.swift */,
+				95B10FBC2B3344D8005319F6 /* MainGalleryCollectionViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -489,17 +500,16 @@
 			isa = PBXGroup;
 			children = (
 				951261582ABB1C890012B5F9 /* Onboarding */,
+				95E535CE2AB492E500FA2492 /* Splash */,
 				951261612ABD96FB0012B5F9 /* Login */,
+				95E535A42AB1910900FA2492 /* Main */,
 				6B7427EF2AB8799A00BA7E2C /* Input */,
 				6B7427DE2AB8787000BA7E2C /* Card */,
 				951261C82AC1FE380012B5F9 /* CardDetail */,
 				951261D12AC21D0A0012B5F9 /* CardPatch */,
-				6B117F562AB9DEDD000B03F7 /* MonthlyStats */,
-				9507C1C42AB62C0800E026F9 /* WeeklyStats */,
 				9507C1B72AB626C100E026F9 /* MyPage */,
-				95E535CE2AB492E500FA2492 /* Splash */,
-				95E535A42AB1910900FA2492 /* Main */,
 				BC94AD4C2AA61C9600A77052 /* Example */,
+				95B10FB72B3326CD005319F6 /* Gone */,
 				BC94AD372AA618C400A77052 /* Base */,
 			);
 			path = Presentation;
