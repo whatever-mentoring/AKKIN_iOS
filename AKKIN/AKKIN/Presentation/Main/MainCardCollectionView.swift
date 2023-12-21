@@ -9,7 +9,10 @@ import UIKit
 
 final class MainCardCollectionView: BaseView {
 
-    var todayEntries: [FirstPageEntries] = []
+    var todayEntries: [TodayEntries] = []
+    var selectedTodayEntries: [TodayEntries] = []
+
+    let cardDetailView = CardDetailView()
 
     // MARK: UI Components
     private let akkinLabel = UILabel().then {
@@ -24,7 +27,7 @@ final class MainCardCollectionView: BaseView {
     public lazy var cardCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: createLayout())
         collectionView.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
-        collectionView.isScrollEnabled = true
+        collectionView.isScrollEnabled = false
         collectionView.register(MainCardCollectionViewCell.self, forCellWithReuseIdentifier: MainCardCollectionViewCell.identifier)
         return collectionView
     }()
@@ -52,7 +55,7 @@ final class MainCardCollectionView: BaseView {
 
     // MARK: Properties
     var tapAdd: (() -> Void)?
-    var tapCell: (() -> Void)?
+    var tapCell: (([TodayEntries]) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -95,8 +98,8 @@ final class MainCardCollectionView: BaseView {
         tapAdd?()
     }
 
-    func handleCellEvent() {
-        tapCell?()
+    func handleCellEvent(_ selectedTodayEntries: [TodayEntries]) {
+        tapCell?(selectedTodayEntries)
     }
 }
 
@@ -136,7 +139,9 @@ extension MainCardCollectionView: UICollectionViewDataSource {
 
 extension MainCardCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        handleCellEvent()
+        let entry = todayEntries[indexPath.row]
+        selectedTodayEntries = todayEntries.filter { $0.id == entry.id }
+        handleCellEvent(selectedTodayEntries)
     }
 }
 
@@ -148,7 +153,7 @@ extension MainCardCollectionView {
             switch result {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
-                self.todayEntries = data.firstPage.entries
+                self.todayEntries = data.today.entries
                 print(data)
                 self.cardCollectionView.reloadData()
             case .requestErr(let errorResponse):

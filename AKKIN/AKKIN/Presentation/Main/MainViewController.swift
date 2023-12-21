@@ -68,13 +68,13 @@ final class MainViewController: BaseViewController {
             router.presentInputViewController()
         }
 
-        mainCardCollectionView.tapCell = { [self] in
-            router.presentCardDetailViewController()
+        mainCardCollectionView.tapCell = { [self] selectedTodayEntries in
+            router.presentCardDetailViewController(selectedTodayEntries: selectedTodayEntries)
         }
 
-        mainGalleryCollectionView.tapCell = { [self] in
-            router.presentCardDetailViewController()
-        }
+//        mainGalleryCollectionView.tapCell = { [self] in
+//            router.presentCardDetailViewController(id: 0)
+//        }
     }
 
     private func setNavigationItem() {

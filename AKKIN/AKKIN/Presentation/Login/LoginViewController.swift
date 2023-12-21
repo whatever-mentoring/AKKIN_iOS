@@ -65,7 +65,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             let userIdentifier = appleIDCredential.user
-            let fullName = "\(appleIDCredential.fullName?.familyName! ?? "")" + "\(appleIDCredential.fullName?.givenName! ?? "user")"
+            let fullName = "\(appleIDCredential.fullName?.familyName ?? "")" + "\(appleIDCredential.fullName?.givenName ?? "user")"
             let email = appleIDCredential.email
             let appleToken = appleIDCredential.identityToken
             guard let appleTokenToString = String(data: appleToken!, encoding: .utf8) else {

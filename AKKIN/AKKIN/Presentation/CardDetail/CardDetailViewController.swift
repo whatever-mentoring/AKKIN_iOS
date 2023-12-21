@@ -8,7 +8,9 @@
 import UIKit
 
 class CardDetailViewController: BaseViewController {
-    
+
+    var selectedEntries: [TodayEntries] = []
+
     // MARK: UI Components
     private let backButton = BaseButton().then {
         $0.setImage(AkkinButton.backButton, for: .normal)
@@ -35,6 +37,7 @@ class CardDetailViewController: BaseViewController {
     override func configureSubviews() {
         super.configureSubviews()
         view.addSubview(cardDetailView)
+        setCardContent()
 
         backButton.tap = { [weak self] in
             guard let self else { return }
@@ -46,7 +49,29 @@ class CardDetailViewController: BaseViewController {
             presentActionSheet()
         }
     }
-    
+
+    private func setCardContent() {
+        cardDetailView.dateTextLabel.text = "\(selectedEntries[0].year)" + "." + "\(selectedEntries[0].month)" + "." + "\(selectedEntries[0].day)"
+        cardDetailView.savePriceLabel.text = "무려 " + "\(selectedEntries[0].expectCost - selectedEntries[0].realCost)" + " 원"
+        cardDetailView.saveContentLabel.text = "[ " + "\(selectedEntries[0].saveContent)" + " ]"
+        cardDetailView.howLabel.text = selectedEntries[0].how
+        cardDetailView.expectPriceLabel.text = "\(selectedEntries[0].expectCost)"
+        cardDetailView.realPriceLabel.text = "\(selectedEntries[0].realCost)"
+        if selectedEntries[0].category == "DINING" {
+            cardDetailView.diningButton.setTitleColor(.white, for: .normal)
+            cardDetailView.diningButton.backgroundColor = .akkinGreen
+        } else if selectedEntries[0].category == "TRAFFIC" {
+            cardDetailView.diningButton.setTitleColor(.white, for: .normal)
+            cardDetailView.diningButton.backgroundColor = .akkinGreen
+        } else if selectedEntries[0].category == "SHOPPING" {
+            cardDetailView.diningButton.setTitleColor(.white, for: .normal)
+            cardDetailView.diningButton.backgroundColor = .akkinGreen
+        } else if selectedEntries[0].category == "ETC" {
+            cardDetailView.diningButton.setTitleColor(.white, for: .normal)
+            cardDetailView.diningButton.backgroundColor = .akkinGreen
+        }
+    }
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
