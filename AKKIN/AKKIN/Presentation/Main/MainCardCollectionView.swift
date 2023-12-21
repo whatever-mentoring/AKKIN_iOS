@@ -9,10 +9,8 @@ import UIKit
 
 final class MainCardCollectionView: BaseView {
 
-    var todayEntries: [TodayEntries] = []
-    var selectedTodayEntries: [TodayEntries] = []
-
-    let cardDetailView = CardDetailView()
+    var todayEntries: [Entries] = []
+    var selectedTodayEntries: [Entries] = []
 
     // MARK: UI Components
     private let akkinLabel = UILabel().then {
@@ -55,7 +53,7 @@ final class MainCardCollectionView: BaseView {
 
     // MARK: Properties
     var tapAdd: (() -> Void)?
-    var tapCell: (([TodayEntries]) -> Void)?
+    var tapCell: (([Entries]) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -98,8 +96,8 @@ final class MainCardCollectionView: BaseView {
         tapAdd?()
     }
 
-    func handleCellEvent(_ selectedTodayEntries: [TodayEntries]) {
-        tapCell?(selectedTodayEntries)
+    func handleCellEvent(_ selectedEntries: [Entries]) {
+        tapCell?(selectedEntries)
     }
 }
 
