@@ -20,8 +20,14 @@ final class MyPageViewController: BaseViewController {
 
     // MARK: UI Components
     private let myPageTableView = UITableView().then {
+        if #available(iOS 15.0, *) {
+            $0.sectionHeaderTopPadding = 0
+        } else {
+            // Fallback on earlier versions
+        }
         $0.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
         $0.register(MyPageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: MyPageTableViewHeader.identifier)
+        $0.register(MyPageTableViewFooter.self, forHeaderFooterViewReuseIdentifier: MyPageTableViewFooter.identifier)
         $0.isScrollEnabled = false
         $0.separatorStyle = .none
     }
@@ -58,7 +64,6 @@ final class MyPageViewController: BaseViewController {
 
     private func setNavigationItem() {
         navigationItem.title = "마이페이지"
-
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
 
@@ -100,7 +105,7 @@ final class MyPageViewController: BaseViewController {
         super.makeConstraints()
 
         myPageTableView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(10)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.bottom.equalTo(view.safeAreaInsets)
         }
     }
@@ -191,7 +196,7 @@ extension MyPageViewController: UITableViewDataSource {
 
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = UserDefaultHandler.userName
+            cell.contentLabel.text = UserDefaultHandler.userEmail
             cell.detailButton.isHidden = true
         case 1:
             cell.contentLabel.text = appInfo[indexPath.row]
@@ -217,25 +222,33 @@ extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = myPageTableView.dequeueReusableHeaderFooterView(withIdentifier: MyPageTableViewHeader.identifier) as? MyPageTableViewHeader else { return UITableViewHeaderFooterView() }
 
-        if section == 0 {
-            header.dividerView.isHidden = true
-            header.titleLabel.snp.makeConstraints {
-                $0.top.equalToSuperview()
-                $0.leading.equalToSuperview().inset(28)
-            }
-        }
         header.titleLabel.text = headerTitle[section]
 
         return header
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 33
+        return 61
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let header = myPageTableView.dequeueReusableHeaderFooterView(withIdentifier: MyPageTableViewFooter.identifier) as? MyPageTableViewFooter else { return UITableViewHeaderFooterView() }
+        
+        if section == 2 {
+            header.dividerView.isHidden = true
+        }
+        
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 2 {
+            return 0
         } else {
-            return 73
+            return 28
         }
     }
+
 }
 
 extension MyPageViewController: UITableViewDelegate {
