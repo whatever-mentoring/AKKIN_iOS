@@ -84,7 +84,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
 
             UserDefaultHandler.appleToken = appleTokenToString
             UserDefaultHandler.authorizationCode = authorizationCodeToString
-            UserDefaultHandler.userName = fullName
+            UserDefaultHandler.userEmail = email ?? "${mail}"
 
             postAppleLogin(appleTokenToString)
         default:
