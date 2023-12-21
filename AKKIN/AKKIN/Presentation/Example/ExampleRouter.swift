@@ -38,8 +38,10 @@ final class ExampleRouter {
         viewController?.navigationController?.pushViewController(inputViewController, animated: true)
     }
 
-    func presentCardDetailViewController() {
+    func presentCardDetailViewController(selectedTodayEntries: [TodayEntries]) {
         let cardDetailViewController = CardDetailViewController()
+        cardDetailViewController.selectedEntries = selectedTodayEntries
+
         viewController?.navigationController?.pushViewController(cardDetailViewController, animated: true)
     }
 
