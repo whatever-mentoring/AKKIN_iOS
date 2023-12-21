@@ -291,11 +291,12 @@ final class MainGalleryCollectionView: BaseView {
 
 extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if mainEntries.count == 0 {
-//            return 1
-//        } else {
-//        return firstPageEntries.count
-//        }
+        if totalEntries.count == 0 {
+            categoryButtonStackView.isHidden = true
+        } else {
+            categoryButtonStackView.isHidden = false
+        }
+
         if totalButton.isSelected {
             return totalEntries.count
         } else if diningButton.isSelected {
@@ -311,19 +312,6 @@ extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: MainGalleryCollectionViewCell.identifier, for: indexPath) as? MainGalleryCollectionViewCell else { return UICollectionViewCell() }
-        //        if mainEntries.count == 0 {
-        //            cell.cardImageView.isHidden = true
-        //            cell.moneyLabel.isHidden = true
-        //            cell.cardLabel.isHidden = true
-        //            cell.contentLabel.isHidden = true
-        //            cell.emptyLabel.isHidden = false
-        //            cell.contentView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1).cgColor
-        //            cell.contentView.layer.borderWidth = 1
-        //            cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
-        //            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
-        //            cardCollectionView.reloadData()
-        //        } else {
-
         var entry = totalEntries[indexPath.row]
 
         if diningButton.isSelected {
@@ -339,7 +327,6 @@ extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionVie
         cell.cardImageView.image = AkkinImage.akkinIcon1
         cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
         cell.howLabel.text = entry.saveContent
-        //        }
         
         return cell
     }

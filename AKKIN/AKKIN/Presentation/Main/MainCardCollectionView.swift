@@ -103,33 +103,33 @@ final class MainCardCollectionView: BaseView {
 
 extension MainCardCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if mainEntries.count == 0 {
-//            return 1
-//        } else {
+        if todayEntries.count == 0 {
+            return 1
+        } else {
             return todayEntries.count
-//        }
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = cardCollectionView.dequeueReusableCell(withReuseIdentifier: MainCardCollectionViewCell.identifier, for: indexPath) as? MainCardCollectionViewCell else { return UICollectionViewCell() }
-//        if mainEntries.count == 0 {
-//            cell.cardImageView.isHidden = true
-//            cell.moneyLabel.isHidden = true
-//            cell.cardLabel.isHidden = true
-//            cell.contentLabel.isHidden = true
-//            cell.emptyLabel.isHidden = false
-//            cell.contentView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1).cgColor
-//            cell.contentView.layer.borderWidth = 1
-//            cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
-//            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
-//            cardCollectionView.reloadData()
-//        } else {
+        if todayEntries.count == 0 {
+            cell.cardImageView.isHidden = true
+            cell.moneyLabel.isHidden = true
+            cell.saveContentLabel.isHidden = true
+            cell.howLabel.isHidden = true
+            cell.emptyLabel.isHidden = false
+            cell.contentView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1).cgColor
+            cell.contentView.layer.borderWidth = 1
+            cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
+            cell.contentView.layer.shadowColor = UIColor.clear.cgColor
+            cardCollectionView.reloadData()
+        } else {
             let entry = todayEntries[indexPath.row]
             cell.cardImageView.image = AkkinImage.akkinIcon1
             cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
             cell.howLabel.text = entry.saveContent
             cell.moneyLabel.text = "무려 " + "\(entry.expectCost - entry.realCost)" + " 원"
-//        }
+        }
 
         return cell
     }
