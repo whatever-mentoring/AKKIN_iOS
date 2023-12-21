@@ -121,8 +121,8 @@ class CardDetailViewController: BaseViewController {
         let deleteButton = UIAlertAction(
             title: "삭제",
             style: .destructive,
-            handler: {
-                action in print("삭제")
+            handler: { [self]
+                action in deleteAkkin(selectedEntries[0].id)
         })
 
         let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -131,5 +131,27 @@ class CardDetailViewController: BaseViewController {
         alertController.addAction(cancelButton)
 
         present(alertController, animated: true, completion: nil)
+    }
+
+    // MARK: Networking
+    private func deleteAkkin(_ id: Int) {
+        NetworkService.shared.akkin.deleteAkkin(id: id) { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? BlankDataResponse else { return }
+                print(data)
+                self.router.popToRootViewController()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }

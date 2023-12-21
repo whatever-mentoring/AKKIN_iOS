@@ -17,18 +17,6 @@ struct AkkinResponse: Codable {
     let realCost: Int
 }
 
-struct AkkineEntireResponse: Codable {
-    let entries: [EntireEntries]
-}
-
-struct EntireEntries: Codable {
-    let id: Int
-    let year: Int
-    let month: Int
-    let day: Int
-    let category: String
-    let content: String
-    let how: String
-    let expectCost: Int
-    let realCost: Int
+struct AkkinEntireResponse: Codable {
+    let entries: [Entries]
 }

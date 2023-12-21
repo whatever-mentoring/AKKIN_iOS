@@ -14,6 +14,7 @@ final class AkkinService {
     private enum ResponseData {
         case getAkkin
         case postAkkin
+        case deleteAkkin
     }
 
     public func getAkkin(completion: @escaping (NetworkResult<Any>) -> Void) {
@@ -49,13 +50,31 @@ final class AkkinService {
             }
         }
     }
+
+    public func deleteAkkin(id: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        akkinProvider.request(.deleteAkkin(id: id)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .deleteAkkin)
+                completion(networkResult)
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+    }
+
     private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
 
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getAkkin, .postAkkin:
+            case .getAkkin, .postAkkin, .deleteAkkin:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -75,36 +94,11 @@ final class AkkinService {
 
         switch responseData {
         case .getAkkin:
-            let decodedData = try? decoder.decode(AkkineEntireResponse.self, from: data)
+            let decodedData = try? decoder.decode(AkkinEntireResponse.self, from: data)
             return .success(decodedData ?? "success")
-        case .postAkkin:
-            guard let decodedData = try? decoder.decode(AkkinResponse.self, from: data) else {
-                return .pathErr
-            }
-            return .success(decodedData)
+        case .postAkkin, .deleteAkkin:
+            let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
+            return .success(decodedData ?? "success")
         }
     }
 }
-
-//사용 방법 - 사용할 곳에서 구현 후 호출
-//private func getAkkin() {
-//    print("getAkkin")
-//    NetworkService.shared.akkin.getAkkin() { result in
-//        switch result {
-//        case .success(let response):
-//            guard let data = response as? AkkineEntireResponse else { return }
-//            print(data)
-//        case .requestErr(let errorResponse):
-//            dump(errorResponse)
-//            guard let data = errorResponse as? ErrorResponse else { return }
-//            print(data)
-//        case .serverErr:
-//            print("serverErr")
-//        case .networkFail:
-//            print("networkFail")
-//        case .pathErr:
-//            print("pathErr")
-//        }
-//    }
-//}
-
