@@ -9,8 +9,7 @@ import UIKit
 
 class CardDetailViewController: BaseViewController {
 
-    var selectedTodayEntries: [TodayEntries] = []
-    var selectedTotalEntries: [FirstPageEntries] = []
+    var selectedEntries: [Entries] = []
 
     // MARK: UI Components
     private let backButton = BaseButton().then {
@@ -38,8 +37,8 @@ class CardDetailViewController: BaseViewController {
     override func configureSubviews() {
         super.configureSubviews()
         view.addSubview(cardDetailView)
-        setTodayCardContent()
-        setTotalCardContent()
+
+        setCardContent()
 
         backButton.tap = { [weak self] in
             guard let self else { return }
@@ -52,51 +51,25 @@ class CardDetailViewController: BaseViewController {
         }
     }
 
-    private func setTodayCardContent() {
-        if !selectedTodayEntries.isEmpty {
-            cardDetailView.dateTextLabel.text = "\(selectedTodayEntries[0].year)" + "." + "\(selectedTodayEntries[0].month)" + "." + "\(selectedTodayEntries[0].day)"
-            cardDetailView.savePriceLabel.text = "무려 " + "\(selectedTodayEntries[0].expectCost - selectedTodayEntries[0].realCost)" + " 원"
-            cardDetailView.saveContentLabel.text = "[ " + "\(selectedTodayEntries[0].saveContent)" + " ]"
-            cardDetailView.howLabel.text = selectedTodayEntries[0].how
-            cardDetailView.expectPriceLabel.text = "\(selectedTodayEntries[0].expectCost)"
-            cardDetailView.realPriceLabel.text = "\(selectedTodayEntries[0].realCost)"
-            if selectedTodayEntries[0].category == "DINING" {
-                cardDetailView.diningButton.setTitleColor(.white, for: .normal)
-                cardDetailView.diningButton.backgroundColor = .akkinGreen
-            } else if selectedTodayEntries[0].category == "TRAFFIC" {
-                cardDetailView.trafficButton.setTitleColor(.white, for: .normal)
-                cardDetailView.trafficButton.backgroundColor = .akkinGreen
-            } else if selectedTodayEntries[0].category == "SHOPPING" {
-                cardDetailView.shoppingButton.setTitleColor(.white, for: .normal)
-                cardDetailView.shoppingButton.backgroundColor = .akkinGreen
-            } else if selectedTodayEntries[0].category == "ETC" {
-                cardDetailView.etcButton.setTitleColor(.white, for: .normal)
-                cardDetailView.etcButton.backgroundColor = .akkinGreen
-            }
-        }
-    }
-
-    private func setTotalCardContent() {
-        if !selectedTotalEntries.isEmpty {
-            cardDetailView.dateTextLabel.text = "\(selectedTotalEntries[0].year)" + "." + "\(selectedTotalEntries[0].month)" + "." + "\(selectedTotalEntries[0].day)"
-            cardDetailView.savePriceLabel.text = "무려 " + "\(selectedTotalEntries[0].expectCost - selectedTotalEntries[0].realCost)" + " 원"
-            cardDetailView.saveContentLabel.text = "[ " + "\(selectedTotalEntries[0].saveContent)" + " ]"
-            cardDetailView.howLabel.text = selectedTotalEntries[0].how
-            cardDetailView.expectPriceLabel.text = "\(selectedTotalEntries[0].expectCost)"
-            cardDetailView.realPriceLabel.text = "\(selectedTotalEntries[0].realCost)"
-            if selectedTotalEntries[0].category == "DINING" {
-                cardDetailView.diningButton.setTitleColor(.white, for: .normal)
-                cardDetailView.diningButton.backgroundColor = .akkinGreen
-            } else if selectedTotalEntries[0].category == "TRAFFIC" {
-                cardDetailView.trafficButton.setTitleColor(.white, for: .normal)
-                cardDetailView.trafficButton.backgroundColor = .akkinGreen
-            } else if selectedTotalEntries[0].category == "SHOPPING" {
-                cardDetailView.shoppingButton.setTitleColor(.white, for: .normal)
-                cardDetailView.shoppingButton.backgroundColor = .akkinGreen
-            } else if selectedTotalEntries[0].category == "ETC" {
-                cardDetailView.etcButton.setTitleColor(.white, for: .normal)
-                cardDetailView.etcButton.backgroundColor = .akkinGreen
-            }
+    private func setCardContent() {
+        cardDetailView.dateTextLabel.text = "\(selectedEntries[0].year)" + "." + "\(selectedEntries[0].month)" + "." + "\(selectedEntries[0].day)"
+        cardDetailView.savePriceLabel.text = "무려 " + "\(selectedEntries[0].expectCost - selectedEntries[0].realCost)" + " 원"
+        cardDetailView.saveContentLabel.text = "[ " + "\(selectedEntries[0].saveContent)" + " ]"
+        cardDetailView.howLabel.text = selectedEntries[0].how
+        cardDetailView.expectPriceLabel.text = "\(selectedEntries[0].expectCost)"
+        cardDetailView.realPriceLabel.text = "\(selectedEntries[0].realCost)"
+        if selectedEntries[0].category == "DINING" {
+            cardDetailView.diningButton.setTitleColor(.white, for: .normal)
+            cardDetailView.diningButton.backgroundColor = .akkinGreen
+        } else if selectedEntries[0].category == "TRAFFIC" {
+            cardDetailView.trafficButton.setTitleColor(.white, for: .normal)
+            cardDetailView.trafficButton.backgroundColor = .akkinGreen
+        } else if selectedEntries[0].category == "SHOPPING" {
+            cardDetailView.shoppingButton.setTitleColor(.white, for: .normal)
+            cardDetailView.shoppingButton.backgroundColor = .akkinGreen
+        } else if selectedEntries[0].category == "ETC" {
+            cardDetailView.etcButton.setTitleColor(.white, for: .normal)
+            cardDetailView.etcButton.backgroundColor = .akkinGreen
         }
     }
 

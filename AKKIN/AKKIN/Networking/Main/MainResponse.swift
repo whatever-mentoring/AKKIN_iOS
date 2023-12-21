@@ -11,28 +11,16 @@ struct MainResponse: Codable {
 }
 
 struct Today: Codable {
-    let entries: [TodayEntries]
+    let entries: [Entries]
     let lastId: Int
 }
 
 struct FirstPage: Codable {
-    let entries: [FirstPageEntries]
+    let entries: [Entries]
     let lastId: Int
 }
 
-struct TodayEntries: Codable {
-    let id: Int
-    let year: Int
-    let month: Int
-    let day: Int
-    let category: String
-    let saveContent: String
-    let how: String
-    let expectCost: Int
-    let realCost: Int
-}
-
-struct FirstPageEntries: Codable {
+struct Entries: Codable {
     let id: Int
     let year: Int
     let month: Int

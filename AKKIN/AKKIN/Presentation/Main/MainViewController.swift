@@ -68,12 +68,12 @@ final class MainViewController: BaseViewController {
             router.presentInputViewController()
         }
 
-        mainCardCollectionView.tapCell = { [self] selectedTodayEntries in
-            router.presentTodayCardDetailViewController(selectedTodayEntries: selectedTodayEntries)
+        mainCardCollectionView.tapCell = { [self] selectedEntries in
+            router.presentCardDetailViewController(selectedEntries: selectedEntries)
         }
 
-        mainGalleryCollectionView.tapCell = { [self] selectedTotalEntries in
-            router.presentTotalCardDetailViewController(selectedTotalEntries: selectedTotalEntries)
+        mainGalleryCollectionView.tapCell = { [self] selectedEntries in
+            router.presentCardDetailViewController(selectedEntries: selectedEntries)
         }
     }
 

@@ -9,12 +9,12 @@ import UIKit
 
 final class MainGalleryCollectionView: BaseView {
 
-    var totalEntries: [FirstPageEntries] = []
-    var diningEntries: [FirstPageEntries] = []
-    var trafficEntries: [FirstPageEntries] = []
-    var shoppingEntries: [FirstPageEntries] = []
-    var etcEntries: [FirstPageEntries] = []
-    var selectedTotalEntries: [FirstPageEntries] = []
+    var totalEntries: [Entries] = []
+    var diningEntries: [Entries] = []
+    var trafficEntries: [Entries] = []
+    var shoppingEntries: [Entries] = []
+    var etcEntries: [Entries] = []
+    var selectedTotalEntries: [Entries] = []
 
     // MARK: UI Components
     private let categoryButtonStackView = UIStackView().then {
@@ -111,7 +111,7 @@ final class MainGalleryCollectionView: BaseView {
     }()
 
     // MARK: Properties
-    var tapCell: (([FirstPageEntries]) -> Void)?
+    var tapCell: (([Entries]) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -284,8 +284,8 @@ final class MainGalleryCollectionView: BaseView {
     }
     
     // MARK: Event
-    func handleCellEvent(_ selectedTotalEntries: [FirstPageEntries]) {
-        tapCell?(selectedTotalEntries)
+    func handleCellEvent(_ selectedEntries: [Entries]) {
+        tapCell?(selectedEntries)
     }
 }
 
@@ -390,7 +390,7 @@ extension MainGalleryCollectionView {
                 guard let data = response as? MainResponse else { return }
                 self.totalEntries = data.firstPage.entries
                 print("gallery - getMain data" + "\(data)")
-                print("?gallery - getMain firstPageEntries" + "\(self.totalEntries)")
+                print("gallery - getMain firstPageEntries" + "\(self.totalEntries)")
                 self.galleryCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
