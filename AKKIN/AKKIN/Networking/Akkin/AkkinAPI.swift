@@ -20,8 +20,18 @@ enum AkkinAPI {
         expectCost: Int,
         realCost: Int
     )
-    case patchAkkin
-    case deleteAkkin
+    case patchAkkin(
+        id: Int,
+        year: Int,
+        month: Int,
+        day: Int,
+        category: String,
+        saveContent: String,
+        how: String,
+        expectCost: Int,
+        realCost: Int
+    )
+    case deleteAkkin(id: Int)
 }
 
 extension AkkinAPI: TargetType {
@@ -33,8 +43,8 @@ extension AkkinAPI: TargetType {
             return URLConst.gulbis
         case .patchAkkin:
             return URLConst.gulbis
-        case .deleteAkkin:
-            return URLConst.gulbis
+        case let .deleteAkkin(id):
+            return URLConst.gulbis + "/\(id)"
         }
     }
 
@@ -53,7 +63,7 @@ extension AkkinAPI: TargetType {
 
     var task: Moya.Task {
         switch self {
-        case .getAkkin:
+        case .getAkkin, .patchAkkin, .deleteAkkin:
             return .requestPlain
         case .postAkkin(
             let year,
@@ -75,10 +85,6 @@ extension AkkinAPI: TargetType {
                 "expectCost": expectCost,
                 "realCost": realCost
             ], encoding: JSONEncoding.default)
-        case .patchAkkin:
-            return .requestPlain
-        case .deleteAkkin:
-            return .requestPlain
         }
     }
 }
