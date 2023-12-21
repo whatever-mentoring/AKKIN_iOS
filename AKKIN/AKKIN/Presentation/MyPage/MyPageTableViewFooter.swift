@@ -1,5 +1,5 @@
 //
-//  MyPageTableViewHeader.swift
+//  MyPageTableViewFooter.swift
 //  AKKIN
 //
 //  Created by 박지윤 on 2023/09/16.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class MyPageTableViewHeader: UITableViewHeaderFooterView {
+final class MyPageTableViewFooter: UITableViewHeaderFooterView {
 
-    static let identifier = "MyPageTableViewHeader"
+    static let identifier = "MyPageTableViewFooter"
 
     // MARK: UI Components
-    private(set) var titleLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+    private(set) var dividerView = UIView().then {
+        $0.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
     }
 
     // MARK: init
@@ -30,14 +30,14 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
 
     // MARK: Configuration
     func configureSubviews() {
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(dividerView)
     }
 
     // MARK: Layout
     func makeConstraints() {
-        titleLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(12)
-            $0.leading.trailing.equalToSuperview().inset(28)
+        dividerView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(12)
         }
     }
 }

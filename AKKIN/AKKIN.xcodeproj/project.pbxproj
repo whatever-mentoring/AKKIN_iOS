@@ -74,6 +74,7 @@
 		953BF47E2B13AD13009F8FE4 /* AppleLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF47D2B13AD13009F8FE4 /* AppleLoginResponse.swift */; };
 		95B10FBF2B33683F005319F6 /* MainGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FBE2B33683F005319F6 /* MainGalleryCollectionViewCell.swift */; };
 		95B10FC12B33684E005319F6 /* MainGalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FC02B33684E005319F6 /* MainGalleryCollectionView.swift */; };
+		95B10FC62B34C3FF005319F6 /* MyPageTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FC52B34C3FF005319F6 /* MyPageTableViewFooter.swift */; };
 		95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */; };
 		95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */; };
 		95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5359F2AB18F1700FA2492 /* MainViewController.swift */; };
@@ -180,6 +181,7 @@
 		953BF47D2B13AD13009F8FE4 /* AppleLoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginResponse.swift; sourceTree = "<group>"; };
 		95B10FBE2B33683F005319F6 /* MainGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		95B10FC02B33684E005319F6 /* MainGalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGalleryCollectionView.swift; sourceTree = "<group>"; };
+		95B10FC52B34C3FF005319F6 /* MyPageTableViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewFooter.swift; sourceTree = "<group>"; };
 		95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		95E5359F2AB18F1700FA2492 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				9507C1B82AB626CB00E026F9 /* MyPageView.swift */,
 				9507C1BA2AB626D200E026F9 /* MyPageViewController.swift */,
 				9507C1BE2AB626E900E026F9 /* MyPageTableViewHeader.swift */,
+				95B10FC52B34C3FF005319F6 /* MyPageTableViewFooter.swift */,
 				9507C1C22AB6271D00E026F9 /* MyPageTableViewCell.swift */,
 			);
 			path = MyPage;
@@ -708,6 +711,7 @@
 				6B7427EC2AB878E600BA7E2C /* CardViewController.swift in Sources */,
 				6B7427F82AB87A0100BA7E2C /* InputHowContent.swift in Sources */,
 				6B117F692ABAE9D0000B03F7 /* MonthlyTopStatsTableViewCell.swift in Sources */,
+				95B10FC62B34C3FF005319F6 /* MyPageTableViewFooter.swift in Sources */,
 				6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */,
 				95E535B72AB1D4E000FA2492 /* MainCardCollectionViewCell.swift in Sources */,
 				9507C1CA2AB62C3500E026F9 /* WeeklyStatsCollectionView.swift in Sources */,
