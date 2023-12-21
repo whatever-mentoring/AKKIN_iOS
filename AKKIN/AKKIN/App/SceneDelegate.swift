@@ -38,4 +38,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
      }
+
+    func changeRootViewToMain() {
+         guard let window = window else { return }
+         window.rootViewController = UINavigationController(rootViewController: MainViewController())
+         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+     }
 }

@@ -107,11 +107,15 @@ final class MyPageViewController: BaseViewController {
 
     private func logout() {
         getAppleLogout()
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        sceneDelegate?.changeRootViewController()
         router.popToRootViewController()
     }
 
     private func withdrawal() {
         postAppleRevoke(UserDefaultHandler.appleToken, UserDefaultHandler.appleToken)
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        sceneDelegate?.changeRootViewController()
         router.popToRootViewController()
     }
 
@@ -187,7 +191,7 @@ extension MyPageViewController: UITableViewDataSource {
 
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = " akkin"
+            cell.contentLabel.text = UserDefaultHandler.userName
             cell.detailButton.isHidden = true
         case 1:
             cell.contentLabel.text = appInfo[indexPath.row]

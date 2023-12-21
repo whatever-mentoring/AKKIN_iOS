@@ -17,4 +17,7 @@ struct UserDefaultHandler {
 
     @UserDefault(key: "authorizationCode", defaultValue: "")
     static var authorizationCode: String
+
+    @UserDefault(key: "userName", defaultValue: "")
+    static var userName: String
 }
