@@ -69,12 +69,12 @@ final class MainViewController: BaseViewController {
         }
 
         mainCardCollectionView.tapCell = { [self] selectedTodayEntries in
-            router.presentCardDetailViewController(selectedTodayEntries: selectedTodayEntries)
+            router.presentTodayCardDetailViewController(selectedTodayEntries: selectedTodayEntries)
         }
 
-//        mainGalleryCollectionView.tapCell = { [self] in
-//            router.presentCardDetailViewController(id: 0)
-//        }
+        mainGalleryCollectionView.tapCell = { [self] selectedTotalEntries in
+            router.presentTotalCardDetailViewController(selectedTotalEntries: selectedTotalEntries)
+        }
     }
 
     private func setNavigationItem() {

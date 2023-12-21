@@ -9,12 +9,13 @@ import UIKit
 
 final class MainGalleryCollectionView: BaseView {
 
-    var firstPageEntries: [FirstPageEntries] = []
+    var totalEntries: [FirstPageEntries] = []
     var diningEntries: [FirstPageEntries] = []
     var trafficEntries: [FirstPageEntries] = []
     var shoppingEntries: [FirstPageEntries] = []
     var etcEntries: [FirstPageEntries] = []
-    
+    var selectedTotalEntries: [FirstPageEntries] = []
+
     // MARK: UI Components
     private let categoryButtonStackView = UIStackView().then {
         $0.axis = .horizontal
@@ -110,7 +111,7 @@ final class MainGalleryCollectionView: BaseView {
     }()
 
     // MARK: Properties
-    var tapCell: (() -> Void)?
+    var tapCell: (([FirstPageEntries]) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -173,7 +174,7 @@ final class MainGalleryCollectionView: BaseView {
         shoppingButton.backgroundColor = UIColor.white
         etcButton.backgroundColor = UIColor.white
 
-        diningEntries = firstPageEntries.filter { $0.category == "DINING" }
+        diningEntries = totalEntries.filter { $0.category == "DINING" }
         galleryCollectionView.reloadData()
     }
 
@@ -194,7 +195,7 @@ final class MainGalleryCollectionView: BaseView {
         shoppingButton.backgroundColor = UIColor.white
         etcButton.backgroundColor = UIColor.white
 
-        trafficEntries = firstPageEntries.filter { $0.category == "TRAFFIC" }
+        trafficEntries = totalEntries.filter { $0.category == "TRAFFIC" }
         galleryCollectionView.reloadData()
     }
 
@@ -215,7 +216,7 @@ final class MainGalleryCollectionView: BaseView {
         trafficButton.backgroundColor = UIColor.white
         etcButton.backgroundColor = UIColor.white
 
-        shoppingEntries = firstPageEntries.filter { $0.category == "SHOPPING" }
+        shoppingEntries = totalEntries.filter { $0.category == "SHOPPING" }
         galleryCollectionView.reloadData()
     }
 
@@ -236,7 +237,7 @@ final class MainGalleryCollectionView: BaseView {
         trafficButton.backgroundColor = UIColor.white
         shoppingButton.backgroundColor = UIColor.white
 
-        etcEntries = firstPageEntries.filter { $0.category == "ETC" }
+        etcEntries = totalEntries.filter { $0.category == "ETC" }
         galleryCollectionView.reloadData()
     }
 
@@ -283,8 +284,8 @@ final class MainGalleryCollectionView: BaseView {
     }
     
     // MARK: Event
-    func handleCellEvent() {
-        tapCell?()
+    func handleCellEvent(_ selectedTotalEntries: [FirstPageEntries]) {
+        tapCell?(selectedTotalEntries)
     }
 }
 
@@ -296,7 +297,7 @@ extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionVie
 //        return firstPageEntries.count
 //        }
         if totalButton.isSelected {
-            return firstPageEntries.count
+            return totalEntries.count
         } else if diningButton.isSelected {
             return diningEntries.count
         } else if trafficButton.isSelected {
@@ -323,7 +324,7 @@ extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionVie
         //            cardCollectionView.reloadData()
         //        } else {
 
-        var entry = firstPageEntries[indexPath.row]
+        var entry = totalEntries[indexPath.row]
 
         if diningButton.isSelected {
             entry = diningEntries[indexPath.row]
@@ -361,7 +362,21 @@ extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionVie
 
 extension MainGalleryCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        handleCellEvent()
+
+        var entry = totalEntries[indexPath.row]
+
+        if diningButton.isSelected {
+            entry = diningEntries[indexPath.row]
+        } else if trafficButton.isSelected {
+            entry = trafficEntries[indexPath.row]
+        } else if shoppingButton.isSelected {
+            entry = shoppingEntries[indexPath.row]
+        } else if etcButton.isSelected {
+            entry = etcEntries[indexPath.row]
+        }
+
+        selectedTotalEntries = totalEntries.filter { $0.id == entry.id }
+        handleCellEvent(selectedTotalEntries)
     }
 }
 
@@ -373,9 +388,9 @@ extension MainGalleryCollectionView {
             switch result {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
-                self.firstPageEntries = data.firstPage.entries
+                self.totalEntries = data.firstPage.entries
                 print("gallery - getMain data" + "\(data)")
-                print("?gallery - getMain firstPageEntries" + "\(self.firstPageEntries)")
+                print("?gallery - getMain firstPageEntries" + "\(self.totalEntries)")
                 self.galleryCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)

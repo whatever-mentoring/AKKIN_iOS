@@ -38,9 +38,18 @@ final class ExampleRouter {
         viewController?.navigationController?.pushViewController(inputViewController, animated: true)
     }
 
-    func presentCardDetailViewController(selectedTodayEntries: [TodayEntries]) {
+    func presentTodayCardDetailViewController(selectedTodayEntries: [TodayEntries]) {
         let cardDetailViewController = CardDetailViewController()
-        cardDetailViewController.selectedEntries = selectedTodayEntries
+        cardDetailViewController.selectedTodayEntries = selectedTodayEntries
+        cardDetailViewController.selectedTotalEntries = []
+
+        viewController?.navigationController?.pushViewController(cardDetailViewController, animated: true)
+    }
+
+    func presentTotalCardDetailViewController(selectedTotalEntries: [FirstPageEntries]) {
+        let cardDetailViewController = CardDetailViewController()
+        cardDetailViewController.selectedTotalEntries = selectedTotalEntries
+        cardDetailViewController.selectedTodayEntries = []
 
         viewController?.navigationController?.pushViewController(cardDetailViewController, animated: true)
     }
