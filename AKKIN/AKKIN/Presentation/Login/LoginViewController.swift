@@ -65,7 +65,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
+            let fullName = "\(appleIDCredential.fullName?.familyName! ?? "")" + "\(appleIDCredential.fullName?.givenName! ?? "user")"
             let email = appleIDCredential.email
             let appleToken = appleIDCredential.identityToken
             guard let appleTokenToString = String(data: appleToken!, encoding: .utf8) else {
@@ -78,12 +78,13 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
 
             print("User ID : \(userIdentifier)")
             print("User Email : \(email ?? "")")
-            print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
+            print("User Name : \(fullName)")
             print("User appleTokenToString : \(appleTokenToString)")
             print("User authorizationCode : \(authorizationCodeToString)")
 
             UserDefaultHandler.appleToken = appleTokenToString
             UserDefaultHandler.authorizationCode = authorizationCodeToString
+            UserDefaultHandler.userName = fullName
 
             postAppleLogin(appleTokenToString)
         default:
@@ -106,6 +107,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 print("success")
 
                 self.router.presentMainViewController()
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                sceneDelegate?.changeRootViewToMain()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
