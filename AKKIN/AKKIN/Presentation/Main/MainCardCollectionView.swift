@@ -124,11 +124,26 @@ extension MainCardCollectionView: UICollectionViewDataSource {
             cell.contentView.layer.shadowColor = UIColor.clear.cgColor
             cardCollectionView.reloadData()
         } else {
+            cell.cardImageView.isHidden = false
+            cell.moneyLabel.isHidden = false
+            cell.saveContentLabel.isHidden = false
+            cell.howLabel.isHidden = false
+            cell.emptyLabel.isHidden = true
+            cell.contentView.backgroundColor = .white
+            cell.contentView.layer.borderWidth = 0
+            cell.contentView.layer.cornerRadius = 16
+            cell.contentView.layer.shadowColor = UIColor.black.cgColor
+            cell.contentView.layer.shadowOpacity = 0.07
+            cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
+            cell.contentView.layer.shadowRadius = 8
+
             let entry = todayEntries[indexPath.row]
             cell.cardImageView.image = AkkinImage.akkinIcon1
             cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
             cell.howLabel.text = entry.saveContent
             cell.moneyLabel.text = "무려 " + "\(entry.expectCost - entry.realCost)" + " 원"
+
+            cardCollectionView.reloadData()
         }
 
         return cell
