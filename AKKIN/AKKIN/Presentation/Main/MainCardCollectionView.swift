@@ -122,7 +122,6 @@ extension MainCardCollectionView: UICollectionViewDataSource {
             cell.contentView.layer.borderWidth = 1
             cell.contentView.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
             cell.contentView.layer.shadowColor = UIColor.clear.cgColor
-            cardCollectionView.reloadData()
         } else {
             cell.cardImageView.isHidden = false
             cell.moneyLabel.isHidden = false
@@ -142,8 +141,6 @@ extension MainCardCollectionView: UICollectionViewDataSource {
             cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
             cell.howLabel.text = entry.saveContent
             cell.moneyLabel.text = "무려 " + "\(entry.expectCost - entry.realCost)" + " 원"
-
-            cardCollectionView.reloadData()
         }
 
         return cell
