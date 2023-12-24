@@ -58,6 +58,7 @@ class CardPatchViewController: BaseViewController {
     }
 
     private func setContent() {
+        inputCategory.selectedCategory = selectedEntries[0].category
         inputDatePicker.dateTextField.text = "\(selectedEntries[0].year)" + " / " + "\(selectedEntries[0].month)" + " / " + "\(selectedEntries[0].day)"
         inputSaveContent.contentTextField.text = selectedEntries[0].saveContent
         inputHowContent.howTextField.text = selectedEntries[0].how
