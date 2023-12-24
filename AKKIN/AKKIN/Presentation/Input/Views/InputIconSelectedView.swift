@@ -28,14 +28,12 @@ final class InputIconSelectedView: BaseView {
     
     var buttons: [IconButton] = []
     
-    private let iconStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
+    private let iconStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = 8
+        $0.alignment = .fill
+        $0.distribution = .fillEqually
+    }
     
     // MARK: Initializer
     override init(frame: CGRect) {
@@ -99,12 +97,9 @@ final class InputIconSelectedView: BaseView {
         super.makeConstraints()
         
         iconStackView.snp.makeConstraints {
-            $0.top
-                .equalToSuperview()
-            $0.width
-                .equalTo(252)
-            $0.centerX
-                .equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.width.equalTo(252)
+            $0.centerX.equalToSuperview()
         }
     }
 }

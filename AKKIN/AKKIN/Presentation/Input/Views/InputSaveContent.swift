@@ -18,16 +18,12 @@ class InputSaveContent: UIView, UITextFieldDelegate {
     
     private let contentLabel = UILabel().then {
         $0.text = "소비내용"
-        $0.font = .systemFont(
-            ofSize: 16, weight: .semibold
-        )
+        $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
-    
+
     public var contentTextField = UITextField().then {
         $0.placeholder = "어떤 소비를 했는지 적어보세요."
-        $0.font = .systemFont(
-            ofSize: 14, weight: .regular
-        )
+        $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
     
     // MARK: Initializer
@@ -43,23 +39,20 @@ class InputSaveContent: UIView, UITextFieldDelegate {
     
     // MARK: Configuration
     func configureSubviews() {
+        contentTextField.delegate = self
+
         addSubview(contentStackView)
-        contentStackView
-            .addArrangedSubview(contentLabel)
-        contentStackView
-            .addArrangedSubview(contentTextField)
+        contentStackView.addArrangedSubview(contentLabel)
+        contentStackView.addArrangedSubview(contentTextField)
     }
     
     // MARK: Layout
     func makeConstraints() {
-        contentTextField.delegate = self
         contentStackView.snp.makeConstraints {
-            $0.top
-                .equalToSuperview()
+            $0.top.equalToSuperview()
         }
         contentTextField.snp.makeConstraints {
-            $0.width
-                .equalTo(294)
+            $0.width.equalTo(294)
         }
     }
 }

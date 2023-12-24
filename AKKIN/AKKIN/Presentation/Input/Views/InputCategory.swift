@@ -26,20 +26,16 @@ final class InputCategory: UIView {
     var selectedCategory: String?
     
     // MARK: UI Components
-    private let categoryStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        return stackView
-    }()
+    private let categoryStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .fill
+    }
     
-    private let categorySelectedStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.spacing = 8
-        return stackView
-    }()
+    private let categorySelectedStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.alignment = .fill
+        $0.spacing = 8
+    }
     
     var buttons = [CategoryButton]()
     

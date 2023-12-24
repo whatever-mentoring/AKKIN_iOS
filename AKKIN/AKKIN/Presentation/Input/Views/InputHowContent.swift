@@ -10,27 +10,21 @@ import UIKit
 class InputHowContent: UIView, UITextFieldDelegate {
     
     // MARK: UI Components
-    private let howStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.spacing = 8
-        return stackView
-    }()
+    private let howStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .fill
+        $0.spacing = 8
+    }
+
     private let howLabel = UILabel().then {
         $0.text = "어떻게 아꼈는지"
-        $0.font = .systemFont(
-            ofSize: 16, weight: .semibold
-        )
+        $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
-    let howTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "어떤 방식으로 아끼셨나요?"
-        textField.font = .systemFont(
-            ofSize: 14, weight: .regular
-        )
-        return textField
-    }()
+
+    public var howTextField = UITextField().then {
+        $0.placeholder = "어떤 방식으로 아끼셨나요?"
+        $0.font = .systemFont(ofSize: 14, weight: .regular)
+    }
     
     // MARK: Initializer
     override init(frame: CGRect) {
@@ -45,6 +39,8 @@ class InputHowContent: UIView, UITextFieldDelegate {
     
     // MARK: Configuration
     func configureSubviews() {
+        howTextField.delegate = self
+
         addSubview(howStackView)
         howStackView.addArrangedSubview(howLabel)
         howStackView.addArrangedSubview(howTextField)
@@ -52,15 +48,12 @@ class InputHowContent: UIView, UITextFieldDelegate {
     
     // MARK: Layout
     func makeConstraints() {
-        howTextField.delegate = self
-        // let safeArea = self.safeAreaLayoutGuide
         howStackView.snp.makeConstraints {
-            $0.top
-                .equalToSuperview()
+            $0.top.equalToSuperview()
         }
+
         howTextField.snp.makeConstraints {
-            $0.width
-                .equalTo(294)
+            $0.width.equalTo(294)
         }
     }
 }
