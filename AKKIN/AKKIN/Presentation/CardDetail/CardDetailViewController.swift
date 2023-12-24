@@ -96,7 +96,7 @@ class CardDetailViewController: BaseViewController {
             title: "수정",
             style: .default,
             handler: { [self]
-                _ in router.presentCardPatchViewController()
+                _ in router.presentCardPatchViewController(selectedEntries: selectedEntries)
         })
 
         let deleteButton = UIAlertAction(

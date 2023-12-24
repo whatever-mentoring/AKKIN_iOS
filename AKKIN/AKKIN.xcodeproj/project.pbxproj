@@ -18,7 +18,6 @@
 		6B117F6F2ABE6513000B03F7 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B117F6E2ABE6513000B03F7 /* CategoryButton.swift */; };
 		6B555DA72ABF2A1D00E065F2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		6B555DA92ABF2A5900E065F2 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		6B5B83912AC1ED0C00CD0AFC /* ExpenseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5B83902AC1ED0C00CD0AFC /* ExpenseItem.swift */; };
 		6B5B83932AC1ED4300CD0AFC /* AkkinAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5B83922AC1ED4300CD0AFC /* AkkinAPI.swift */; };
 		6B5B83952AC1EDB700CD0AFC /* AkkinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5B83942AC1EDB700CD0AFC /* AkkinResponse.swift */; };
 		6B5B83972AC1EE4800CD0AFC /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */; };
@@ -32,7 +31,7 @@
 		6B7427F62AB879EF00BA7E2C /* InputDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427F52AB879EF00BA7E2C /* InputDatePicker.swift */; };
 		6B7427F82AB87A0100BA7E2C /* InputHowContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427F72AB87A0100BA7E2C /* InputHowContent.swift */; };
 		6B7427FA2AB87A0D00BA7E2C /* InputIconSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427F92AB87A0D00BA7E2C /* InputIconSelectedView.swift */; };
-		6B7427FC2AB87A3400BA7E2C /* IconSaveContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427FB2AB87A3400BA7E2C /* IconSaveContent.swift */; };
+		6B7427FC2AB87A3400BA7E2C /* InputSaveContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427FB2AB87A3400BA7E2C /* InputSaveContent.swift */; };
 		6B7427FE2AB87A5000BA7E2C /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427FD2AB87A5000BA7E2C /* InputViewController.swift */; };
 		6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7428092AB9580B00BA7E2C /* UIColor+Extension.swift */; };
 		6B742DA12AC02988002A784E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B742DA02AC02988002A784E /* UIViewController+Extension.swift */; };
@@ -116,7 +115,6 @@
 		6B117F6A2ABC865A000B03F7 /* UIResponder + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder + Extension.swift"; sourceTree = "<group>"; };
 		6B117F6C2ABD0E74000B03F7 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		6B117F6E2ABE6513000B03F7 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
-		6B5B83902AC1ED0C00CD0AFC /* ExpenseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItem.swift; sourceTree = "<group>"; };
 		6B5B83922AC1ED4300CD0AFC /* AkkinAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkkinAPI.swift; sourceTree = "<group>"; };
 		6B5B83942AC1EDB700CD0AFC /* AkkinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkkinResponse.swift; sourceTree = "<group>"; };
 		6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
@@ -130,7 +128,7 @@
 		6B7427F52AB879EF00BA7E2C /* InputDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDatePicker.swift; sourceTree = "<group>"; };
 		6B7427F72AB87A0100BA7E2C /* InputHowContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHowContent.swift; sourceTree = "<group>"; };
 		6B7427F92AB87A0D00BA7E2C /* InputIconSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputIconSelectedView.swift; sourceTree = "<group>"; };
-		6B7427FB2AB87A3400BA7E2C /* IconSaveContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSaveContent.swift; sourceTree = "<group>"; };
+		6B7427FB2AB87A3400BA7E2C /* InputSaveContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSaveContent.swift; sourceTree = "<group>"; };
 		6B7427FD2AB87A5000BA7E2C /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		6B7428002AB9578600BA7E2C /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
 		6B7428012AB9578600BA7E2C /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 				6B7427FD2AB87A5000BA7E2C /* InputViewController.swift */,
 				6B117F6E2ABE6513000B03F7 /* CategoryButton.swift */,
 				6B117F6C2ABD0E74000B03F7 /* IconButton.swift */,
-				6B5B83902AC1ED0C00CD0AFC /* ExpenseItem.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -276,7 +273,7 @@
 				6B7427F92AB87A0D00BA7E2C /* InputIconSelectedView.swift */,
 				6B7427F12AB879B500BA7E2C /* InputCategory.swift */,
 				6B7427F52AB879EF00BA7E2C /* InputDatePicker.swift */,
-				6B7427FB2AB87A3400BA7E2C /* IconSaveContent.swift */,
+				6B7427FB2AB87A3400BA7E2C /* InputSaveContent.swift */,
 				6B7427F72AB87A0100BA7E2C /* InputHowContent.swift */,
 				6B7427F32AB879DE00BA7E2C /* InputCostContent.swift */,
 			);
@@ -719,7 +716,7 @@
 				951261D32AC21D1B0012B5F9 /* CardPatchView.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */,
-				6B7427FC2AB87A3400BA7E2C /* IconSaveContent.swift in Sources */,
+				6B7427FC2AB87A3400BA7E2C /* InputSaveContent.swift in Sources */,
 				951261CA2AC1FE4C0012B5F9 /* CardDetailViewController.swift in Sources */,
 				6B117F582AB9DF8B000B03F7 /* MonthlyStatsViewController.swift in Sources */,
 				9507C1C32AB6271D00E026F9 /* MyPageTableViewCell.swift in Sources */,
@@ -769,7 +766,6 @@
 				951261C12AC1B00D0012B5F9 /* AkkinService.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
-				6B5B83912AC1ED0C00CD0AFC /* ExpenseItem.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,
 				951261902AC02EA70012B5F9 /* NetworkResult.swift in Sources */,
