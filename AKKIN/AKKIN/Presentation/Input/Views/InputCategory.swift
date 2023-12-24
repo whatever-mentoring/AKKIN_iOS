@@ -23,7 +23,7 @@ enum Category: CaseIterable {
 final class InputCategory: UIView {
     
     var onCategoryTapped: ((Category) -> Void)?
-    var selectedCategory: String?
+    public var selectedCategory: String?
     
     // MARK: UI Components
     private let categoryStackView = UIStackView().then {
