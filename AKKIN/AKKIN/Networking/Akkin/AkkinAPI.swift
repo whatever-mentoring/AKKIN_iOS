@@ -63,7 +63,7 @@ extension AkkinAPI: TargetType {
 
     var task: Moya.Task {
         switch self {
-        case .getAkkin, .patchAkkin, .deleteAkkin:
+        case .getAkkin, .deleteAkkin:
             return .requestPlain
         case .postAkkin(
             let year,
@@ -85,6 +85,29 @@ extension AkkinAPI: TargetType {
                 "expectCost": expectCost,
                 "realCost": realCost
             ], encoding: JSONEncoding.default)
+        case .patchAkkin(
+            let id,
+            let year,
+            let month,
+            let day,
+            let category,
+            let saveContent,
+            let how,
+            let expectCost,
+            let realCost
+        ):
+            return .requestParameters(parameters: [
+                "id": id,
+                "year": year,
+                "month": month,
+                "day": day,
+                "category": category,
+                "saveContent": saveContent,
+                "how": how,
+                "expectCost": expectCost,
+                "realCost": realCost
+            ], encoding: JSONEncoding.default)
         }
+        
     }
 }

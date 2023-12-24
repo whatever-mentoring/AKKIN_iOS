@@ -14,6 +14,7 @@ final class AkkinService {
     private enum ResponseData {
         case getAkkin
         case postAkkin
+        case patchAkkin
         case deleteAkkin
     }
 
@@ -36,6 +37,23 @@ final class AkkinService {
 
     public func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         akkinProvider.request(.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postAkkin)
+                completion(networkResult)
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+    }
+
+    public func patchAkkin(id: Int, year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        akkinProvider.request(.patchAkkin(id: id, year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -74,7 +92,7 @@ final class AkkinService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getAkkin, .postAkkin, .deleteAkkin:
+            case .getAkkin, .postAkkin, .patchAkkin, .deleteAkkin:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -96,7 +114,7 @@ final class AkkinService {
         case .getAkkin:
             let decodedData = try? decoder.decode(AkkinEntireResponse.self, from: data)
             return .success(decodedData ?? "success")
-        case .postAkkin, .deleteAkkin:
+        case .postAkkin, .patchAkkin, .deleteAkkin:
             let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
             return .success(decodedData ?? "success")
         }
