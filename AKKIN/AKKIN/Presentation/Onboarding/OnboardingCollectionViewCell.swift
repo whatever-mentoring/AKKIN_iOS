@@ -15,7 +15,7 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
     private(set) var onboardingImageView = UIImageView()
 
     private(set) var skipButton = BaseButton().then {
-        $0.setImage(UIImage(named: "skipButton"), for: .normal)
+        $0.setImage(AkkinButton.skipButton, for: .normal)
     }
 
     private(set) var startButton = BaseButton().then {

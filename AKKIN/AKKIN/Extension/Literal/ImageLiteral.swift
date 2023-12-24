@@ -9,7 +9,6 @@ import UIKit
 
 public enum AkkinImage {
     public static var akkinTitle: UIImage { .load(name: "AKKIN_Title") }
-    public static var akkinAppIcon: UIImage { .load(name: "AppIcon") }
     public static var akkinIcon1: UIImage { .load(name: "icon_1")}
     public static var akkinIcon2: UIImage { .load(name: "icon_2")}
     public static var akkinIcon3: UIImage { .load(name: "icon_3") }
@@ -37,6 +36,7 @@ public enum AkkinButton {
     public static var myPageButton: UIImage { .load(name: "myPageButton") }
     public static var optionButton: UIImage { .load(name: "optionButton") }
     public static var previousButton: UIImage { .load(name: "previousButton") }
+    public static var skipButton: UIImage { .load(name: "skipButton") }
 }
 
 extension UIImage {
