@@ -1,3 +1,4 @@
+
 //
 //  InputDatePicker.swift
 //  AKKIN
@@ -12,45 +13,34 @@ class InputDatePicker: UIView {
     var selectedMonth: Int?
     var selectedDay: Int?
     
-    
     // MARK: UI Components
-    private let dateLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.spacing = 8
-        return stackView
-    }()
-    
+    private let dateLabelStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .fill
+        $0.spacing = 8
+    }
+
     private let dateNameLabel = UILabel().then {
         $0.text = "날짜"
-        $0.font = .systemFont(
-            ofSize: 16, weight: .semibold
-        )
+        $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
-    
-    let dateTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "YYYY / MM / DD"
-        textField.font = .systemFont(
-            ofSize: 14, weight: .regular
-        )
-        return textField
-    }()
-    
+
+    public var dateTextField = UITextField().then {
+        $0.placeholder = "YYYY / MM / DD"
+        $0.font = .systemFont(ofSize: 14, weight: .regular)
+    }
+
     let toolbar = UIToolbar().then {
         $0.sizeToFit()
     }
-        
-    let datePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .date
-        picker.preferredDatePickerStyle = .inline
-        picker.locale = Locale(identifier: "ko-KR")
-        picker.timeZone = .autoupdatingCurrent
-        return picker
-    }()
-    
+  
+    let datePicker = UIDatePicker().then {
+        $0.datePickerMode = .date
+        $0.preferredDatePickerStyle = .inline
+        $0.locale = Locale(identifier: "ko-KR")
+        $0.timeZone = .autoupdatingCurrent
+    }
+
     // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -58,19 +48,18 @@ class InputDatePicker: UIView {
         makeConstraints()
         createDatePicker()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Configuration
     func configureSubviews() {
         addSubview(dateLabelStackView)
         dateLabelStackView.addArrangedSubview(dateNameLabel)
         dateLabelStackView.addArrangedSubview(dateTextField)
     }
-    
-    
+
     // MARK: Properties
     func creatToolbar() -> UIToolbar { // custom Toolbar 만들기
         let toolBar = UIToolbar()
@@ -81,31 +70,28 @@ class InputDatePicker: UIView {
         toolBar.setItems([doneButton], animated: true)
         return toolBar
     }
-    
+
     func createDatePicker() {
         dateTextField.inputView = datePicker
         dateTextField.inputAccessoryView = creatToolbar()
    }
-        
+ 
     @objc func donePressed() {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy / MM / dd"
-        dateTextField.text = formatter.string(
-            from: datePicker.date
-        )
+        dateTextField.text = formatter.string(from: datePicker.date)
         let calendar = Calendar.current
         selectedYear = calendar.component(.year, from: datePicker.date)
         selectedMonth = calendar.component(.month, from: datePicker.date)
         selectedDay = calendar.component(.day, from: datePicker.date)
-        
+
         self.endEditing(true)
     }
-    
+
     // MARK: Layout
     func makeConstraints() {
         dateLabelStackView.snp.makeConstraints {
-            $0.top
-                .equalToSuperview()
+            $0.top.equalToSuperview()
         }
     }
 }
