@@ -11,6 +11,8 @@ import SnapKit
 class CardPatchViewController: BaseViewController {
     var buttons = [CategoryButton]()
     
+    var selectedEntries: [Entries] = []
+
     // MARK: Constants
     private var isKeyboardVisible = false
 
@@ -48,10 +50,19 @@ class CardPatchViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setContent()
         setNavigationItem()
         setupKeyboardEvent()
         router.viewController = self
         view.backgroundColor = .akkinGray0
+    }
+
+    private func setContent() {
+        inputDatePicker.dateTextField.text = "\(selectedEntries[0].year)" + " / " + "\(selectedEntries[0].month)" + " / " + "\(selectedEntries[0].day)"
+        inputSaveContent.contentTextField.text = selectedEntries[0].saveContent
+        inputHowContent.howTextField.text = selectedEntries[0].how
+        inputCostContent.expectCostTextField.text = "\(selectedEntries[0].expectCost.toPriceFormat)"
+        inputCostContent.realCostTextField.text = "\(selectedEntries[0].realCost.toPriceFormat)"
     }
 
     // MARK: Environment
@@ -77,7 +88,7 @@ class CardPatchViewController: BaseViewController {
                 return }
             // MARK: - 사용자가 입력한 데이터 연결 필요
             print("수정 완료")
-//            postAkkin(year: 0, month: 0, day: 0, category: "DINING", saveContent: "dd", how: "ddd", expectCost: 3, realCost: 3)
+//            patchAkkin(year: 0, month: 0, day: 0, category: "DINING", saveContent: "dd", how: "ddd", expectCost: 3, realCost: 3)
 //            router.presentCardViewController()
         }
 
@@ -107,7 +118,7 @@ class CardPatchViewController: BaseViewController {
     }
 
     // MARK: Networking
-//    func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
+//    func patchAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
 //        NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
 //            switch result {
 //            case .success(let response):
