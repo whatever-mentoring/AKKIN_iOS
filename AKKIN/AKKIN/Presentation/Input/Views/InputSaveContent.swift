@@ -17,12 +17,12 @@ class InputSaveContent: UIView, UITextFieldDelegate {
     }
     
     private let contentLabel = UILabel().then {
-        $0.text = "소비내용"
+        $0.text = AkkinString.content
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
 
     public var contentTextField = UITextField().then {
-        $0.placeholder = "어떤 소비를 했는지 적어보세요."
+        $0.placeholder = AkkinString.contentPlaceholder
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
     

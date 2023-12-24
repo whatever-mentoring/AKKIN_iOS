@@ -20,7 +20,6 @@ final class CardDetailView: BaseView {
     }
     
     public var dateTextLabel = UILabel().then {
-        $0.text = "2023.09.26"
         $0.textColor = .akkinBlack
         $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
@@ -32,46 +31,41 @@ final class CardDetailView: BaseView {
     }
     
     public var savePriceLabel = UILabel().then {
-        $0.text = "무려 9,000원"
         $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 28, weight: .semibold)
         $0.textAlignment = .center
     }
     
     public var saveContentLabel = UILabel().then {
-        $0.text = "[ 헝그리 정신 실천 ]"
         $0.textColor = .akkinBlack
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 20, weight: .regular)
     }
 
     public var howLabel = UILabel().then {
-        $0.text = "밥 대신 공기 먹기"
         $0.textColor = .akkinBlack
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 20, weight: .regular)
     }
 
     private let expectTextLabel = UILabel().then {
-        $0.text = "예상 비용"
+        $0.text = AkkinString.expect
         $0.textColor = .akkinBlack
         $0.font = .systemFont(ofSize: 16, weight: .medium)
     }
 
     public var expectPriceLabel = UILabel().then {
-        $0.text = "10,000"
         $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
 
     private let realTextLabel = UILabel().then {
-        $0.text = "실제 비용"
+        $0.text = AkkinString.real
         $0.textColor = .akkinBlack
         $0.font = .systemFont(ofSize: 16, weight: .medium)
     }
 
     public var realPriceLabel = UILabel().then {
-        $0.text = "1,000"
         $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
@@ -82,7 +76,7 @@ final class CardDetailView: BaseView {
     }
 
     public var diningButton = BaseButton().then {
-        $0.setTitle("식비", for: .normal)
+        $0.setTitle(AkkinString.dining, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
@@ -96,7 +90,7 @@ final class CardDetailView: BaseView {
     }
 
     public var trafficButton = BaseButton().then {
-        $0.setTitle("교통", for: .normal)
+        $0.setTitle(AkkinString.traffic, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
@@ -110,7 +104,7 @@ final class CardDetailView: BaseView {
     }
 
     public var shoppingButton = BaseButton().then {
-        $0.setTitle("쇼핑", for: .normal)
+        $0.setTitle(AkkinString.shopping, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17
@@ -124,7 +118,7 @@ final class CardDetailView: BaseView {
     }
 
     public var etcButton = BaseButton().then {
-        $0.setTitle("기타", for: .normal)
+        $0.setTitle(AkkinString.etc, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         $0.layer.cornerRadius = 17

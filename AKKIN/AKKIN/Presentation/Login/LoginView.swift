@@ -12,7 +12,7 @@ final class LoginView: BaseView {
 
     // MARK: UI Components
     private let loginImageView = UIImageView().then {
-        $0.image = UIImage(named: "login")
+        $0.image = AkkinImage.akkinlogin
     }
 
     private let appleButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)

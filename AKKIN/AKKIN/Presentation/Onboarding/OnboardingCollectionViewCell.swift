@@ -19,7 +19,7 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
     }
 
     private(set) var startButton = BaseButton().then {
-        $0.setTitle("아낀거지 시작하기", for: .normal)
+        $0.setTitle(AkkinString.startAkkin, for: .normal)
         $0.backgroundColor = .akkinGreen
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)

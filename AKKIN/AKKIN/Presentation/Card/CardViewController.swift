@@ -61,15 +61,12 @@ class CardViewController: BaseViewController {
     func saveCardAsImage() {
         let cardImage = cardPageView.saveCardViewAsImage()
 
-        // 이미지 저장 완료 또는 실패 시 호출될 콜백
         let completionHandler: (UIImage?, Error?, UnsafeMutableRawPointer?) -> Void = { image, error, context in
             if let error = error {
-                // 이미지 저장 중 오류가 발생한 경우 에러 처리
                 print("이미지 저장 실패: \(error.localizedDescription)")
             } else {
-                // 이미지 저장 성공
                 DispatchQueue.main.async {
-                    self.view.makeToast(" 이미지가 성공적으로 저장되었습니다. ", duration: 1.0, position: .bottom)
+                    self.view.makeToast(AkkinString.saveSuccessToast, duration: 1.0, position: .bottom)
                 }
             }
         }
@@ -77,9 +74,7 @@ class CardViewController: BaseViewController {
         let context = UnsafeMutableRawPointer.allocate(byteCount: 0, alignment: 1)
 
         if #available(iOS 15.0, *) {
-            // iOS 15 이상에서는 다음을 사용합니다.
             if let cgImage = cardImage.cgImage {
-                // CGImage를 UIImage로 변환
                 let uiImage = UIImage(cgImage: cgImage)
 
                 PHPhotoLibrary.shared().performChanges {
@@ -93,7 +88,6 @@ class CardViewController: BaseViewController {
                 }
             }
         } else {
-            // iOS 15 미만의 경우 에러 처리를 추가하거나 다른 방식으로 이미지 저장을 구현할 수 있습니다.
             print("iOS 15 이상에서만 지원됩니다.")
         }
     }

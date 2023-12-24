@@ -8,9 +8,9 @@
 import UIKit
 
 class InputCostContent: UIView, UITextFieldDelegate {
-    
+
     // MARK: UI Components
-    private let bottomStackView = UIStackView().then {
+    private let costStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 24
         $0.alignment = .fill
@@ -22,12 +22,12 @@ class InputCostContent: UIView, UITextFieldDelegate {
     }
 
     private let expectCostLabel = UILabel().then {
-        $0.text = "예상 비용"
+        $0.text = AkkinString.expect
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
 
     public var expectCostTextField = UITextField().then {
-        $0.placeholder = "100,000,000"
+        $0.placeholder = AkkinString.expectPlaceholder
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
 
@@ -37,12 +37,12 @@ class InputCostContent: UIView, UITextFieldDelegate {
     }
 
     private let realCostLabel = UILabel().then {
-        $0.text = "실제 비용"
+        $0.text = AkkinString.real
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
 
     public var realCostTextField = UITextField().then {
-        $0.placeholder = "100,000,000"
+        $0.placeholder = AkkinString.realPlaceholder
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
 
@@ -59,9 +59,9 @@ class InputCostContent: UIView, UITextFieldDelegate {
 
     // MARK: Configuration
     func configureSubviews() {
-        addSubview(bottomStackView)
-        bottomStackView.addArrangedSubview(expectCostStackView)
-        bottomStackView.addArrangedSubview(realCostStackView)
+        addSubview(costStackView)
+        costStackView.addArrangedSubview(expectCostStackView)
+        costStackView.addArrangedSubview(realCostStackView)
         
         expectCostStackView.addArrangedSubview(expectCostLabel)
         expectCostStackView.addArrangedSubview(expectCostTextField)
@@ -72,7 +72,7 @@ class InputCostContent: UIView, UITextFieldDelegate {
 
     // MARK: Layout
     func makeConstraints() {
-        bottomStackView.snp.makeConstraints {
+        costStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalTo(270)
         }

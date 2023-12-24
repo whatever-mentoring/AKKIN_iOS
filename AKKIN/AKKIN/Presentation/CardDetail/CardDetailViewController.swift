@@ -21,10 +21,10 @@ class CardDetailViewController: BaseViewController {
     }
 
     private let cardDetailView = CardDetailView()
-    
+
     // MARK: Environment
     private let router = ExampleRouter()
-    
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class CardDetailViewController: BaseViewController {
         view.backgroundColor = .akkinGray0
         router.viewController = self
     }
-    
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
@@ -58,16 +58,16 @@ class CardDetailViewController: BaseViewController {
         cardDetailView.howLabel.text = selectedEntries[0].how
         cardDetailView.expectPriceLabel.text = "\(selectedEntries[0].expectCost)"
         cardDetailView.realPriceLabel.text = "\(selectedEntries[0].realCost)"
-        if selectedEntries[0].category == "DINING" {
+        if selectedEntries[0].category == AkkinString.dining {
             cardDetailView.diningButton.setTitleColor(.white, for: .normal)
             cardDetailView.diningButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].category == "TRAFFIC" {
+        } else if selectedEntries[0].category == AkkinString.traffic {
             cardDetailView.trafficButton.setTitleColor(.white, for: .normal)
             cardDetailView.trafficButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].category == "SHOPPING" {
+        } else if selectedEntries[0].category == AkkinString.shopping {
             cardDetailView.shoppingButton.setTitleColor(.white, for: .normal)
             cardDetailView.shoppingButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].category == "ETC" {
+        } else if selectedEntries[0].category == AkkinString.etc {
             cardDetailView.etcButton.setTitleColor(.white, for: .normal)
             cardDetailView.etcButton.backgroundColor = .akkinGreen
         }
@@ -83,30 +83,30 @@ class CardDetailViewController: BaseViewController {
     }
 
     private func setNavigationItem() {
-        navigationItem.title = "카드 상세 내용"
+        navigationItem.title = AkkinString.cardDetail
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: optionButton)
     }
 
     private func presentActionSheet() {
-        let actionsheetController = UIAlertController(title: "카드 상세 내용", message: nil, preferredStyle: .actionSheet)
+        let actionsheetController = UIAlertController(title: AkkinString.cardDetail, message: nil, preferredStyle: .actionSheet)
 
         let patchButton = UIAlertAction(
-            title: "수정",
+            title: AkkinString.patchAkkin,
             style: .default,
             handler: { [self]
                 _ in router.presentCardPatchViewController(selectedEntries: selectedEntries)
         })
 
         let deleteButton = UIAlertAction(
-            title: "삭제",
+            title: AkkinString.deleteAkkin,
             style: .destructive,
             handler: { [self]
                 _ in presentAlert()
         })
 
-        let cancelButton = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: AkkinString.cancel, style: .cancel, handler: nil)
 
         actionsheetController.addAction(patchButton)
         actionsheetController.addAction(deleteButton)
@@ -116,16 +116,16 @@ class CardDetailViewController: BaseViewController {
     }
 
     private func presentAlert() {
-        let alertController = UIAlertController(title: "카드를 정말 삭제할까요?", message: "이 동작은 취소할 수 없어요.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: AkkinString.cardDeleteTitle, message: AkkinString.cardDeleteMessage, preferredStyle: .alert)
 
         let deleteButton = UIAlertAction(
-            title: "삭제",
+            title: AkkinString.deleteAkkin,
             style: .destructive,
             handler: { [self]
                 action in deleteAkkin(selectedEntries[0].id)
         })
 
-        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: AkkinString.cancel, style: .cancel, handler: nil)
 
         alertController.addAction(deleteButton)
         alertController.addAction(cancelButton)
