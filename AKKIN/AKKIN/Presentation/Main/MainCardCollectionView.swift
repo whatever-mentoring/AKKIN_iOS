@@ -149,9 +149,11 @@ extension MainCardCollectionView: UICollectionViewDataSource {
 
 extension MainCardCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let entry = todayEntries[indexPath.row]
-        selectedTodayEntries = todayEntries.filter { $0.id == entry.id }
-        handleCellEvent(selectedTodayEntries)
+        if todayEntries.count != 0 {
+            let entry = todayEntries[indexPath.row]
+            selectedTodayEntries = todayEntries.filter { $0.id == entry.id }
+            handleCellEvent(selectedTodayEntries)
+        }
     }
 }
 
