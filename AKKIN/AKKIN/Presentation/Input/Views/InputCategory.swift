@@ -12,16 +12,16 @@ enum Category: CaseIterable {
     
     var title: String {
         switch self {
-        case .DINING: return "식비"
-        case .TRAFFIC: return "교통"
-        case .SHOPPING: return "쇼핑"
-        case .ETC: return "기타"
+        case .DINING: return AkkinString.dining
+        case .TRAFFIC: return AkkinString.traffic
+        case .SHOPPING: return AkkinString.shopping
+        case .ETC: return AkkinString.etc
         }
     }
 }
 
 final class InputCategory: UIView {
-    
+
     var onCategoryTapped: ((Category) -> Void)?
     public var selectedCategory: String?
     
@@ -30,26 +30,26 @@ final class InputCategory: UIView {
         $0.axis = .vertical
         $0.alignment = .fill
     }
-    
+
     private let categorySelectedStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.alignment = .fill
         $0.spacing = 8
     }
-    
+
     var buttons = [CategoryButton]()
-    
+
     private let categoryLabel = UILabel().then {
-        $0.text = "카테고리"
+        $0.text = AkkinString.category
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
-    
-    private let categoryDiscriptionLabel = UILabel().then {
-        $0.text = "(1개의 소비 카테고리를 선택해주세요.)"
+
+    private let categoryDescriptionLabel = UILabel().then {
+        $0.text = AkkinString.categoryDescription
         $0.font = .systemFont(ofSize: 12, weight: .regular)
         $0.textColor = .akkinGreen
     }
-    
+
     // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -57,19 +57,19 @@ final class InputCategory: UIView {
         makeConstraints()
         iconButtonSetup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Configuration
     func configureSubviews() {
         addSubview(categoryStackView)
         categoryStackView.addArrangedSubview(categoryLabel)
-        categoryStackView.addArrangedSubview(categoryDiscriptionLabel)
+        categoryStackView.addArrangedSubview(categoryDescriptionLabel)
         addSubview(categorySelectedStackView)
     }
-    
+
     // MARK: Properties
     func iconButtonSetup() {
         self.buttons = Category.allCases.map { category in
@@ -89,7 +89,7 @@ final class InputCategory: UIView {
             }
             return button
         }
-    
+
         for button in buttons {
             categorySelectedStackView.addArrangedSubview(button)
             button.addAction(UIAction(handler: { [weak self] _ in
@@ -99,7 +99,7 @@ final class InputCategory: UIView {
             }), for: .touchUpInside)
         }
     }
-    
+
     func setHighlightedState(_ category: Category) {
         for button in buttons {
             if button.category == category {
@@ -114,7 +114,7 @@ final class InputCategory: UIView {
             }
         }
     }
-    
+
     // MARK: Layout
     func makeConstraints() {
         categoryStackView.snp.makeConstraints {

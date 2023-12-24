@@ -26,7 +26,7 @@ class CardPatchViewController: BaseViewController {
     }
 
     private let confirmButton = BaseButton().then {
-        $0.setTitle("완료", for: .normal)
+        $0.setTitle(AkkinString.confirm, for: .normal)
         $0.setTitleColor(UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1), for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 14)
     }

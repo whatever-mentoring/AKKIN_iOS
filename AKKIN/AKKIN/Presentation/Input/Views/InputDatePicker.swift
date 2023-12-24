@@ -21,12 +21,12 @@ class InputDatePicker: UIView {
     }
 
     private let dateNameLabel = UILabel().then {
-        $0.text = "날짜"
+        $0.text = AkkinString.date
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
 
     public var dateTextField = UITextField().then {
-        $0.placeholder = "YYYY / MM / DD"
+        $0.placeholder = AkkinString.datePlaceholder
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
 

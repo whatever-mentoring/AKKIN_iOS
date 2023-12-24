@@ -23,7 +23,6 @@ final class MainViewController: BaseViewController {
 
     // MARK: Environment
     private let router = ExampleRouter()
-    private let provider = ExampleProvider(session: .default)
 
     // MARK: Life Cycle
     override func viewDidLoad() {

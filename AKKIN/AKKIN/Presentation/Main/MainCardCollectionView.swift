@@ -14,7 +14,7 @@ final class MainCardCollectionView: BaseView {
 
     // MARK: UI Components
     private let akkinLabel = UILabel().then {
-        $0.text = "오늘 얼마 아낀거지?"
+        $0.text = AkkinString.todayAkkin
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
     }
 
@@ -160,7 +160,7 @@ extension MainCardCollectionView: UICollectionViewDelegate {
 extension MainCardCollectionView {
     // MARK: Networking
     private func getMain() {
-        print("card - getMain called")
+        print("main card - getMain called")
         NetworkService.shared.main.getMain() { result in
             switch result {
             case .success(let response):

@@ -23,7 +23,7 @@ final class MainGalleryCollectionView: BaseView {
     }
 
     private let totalButton = BaseButton().then {
-        $0.setTitle("전체", for: .normal)
+        $0.setTitle(AkkinString.total, for: .normal)
         $0.isSelected = true
         $0.setTitleColor(.black, for: .normal)
         $0.setTitleColor(.white, for: .selected)
@@ -37,7 +37,7 @@ final class MainGalleryCollectionView: BaseView {
     }
     
     private let diningButton = BaseButton().then {
-        $0.setTitle("식비", for: .normal)
+        $0.setTitle(AkkinString.dining, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
@@ -53,7 +53,7 @@ final class MainGalleryCollectionView: BaseView {
     }
     
     private let trafficButton = BaseButton().then {
-        $0.setTitle("교통", for: .normal)
+        $0.setTitle(AkkinString.traffic, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
@@ -69,7 +69,7 @@ final class MainGalleryCollectionView: BaseView {
     }
     
     private let shoppingButton = BaseButton().then {
-        $0.setTitle("쇼핑", for: .normal)
+        $0.setTitle(AkkinString.shopping, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
@@ -85,7 +85,7 @@ final class MainGalleryCollectionView: BaseView {
     }
     
     private let etcButton = BaseButton().then {
-        $0.setTitle("기타", for: .normal)
+        $0.setTitle(AkkinString.etc, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.setTitleColor(.white, for: .selected)
         $0.backgroundColor = UIColor.akkinGreen
@@ -370,7 +370,7 @@ extension MainGalleryCollectionView: UICollectionViewDelegate {
 extension MainGalleryCollectionView {
     // MARK: Networking
     private func getMain() {
-        print("gallery - getMain called")
+        print("main gallery - getMain called")
         NetworkService.shared.main.getMain() { result in
             switch result {
             case .success(let response):

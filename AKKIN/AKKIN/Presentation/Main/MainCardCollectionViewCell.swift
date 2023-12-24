@@ -14,27 +14,20 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
     private(set) var cardImageView = UIImageView()
 
     private(set) var moneyLabel = UILabel().then {
-        $0.text = "무려 000,000 원"
         $0.textColor = UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1)
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
     }
 
     private(set) var saveContentLabel = UILabel().then {
-        $0.text = "[ 헝그리 정신 실천 ]"
         $0.font = .systemFont(ofSize: 16)
     }
 
     private(set) var howLabel = UILabel().then {
-        $0.text = "밥 대신 공기 먹기"
         $0.font = .systemFont(ofSize: 16)
     }
 
     private(set) var emptyLabel = UILabel().then {
-        $0.text = """
-        만들어진 카드가 없어요.
-        우측 상단의 + 버튼을 통해
-        아낀 내역을 추가해보세요.
-        """
+        $0.text = AkkinString.emptyAkkin
         $0.textColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1)
         $0.numberOfLines = 0
         $0.textAlignment = .center
