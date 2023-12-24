@@ -88,9 +88,19 @@ class CardPatchViewController: BaseViewController {
             guard let self else {
                 return }
             // MARK: - 사용자가 입력한 데이터 연결 필요
-            print("수정 완료")
-//            patchAkkin(year: 0, month: 0, day: 0, category: "DINING", saveContent: "dd", how: "ddd", expectCost: 3, realCost: 3)
-//            router.presentCardViewController()
+            print("patchAkkin called")
+            patchAkkin(
+                id: selectedEntries[0].id,
+                year: selectedEntries[0].year,
+                month: selectedEntries[0].month,
+                day: selectedEntries[0].day,
+                category: selectedEntries[0].category,
+                saveContent: selectedEntries[0].saveContent,
+                how: selectedEntries[0].how,
+                expectCost: selectedEntries[0].expectCost,
+                realCost: selectedEntries[0].realCost
+            )
+            router.dismissViewController()
         }
 
         backButton.tap = { [weak self] in
@@ -119,25 +129,25 @@ class CardPatchViewController: BaseViewController {
     }
 
     // MARK: Networking
-//    func patchAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
-//        NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
-//            switch result {
-//            case .success(let response):
-//                guard let data = response as? AkkinResponse else { return }
-//                print(data)
-//            case .requestErr(let errorResponse):
-//                dump(errorResponse)
-//                guard let data = errorResponse as? ErrorResponse else { return }
-//                print(data)
-//            case .serverErr:
-//                print("serverErr")
-//            case .networkFail:
-//                print("networkFail")
-//            case .pathErr:
-//                print("pathErr")
-//            }
-//        }
-//    }
+    func patchAkkin(id: Int, year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
+        NetworkService.shared.akkin.patchAkkin(id: id, year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? AkkinResponse else { return }
+                print(data)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
 
     private func tapIcon(_ icon: Icon) {
         switch icon {
