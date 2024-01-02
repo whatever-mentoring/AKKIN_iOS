@@ -34,6 +34,7 @@ public enum AkkinString {
     // Card Input
     public static let category = "카테고리"
     public static let categoryDescription = "(1개의 소비 카테고리를 선택해주세요.)"
+    public static let categorySelectedPhoto = "위 카드를 선택하거나\n추가하기를 선택해\n아낀 카드를 만들어보세요!"
     public static let date = "날짜"
     public static let datePlaceholder = "YYYY / MM / DD"
     public static let content = "소비내용"
