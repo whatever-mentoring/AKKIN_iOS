@@ -27,8 +27,20 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         let imageView = UIImageView()
         imageView.backgroundColor = .akkinWhite
         imageView.layer.cornerRadius = 8
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.akkinGray3.cgColor
         return imageView
+    }()
+    
+    private let imageInputText: UILabel = {
+        let text = UILabel()
+        text.text = AkkinString.categorySelectedPhoto
+        text.textColor = UIColor.akkinGray2
+        text.numberOfLines = 0
+        text.textAlignment = .center
+        text.layer.opacity = 1
+        text.font = .systemFont(ofSize: 14, weight: .regular)
+        return text
     }()
 
     private let inputDatePicker = InputDatePicker()
@@ -60,6 +72,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         scrollView.addSubview(inputHowContent)
         scrollView.addSubview(inputCostContent)
         scrollView.addSubview(makeCardButton)
+        imageView.addSubview(imageInputText)
     }
   
     // MARK: Environment
@@ -83,6 +96,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         case .iconThemeProfile4:
             imageView.image = AkkinImage.akkinImage4
         case .iconThemeProfile5:
+            imageView.image = AkkinImage.akkinImage5
+        case .iconThemeProfile6:
             imageView.image = AkkinImage.akkinImage5
         }
     }
@@ -145,62 +160,112 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         super.makeConstraints()
 
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges
+                .equalToSuperview()
         }
 
         inputIconSelectedView.snp.makeConstraints {
-            $0.top.equalTo(scrollView.safeAreaLayoutGuide).offset(11)
-            $0.height.equalTo(44)
-            $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview()
+            $0.top
+                .equalTo(scrollView.safeAreaLayoutGuide).offset(11)
+            $0.height
+                .equalTo(44)
+            $0.centerX
+                .equalToSuperview()
+            $0.width
+                .equalToSuperview()
         }
 
         imageView.snp.makeConstraints {
-            $0.width.height.equalTo(172)
-            $0.top.equalTo(inputIconSelectedView.snp.bottom).offset(16)
-            $0.centerX.equalToSuperview()
+            $0.width.height
+                .equalTo(172)
+            $0.top
+                .equalTo(inputIconSelectedView.snp.bottom)
+                .offset(16)
+            $0.centerX
+                .equalToSuperview()
+        }
+        
+        imageInputText.snp.makeConstraints {
+            $0.centerX
+                .equalToSuperview()
+            $0.centerY
+                .equalToSuperview()
         }
     
         inputDatePicker.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().offset(46)
-            $0.height.equalTo(47)
-            $0.width.equalTo(294)
+            $0.top
+                .equalTo(imageView.snp.bottom).offset(24)
+            $0.leading
+                .equalToSuperview()
+                .offset(46)
+            $0.height
+                .equalTo(47)
+            $0.width
+                .equalTo(294)
         }
 
         inputCategory.snp.makeConstraints {
-            $0.top.equalTo(inputDatePicker.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(46)
-            $0.height.equalTo(78)
-            $0.width.equalTo(216)
+            $0.top
+                .equalTo(inputDatePicker.snp.bottom)
+                .offset(20)
+            $0.leading
+                .equalToSuperview()
+                .offset(46)
+            $0.height
+                .equalTo(78)
+            $0.width
+                .equalTo(216)
         }
 
         inputSaveContent.snp.makeConstraints {
-            $0.top.equalTo(inputCategory.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(46)
-            $0.height.equalTo(52)
-            $0.width.equalToSuperview()
+            $0.top
+                .equalTo(inputCategory.snp.bottom)
+                .offset(20)
+            $0.leading
+                .equalToSuperview()
+                .offset(46)
+            $0.height
+                .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
 
         inputHowContent.snp.makeConstraints {
-            $0.top.equalTo(inputSaveContent.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(46)
-            $0.height.equalTo(52)
-            $0.width.equalToSuperview()
+            $0.top
+                .equalTo(inputSaveContent.snp.bottom)
+                .offset(20)
+            $0.leading
+                .equalToSuperview()
+                .offset(46)
+            $0.height
+                .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
 
         inputCostContent.snp.makeConstraints {
-            $0.top.equalTo(inputHowContent.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(46)
-            $0.height.equalTo(52)
-            $0.width.equalToSuperview()
+            $0.top
+                .equalTo(inputHowContent.snp.bottom)
+                .offset(20)
+            $0.leading
+                .equalToSuperview()
+                .offset(46)
+            $0.height
+                .equalTo(52)
+            $0.width
+                .equalToSuperview()
         }
 
         makeCardButton.snp.makeConstraints {
-            $0.top.equalTo(inputCostContent.snp.bottom).offset(28)
-            $0.width.equalTo(342)
-            $0.height.equalTo(60)
-            $0.centerX.equalToSuperview()
+            $0.top
+                .equalTo(inputCostContent.snp.bottom)
+                .offset(28)
+            $0.width
+                .equalTo(342)
+            $0.height
+                .equalTo(60)
+            $0.centerX
+                .equalToSuperview()
         }
     }
 
@@ -233,6 +298,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             guard let self else {
                 return }
             tapIcon(icon)
+            imageInputText.layer.opacity = 0
         }
 
         inputCategory.onCategoryTapped = { [weak self] category in
