@@ -8,7 +8,7 @@
 import UIKit
 
 enum Icon: CaseIterable {
-    case iconThemeProfile1, iconThemeProfile2, iconThemeProfile3, iconThemeProfile4, iconThemeProfile5
+    case iconThemeProfile1, iconThemeProfile2, iconThemeProfile3, iconThemeProfile4, iconThemeProfile5, iconThemeProfile6
     
     var image: UIImage {
         switch self {
@@ -17,6 +17,7 @@ enum Icon: CaseIterable {
         case .iconThemeProfile3: return AkkinImage.akkinIcon3
         case .iconThemeProfile4: return AkkinImage.akkinIcon4 
         case .iconThemeProfile5: return AkkinImage.akkinIcon5 
+        case .iconThemeProfile6: return AkkinImage.akkinIcon6
         }
     }
 }
@@ -98,7 +99,7 @@ final class InputIconSelectedView: BaseView {
         
         iconStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.width.equalTo(252)
+            $0.width.equalTo(304)
             $0.centerX.equalToSuperview()
         }
     }
