@@ -19,7 +19,7 @@ class CardPatchViewController: BaseViewController {
     private let scrollView = UIScrollView().then {
         $0.delaysContentTouches = false
     }
-    
+
     private let backButton = BaseButton().then {
         $0.setImage(AkkinButton.backButton, for: .normal)
     }
@@ -31,7 +31,7 @@ class CardPatchViewController: BaseViewController {
     }
 
     private let inputIconSelectedView = InputIconSelectedView()
-    
+
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .akkinWhite
@@ -39,7 +39,7 @@ class CardPatchViewController: BaseViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     private let inputDatePicker = InputDatePicker()
     private let inputCategory = InputCategory()
     private let inputSaveContent = InputSaveContent()
@@ -73,7 +73,7 @@ class CardPatchViewController: BaseViewController {
         super.configureSubviews()
         inputDatePicker
             .translatesAutoresizingMaskIntoConstraints = false
-        
+
         view.addSubview(scrollView)
         scrollView.addSubview(inputIconSelectedView)
         scrollView.addSubview(imageView)
@@ -82,7 +82,7 @@ class CardPatchViewController: BaseViewController {
         scrollView.addSubview(inputSaveContent)
         scrollView.addSubview(inputHowContent)
         scrollView.addSubview(inputCostContent)
-        
+
         confirmButton.tap = { [weak self] in
             guard let self else {
                 return }
@@ -108,13 +108,13 @@ class CardPatchViewController: BaseViewController {
                 return }
             router.dismissViewController()
         }
-        
+
         inputIconSelectedView.onIconTapped = { [weak self] icon in
             guard let self else {
                 return }
             tapIcon(icon)
         }
-        
+
         inputCategory.onCategoryTapped = { [weak self] category in
             guard self != nil else {
                 return }
@@ -189,52 +189,52 @@ class CardPatchViewController: BaseViewController {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
+ 
         scrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
+
         inputIconSelectedView.snp.makeConstraints {
             $0.top.equalTo(scrollView.safeAreaLayoutGuide).offset(11)
             $0.height.equalTo(44)
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview()
         }
-        
+
         imageView.snp.makeConstraints {
             $0.width.height.equalTo(172)
             $0.top.equalTo(inputIconSelectedView.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
-        
+
         inputDatePicker.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(46)
             $0.height.equalTo(47)
             $0.width.equalTo(294)
         }
-        
+
         inputCategory.snp.makeConstraints {
             $0.top.equalTo(inputDatePicker.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(46)
             $0.height.equalTo(78)
             $0.width.equalTo(272)
         }
-        
+ 
         inputSaveContent.snp.makeConstraints {
             $0.top.equalTo(inputCategory.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(46)
             $0.height.equalTo(52)
             $0.width.equalToSuperview()
         }
-        
+
         inputHowContent.snp.makeConstraints {
             $0.top.equalTo(inputSaveContent.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(46)
             $0.height.equalTo(52)
             $0.width.equalToSuperview()
         }
-        
+
         inputCostContent.snp.makeConstraints {
             $0.top.equalTo(inputHowContent.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(46)
@@ -251,7 +251,7 @@ extension CardPatchViewController: UITextFieldDelegate {
                 as? NSValue,
               let currentTextField = UIResponder.currentResponder
                 as? UITextField else { return }
-        
+
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
         let convertedTextFieldFrame = view.convert(
             currentTextField.frame,
@@ -270,7 +270,7 @@ extension CardPatchViewController: UITextFieldDelegate {
             view.frame.origin.y = 0
         }
     }
-    
+
     private func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(
             self,

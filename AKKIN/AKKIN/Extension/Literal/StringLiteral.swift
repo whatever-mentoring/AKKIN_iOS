@@ -26,6 +26,11 @@ public enum AkkinString {
     public static let shopping = "쇼핑"
     public static let etc = "기타"
 
+    public static let DINING = "DINING"
+    public static let TRAFFIC = "TRAFFIC"
+    public static let SHOPPING = "SHOPPING"
+    public static let ETC = "ETC"
+
     // Card Input
     public static let category = "카테고리"
     public static let categoryDescription = "(1개의 소비 카테고리를 선택해주세요.)"
