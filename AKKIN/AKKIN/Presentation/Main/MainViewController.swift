@@ -18,6 +18,9 @@ final class MainViewController: BaseViewController {
         $0.setImage(AkkinButton.myPageButton, for: .normal)
     }
 
+    let loadingContainerView = UIView(frame: UIScreen.main.bounds)
+    let loadingView = UIActivityIndicatorView(style: .large)
+
     let mainCardCollectionView = MainCardCollectionView()
     let mainGalleryCollectionView = MainGalleryCollectionView()
 
@@ -27,6 +30,7 @@ final class MainViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showLoadingView()
         getMain()
     }
 
@@ -85,6 +89,21 @@ final class MainViewController: BaseViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: myPageButton)
     }
+
+    func showLoadingView() {
+        loadingContainerView.backgroundColor = .white
+        loadingView.color = .akkinGray2
+        loadingView.center = loadingContainerView.center
+        loadingView.startAnimating()
+
+        view.addSubview(loadingContainerView)
+        loadingContainerView.addSubview(loadingView)
+    }
+    
+    func hideLoadingView() {
+        loadingView.stopAnimating()
+        loadingContainerView.removeFromSuperview()
+    }
 }
 
 extension MainViewController {
@@ -99,6 +118,7 @@ extension MainViewController {
                 self.mainGalleryCollectionView.totalEntries = data.firstPage.entries
                 self.mainCardCollectionView.cardCollectionView.reloadData()
                 self.mainGalleryCollectionView.galleryCollectionView.reloadData()
+                self.hideLoadingView()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
