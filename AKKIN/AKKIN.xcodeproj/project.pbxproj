@@ -77,7 +77,6 @@
 		95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */; };
 		95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */; };
 		95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5359F2AB18F1700FA2492 /* MainViewController.swift */; };
-		95E535A22AB18F3200FA2492 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535A12AB18F3200FA2492 /* MainView.swift */; };
 		95E535B52AB1D4CF00FA2492 /* MainCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */; };
 		95E535B72AB1D4E000FA2492 /* MainCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535B62AB1D4E000FA2492 /* MainCardCollectionViewCell.swift */; };
 		95E535BF2AB23EED00FA2492 /* MainWeeklyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535BE2AB23EED00FA2492 /* MainWeeklyStatsView.swift */; };
@@ -183,7 +182,6 @@
 		95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		95E5359F2AB18F1700FA2492 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		95E535A12AB18F3200FA2492 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCollectionView.swift; sourceTree = "<group>"; };
 		95E535B62AB1D4E000FA2492 /* MainCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		95E535BE2AB23EED00FA2492 /* MainWeeklyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeeklyStatsView.swift; sourceTree = "<group>"; };
@@ -439,7 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				95E5359F2AB18F1700FA2492 /* MainViewController.swift */,
-				95E535A12AB18F3200FA2492 /* MainView.swift */,
 				95E535B42AB1D4CF00FA2492 /* MainCardCollectionView.swift */,
 				95E535B62AB1D4E000FA2492 /* MainCardCollectionViewCell.swift */,
 				95B10FC02B33684E005319F6 /* MainGalleryCollectionView.swift */,
@@ -756,7 +753,6 @@
 				BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */,
 				951261652ABD97100012B5F9 /* LoginView.swift in Sources */,
 				951261B22AC1A8890012B5F9 /* WeeklyResponse.swift in Sources */,
-				95E535A22AB18F3200FA2492 /* MainView.swift in Sources */,
 				95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */,
 				951261AB2AC19A370012B5F9 /* MainService.swift in Sources */,
 				95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */,

@@ -116,7 +116,6 @@ final class MainGalleryCollectionView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        getMain()
 
         totalButton.addTarget(self, action: #selector(totalButtonTapped), for: .touchUpInside)
         diningButton.addTarget(self, action: #selector(diningButtonTapped), for: .touchUpInside)
@@ -364,32 +363,5 @@ extension MainGalleryCollectionView: UICollectionViewDelegate {
 
         selectedTotalEntries = totalEntries.filter { $0.id == entry.id }
         handleCellEvent(selectedTotalEntries)
-    }
-}
-
-extension MainGalleryCollectionView {
-    // MARK: Networking
-    private func getMain() {
-        print("main gallery - getMain called")
-        NetworkService.shared.main.getMain() { result in
-            switch result {
-            case .success(let response):
-                guard let data = response as? MainResponse else { return }
-                self.totalEntries = data.firstPage.entries
-                print("gallery - getMain data" + "\(data)")
-                print("gallery - getMain firstPageEntries" + "\(self.totalEntries)")
-                self.galleryCollectionView.reloadData()
-            case .requestErr(let errorResponse):
-                dump(errorResponse)
-                guard let data = errorResponse as? ErrorResponse else { return }
-                print(data)
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            case .pathErr:
-                print("pathErr")
-            }
-        }
     }
 }
