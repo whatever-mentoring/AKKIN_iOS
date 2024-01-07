@@ -133,7 +133,7 @@ class CardPatchViewController: BaseViewController {
         NetworkService.shared.akkin.patchAkkin(id: id, year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
             switch result {
             case .success(let response):
-                guard let data = response as? AkkinResponse else { return }
+                guard let data = response as? BlankDataResponse else { return }
                 print(data)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
