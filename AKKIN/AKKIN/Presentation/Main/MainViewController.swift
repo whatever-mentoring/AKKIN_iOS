@@ -25,6 +25,11 @@ final class MainViewController: BaseViewController {
     private let router = ExampleRouter()
 
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getMain()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
@@ -32,7 +37,7 @@ final class MainViewController: BaseViewController {
         router.viewController = self
         view.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
     }
-    
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
@@ -79,5 +84,32 @@ final class MainViewController: BaseViewController {
     private func setNavigationItem() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: myPageButton)
+    }
+}
+
+extension MainViewController {
+    // MARK: Networking
+    private func getMain() {
+        print("*** MainViewController - getMain called")
+        NetworkService.shared.main.getMain() { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? MainResponse else { return }
+                self.mainCardCollectionView.todayEntries = data.today.entries
+                self.mainGalleryCollectionView.totalEntries = data.firstPage.entries
+                self.mainCardCollectionView.cardCollectionView.reloadData()
+                self.mainGalleryCollectionView.galleryCollectionView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }

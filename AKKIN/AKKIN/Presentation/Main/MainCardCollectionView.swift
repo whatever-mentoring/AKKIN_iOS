@@ -58,7 +58,6 @@ final class MainCardCollectionView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        getMain()
 
         addButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
         cardCollectionView.dataSource = self
@@ -153,32 +152,6 @@ extension MainCardCollectionView: UICollectionViewDelegate {
             let entry = todayEntries[indexPath.row]
             selectedTodayEntries = todayEntries.filter { $0.id == entry.id }
             handleCellEvent(selectedTodayEntries)
-        }
-    }
-}
-
-extension MainCardCollectionView {
-    // MARK: Networking
-    private func getMain() {
-        print("main card - getMain called")
-        NetworkService.shared.main.getMain() { result in
-            switch result {
-            case .success(let response):
-                guard let data = response as? MainResponse else { return }
-                self.todayEntries = data.today.entries
-                print(data)
-                self.cardCollectionView.reloadData()
-            case .requestErr(let errorResponse):
-                dump(errorResponse)
-                guard let data = errorResponse as? ErrorResponse else { return }
-                print(data)
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            case .pathErr:
-                print("pathErr")
-            }
         }
     }
 }
