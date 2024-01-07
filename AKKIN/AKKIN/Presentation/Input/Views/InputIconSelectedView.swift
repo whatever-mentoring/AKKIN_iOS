@@ -8,7 +8,11 @@
 import UIKit
 
 enum Icon: CaseIterable {
-    case iconThemeProfile1, iconThemeProfile2, iconThemeProfile3, iconThemeProfile4, iconThemeProfile5
+    case iconThemeProfile1
+    case iconThemeProfile2
+    case iconThemeProfile3
+    case iconThemeProfile4
+    case iconThemeProfile5
     
     var image: UIImage {
         switch self {

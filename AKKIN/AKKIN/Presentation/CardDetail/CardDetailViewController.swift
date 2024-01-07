@@ -59,24 +59,27 @@ class CardDetailViewController: BaseViewController {
         cardDetailView.howLabel.text = selectedEntries[0].how
         cardDetailView.expectPriceLabel.text = "\(selectedEntries[0].expectCost)"
         cardDetailView.realPriceLabel.text = "\(selectedEntries[0].realCost)"
-        if selectedEntries[0].gulbiCategory == AkkinString.dining {
+        if selectedEntries[0].gulbiCategory == AkkinString.DINING {
             cardDetailView.diningButton.setTitleColor(.white, for: .normal)
             cardDetailView.diningButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].gulbiCategory == AkkinString.traffic {
+        } else if selectedEntries[0].gulbiCategory == AkkinString.TRAFFIC {
             cardDetailView.trafficButton.setTitleColor(.white, for: .normal)
             cardDetailView.trafficButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].gulbiCategory == AkkinString.shopping {
+        } else if selectedEntries[0].gulbiCategory == AkkinString.SHOPPING {
             cardDetailView.shoppingButton.setTitleColor(.white, for: .normal)
             cardDetailView.shoppingButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].gulbiCategory == AkkinString.etc {
+        } else if selectedEntries[0].gulbiCategory == AkkinString.ETC {
             cardDetailView.etcButton.setTitleColor(.white, for: .normal)
             cardDetailView.etcButton.backgroundColor = .akkinGreen
+        } else {
+            print("category is nil" + "\(selectedEntries[0].gulbiCategory)")
         }
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
+
         cardDetailView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(58)
             $0.centerX.equalToSuperview()
