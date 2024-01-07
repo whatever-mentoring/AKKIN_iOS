@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CardPageView: BaseView {
+final class CardSavePageView: BaseView {
 
     var selectedYear: Int?
     var selectedMonth: Int?
@@ -31,7 +31,7 @@ final class CardPageView: BaseView {
         $0.lineBreakMode = .byWordWrapping
     }
 
-    private let cardView = CardView()
+    private let cardSaveView = CardSaveView()
 
     let imageSaveButton = BaseButton().then {
         $0.setTitle(AkkinString.saveImage, for: .normal)
@@ -62,7 +62,7 @@ final class CardPageView: BaseView {
         super.configureSubviews()
         addSubview(homeButton)
         addSubview(cardTopText)
-        addSubview(cardView)
+        addSubview(cardSaveView)
         addSubview(imageSaveButton)
         addSubview(imageShareButton)
 
@@ -84,7 +84,7 @@ final class CardPageView: BaseView {
             $0.leading.equalToSuperview().offset(24)
         }
 
-        cardView.snp.makeConstraints {
+        cardSaveView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).inset(135)
             $0.width.equalTo(293)
             $0.height.equalTo(403)
@@ -116,10 +116,28 @@ final class CardPageView: BaseView {
     }
 
     func saveCardViewAsImage() -> UIImage {
-        return cardView.asImage()
+        return cardSaveView.asImage()
     }
 
-    func configureCardView(selectedYear: Int?, selectedMonth: Int?, selectedDay: Int?, selectedImage: UIImage?, selectedSaveContent: String?, selectedHow: String?, selectedExpectCost: Int?, selectedRealCost: Int?) {
-        cardView.configure(selectedYear: selectedYear, selectedMonth: selectedMonth, selectedDay: selectedDay, selectedImage: selectedImage, selectedSaveContent: selectedSaveContent, selectedHow: selectedHow, selectedExpectCost: selectedExpectCost, selectedRealCost: selectedRealCost)
+    func configureCardSaveView(
+        selectedYear: Int?,
+        selectedMonth: Int?,
+        selectedDay: Int?,
+        selectedImage: UIImage?,
+        selectedSaveContent: String?,
+        selectedHow: String?,
+        selectedExpectCost: Int?,
+        selectedRealCost: Int?
+    ) {
+        cardSaveView.configure(
+            selectedYear: selectedYear,
+            selectedMonth: selectedMonth,
+            selectedDay: selectedDay,
+            selectedImage: selectedImage,
+            selectedSaveContent: selectedSaveContent,
+            selectedHow: selectedHow,
+            selectedExpectCost: selectedExpectCost,
+            selectedRealCost: selectedRealCost
+        )
     }
 }

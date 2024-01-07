@@ -66,13 +66,13 @@ final class ExampleRouter {
         viewController?.navigationController?.popViewController(animated: true)
     }
         
-    func presentCardViewController() {
-        let cardViewController = CardViewController()
-        cardViewController.modalPresentationStyle = .fullScreen
-        viewController?.present(cardViewController, animated: true)
+    func presentCardSaveViewController() {
+        let cardSaveViewController = CardSaveViewController()
+        cardSaveViewController.modalPresentationStyle = .fullScreen
+        viewController?.present(cardSaveViewController, animated: true)
     }
 
-    func dismissCardViewController() {
+    func dismissCardSaveViewController() {
         viewController?.dismiss(animated: true, completion: {
             self.viewController?.navigationController?.popToRootViewController(animated: true)
         })

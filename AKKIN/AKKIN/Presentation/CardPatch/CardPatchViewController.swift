@@ -10,7 +10,6 @@ import SnapKit
 
 class CardPatchViewController: BaseViewController {
     var buttons = [CategoryButton]()
-    
     var selectedEntries: [MainEntries] = []
 
     // MARK: Constants
