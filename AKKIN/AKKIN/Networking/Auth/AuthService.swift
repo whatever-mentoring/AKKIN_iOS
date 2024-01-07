@@ -8,26 +8,26 @@
 import Foundation
 import Moya
 
-final class AppleLoginService {
-    
-    private var appleLoginProvider = MoyaProvider<AppleLoginAPI>(plugins: [MoyaLoggerPlugin()])
-    
+final class AuthService {
+
+    private var appleLoginProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
+
     private enum ResponseData {
         case postAppleLogin
         case postAppleRevoke
         case getAppleLogout
     }
-    
+
     public func postAppleLogin(appleToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         appleLoginProvider.request(.postAppleLogin(appleToken: appleToken)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                
+
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postAppleLogin)
                 completion(networkResult)
-                
+
             case .failure(let error):
                 print(error)
             }
@@ -40,10 +40,10 @@ final class AppleLoginService {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                
+
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postAppleRevoke)
                 completion(networkResult)
-                
+
             case .failure(let error):
                 print(error)
             }
@@ -56,10 +56,10 @@ final class AppleLoginService {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                
+
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getAppleLogout)
                 completion(networkResult)
-                
+
             case .failure(let error):
                 print(error)
             }
@@ -92,7 +92,7 @@ final class AppleLoginService {
         
         switch responseData {
         case .postAppleLogin:
-            let decodedData = try? decoder.decode(AppleLoginResponse.self, from: data)
+            let decodedData = try? decoder.decode(AuthLoginResponse.self, from: data)
             return .success(decodedData ?? "success")
         case .postAppleRevoke:
             let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)

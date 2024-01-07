@@ -8,13 +8,13 @@
 import Moya
 import Foundation
 
-enum AppleLoginAPI {
+enum AuthAPI {
     case postAppleLogin(appleToken: String)
     case postAppleRevoke(appleToken: String, authorizationCode: String)
     case getAppleLogout
 }
 
-extension AppleLoginAPI: TargetType {
+extension AuthAPI: TargetType {
     var path: String {
         switch self {
         case .postAppleLogin:

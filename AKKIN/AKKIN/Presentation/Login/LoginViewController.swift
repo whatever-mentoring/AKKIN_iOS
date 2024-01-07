@@ -16,7 +16,7 @@ final class LoginViewController: BaseViewController {
 
     // MARK: Environment
     private let router = ExampleRouter()
-    private var appleLoginProvider = MoyaProvider<AppleLoginAPI>(plugins: [MoyaLoggerPlugin()])
+    private var appleLoginProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -101,7 +101,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         NetworkService.shared.appleLogin.postAppleLogin(appleToken: appleToken) { result in
             switch result {
             case .success(let response):
-                guard let data = response as? AppleLoginResponse else { return }
+                guard let data = response as? AuthLoginResponse else { return }
                 UserDefaultHandler.accessToken = data.accessToken
                 UserDefaultHandler.refreshToken = data.refreshToken
                 print("success")

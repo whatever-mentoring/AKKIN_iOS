@@ -152,7 +152,7 @@ final class MyPageViewController: BaseViewController {
         NetworkService.shared.appleLogin.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode) { result in
             switch result {
             case .success(let response):
-                guard let data = response as? AppleLoginResponse else { return }
+                guard let data = response as? AuthLoginResponse else { return }
                 print("success")
 
                 self.router.presentLoginViewController()
