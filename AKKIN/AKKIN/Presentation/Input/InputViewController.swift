@@ -39,7 +39,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     private let inputCostContent = InputCostContent()
 
     private let makeCardButton = BaseButton().then {
-        $0.setTitle(AkkinString.makeAkkin, for: .normal)
+        $0.setTitle(AkkinString.makeGulbis, for: .normal)
         $0.titleLabel?.font =
             .systemFont(ofSize: 20, weight: .semibold)
         $0.setTitleColor(.white, for: .normal)
@@ -68,7 +68,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
 
     // MARK: Properties
     private func setNavigationItem() {
-        navigationItem.title = AkkinString.postAkkin
+        navigationItem.title = AkkinString.postGulbis
         navigationItem.leftBarButtonItem =
         UIBarButtonItem(customView: backButton)
     }
@@ -210,7 +210,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         makeCardButton.tap = { [weak self] in
             guard let self else {
                 return }
-            postAkkin(
+            postGulbis(
                 year: inputDatePicker.selectedYear ?? 0,
                 month: inputDatePicker.selectedMonth ?? 0,
                 day: inputDatePicker.selectedDay ?? 0,
@@ -280,8 +280,28 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     }
 
     // MARK: Networking
-    func postAkkin(year: Int, month: Int, day: Int, imageUrl: String, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
-        NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, imageUrl: imageUrl, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
+    func postGulbis(
+        year: Int,
+        month: Int,
+        day: Int,
+        imageUrl: String,
+        category: String,
+        saveContent: String,
+        how: String,
+        expectCost: Int,
+        realCost: Int
+    ) {
+        NetworkService.shared.gulbis.postGulbis(
+            year: year,
+            month: month,
+            day: day,
+            imageUrl: imageUrl,
+            category: category,
+            saveContent: saveContent,
+            how: how,
+            expectCost: expectCost,
+            realCost: realCost
+        ) { result in
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }

@@ -98,10 +98,10 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     
     public func postAppleLogin(_ appleToken: String) {
         print("apple login try")
-        NetworkService.shared.appleLogin.postAppleLogin(appleToken: appleToken) { result in
+        NetworkService.shared.auth.postAppleLogin(appleToken: appleToken) { result in
             switch result {
             case .success(let response):
-                guard let data = response as? AuthLoginResponse else { return }
+                guard let data = response as? AppleLoginResponse else { return }
                 UserDefaultHandler.accessToken = data.accessToken
                 UserDefaultHandler.refreshToken = data.refreshToken
                 print("success")

@@ -10,7 +10,7 @@ import Moya
 
 final class AuthService {
 
-    private var appleLoginProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
+    private var authProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
 
     private enum ResponseData {
         case postAppleLogin
@@ -19,7 +19,7 @@ final class AuthService {
     }
 
     public func postAppleLogin(appleToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        appleLoginProvider.request(.postAppleLogin(appleToken: appleToken)) { result in
+        authProvider.request(.postAppleLogin(appleToken: appleToken)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -35,7 +35,7 @@ final class AuthService {
     }
 
     public func postAppleRevoke(appleToken: String, authorizationCode: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        appleLoginProvider.request(.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode)) { result in
+        authProvider.request(.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -51,7 +51,7 @@ final class AuthService {
     }
 
     public func getAppleLogout(completion: @escaping (NetworkResult<Any>) -> Void) {
-        appleLoginProvider.request(.getAppleLogout) { result in
+        authProvider.request(.getAppleLogout) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -92,7 +92,7 @@ final class AuthService {
         
         switch responseData {
         case .postAppleLogin:
-            let decodedData = try? decoder.decode(AuthLoginResponse.self, from: data)
+            let decodedData = try? decoder.decode(AppleLoginResponse.self, from: data)
             return .success(decodedData ?? "success")
         case .postAppleRevoke:
             let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)

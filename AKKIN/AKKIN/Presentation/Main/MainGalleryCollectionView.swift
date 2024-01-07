@@ -9,12 +9,12 @@ import UIKit
 
 final class MainGalleryCollectionView: BaseView {
 
-    var totalEntries: [Entries] = []
-    var diningEntries: [Entries] = []
-    var trafficEntries: [Entries] = []
-    var shoppingEntries: [Entries] = []
-    var etcEntries: [Entries] = []
-    var selectedTotalEntries: [Entries] = []
+    var totalEntries: [MainEntries] = []
+    var diningEntries: [MainEntries] = []
+    var trafficEntries: [MainEntries] = []
+    var shoppingEntries: [MainEntries] = []
+    var etcEntries: [MainEntries] = []
+    var selectedTotalEntries: [MainEntries] = []
 
     // MARK: UI Components
     private let categoryButtonStackView = UIStackView().then {
@@ -111,7 +111,7 @@ final class MainGalleryCollectionView: BaseView {
     }()
 
     // MARK: Properties
-    var tapCell: (([Entries]) -> Void)?
+    var tapCell: (([MainEntries]) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -284,7 +284,7 @@ final class MainGalleryCollectionView: BaseView {
     }
     
     // MARK: Event
-    func handleCellEvent(_ selectedEntries: [Entries]) {
+    func handleCellEvent(_ selectedEntries: [MainEntries]) {
         tapCell?(selectedEntries)
     }
 }
