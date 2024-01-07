@@ -1,5 +1,5 @@
 //
-//  CardView.swift
+//  CardSaveView.swift
 //  AKKIN
 //
 //  Created by SJW on 2023/09/16.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class CardView: UIView {
- 
+final class CardSaveView: UIView {
+
     // MARK: UI Components
     private let cardImageView = UIView().then {
         $0.backgroundColor = .akkinWhite

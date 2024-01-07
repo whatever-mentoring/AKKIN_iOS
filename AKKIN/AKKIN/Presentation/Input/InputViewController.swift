@@ -220,7 +220,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 how: inputHowContent.howTextField.text ?? "nil",
                 expectCost: Int(inputCostContent.expectCostTextField.text ?? "0") ?? 0,
                 realCost: Int(inputCostContent.realCostTextField.text ?? "0") ?? 0)
-            presentCardViewControllerWithArgs(
+            presentCardSaveViewControllerWithArgs(
                 from: self,
                 selectedYear: inputDatePicker.selectedYear,
                 selectedMonth: inputDatePicker.selectedMonth,
@@ -251,7 +251,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         }
     }
 
-    func presentCardViewControllerWithArgs(
+    func presentCardSaveViewControllerWithArgs(
         from viewController: UIViewController?,
         selectedYear: Int?,
         selectedMonth: Int?,
@@ -262,21 +262,21 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         selectedExpectCost: Int?,
         selectedRealCost: Int?
     ) {
-        let cardViewController = CardViewController()
+        let cardSaveiewController = CardSaveViewController()
 
-        // CardViewController에 전달할 값들을 설정
-        cardViewController.selectedYear = selectedYear
-        cardViewController.selectedMonth = selectedMonth
-        cardViewController.selectedDay = selectedDay
-        cardViewController.selectedImage = imageView.image
-        cardViewController.selectedSaveContent = selectedSaveContent
-        cardViewController.selectedHow = selectedHow
-        cardViewController.selectedExpectCost = selectedExpectCost
-        cardViewController.selectedRealCost = selectedRealCost
+        // CardSaveViewController에 전달할 값들을 설정
+        cardSaveiewController.selectedYear = selectedYear
+        cardSaveiewController.selectedMonth = selectedMonth
+        cardSaveiewController.selectedDay = selectedDay
+        cardSaveiewController.selectedImage = imageView.image
+        cardSaveiewController.selectedSaveContent = selectedSaveContent
+        cardSaveiewController.selectedHow = selectedHow
+        cardSaveiewController.selectedExpectCost = selectedExpectCost
+        cardSaveiewController.selectedRealCost = selectedRealCost
 
         // Modal로 표시
-        cardViewController.modalPresentationStyle = .fullScreen
-        viewController?.present(cardViewController, animated: true)
+        cardSaveiewController.modalPresentationStyle = .fullScreen
+        viewController?.present(cardSaveiewController, animated: true)
     }
 
     // MARK: Networking
