@@ -19,10 +19,22 @@ final class LoginViewController: BaseViewController {
     private var appleLoginProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
 
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        router.viewController = self
+
+        if UserDefaultHandler.refreshToken != "" {
+            router.presentMainViewController()
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.changeRootViewToMain()
+        } else {
+            print("no refreshToken")
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        router.viewController = self
     }
 
     // MARK: Configuration
