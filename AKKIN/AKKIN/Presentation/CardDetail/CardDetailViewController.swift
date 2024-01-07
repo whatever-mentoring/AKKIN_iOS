@@ -54,11 +54,11 @@ class CardDetailViewController: BaseViewController {
     private func setCardContent() {
         cardDetailView.iconImageView.image = UIImage(named: selectedEntries[0].imageUrl ?? "icon_1")
         cardDetailView.dateTextLabel.text = "\(selectedEntries[0].year)" + "." + "\(selectedEntries[0].month)" + "." + "\(selectedEntries[0].day)"
-        cardDetailView.savePriceLabel.text = "무려 " + "\(selectedEntries[0].expectCost - selectedEntries[0].realCost)" + " 원"
+        cardDetailView.savePriceLabel.text = "무려 " + "\((selectedEntries[0].expectCost - selectedEntries[0].realCost).toPriceFormat)" + " 원"
         cardDetailView.saveContentLabel.text = "[ " + "\(selectedEntries[0].saveContent)" + " ]"
         cardDetailView.howLabel.text = selectedEntries[0].how
-        cardDetailView.expectPriceLabel.text = "\(selectedEntries[0].expectCost)"
-        cardDetailView.realPriceLabel.text = "\(selectedEntries[0].realCost)"
+        cardDetailView.expectPriceLabel.text = "\(selectedEntries[0].expectCost.toPriceFormat)"
+        cardDetailView.realPriceLabel.text = "\(selectedEntries[0].realCost.toPriceFormat)"
         if selectedEntries[0].gulbiCategory == AkkinString.DINING {
             cardDetailView.diningButton.setTitleColor(.white, for: .normal)
             cardDetailView.diningButton.backgroundColor = .akkinGreen
