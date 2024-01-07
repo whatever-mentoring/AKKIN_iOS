@@ -35,8 +35,8 @@ final class AkkinService {
         }
     }
 
-    public func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        akkinProvider.request(.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)) { result in
+    public func postAkkin(year: Int, month: Int, day: Int, imageUrl: String, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        akkinProvider.request(.postAkkin(year: year, month: month, day: day, imageUrl: imageUrl, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

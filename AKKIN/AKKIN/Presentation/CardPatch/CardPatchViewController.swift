@@ -58,7 +58,7 @@ class CardPatchViewController: BaseViewController {
     }
 
     private func setContent() {
-        inputCategory.selectedCategory = selectedEntries[0].category
+        inputCategory.selectedCategory = selectedEntries[0].gulbiCategory
         inputDatePicker.dateTextField.text = "\(selectedEntries[0].year)" + " / " + "\(selectedEntries[0].month)" + " / " + "\(selectedEntries[0].day)"
         inputSaveContent.contentTextField.text = selectedEntries[0].saveContent
         inputHowContent.howTextField.text = selectedEntries[0].how
@@ -94,7 +94,7 @@ class CardPatchViewController: BaseViewController {
                 year: selectedEntries[0].year,
                 month: selectedEntries[0].month,
                 day: selectedEntries[0].day,
-                category: selectedEntries[0].category,
+                category: selectedEntries[0].gulbiCategory,
                 saveContent: selectedEntries[0].saveContent,
                 how: selectedEntries[0].how,
                 expectCost: selectedEntries[0].expectCost,

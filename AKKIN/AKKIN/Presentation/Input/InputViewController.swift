@@ -21,6 +21,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     private let backButton = BaseButton().then {
         $0.setImage(AkkinButton.backButton, for: .normal)
     }
+
     private let inputIconSelectedView = InputIconSelectedView()
 
     private let imageView: UIImageView = {
@@ -209,7 +210,16 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         makeCardButton.tap = { [weak self] in
             guard let self else {
                 return }
-            postAkkin(year: inputDatePicker.selectedYear ?? 0, month: inputDatePicker.selectedMonth ?? 0, day: inputDatePicker.selectedDay ?? 0, category: inputCategory.selectedCategory ?? AkkinString.dining, saveContent: inputSaveContent.contentTextField.text ?? "nil", how: inputHowContent.howTextField.text ?? "nil", expectCost: Int(inputCostContent.expectCostTextField.text ?? "0") ?? 0, realCost: Int(inputCostContent.realCostTextField.text ?? "0") ?? 0)
+            postAkkin(
+                year: inputDatePicker.selectedYear ?? 0,
+                month: inputDatePicker.selectedMonth ?? 0,
+                day: inputDatePicker.selectedDay ?? 0,
+                imageUrl: inputIconSelectedView.selectedIcon ?? "nil",
+                category: inputCategory.selectedCategory ?? AkkinString.dining,
+                saveContent: inputSaveContent.contentTextField.text ?? "nil",
+                how: inputHowContent.howTextField.text ?? "nil",
+                expectCost: Int(inputCostContent.expectCostTextField.text ?? "0") ?? 0,
+                realCost: Int(inputCostContent.realCostTextField.text ?? "0") ?? 0)
             presentCardViewControllerWithArgs(
                 from: self,
                 selectedYear: inputDatePicker.selectedYear,
@@ -270,8 +280,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     }
 
     // MARK: Networking
-    func postAkkin(year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
-        NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
+    func postAkkin(year: Int, month: Int, day: Int, imageUrl: String, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
+        NetworkService.shared.akkin.postAkkin(year: year, month: month, day: day, imageUrl: imageUrl, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }
