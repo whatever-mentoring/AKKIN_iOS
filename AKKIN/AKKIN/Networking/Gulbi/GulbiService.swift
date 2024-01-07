@@ -18,14 +18,24 @@ final class GulbiService {
         case deleteGulbis
     }
 
-    public func getGulbis(completion: @escaping (NetworkResult<Any>) -> Void) {
-        gulbiProvider.request(.getGulbis) { result in
+    public func getGulbis(
+        category: String,
+        lastId: Int,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
+        gulbiProvider.request(.getGulbis(
+            category: category,
+            lastId: lastId
+        )) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
       
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getGulbis)
+                let networkResult = self.judgeStatus(
+                    by: statusCode, data,
+                    responseData: .getGulbis
+                )
                 completion(networkResult)
 
             case .failure(let error):
@@ -63,7 +73,8 @@ final class GulbiService {
                 let data = response.data
                 let networkResult = self.judgeStatus(
                     by: statusCode, data,
-                    responseData: .postGulbis)
+                    responseData: .postGulbis
+                )
                 completion(networkResult)
 
             case .failure(let error):
@@ -101,15 +112,14 @@ final class GulbiService {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-
                 let networkResult = self.judgeStatus(
                     by: statusCode, data,
-                    responseData: .patchGulbis)
+                    responseData: .patchGulbis
+                )
                 completion(networkResult)
-                
+
             case .failure(let error):
                 print(error)
-                
             }
         }
     }
@@ -158,7 +168,7 @@ final class GulbiService {
 
         switch responseData {
         case .getGulbis:
-            let decodedData = try? decoder.decode(AkkinEntireResponse.self, from: data)
+            let decodedData = try? decoder.decode(GulbiResponse.self, from: data)
             return .success(decodedData ?? "success")
         case .postGulbis, .patchGulbis, .deleteGulbis:
             let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
