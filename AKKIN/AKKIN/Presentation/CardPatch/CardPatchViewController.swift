@@ -94,6 +94,7 @@ class CardPatchViewController: BaseViewController {
                 year: selectedEntries[0].year,
                 month: selectedEntries[0].month,
                 day: selectedEntries[0].day,
+                imageUrl: selectedEntries[0].imageUrl ?? "icon_1",
                 category: selectedEntries[0].gulbiCategory,
                 saveContent: selectedEntries[0].saveContent,
                 how: selectedEntries[0].how,

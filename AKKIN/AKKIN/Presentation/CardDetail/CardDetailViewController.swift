@@ -122,7 +122,7 @@ class CardDetailViewController: BaseViewController {
             title: AkkinString.deleteGulbis,
             style: .destructive,
             handler: { [self]
-                action in deleteAkkin(selectedEntries[0].id)
+                action in deleteGulbis(selectedEntries[0].id)
         })
 
         let cancelButton = UIAlertAction(title: AkkinString.cancel, style: .cancel, handler: nil)
@@ -134,8 +134,8 @@ class CardDetailViewController: BaseViewController {
     }
 
     // MARK: Networking
-    private func deleteAkkin(_ id: Int) {
-        NetworkService.shared.akkin.deleteAkkin(id: id) { result in
+    private func deleteGulbis(_ id: Int) {
+        NetworkService.shared.gulbis.deleteGulbis(id: id) { result in
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }
