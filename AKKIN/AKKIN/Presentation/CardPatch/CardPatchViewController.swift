@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class CardPatchViewController: BaseViewController {
+
     var buttons = [CategoryButton]()
     var selectedEntries: [MainEntries] = []
 
@@ -32,7 +33,7 @@ class CardPatchViewController: BaseViewController {
 
     private let inputIconSelectedView = InputIconSelectedView()
 
-    private let imageView: UIImageView = {
+    private let cardImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .akkinWhite
         imageView.layer.cornerRadius = 8
@@ -57,7 +58,41 @@ class CardPatchViewController: BaseViewController {
     }
 
     private func setContent() {
-        inputCategory.selectedCategory = selectedEntries[0].gulbiCategory
+        if selectedEntries[0].imageUrl == "icon_1" {
+            inputIconSelectedView.onIconTapped?(Icon.iconThemeProfile1)
+            inputIconSelectedView.setHighlightedState(Icon.iconThemeProfile1)
+        } else if selectedEntries[0].imageUrl == "icon_2"  {
+            inputIconSelectedView.onIconTapped?(Icon.iconThemeProfile2)
+            inputIconSelectedView.setHighlightedState(Icon.iconThemeProfile2)
+        } else if selectedEntries[0].imageUrl == "icon_3"  {
+            inputIconSelectedView.onIconTapped?(Icon.iconThemeProfile3)
+            inputIconSelectedView.setHighlightedState(Icon.iconThemeProfile3)
+        } else if selectedEntries[0].imageUrl == "icon_4" {
+            inputIconSelectedView.onIconTapped?(Icon.iconThemeProfile4)
+            inputIconSelectedView.setHighlightedState(Icon.iconThemeProfile4)
+        } else if selectedEntries[0].imageUrl == "icon_5" {
+            inputIconSelectedView.onIconTapped?(Icon.iconThemeProfile5)
+            inputIconSelectedView.setHighlightedState(Icon.iconThemeProfile5)
+        } else {
+            print("imageUrl is nil")
+        }
+
+        if selectedEntries[0].gulbiCategory == AkkinString.DINING {
+            inputCategory.onCategoryTapped?(Category.DINING)
+            inputCategory.setHighlightedState(Category.DINING)
+        } else if selectedEntries[0].gulbiCategory == AkkinString.TRAFFIC {
+            inputCategory.onCategoryTapped?(Category.TRAFFIC)
+            inputCategory.setHighlightedState(Category.TRAFFIC)
+        } else if selectedEntries[0].gulbiCategory == AkkinString.SHOPPING {
+            inputCategory.onCategoryTapped?(Category.SHOPPING)
+            inputCategory.setHighlightedState(Category.SHOPPING)
+        } else if selectedEntries[0].gulbiCategory == AkkinString.ETC {
+            inputCategory.onCategoryTapped?(Category.ETC)
+            inputCategory.setHighlightedState(Category.ETC)
+        } else {
+            print("category is nil" + "\(selectedEntries[0].gulbiCategory)")
+        }
+
         inputDatePicker.dateTextField.text = "\(selectedEntries[0].year)" + " / " + "\(selectedEntries[0].month)" + " / " + "\(selectedEntries[0].day)"
         inputSaveContent.contentTextField.text = selectedEntries[0].saveContent
         inputHowContent.howTextField.text = selectedEntries[0].how
@@ -76,7 +111,7 @@ class CardPatchViewController: BaseViewController {
 
         view.addSubview(scrollView)
         scrollView.addSubview(inputIconSelectedView)
-        scrollView.addSubview(imageView)
+        scrollView.addSubview(cardImageView)
         scrollView.addSubview(inputDatePicker)
         scrollView.addSubview(inputCategory)
         scrollView.addSubview(inputSaveContent)
@@ -174,15 +209,15 @@ class CardPatchViewController: BaseViewController {
     private func tapIcon(_ icon: Icon) {
         switch icon {
         case .iconThemeProfile1:
-            imageView.image = AkkinImage.akkinImage1
+            cardImageView.image = AkkinImage.akkinImage1
         case .iconThemeProfile2:
-            imageView.image = AkkinImage.akkinImage2
+            cardImageView.image = AkkinImage.akkinImage2
         case .iconThemeProfile3:
-            imageView.image = AkkinImage.akkinImage3
+            cardImageView.image = AkkinImage.akkinImage3
         case .iconThemeProfile4:
-            imageView.image = AkkinImage.akkinImage4
+            cardImageView.image = AkkinImage.akkinImage4
         case .iconThemeProfile5:
-            imageView.image = AkkinImage.akkinImage5
+            cardImageView.image = AkkinImage.akkinImage5
         }
     }
 
@@ -201,14 +236,14 @@ class CardPatchViewController: BaseViewController {
             $0.width.equalToSuperview()
         }
 
-        imageView.snp.makeConstraints {
+        cardImageView.snp.makeConstraints {
             $0.width.height.equalTo(172)
             $0.top.equalTo(inputIconSelectedView.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
 
         inputDatePicker.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(24)
+            $0.top.equalTo(cardImageView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(46)
             $0.height.equalTo(47)
             $0.width.equalTo(294)

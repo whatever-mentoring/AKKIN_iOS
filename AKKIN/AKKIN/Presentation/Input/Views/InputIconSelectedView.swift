@@ -42,14 +42,14 @@ final class InputIconSelectedView: BaseView {
     public var selectedIcon: String?
 
     var buttons: [IconButton] = []
-    
+
     private let iconStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 8
         $0.alignment = .fill
         $0.distribution = .fillEqually
     }
-    
+
     // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -57,17 +57,17 @@ final class InputIconSelectedView: BaseView {
         makeConstraints()
         iconButtonSetup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
         addSubview(iconStackView)
     }
-    
+
     // MARK: Properties
     func iconButtonSetup() {
         self.buttons = Icon.allCases.map { icon in
@@ -84,18 +84,19 @@ final class InputIconSelectedView: BaseView {
             }
             return button
         }
-        
+
         for button in buttons {
             iconStackView.addArrangedSubview(button)
             button.addAction(UIAction(handler: { [weak self] _ in
                 guard let self = self else { return }
                 self.onIconTapped?(button.icon)
+                print(onIconTapped ?? "nil")
                 self.setHighlightedState(button.icon)
             }), for: .touchUpInside)
         }
     }
-    
-    func setHighlightedState(_ icon: Icon) {
+
+    public func setHighlightedState(_ icon: Icon) {
         for button in buttons {
             if button.icon == icon {
                 print("imageString: " + "\(icon.imageString)")
@@ -108,11 +109,11 @@ final class InputIconSelectedView: BaseView {
                 button.layer.borderColor = UIColor.akkinGray3.cgColor}
         }
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
+
         iconStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalTo(252)
