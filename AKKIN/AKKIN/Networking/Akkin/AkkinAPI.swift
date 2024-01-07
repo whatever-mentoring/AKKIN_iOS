@@ -26,6 +26,7 @@ enum AkkinAPI {
         year: Int,
         month: Int,
         day: Int,
+        imageUrl: String,
         category: String,
         saveContent: String,
         how: String,
@@ -66,43 +67,45 @@ extension AkkinAPI: TargetType {
         switch self {
         case .getAkkin, .deleteAkkin:
             return .requestPlain
-        case .postAkkin(
-            let year,
-            let month,
-            let day,
-            let imageUrl,
-            let category,
-            let saveContent,
-            let how,
-            let expectCost,
-            let realCost
+        case let .postAkkin(
+            year,
+            month,
+            day,
+            imageUrl,
+            category,
+            saveContent,
+            how,
+            expectCost,
+            realCost
         ):
             return .requestParameters(parameters: [
                 "year": year,
                 "month": month,
                 "day": day,
+                "imageUrl": imageUrl,
                 "category": category,
                 "saveContent": saveContent,
                 "how": how,
                 "expectCost": expectCost,
                 "realCost": realCost
             ], encoding: JSONEncoding.default)
-        case .patchAkkin(
-            let id,
-            let year,
-            let month,
-            let day,
-            let category,
-            let saveContent,
-            let how,
-            let expectCost,
-            let realCost
+        case let .patchAkkin(
+            _,
+            year,
+            month,
+            day,
+            imageUrl,
+            category,
+            saveContent,
+            how,
+            expectCost,
+            realCost
         ):
             return .requestParameters(parameters: [
-                "id": id,
                 "year": year,
                 "month": month,
                 "day": day,
+                "imageUrl": imageUrl,
                 "category": category,
                 "saveContent": saveContent,
                 "how": how,
