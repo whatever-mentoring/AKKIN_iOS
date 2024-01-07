@@ -10,10 +10,9 @@ final class NetworkService {
     
     private init() { }
     
-    let appleLogin = AuthService()
+    let auth = AuthService()
     let main = MainService()
+    let gulbis = GulbiService()
     let weekly = WeeklyService()
     let monthly = MonthlyService()
-    let akkin = AkkinService()
-
 }

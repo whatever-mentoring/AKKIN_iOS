@@ -9,7 +9,7 @@ import UIKit
 
 class CardDetailViewController: BaseViewController {
 
-    var selectedEntries: [Entries] = []
+    var selectedEntries: [MainEntries] = []
 
     // MARK: UI Components
     private let backButton = BaseButton().then {
@@ -93,14 +93,14 @@ class CardDetailViewController: BaseViewController {
         let actionsheetController = UIAlertController(title: AkkinString.cardDetail, message: nil, preferredStyle: .actionSheet)
 
         let patchButton = UIAlertAction(
-            title: AkkinString.patchAkkin,
+            title: AkkinString.patchGulbis,
             style: .default,
             handler: { [self]
                 _ in router.presentCardPatchViewController(selectedEntries: selectedEntries)
         })
 
         let deleteButton = UIAlertAction(
-            title: AkkinString.deleteAkkin,
+            title: AkkinString.deleteGulbis,
             style: .destructive,
             handler: { [self]
                 _ in presentAlert()
@@ -119,7 +119,7 @@ class CardDetailViewController: BaseViewController {
         let alertController = UIAlertController(title: AkkinString.cardDeleteTitle, message: AkkinString.cardDeleteMessage, preferredStyle: .alert)
 
         let deleteButton = UIAlertAction(
-            title: AkkinString.deleteAkkin,
+            title: AkkinString.deleteGulbis,
             style: .destructive,
             handler: { [self]
                 action in deleteAkkin(selectedEntries[0].id)

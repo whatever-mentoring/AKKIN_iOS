@@ -126,7 +126,7 @@ final class MyPageViewController: BaseViewController {
 
     func getAppleLogout() {
         print("apple logout try")
-        NetworkService.shared.appleLogin.getAppleLogout() { result in
+        NetworkService.shared.auth.getAppleLogout() { result in
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }
@@ -149,10 +149,10 @@ final class MyPageViewController: BaseViewController {
 
     func postAppleRevoke(_ appleToken: String, _ authorizationCode: String) {
         print("apple revoke try")
-        NetworkService.shared.appleLogin.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode) { result in
+        NetworkService.shared.auth.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode) { result in
             switch result {
             case .success(let response):
-                guard let data = response as? AuthLoginResponse else { return }
+                guard let data = response as? AppleLoginResponse else { return }
                 print("success")
 
                 self.router.presentLoginViewController()

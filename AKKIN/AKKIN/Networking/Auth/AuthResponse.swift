@@ -5,7 +5,7 @@
 //  Created by 박지윤 on 2023/11/27.
 //
 
-struct AuthLoginResponse: Codable {
+struct AppleLoginResponse: Codable {
     let accessToken: String
     let refreshToken: String
 }

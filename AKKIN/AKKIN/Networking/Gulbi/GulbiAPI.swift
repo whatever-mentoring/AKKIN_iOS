@@ -8,9 +8,9 @@
 import Moya
 import Foundation
 
-enum AkkinAPI {
-    case getAkkin
-    case postAkkin(
+enum GulbiAPI {
+    case getGulbis
+    case postGulbis(
         year: Int,
         month: Int,
         day: Int,
@@ -21,7 +21,7 @@ enum AkkinAPI {
         expectCost: Int,
         realCost: Int
     )
-    case patchAkkin(
+    case patchGulbis(
         id: Int,
         year: Int,
         month: Int,
@@ -33,41 +33,41 @@ enum AkkinAPI {
         expectCost: Int,
         realCost: Int
     )
-    case deleteAkkin(id: Int)
+    case deleteGulbis(id: Int)
 }
 
-extension AkkinAPI: TargetType {
+extension GulbiAPI: TargetType {
     var path: String {
         switch self {
-        case .getAkkin:
+        case .getGulbis:
             return URLConst.gulbis
-        case .postAkkin:
+        case .postGulbis:
             return URLConst.gulbis
-        case .patchAkkin:
-            return URLConst.gulbis
-        case let .deleteAkkin(id):
+        case let .patchGulbis(id, _, _, _, _, _, _, _, _, _):
+            return URLConst.gulbis + "/\(id)"
+        case let .deleteGulbis(id):
             return URLConst.gulbis + "/\(id)"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .getAkkin:
+        case .getGulbis:
             return .get
-        case .postAkkin:
+        case .postGulbis:
             return .post
-        case .patchAkkin:
+        case .patchGulbis:
             return .patch
-        case .deleteAkkin:
+        case .deleteGulbis:
             return .delete
         }
     }
 
     var task: Moya.Task {
         switch self {
-        case .getAkkin, .deleteAkkin:
+        case .getGulbis, .deleteGulbis:
             return .requestPlain
-        case let .postAkkin(
+        case let .postGulbis(
             year,
             month,
             day,
@@ -89,7 +89,7 @@ extension AkkinAPI: TargetType {
                 "expectCost": expectCost,
                 "realCost": realCost
             ], encoding: JSONEncoding.default)
-        case let .patchAkkin(
+        case let .patchGulbis(
             _,
             year,
             month,

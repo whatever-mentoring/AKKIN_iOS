@@ -11,7 +11,7 @@ import SnapKit
 class CardPatchViewController: BaseViewController {
     var buttons = [CategoryButton]()
     
-    var selectedEntries: [Entries] = []
+    var selectedEntries: [MainEntries] = []
 
     // MARK: Constants
     private var isKeyboardVisible = false
@@ -88,8 +88,8 @@ class CardPatchViewController: BaseViewController {
             guard let self else {
                 return }
             // MARK: - 사용자가 입력한 데이터 연결 필요
-            print("patchAkkin called")
-            patchAkkin(
+            print("patchGulbis called")
+            patchGulbis(
                 id: selectedEntries[0].id,
                 year: selectedEntries[0].year,
                 month: selectedEntries[0].month,
@@ -123,14 +123,36 @@ class CardPatchViewController: BaseViewController {
 
     // MARK: Properties
     private func setNavigationItem() {
-        navigationItem.title = "카드 내용 수정"
+        navigationItem.title = AkkinString.patchGulbisTitle
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: confirmButton)
     }
 
     // MARK: Networking
-    func patchAkkin(id: Int, year: Int, month: Int, day: Int, category: String, saveContent: String, how: String, expectCost: Int, realCost: Int) {
-        NetworkService.shared.akkin.patchAkkin(id: id, year: year, month: month, day: day, category: category, saveContent: saveContent, how: how, expectCost: expectCost, realCost: realCost) { result in
+    func patchGulbis(
+        id: Int,
+        year: Int,
+        month: Int,
+        day: Int,
+        imageUrl: String,
+        category: String,
+        saveContent: String,
+        how: String,
+        expectCost: Int,
+        realCost: Int
+    ) {
+        NetworkService.shared.gulbis.patchGulbis(
+            id: id,
+            year: year,
+            month: month,
+            day: day,
+            imageUrl: imageUrl,
+            category: category,
+            saveContent: saveContent,
+            how: how,
+            expectCost: expectCost,
+            realCost: realCost
+        ) { result in
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }

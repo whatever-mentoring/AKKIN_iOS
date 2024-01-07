@@ -39,8 +39,8 @@ public enum AkkinString {
     public static let expectPlaceholder = "100,000,000"
     public static let real = "실제 비용"
     public static let realPlaceholder = "100,000,000"
-    public static let makeAkkin = "카드 만들기"
-    public static let postAkkin = "기록하기"
+    public static let makeGulbis = "카드 만들기"
+    public static let postGulbis = "기록하기"
 
     // Card Made
     public static let completeAkkin = "오늘의 소비 카드가 \n완성됐어요."
@@ -50,13 +50,13 @@ public enum AkkinString {
 
     // Card Detail
     public static let cardDetail = "카드 상세 내용"
-    public static let patchAkkin = "수정"
-    public static let deleteAkkin = "삭제"
+    public static let patchGulbis = "수정"
+    public static let deleteGulbis = "삭제"
     public static let cancel = "닫기"
     public static let cardDeleteTitle = "카드를 정말 삭제할까요?"
     public static let cardDeleteMessage = "이 동작은 취소할 수 없어요."
 
     // Card Patch
-    public static let patchAkkinTitle = "카드 내용 수정"
+    public static let patchGulbisTitle = "카드 내용 수정"
     public static let confirm = "완료"
 }

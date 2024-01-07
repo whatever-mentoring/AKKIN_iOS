@@ -8,24 +8,24 @@
 import Foundation
 import Moya
 
-final class AkkinService {
-    private var akkinProvider = MoyaProvider<AkkinAPI>(plugins: [MoyaLoggerPlugin()])
+final class GulbiService {
+    private var gulbiProvider = MoyaProvider<GulbiAPI>(plugins: [MoyaLoggerPlugin()])
 
     private enum ResponseData {
-        case getAkkin
-        case postAkkin
-        case patchAkkin
-        case deleteAkkin
+        case getGulbis
+        case postGulbis
+        case patchGulbis
+        case deleteGulbis
     }
 
-    public func getAkkin(completion: @escaping (NetworkResult<Any>) -> Void) {
-        akkinProvider.request(.getAkkin) { result in
+    public func getGulbis(completion: @escaping (NetworkResult<Any>) -> Void) {
+        gulbiProvider.request(.getGulbis) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
       
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getAkkin)
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getGulbis)
                 completion(networkResult)
 
             case .failure(let error):
@@ -34,7 +34,7 @@ final class AkkinService {
         }
     }
 
-    public func postAkkin(
+    public func postGulbis(
         year: Int,
         month: Int,
         day: Int,
@@ -46,7 +46,7 @@ final class AkkinService {
         realCost: Int,
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
-        akkinProvider.request(.postAkkin(
+        gulbiProvider.request(.postGulbis(
             year: year,
             month: month,
             day: day,
@@ -63,7 +63,7 @@ final class AkkinService {
                 let data = response.data
                 let networkResult = self.judgeStatus(
                     by: statusCode, data,
-                    responseData: .postAkkin)
+                    responseData: .postGulbis)
                 completion(networkResult)
 
             case .failure(let error):
@@ -72,7 +72,7 @@ final class AkkinService {
         }
     }
 
-    public func patchAkkin(
+    public func patchGulbis(
         id: Int,
         year: Int,
         month: Int,
@@ -85,7 +85,7 @@ final class AkkinService {
         realCost: Int,
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
-        akkinProvider.request(.patchAkkin(
+        gulbiProvider.request(.patchGulbis(
             id: id,
             year: year,
             month: month,
@@ -104,7 +104,7 @@ final class AkkinService {
 
                 let networkResult = self.judgeStatus(
                     by: statusCode, data,
-                    responseData: .patchAkkin)
+                    responseData: .patchGulbis)
                 completion(networkResult)
                 
             case .failure(let error):
@@ -114,8 +114,8 @@ final class AkkinService {
         }
     }
 
-    public func deleteAkkin(id: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        akkinProvider.request(.deleteAkkin(id: id)) { result in
+    public func deleteGulbis(id: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        gulbiProvider.request(.deleteGulbis(id: id)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -123,12 +123,11 @@ final class AkkinService {
 
                 let networkResult = self.judgeStatus(
                     by: statusCode, data,
-                    responseData: .deleteAkkin)
+                    responseData: .deleteGulbis)
                 completion(networkResult)
-                
+
             case .failure(let error):
                 print(error)
-                
             }
         }
     }
@@ -139,7 +138,7 @@ final class AkkinService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getAkkin, .postAkkin, .patchAkkin, .deleteAkkin:
+            case .getGulbis, .postGulbis, .patchGulbis, .deleteGulbis:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -158,10 +157,10 @@ final class AkkinService {
         let decoder = JSONDecoder()
 
         switch responseData {
-        case .getAkkin:
+        case .getGulbis:
             let decodedData = try? decoder.decode(AkkinEntireResponse.self, from: data)
             return .success(decodedData ?? "success")
-        case .postAkkin, .patchAkkin, .deleteAkkin:
+        case .postGulbis, .patchGulbis, .deleteGulbis:
             let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
             return .success(decodedData ?? "success")
         }
