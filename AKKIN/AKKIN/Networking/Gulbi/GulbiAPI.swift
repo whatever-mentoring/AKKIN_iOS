@@ -115,7 +115,6 @@ extension GulbiAPI: TargetType {
                 "expectCost": expectCost,
                 "realCost": realCost
             ], encoding: JSONEncoding.default)
-        }
-        
+        }   
     }
 }
