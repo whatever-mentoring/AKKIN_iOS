@@ -58,16 +58,16 @@ class CardDetailViewController: BaseViewController {
         cardDetailView.howLabel.text = selectedEntries[0].how
         cardDetailView.expectPriceLabel.text = "\(selectedEntries[0].expectCost)"
         cardDetailView.realPriceLabel.text = "\(selectedEntries[0].realCost)"
-        if selectedEntries[0].category == AkkinString.dining {
+        if selectedEntries[0].gulbiCategory == AkkinString.dining {
             cardDetailView.diningButton.setTitleColor(.white, for: .normal)
             cardDetailView.diningButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].category == AkkinString.traffic {
+        } else if selectedEntries[0].gulbiCategory == AkkinString.traffic {
             cardDetailView.trafficButton.setTitleColor(.white, for: .normal)
             cardDetailView.trafficButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].category == AkkinString.shopping {
+        } else if selectedEntries[0].gulbiCategory == AkkinString.shopping {
             cardDetailView.shoppingButton.setTitleColor(.white, for: .normal)
             cardDetailView.shoppingButton.backgroundColor = .akkinGreen
-        } else if selectedEntries[0].category == AkkinString.etc {
+        } else if selectedEntries[0].gulbiCategory == AkkinString.etc {
             cardDetailView.etcButton.setTitleColor(.white, for: .normal)
             cardDetailView.etcButton.backgroundColor = .akkinGreen
         }

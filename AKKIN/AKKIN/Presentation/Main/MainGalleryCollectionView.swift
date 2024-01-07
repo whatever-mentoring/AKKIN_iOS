@@ -174,7 +174,7 @@ final class MainGalleryCollectionView: BaseView {
         shoppingButton.backgroundColor = UIColor.white
         etcButton.backgroundColor = UIColor.white
 
-        diningEntries = totalEntries.filter { $0.category == "DINING" }
+        diningEntries = totalEntries.filter { $0.gulbiCategory == "DINING" }
         galleryCollectionView.reloadData()
     }
 
@@ -195,7 +195,7 @@ final class MainGalleryCollectionView: BaseView {
         shoppingButton.backgroundColor = UIColor.white
         etcButton.backgroundColor = UIColor.white
 
-        trafficEntries = totalEntries.filter { $0.category == "TRAFFIC" }
+        trafficEntries = totalEntries.filter { $0.gulbiCategory == "TRAFFIC" }
         galleryCollectionView.reloadData()
     }
 
@@ -216,7 +216,7 @@ final class MainGalleryCollectionView: BaseView {
         trafficButton.backgroundColor = UIColor.white
         etcButton.backgroundColor = UIColor.white
 
-        shoppingEntries = totalEntries.filter { $0.category == "SHOPPING" }
+        shoppingEntries = totalEntries.filter { $0.gulbiCategory == "SHOPPING" }
         galleryCollectionView.reloadData()
     }
 
@@ -237,7 +237,7 @@ final class MainGalleryCollectionView: BaseView {
         trafficButton.backgroundColor = UIColor.white
         shoppingButton.backgroundColor = UIColor.white
 
-        etcEntries = totalEntries.filter { $0.category == "ETC" }
+        etcEntries = totalEntries.filter { $0.gulbiCategory == "ETC" }
         galleryCollectionView.reloadData()
     }
 
@@ -324,7 +324,7 @@ extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionVie
             entry = etcEntries[indexPath.row]
         }
 
-        cell.cardImageView.image = AkkinImage.akkinIcon1
+        cell.cardImageView.image = UIImage(named: entry.imageUrl ?? "icon_1")
         cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
         cell.howLabel.text = entry.saveContent
         

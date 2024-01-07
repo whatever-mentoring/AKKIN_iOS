@@ -19,13 +19,24 @@ enum Icon: CaseIterable {
         case .iconThemeProfile5: return AkkinImage.akkinIcon5 
         }
     }
+
+    var imageString: String {
+        switch self {
+        case .iconThemeProfile1: return "icon_1"
+        case .iconThemeProfile2: return "icon_2"
+        case .iconThemeProfile3: return "icon_3"
+        case .iconThemeProfile4: return "icon_4"
+        case .iconThemeProfile5: return "icon_5"
+        }
+    }
 }
 
 final class InputIconSelectedView: BaseView {
 
     // MARK: UI Components
     var onIconTapped: ((Icon) -> Void)?
-    
+    public var selectedIcon: String?
+
     var buttons: [IconButton] = []
     
     private let iconStackView = UIStackView().then {
@@ -83,6 +94,8 @@ final class InputIconSelectedView: BaseView {
     func setHighlightedState(_ icon: Icon) {
         for button in buttons {
             if button.icon == icon {
+                print("imageString: " + "\(icon.imageString)")
+                selectedIcon = "\(icon.imageString)"
                 button.layer.borderWidth = 1
                 button.layer.borderColor = UIColor.akkinGreen.cgColor
             }

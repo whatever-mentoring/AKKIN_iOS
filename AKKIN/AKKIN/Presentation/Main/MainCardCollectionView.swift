@@ -137,7 +137,7 @@ extension MainCardCollectionView: UICollectionViewDataSource {
             cell.contentView.layer.shadowRadius = 8
 
             let entry = todayEntries[indexPath.row]
-            cell.cardImageView.image = AkkinImage.akkinIcon1
+            cell.cardImageView.image = UIImage(named: entry.imageUrl ?? "icon_1")
             cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
             cell.howLabel.text = entry.saveContent
             cell.moneyLabel.text = "무려 " + "\(entry.expectCost - entry.realCost)" + " 원"

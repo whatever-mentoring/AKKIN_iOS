@@ -25,7 +25,8 @@ struct Entries: Codable {
     let year: Int
     let month: Int
     let day: Int
-    let category: String
+    let imageUrl: String?
+    let gulbiCategory: String
     let saveContent: String
     let how: String
     let expectCost: Int
