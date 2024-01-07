@@ -9,7 +9,10 @@ import Moya
 import Foundation
 
 enum GulbiAPI {
-    case getGulbis
+    case getGulbis(
+        category: String,
+        lastId: Int
+    )
     case postGulbis(
         year: Int,
         month: Int,
