@@ -15,21 +15,21 @@ final class LoginView: BaseView {
         $0.image = AkkinImage.akkinlogin
     }
 
-    private let appleButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
+    private let appleLoginButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
 
     // MARK: Properties
-    var tapAdd: (() -> Void)?
+    var tapLogin: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
 
         addSubview(loginImageView)
-        addSubview(appleButton)
+        addSubview(appleLoginButton)
 
-        appleButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
+        appleLoginButton.addTarget(self, action: #selector(handleLoginEvent), for: .touchUpInside)
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
@@ -38,7 +38,7 @@ final class LoginView: BaseView {
             $0.edges.equalToSuperview()
         }
 
-        appleButton.snp.makeConstraints {
+        appleLoginButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview().inset(50)
             $0.height.equalTo(56)
@@ -46,7 +46,7 @@ final class LoginView: BaseView {
     }
 
     // MARK: Event
-    @objc private func handleAddEvent() {
-        tapAdd?()
+    @objc private func handleLoginEvent() {
+        tapLogin?()
     }
 }
