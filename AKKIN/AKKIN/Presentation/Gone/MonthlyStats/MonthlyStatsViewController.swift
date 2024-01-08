@@ -59,7 +59,7 @@ final class MonthlyStatsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
-        view.backgroundColor = .akkinGray0
+        view.backgroundColor = .akkinBG
 
         router.viewController = self
     }

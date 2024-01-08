@@ -29,7 +29,7 @@ class CardSaveViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .akkinGray0
+        view.backgroundColor = .akkinBG
 
         cardSavePageView.configureCardSaveView(
             selectedYear: selectedYear,
@@ -48,6 +48,7 @@ class CardSaveViewController: BaseViewController {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+
         view.addSubview(cardSavePageView)
 
         cardSavePageView.tap = { [weak self] in
@@ -64,9 +65,9 @@ class CardSaveViewController: BaseViewController {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
+
         cardSavePageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.center.equalToSuperview()
         }
     }
 
