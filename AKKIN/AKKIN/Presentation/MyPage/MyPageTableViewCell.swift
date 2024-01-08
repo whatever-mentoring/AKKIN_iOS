@@ -22,7 +22,8 @@ final class MyPageTableViewCell: UITableViewCell {
 
     // MARK: init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: style, reuseIdentifier: reuseIdentifier
+)
         configureSubviews()
         makeConstraints()
     }
@@ -33,13 +34,13 @@ final class MyPageTableViewCell: UITableViewCell {
     }
 
     // MARK: Configuration
-    func configureSubviews() {
+    private func configureSubviews() {
         contentView.addSubview(contentLabel)
         contentView.addSubview(detailButton)
     }
 
     // MARK: Layout
-    func makeConstraints() {
+    private func makeConstraints() {
         contentLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(28)
             $0.centerY.equalToSuperview()

@@ -19,6 +19,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
     // MARK: init
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+
         configureSubviews()
         makeConstraints()
     }
@@ -29,12 +30,12 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
     }
 
     // MARK: Configuration
-    func configureSubviews() {
+    private func configureSubviews() {
         contentView.addSubview(titleLabel)
     }
 
     // MARK: Layout
-    func makeConstraints() {
+    private func makeConstraints() {
         titleLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(12)
             $0.leading.trailing.equalToSuperview().inset(28)
