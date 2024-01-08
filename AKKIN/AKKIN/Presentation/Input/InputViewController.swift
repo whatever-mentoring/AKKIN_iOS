@@ -24,13 +24,11 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
 
     private let inputIconSelectedView = InputIconSelectedView()
 
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = .akkinWhite
-        imageView.layer.cornerRadius = 8
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    private let imageView = UIImageView().then {
+        $0.backgroundColor = .akkinWhite
+        $0.layer.cornerRadius = 8
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
 
     private let inputDatePicker = InputDatePicker()
     private let inputCategory = InputCategory()
@@ -88,6 +86,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         }
     }
 
+    // MARK: Keyboard
     @objc func keyboardWillShow(_ sender: Notification) {
         guard let keyboardFrame =
                 sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
@@ -114,7 +113,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         }
     }
 
-    func setupKeyboardEvent() {
+    private func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
@@ -138,7 +137,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         inputCostContent.expectCostTextField.delegate = self
         inputCostContent.realCostTextField.delegate = self
         router.viewController = self
-        view.backgroundColor = .akkinGray0
+        view.backgroundColor = .akkinBG
     }
 
     // MARK: Layout
@@ -161,7 +160,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             $0.top.equalTo(inputIconSelectedView.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
-    
+
         inputDatePicker.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(46)
@@ -238,7 +237,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 return }
             router.dismissViewController()
         }
-   
+
         inputIconSelectedView.onIconTapped = { [weak self] icon in
             guard let self else {
                 return }
@@ -251,7 +250,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         }
     }
 
-    func presentCardSaveViewControllerWithArgs(
+    private func presentCardSaveViewControllerWithArgs(
         from viewController: UIViewController?,
         selectedYear: Int?,
         selectedMonth: Int?,
@@ -264,7 +263,6 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     ) {
         let cardSaveiewController = CardSaveViewController()
 
-        // CardSaveViewController에 전달할 값들을 설정
         cardSaveiewController.selectedYear = selectedYear
         cardSaveiewController.selectedMonth = selectedMonth
         cardSaveiewController.selectedDay = selectedDay
@@ -274,13 +272,12 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         cardSaveiewController.selectedExpectCost = selectedExpectCost
         cardSaveiewController.selectedRealCost = selectedRealCost
 
-        // Modal로 표시
         cardSaveiewController.modalPresentationStyle = .fullScreen
         viewController?.present(cardSaveiewController, animated: true)
     }
 
     // MARK: Networking
-    func postGulbis(
+    private func postGulbis(
         year: Int,
         month: Int,
         day: Int,
@@ -291,6 +288,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         expectCost: Int,
         realCost: Int
     ) {
+        print("💸 postGulbis called")
         NetworkService.shared.gulbis.postGulbis(
             year: year,
             month: month,
@@ -305,7 +303,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }
-                print(data)
+                print("🎯 postGulbis success: " + "\(data)")
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InputHowContent: UIView, UITextFieldDelegate {
+class InputHowContent: BaseView, UITextFieldDelegate {
 
     // MARK: UI Components
     private let howStackView = UIStackView().then {
@@ -26,19 +26,10 @@ class InputHowContent: UIView, UITextFieldDelegate {
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
 
-    // MARK: Initializer
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        configureSubviews()
-        makeConstraints()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     // MARK: Configuration
-    func configureSubviews() {
+    override func configureSubviews() {
+        super.configureSubviews()
+
         howTextField.delegate = self
 
         addSubview(howStackView)
@@ -47,7 +38,9 @@ class InputHowContent: UIView, UITextFieldDelegate {
     }
 
     // MARK: Layout
-    func makeConstraints() {
+    override func makeConstraints() {
+        super.makeConstraints()
+
         howStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
         }
