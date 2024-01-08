@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InputCostContent: UIView, UITextFieldDelegate {
+class InputCostContent: BaseView, UITextFieldDelegate {
 
     // MARK: UI Components
     private let costStackView = UIStackView().then {
@@ -46,39 +46,34 @@ class InputCostContent: UIView, UITextFieldDelegate {
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
 
-    // MARK: Initializer
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        configureSubviews()
-        makeConstraints()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     // MARK: Configuration
-    func configureSubviews() {
+    override func configureSubviews() {
+        super.configureSubviews()
+
         addSubview(costStackView)
         costStackView.addArrangedSubview(expectCostStackView)
         costStackView.addArrangedSubview(realCostStackView)
-        
+
         expectCostStackView.addArrangedSubview(expectCostLabel)
         expectCostStackView.addArrangedSubview(expectCostTextField)
-        
+
         realCostStackView.addArrangedSubview(realCostLabel)
         realCostStackView.addArrangedSubview(realCostTextField)
     }
 
     // MARK: Layout
-    func makeConstraints() {
+    override func makeConstraints() {
+        super.makeConstraints()
+
         costStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalTo(270)
         }
+
         expectCostStackView.snp.makeConstraints {
             $0.width.equalTo(123)
         }
+
         realCostStackView.snp.makeConstraints {
             $0.width.equalTo(123)
         }

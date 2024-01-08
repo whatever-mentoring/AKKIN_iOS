@@ -8,11 +8,12 @@
 
 import UIKit
 
-class InputDatePicker: UIView {
+class InputDatePicker: BaseView {
+
     var selectedYear: Int?
     var selectedMonth: Int?
     var selectedDay: Int?
-    
+
     // MARK: UI Components
     private let dateLabelStackView = UIStackView().then {
         $0.axis = .vertical
@@ -30,10 +31,10 @@ class InputDatePicker: UIView {
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
 
-    let toolbar = UIToolbar().then {
+    private let toolbar = UIToolbar().then {
         $0.sizeToFit()
     }
-  
+
     let datePicker = UIDatePicker().then {
         $0.datePickerMode = .date
         $0.preferredDatePickerStyle = .inline
@@ -41,27 +42,19 @@ class InputDatePicker: UIView {
         $0.timeZone = .autoupdatingCurrent
     }
 
-    // MARK: Initializer
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        configureSubviews()
-        makeConstraints()
+    // MARK: Configuration
+    override func configureSubviews() {
+        super.configureSubviews()
+
+        addSubview(dateLabelStackView)
+
+        dateLabelStackView.addArrangedSubview(dateNameLabel)
+        dateLabelStackView.addArrangedSubview(dateTextField)
         createDatePicker()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: Configuration
-    func configureSubviews() {
-        addSubview(dateLabelStackView)
-        dateLabelStackView.addArrangedSubview(dateNameLabel)
-        dateLabelStackView.addArrangedSubview(dateTextField)
-    }
-
     // MARK: Properties
-    func creatToolbar() -> UIToolbar { // custom Toolbar 만들기
+    private func creatToolbar() -> UIToolbar {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(
@@ -71,7 +64,7 @@ class InputDatePicker: UIView {
         return toolBar
     }
 
-    func createDatePicker() {
+    private func createDatePicker() {
         dateTextField.inputView = datePicker
         dateTextField.inputAccessoryView = creatToolbar()
    }
@@ -89,7 +82,9 @@ class InputDatePicker: UIView {
     }
 
     // MARK: Layout
-    func makeConstraints() {
+    override func makeConstraints() {
+        super.makeConstraints()
+
         dateLabelStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
         }

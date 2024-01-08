@@ -9,7 +9,7 @@ import UIKit
 
 enum Category: CaseIterable {
     case DINING, TRAFFIC, SHOPPING, ETC
-    
+
     var title: String {
         switch self {
         case .DINING: return AkkinString.dining
@@ -20,11 +20,11 @@ enum Category: CaseIterable {
     }
 }
 
-final class InputCategory: UIView {
+final class InputCategory: BaseView {
 
     var onCategoryTapped: ((Category) -> Void)?
     public var selectedCategory: String?
-    
+
     // MARK: UI Components
     private let categoryStackView = UIStackView().then {
         $0.axis = .vertical
@@ -50,28 +50,19 @@ final class InputCategory: UIView {
         $0.textColor = .akkinGreen
     }
 
-    // MARK: Initializer
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        configureSubviews()
-        makeConstraints()
-        iconButtonSetup()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     // MARK: Configuration
-    func configureSubviews() {
+    override func configureSubviews() {
+        super.configureSubviews()
+
         addSubview(categoryStackView)
         categoryStackView.addArrangedSubview(categoryLabel)
         categoryStackView.addArrangedSubview(categoryDescriptionLabel)
         addSubview(categorySelectedStackView)
+        iconButtonSetup()
     }
 
     // MARK: Properties
-    func iconButtonSetup() {
+    private func iconButtonSetup() {
         self.buttons = Category.allCases.map { category in
             let button = CategoryButton(category: category)
             button.layer.cornerRadius = 15
@@ -103,7 +94,6 @@ final class InputCategory: UIView {
     func setHighlightedState(_ category: Category) {
         for button in buttons {
             if button.category == category {
-                print("\(category)")
                 selectedCategory = "\(category)"
                 button.setTitleColor(UIColor.akkinWhite, for: .normal)
                 button.backgroundColor = .akkinGreen
@@ -116,11 +106,14 @@ final class InputCategory: UIView {
     }
 
     // MARK: Layout
-    func makeConstraints() {
+    override func makeConstraints() {
+        super.makeConstraints()
+
         categoryStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalTo(216)
         }
+
         categorySelectedStackView.snp.makeConstraints {
             $0.top.equalTo(categoryStackView.snp.bottom).offset(8)
             $0.width.equalTo(216)
