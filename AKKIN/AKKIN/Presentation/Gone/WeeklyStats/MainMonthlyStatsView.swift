@@ -142,6 +142,7 @@ extension MainMonthlyStatsView {
             switch result {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
+                print(data)
 //                self.monthLabel.text = "\(data.month)월은 교통에서 가장 많이 아꼈어요."
 //                self.setLabelColor()
 //                self.monthlyCost[0] = data.monthlyDining.toPriceFormat
