@@ -11,6 +11,7 @@ final class MainGalleryCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "MainGalleryCollectionViewCell"
 
+    // MARK: UI Components
     private(set) var cardImageView = UIImageView()
 
     private(set) var saveContentLabel = UILabel().then {
@@ -21,29 +22,12 @@ final class MainGalleryCollectionViewCell: UICollectionViewCell {
         $0.font = .systemFont(ofSize: 14)
     }
 
-    private(set) var emptyLabel = UILabel().then {
-        $0.text = AkkinString.emptyAkkin
-        $0.textColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1)
-        $0.numberOfLines = 0
-        $0.textAlignment = .center
-        $0.font = .systemFont(ofSize: 16)
-        $0.isHidden = true
-    }
-
-    private func setLineSpacing() {
-        let attrString = NSMutableAttributedString(string: emptyLabel.text ?? "")
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
-        emptyLabel.attributedText = attrString
-    }
-
+    // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setContentView()
         configureSubviews()
         makeConstraints()
-        setLineSpacing()
     }
 
     required init?(coder: NSCoder) {
@@ -55,6 +39,7 @@ final class MainGalleryCollectionViewCell: UICollectionViewCell {
         cardImageView.image = nil
     }
 
+    // MARK: SetContentView
     private func setContentView() {
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 12
@@ -64,13 +49,14 @@ final class MainGalleryCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowRadius = 8
     }
 
+    // MARK: Configuration
     private func configureSubviews() {
         contentView.addSubview(cardImageView)
         contentView.addSubview(saveContentLabel)
         contentView.addSubview(howLabel)
-        contentView.addSubview(emptyLabel)
     }
 
+    // MARK: Layout
     private func makeConstraints() {
         cardImageView.snp.makeConstraints {
             $0.top.equalTo(contentView)
@@ -86,10 +72,6 @@ final class MainGalleryCollectionViewCell: UICollectionViewCell {
         howLabel.snp.makeConstraints {
             $0.top.equalTo(saveContentLabel.snp.bottom).offset(2)
             $0.leading.trailing.equalTo(contentView).inset(8)
-        }
-
-        emptyLabel.snp.makeConstraints {
-            $0.center.equalTo(contentView)
         }
     }
 }

@@ -11,10 +11,11 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "MainCardCollectionViewCell"
 
+    // MARK: UI Components
     private(set) var cardImageView = UIImageView()
 
     private(set) var moneyLabel = UILabel().then {
-        $0.textColor = UIColor(red: 0.14, green: 0.68, blue: 0.37, alpha: 1)
+        $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
     }
 
@@ -28,13 +29,14 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
 
     private(set) var emptyLabel = UILabel().then {
         $0.text = AkkinString.emptyAkkin
-        $0.textColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1)
+        $0.textColor = .akkinGray4
         $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 16)
         $0.isHidden = true
     }
 
+    // MARK: SetLineSpacing
     private func setLineSpacing() {
         let attrString = NSMutableAttributedString(string: emptyLabel.text ?? "")
         let paragraphStyle = NSMutableParagraphStyle()
@@ -43,6 +45,7 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         emptyLabel.attributedText = attrString
     }
 
+    // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setContentView()
@@ -60,8 +63,9 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         cardImageView.image = nil
     }
 
+    // MARK: SetContentView
     private func setContentView() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .akkinWhite
         contentView.layer.cornerRadius = 16
         contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowOpacity = 0.07
@@ -69,6 +73,7 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowRadius = 8
     }
 
+    // MARK: Configuration
     private func configureSubviews() {
         contentView.addSubview(cardImageView)
         contentView.addSubview(moneyLabel)
@@ -77,6 +82,7 @@ final class MainCardCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(emptyLabel)
     }
 
+    // MARK: Layout
     private func makeConstraints() {
         cardImageView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(43)
