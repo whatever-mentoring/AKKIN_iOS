@@ -8,30 +8,42 @@
 import UIKit
 
 extension UIColor {
+    /// akkin main color
     static var akkinGreen: UIColor {
         return UIColor(hex: "#23AD5F")
     }
+
+    /// akkin basic color
     static var akkinBlack: UIColor {
         return UIColor(hex: "#19191B")
     }
     static var akkinWhite: UIColor {
         return UIColor(hex: "#FFFFFF")
     }
-    // backgroundColor
-    static var akkinGray0: UIColor {
+
+    /// akkin background color
+    static var akkinBG: UIColor {
         return UIColor(hex: "#FCFCFC")
     }
-    // shadowColor
+
+    /// akkin background color
     static var akkinGray1: UIColor {
         return UIColor(hex: "#151515", alpha: 0.15)
     }
-    // gray textColor
+
+    /// akkin textColor color
     static var akkinGray2: UIColor {
         return UIColor(hex: "#B0B0B0")
     }
-    // borderColor
+
+    /// akkin border color
     static var akkinGray3: UIColor {
         return UIColor(hex: "#E5E5E5")
+    }
+
+    /// akkin empty text color
+    static var akkinGray4: UIColor {
+        return UIColor(hex: "#C5C5C5")
     }
 }
 
