@@ -68,7 +68,7 @@ final class MainCardCollectionView: BaseView {
         addSubview(addButton)
         addSubview(cardCollectionView)
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
@@ -89,7 +89,7 @@ final class MainCardCollectionView: BaseView {
             $0.height.equalTo(295)
         }
     }
-    
+
     // MARK: Event
     @objc private func handleAddEvent() {
         tapAdd?()

@@ -10,11 +10,11 @@ import UIKit
 final class MainGalleryCollectionView: BaseView {
 
     var totalEntries: [MainEntries] = []
-    var diningEntries: [MainEntries] = []
-    var trafficEntries: [MainEntries] = []
-    var shoppingEntries: [MainEntries] = []
-    var etcEntries: [MainEntries] = []
-    var selectedTotalEntries: [MainEntries] = []
+    private var diningEntries: [MainEntries] = []
+    private var trafficEntries: [MainEntries] = []
+    private var shoppingEntries: [MainEntries] = []
+    private var etcEntries: [MainEntries] = []
+    private var selectedTotalEntries: [MainEntries] = []
 
     // MARK: UI Components
     private let categoryButtonStackView = UIStackView().then {
@@ -35,7 +35,7 @@ final class MainGalleryCollectionView: BaseView {
         $0.layer.shadowOffset = CGSize(width: 1, height: 2)
         $0.layer.shadowRadius = 4
     }
-    
+
     private let diningButton = BaseButton().then {
         $0.setTitle(AkkinString.dining, for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -51,7 +51,7 @@ final class MainGalleryCollectionView: BaseView {
         $0.layer.shadowOffset = CGSize(width: 1, height: 2)
         $0.layer.shadowRadius = 4
     }
-    
+
     private let trafficButton = BaseButton().then {
         $0.setTitle(AkkinString.traffic, for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -67,7 +67,7 @@ final class MainGalleryCollectionView: BaseView {
         $0.layer.shadowOffset = CGSize(width: 1, height: 2)
         $0.layer.shadowRadius = 4
     }
-    
+
     private let shoppingButton = BaseButton().then {
         $0.setTitle(AkkinString.shopping, for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -83,7 +83,7 @@ final class MainGalleryCollectionView: BaseView {
         $0.layer.shadowOffset = CGSize(width: 1, height: 2)
         $0.layer.shadowRadius = 4
     }
-    
+
     private let etcButton = BaseButton().then {
         $0.setTitle(AkkinString.etc, for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -106,7 +106,7 @@ final class MainGalleryCollectionView: BaseView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.register(MainGalleryCollectionViewCell.self, forCellWithReuseIdentifier: MainGalleryCollectionViewCell.identifier)
-        
+
         return collectionView
     }()
 
@@ -135,7 +135,7 @@ final class MainGalleryCollectionView: BaseView {
         categoryButtonStackView.addArrangedSubview(shoppingButton)
         categoryButtonStackView.addArrangedSubview(etcButton)
     }
-    
+
     @objc func totalButtonTapped() {
         if !totalButton.isSelected {
             totalButton.isSelected = true
@@ -281,7 +281,7 @@ final class MainGalleryCollectionView: BaseView {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
+
     // MARK: Event
     func handleCellEvent(_ selectedEntries: [MainEntries]) {
         tapCell?(selectedEntries)
@@ -289,6 +289,7 @@ final class MainGalleryCollectionView: BaseView {
 }
 
 extension MainGalleryCollectionView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if totalEntries.count == 0 {
             categoryButtonStackView.isHidden = true

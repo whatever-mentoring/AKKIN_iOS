@@ -30,16 +30,17 @@ final class MainViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         showLoadingView()
         getMain()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationItem()
 
+        setNavigationItem()
         router.viewController = self
-        view.backgroundColor = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
+        view.backgroundColor = .akkinBG
     }
 
     // MARK: Configuration
@@ -50,10 +51,15 @@ final class MainViewController: BaseViewController {
         view.addSubview(mainGalleryCollectionView)
     }
 
+    private func setNavigationItem() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: myPageButton)
+    }
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
+
         mainCardCollectionView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(345)
@@ -85,12 +91,8 @@ final class MainViewController: BaseViewController {
         }
     }
 
-    private func setNavigationItem() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: myPageButton)
-    }
-
-    func showLoadingView() {
+    // MARK: LoadingView
+    private func showLoadingView() {
         loadingContainerView.backgroundColor = .white
         loadingView.color = .akkinGray2
         loadingView.center = loadingContainerView.center
@@ -100,7 +102,7 @@ final class MainViewController: BaseViewController {
         loadingContainerView.addSubview(loadingView)
     }
     
-    func hideLoadingView() {
+    private func hideLoadingView() {
         loadingView.stopAnimating()
         loadingContainerView.removeFromSuperview()
     }
@@ -109,11 +111,12 @@ final class MainViewController: BaseViewController {
 extension MainViewController {
     // MARK: Networking
     private func getMain() {
-        print("*** MainViewController - getMain called")
+        print("💸 getMain called")
         NetworkService.shared.main.getMain() { result in
             switch result {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
+                print("🎯 getMain success")
                 self.mainCardCollectionView.todayEntries = data.today.entries
                 self.mainGalleryCollectionView.totalEntries = data.firstPage.entries
                 self.mainCardCollectionView.cardCollectionView.reloadData()
