@@ -10,11 +10,9 @@ import UIKit
 final class SplashViewController: BaseViewController {
 
     // MARK: UI Components
-    private let splashImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = AkkinImage.akkinSplash
-        return imageView
-    }()
+    private let splashImageView = UIImageView().then {
+        $0.image = AkkinImage.akkinSplash
+    }
 
     // MARK: Life Cycle
     override func viewDidLoad() {
