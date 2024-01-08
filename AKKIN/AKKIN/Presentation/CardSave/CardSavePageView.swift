@@ -22,7 +22,7 @@ final class CardSavePageView: BaseView {
     private let homeButton = UIButton().then {
         $0.setImage(AkkinButton.homeButton, for: .normal)
     }
-    
+
     private let cardTopText = UILabel().then {
         $0.text = AkkinString.completeAkkin
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)

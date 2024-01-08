@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CardSaveView: UIView {
+final class CardSaveView: BaseView {
 
     // MARK: UI Components
     private let cardImageView = UIView().then {
@@ -26,23 +26,20 @@ final class CardSaveView: UIView {
     }
 
     private let dateTextLabel = UILabel().then {
-        $0.text = "YYYY / MM / DD"
         $0.textColor = .akkinBlack
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
 
     private let iconImageView = UIImageView().then {
-        $0.backgroundColor = .akkinGray0
+        $0.backgroundColor = .akkinBG
     }
 
     private let saveTextLabel = UILabel().then {
-        $0.text = "무려 000원"
         $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 28, weight: .semibold)
     }
 
     private let scriptTextLabel = UILabel().then {
-        $0.text = "[헝그리 정신 실천]\n밥 대신 공기 먹기"
         $0.textColor = .akkinBlack
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 20, weight: .regular)
@@ -50,19 +47,10 @@ final class CardSaveView: UIView {
         $0.lineBreakMode = .byWordWrapping
     }
 
-    // MARK: Initializer
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        configureSubviews()
-        makeConstraints()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     // MARK: Configuration
-    func configureSubviews() {
+    override func configureSubviews() {
+        super.configureSubviews()
+
         addSubview(cardImageView)
         cardImageView.addSubview(cardStackView)
         cardStackView.addArrangedSubview(dateTextLabel)
@@ -72,16 +60,20 @@ final class CardSaveView: UIView {
     }
 
     // MARK: Layout
-    func makeConstraints() {
+    override func makeConstraints() {
+        super.makeConstraints()
+
         cardImageView.snp.makeConstraints {
             $0.width.equalTo(293)
             $0.height.equalTo(403)
             $0.centerX.equalToSuperview()
         }
+
         cardStackView.snp.makeConstraints {
             $0.top.equalTo(cardImageView.snp.top).offset(30)
             $0.centerX.equalToSuperview()
         }
+
         iconImageView.snp.makeConstraints {
             $0.width.height.equalTo(172)
         }
@@ -94,8 +86,25 @@ final class CardSaveView: UIView {
         }
     }
 
-    func configure(selectedYear: Int?, selectedMonth: Int?, selectedDay: Int?, selectedImage: UIImage?, selectedSaveContent: String?, selectedHow: String?, selectedExpectCost: Int?, selectedRealCost: Int?) {
-        if let year = selectedYear, let month = selectedMonth, let day = selectedDay, let image = selectedImage, let saveContent = selectedSaveContent, let how = selectedHow, let expectCost = selectedExpectCost, let realCost = selectedRealCost {
+    func configure(
+        selectedYear: Int?,
+        selectedMonth: Int?,
+        selectedDay: Int?,
+        selectedImage: UIImage?,
+        selectedSaveContent: String?,
+        selectedHow: String?,
+        selectedExpectCost: Int?,
+        selectedRealCost: Int?
+    ) {
+        if let year = selectedYear,
+            let month = selectedMonth,
+            let day = selectedDay,
+            let image = selectedImage,
+            let saveContent = selectedSaveContent,
+            let how = selectedHow,
+            let expectCost = selectedExpectCost,
+            let realCost = selectedRealCost
+        {
             dateTextLabel.text = "\(year) / \(month) / \(day)"
             if expectCost - realCost >= 0 {
                 saveTextLabel.text = "무려 \((expectCost - realCost).toPriceFormat)원"
@@ -103,7 +112,6 @@ final class CardSaveView: UIView {
 
             scriptTextLabel.text = "[\(saveContent)]\n\(how)"
             iconImageView.image = image
-
         }
     }
 }

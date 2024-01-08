@@ -28,16 +28,17 @@ class CardDetailViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationItem()
-        view.backgroundColor = .akkinGray0
+
+        view.backgroundColor = .akkinBG
         router.viewController = self
     }
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        view.addSubview(cardDetailView)
 
+        view.addSubview(cardDetailView)
+        setNavigationItem()
         setCardContent()
 
         backButton.tap = { [weak self] in
@@ -49,6 +50,13 @@ class CardDetailViewController: BaseViewController {
             guard let self else { return }
             presentActionSheet()
         }
+    }
+
+    private func setNavigationItem() {
+        navigationItem.title = AkkinString.cardDetail
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: optionButton)
     }
 
     private func setCardContent() {
@@ -86,13 +94,7 @@ class CardDetailViewController: BaseViewController {
         }
     }
 
-    private func setNavigationItem() {
-        navigationItem.title = AkkinString.cardDetail
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: optionButton)
-    }
-
+    // MARK: ActionSheet
     private func presentActionSheet() {
         let actionsheetController = UIAlertController(title: AkkinString.cardDetail, message: nil, preferredStyle: .actionSheet)
 
@@ -119,6 +121,7 @@ class CardDetailViewController: BaseViewController {
         present(actionsheetController, animated: true, completion: nil)
     }
 
+    // MARK: Alert
     private func presentAlert() {
         let alertController = UIAlertController(title: AkkinString.cardDeleteTitle, message: AkkinString.cardDeleteMessage, preferredStyle: .alert)
 
@@ -139,11 +142,12 @@ class CardDetailViewController: BaseViewController {
 
     // MARK: Networking
     private func deleteGulbis(_ id: Int) {
+        print("💸 deleteGulbis called")
         NetworkService.shared.gulbis.deleteGulbis(id: id) { result in
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }
-                print(data)
+                print("🎯 deleteGulbis success")
                 self.router.popToRootViewController()
             case .requestErr(let errorResponse):
                 dump(errorResponse)

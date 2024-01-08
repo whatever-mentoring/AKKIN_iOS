@@ -18,24 +18,23 @@ final class CardDetailView: BaseView {
         $0.layer.shadowRadius = 8
         $0.layer.shadowOffset = .zero
     }
-    
+
     public var dateTextLabel = UILabel().then {
         $0.textColor = .akkinBlack
         $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
-    
+
     public var iconImageView = UIImageView().then {
-//        $0.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
         $0.layer.cornerRadius = 8
         $0.image = AkkinImage.akkinIcon1
     }
-    
+
     public var savePriceLabel = UILabel().then {
         $0.textColor = .akkinGreen
         $0.font = .systemFont(ofSize: 28, weight: .semibold)
         $0.textAlignment = .center
     }
-    
+
     public var saveContentLabel = UILabel().then {
         $0.textColor = .akkinBlack
         $0.textAlignment = .center

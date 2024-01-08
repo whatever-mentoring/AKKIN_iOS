@@ -33,13 +33,11 @@ class CardPatchViewController: BaseViewController {
 
     private let inputIconSelectedView = InputIconSelectedView()
 
-    private let cardImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = .akkinWhite
-        imageView.layer.cornerRadius = 8
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    private let cardImageView =  UIImageView().then {
+        $0.backgroundColor = .akkinWhite
+        $0.layer.cornerRadius = 8
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
 
     private let inputDatePicker = InputDatePicker()
     private let inputCategory = InputCategory()
@@ -54,7 +52,7 @@ class CardPatchViewController: BaseViewController {
         setNavigationItem()
         setupKeyboardEvent()
         router.viewController = self
-        view.backgroundColor = .akkinGray0
+        view.backgroundColor = .akkinBG
     }
 
     private func setContent() {
@@ -121,8 +119,7 @@ class CardPatchViewController: BaseViewController {
         confirmButton.tap = { [weak self] in
             guard let self else {
                 return }
-            // MARK: - 사용자가 입력한 데이터 연결 필요
-            print("patchGulbis called")
+
             patchGulbis(
                 id: selectedEntries[0].id,
                 year: selectedEntries[0].year,
@@ -135,6 +132,7 @@ class CardPatchViewController: BaseViewController {
                 expectCost: selectedEntries[0].expectCost,
                 realCost: selectedEntries[0].realCost
             )
+
             router.dismissViewController()
         }
 
@@ -156,7 +154,7 @@ class CardPatchViewController: BaseViewController {
         }
     }
 
-    // MARK: Properties
+    // MARK: Navigation Item
     private func setNavigationItem() {
         navigationItem.title = AkkinString.patchGulbisTitle
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
@@ -176,6 +174,7 @@ class CardPatchViewController: BaseViewController {
         expectCost: Int,
         realCost: Int
     ) {
+        print("💸 patchGulbis called")
         NetworkService.shared.gulbis.patchGulbis(
             id: id,
             year: year,
@@ -191,7 +190,7 @@ class CardPatchViewController: BaseViewController {
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }
-                print(data)
+                print("🎯 patchGulbis success" + "\(data)")
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
@@ -279,6 +278,7 @@ class CardPatchViewController: BaseViewController {
     }
 }
 
+// MARK: Keyboard
 extension CardPatchViewController: UITextFieldDelegate {
     @objc func keyboardWillShow(_ sender: Notification) {
         guard let keyboardFrame =
