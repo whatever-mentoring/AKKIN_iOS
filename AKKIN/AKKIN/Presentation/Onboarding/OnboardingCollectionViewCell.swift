@@ -27,9 +27,10 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
         $0.isHidden = true
     }
 
+    // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setContentView()
+
         configureSubviews()
         makeConstraints()
     }
@@ -38,19 +39,14 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-
-    private func setContentView() {
-    }
-
+    // MARK: Configuration
     private func configureSubviews() {
         contentView.addSubview(onboardingImageView)
         contentView.addSubview(skipButton)
         contentView.addSubview(startButton)
     }
 
+    // MARK: Layout
     private func makeConstraints() {
         onboardingImageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
