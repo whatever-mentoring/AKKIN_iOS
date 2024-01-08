@@ -42,6 +42,7 @@ final class MyPageViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setNavigationItem()
 
         router.viewController = self
@@ -93,7 +94,7 @@ final class MyPageViewController: BaseViewController {
             title: actionButton,
             style: style,
             handler: handler)
-        
+
         alertController.addAction(cancelButton)
         alertController.addAction(actionButton)
 
@@ -125,13 +126,12 @@ final class MyPageViewController: BaseViewController {
     }
 
     func getAppleLogout() {
-        print("apple logout try")
+        print("💸 getAppleLogout called")
         NetworkService.shared.auth.getAppleLogout() { result in
             switch result {
             case .success(let response):
                 guard let data = response as? BlankDataResponse else { return }
-                print("success")
-
+                print("🎯 getAppleLogout success: " + "\(data)")
                 self.router.presentLoginViewController()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
@@ -148,13 +148,12 @@ final class MyPageViewController: BaseViewController {
     }
 
     func postAppleRevoke(_ appleToken: String, _ authorizationCode: String) {
-        print("apple revoke try")
+        print("💸 postAppleRevoke called")
         NetworkService.shared.auth.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode) { result in
             switch result {
             case .success(let response):
                 guard let data = response as? AppleLoginResponse else { return }
-                print("success")
-
+                print("🎯 postAppleRevoke success: " + "\(data)")
                 self.router.presentLoginViewController()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
