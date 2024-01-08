@@ -145,8 +145,7 @@ class CardDetailViewController: BaseViewController {
         print("💸 deleteGulbis called")
         NetworkService.shared.gulbis.deleteGulbis(id: id) { result in
             switch result {
-            case .success(let response):
-                guard let data = response as? BlankDataResponse else { return }
+            case .success:
                 print("🎯 deleteGulbis success")
                 self.router.popToRootViewController()
             case .requestErr(let errorResponse):
