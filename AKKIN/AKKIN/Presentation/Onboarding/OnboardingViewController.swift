@@ -8,19 +8,26 @@
 import UIKit
 
 final class OnboardingViewController: BaseViewController {
-    
+
     // MARK: UI Components
-    var imageArr = [AkkinImage.akkinOnboarding1, AkkinImage.akkinOnboarding2, AkkinImage.akkinOnboarding3]
-    
+    private let imageArr = [
+        AkkinImage.akkinOnboarding1,
+        AkkinImage.akkinOnboarding2,
+        AkkinImage.akkinOnboarding3
+    ]
+
     public lazy var onboardingCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: createLayout()
+        )
+
         return collectionView
     }()
-    
+
     // MARK: Environment
     private let router = ExampleRouter()
-    
+
     // MARK: Event
     @objc private func handleAddEvent() {
         router.presentLoginViewController()
@@ -29,12 +36,12 @@ final class OnboardingViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setCollectionView()
         router.viewController = self
     }
 
-    func setCollectionView() {
+    private func setCollectionView() {
         onboardingCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         onboardingCollectionView.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 1)
         onboardingCollectionView.dataSource = self
@@ -71,7 +78,7 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as? OnboardingCollectionViewCell else { return UICollectionViewCell() }
         cell.onboardingImageView.image = imageArr[indexPath.row]
@@ -82,7 +89,7 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
             cell.startButton.isHidden = false
             cell.skipButton.isHidden = true
         }
-        
+
         return cell
     }
 }
