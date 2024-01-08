@@ -21,6 +21,7 @@ final class LoginViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         router.viewController = self
 
         if UserDefaultHandler.refreshToken != "" {
@@ -34,17 +35,19 @@ final class LoginViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationItem.hidesBackButton = true
     }
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+
         view.addSubview(loginView)
-        
-        loginView.tapAdd = { [weak self] in
+
+        loginView.tapLogin = { [weak self] in
             guard let self else { return }
-            appleLogin()
+            setAppleLogin()
         }
     }
 
@@ -56,7 +59,7 @@ final class LoginViewController: BaseViewController {
     }
 
     // MARK: Network
-    private func appleLogin() {
+    private func setAppleLogin() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email]
         
@@ -75,7 +78,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            
+
             let userIdentifier = appleIDCredential.user
             let fullName = "\(appleIDCredential.fullName?.familyName ?? "")" + "\(appleIDCredential.fullName?.givenName ?? "user")"
             let email = appleIDCredential.email
@@ -105,19 +108,18 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print("apple login failed")
+        print("⚠️ apple login failed")
     }
-    
-    public func postAppleLogin(_ appleToken: String) {
-        print("apple login try")
+
+    private func postAppleLogin(_ appleToken: String) {
+        print("💸 postAppleLogin called")
         NetworkService.shared.auth.postAppleLogin(appleToken: appleToken) { result in
             switch result {
             case .success(let response):
                 guard let data = response as? AppleLoginResponse else { return }
                 UserDefaultHandler.accessToken = data.accessToken
                 UserDefaultHandler.refreshToken = data.refreshToken
-                print("success")
-
+                print("🎯 postAppleLogin success")
                 self.router.presentMainViewController()
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                 sceneDelegate?.changeRootViewToMain()
