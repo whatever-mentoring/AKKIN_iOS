@@ -186,11 +186,11 @@ class CardPatchViewController: BaseViewController {
             how: how,
             expectCost: expectCost,
             realCost: realCost
-        ) { result in
+        ) { [self] result in
             switch result {
-            case .success(let response):
-                guard let data = response as? BlankDataResponse else { return }
-                print("🎯 patchGulbis success" + "\(data)")
+            case .success:
+                print("🎯 patchGulbis success")
+                router.dismissViewController()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
