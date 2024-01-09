@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CardPatchViewController: BaseViewController {
+class CardPatchViewController: BaseViewController, UITextFieldDelegate {
 
     var buttons = [CategoryButton]()
     var selectedEntries: [MainEntries] = []
@@ -51,8 +51,16 @@ class CardPatchViewController: BaseViewController {
         setContent()
         setNavigationItem()
         setupKeyboardEvent()
+        setTextFieldDelegate()
         router.viewController = self
         view.backgroundColor = .akkinBG
+    }
+
+    private func setTextFieldDelegate() {
+        inputSaveContent.contentTextField.delegate = self
+        inputHowContent.howTextField.delegate = self
+        inputCostContent.expectCostTextField.delegate = self
+        inputCostContent.realCostTextField.delegate = self
     }
 
     private func setContent() {
@@ -279,7 +287,7 @@ class CardPatchViewController: BaseViewController {
 }
 
 // MARK: Keyboard
-extension CardPatchViewController: UITextFieldDelegate {
+extension CardPatchViewController {
     @objc func keyboardWillShow(_ sender: Notification) {
         guard let keyboardFrame =
                 sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
