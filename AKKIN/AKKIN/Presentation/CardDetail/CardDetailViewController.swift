@@ -152,11 +152,11 @@ class CardDetailViewController: BaseViewController {
     // MARK: Networking
     private func deleteGulbis(_ id: Int) {
         print("💸 deleteGulbis called")
-        NetworkService.shared.gulbis.deleteGulbis(id: id) { result in
+        NetworkService.shared.gulbis.deleteGulbis(id: id) { [self] result in
             switch result {
             case .success:
                 print("🎯 deleteGulbis success")
-                self.router.popToRootViewController()
+                router.popToRootViewController()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
