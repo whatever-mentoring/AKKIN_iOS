@@ -64,6 +64,12 @@ class CardPatchViewController: BaseViewController, UITextFieldDelegate {
     }
 
     private func setContent() {
+        inputDatePicker.selectedYear = selectedEntries[0].year
+        inputDatePicker.selectedMonth = selectedEntries[0].month
+        inputDatePicker.selectedDay = selectedEntries[0].day
+        inputIconSelectedView.selectedIcon = selectedEntries[0].imageUrl
+        inputCategory.selectedCategory = selectedEntries[0].gulbiCategory
+
         if selectedEntries[0].imageUrl == "icon_1" {
             inputIconSelectedView.onIconTapped?(Icon.iconThemeProfile1)
             inputIconSelectedView.setHighlightedState(Icon.iconThemeProfile1)
