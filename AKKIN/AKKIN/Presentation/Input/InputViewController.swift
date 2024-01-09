@@ -27,7 +27,17 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     private let imageView = UIImageView().then {
         $0.backgroundColor = .akkinWhite
         $0.layer.cornerRadius = 8
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.akkinGray3.cgColor
         $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let imageInputLabel = UILabel().then {
+        $0.textColor = UIColor.akkinGray2
+        $0.text = AkkinString.categorySelectedPhoto
+        $0.numberOfLines = 0
+        $0.layer.opacity = 1
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
 
     private let inputDatePicker = InputDatePicker()
@@ -59,6 +69,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         scrollView.addSubview(inputHowContent)
         scrollView.addSubview(inputCostContent)
         scrollView.addSubview(makeCardButton)
+        imageView.addSubview(imageInputLabel)
     }
   
     // MARK: Environment
@@ -125,6 +136,10 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             $0.width.height.equalTo(172)
             $0.top.equalTo(inputIconSelectedView.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
+        }
+
+        imageInputLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
 
         inputDatePicker.snp.makeConstraints {
@@ -208,6 +223,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             guard let self else {
                 return }
             tapIcon(icon)
+            imageInputLabel.layer.opacity = 0
         }
 
         inputCategory.onCategoryTapped = { [weak self] category in
