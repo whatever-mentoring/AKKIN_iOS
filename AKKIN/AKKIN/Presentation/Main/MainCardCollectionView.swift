@@ -137,9 +137,9 @@ extension MainCardCollectionView: UICollectionViewDataSource {
 
             let entry = todayEntries[indexPath.row]
             cell.cardImageView.image = UIImage(named: entry.imageUrl ?? "icon_1")
-            cell.saveContentLabel.text = "[ " + "\(entry.how)" + " ]"
-            cell.howLabel.text = entry.saveContent
-            cell.moneyLabel.text = "무려 " + "\((entry.expectCost - entry.realCost).toPriceFormat)" + " 원"
+            cell.saveContentLabel.text = entry.saveContent.toSaveContent
+            cell.howLabel.text = entry.how
+            cell.moneyLabel.text = (entry.expectCost - entry.realCost).toPriceFormat.toMoney
         }
 
         return cell

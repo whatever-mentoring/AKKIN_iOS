@@ -106,11 +106,9 @@ final class CardSaveView: BaseView {
             let realCost = selectedRealCost
         {
             dateTextLabel.text = "\(year) / \(month) / \(day)"
-            if expectCost - realCost >= 0 {
-                saveTextLabel.text = "무려 \((expectCost - realCost).toPriceFormat)원"
-            }
-
-            scriptTextLabel.text = "[\(saveContent)]\n\(how)"
+            saveTextLabel.text = "무려 \((expectCost - realCost).toPriceFormat)원"
+            saveTextLabel.text = (expectCost - realCost).toPriceFormat.toMoney
+            scriptTextLabel.text = "\(saveContent.toSaveContent)\n\(how)"
             iconImageView.image = image
         }
     }
