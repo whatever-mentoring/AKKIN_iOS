@@ -161,12 +161,12 @@ class CardDetailViewController: BaseViewController {
 extension CardDetailViewController {
     // MARK: Networking
     private func getMain() {
-        print("💸 getMain called")
+        print("💸 getMain called in CardDetailViewController")
         NetworkService.shared.main.getMain() { [self] result in
             switch result {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
-                print("🎯 getMain success")
+                print("🎯 getMain success in CardDetailViewController")
                 totalEntries = data.today.entries
                 selectedEntries = totalEntries.filter { $0.id == id }
                 setCardContent()

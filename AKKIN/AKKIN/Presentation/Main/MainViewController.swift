@@ -111,12 +111,12 @@ final class MainViewController: BaseViewController {
 extension MainViewController {
     // MARK: Networking
     private func getMain() {
-        print("💸 getMain called")
+        print("💸 getMain called in MainViewController")
         NetworkService.shared.main.getMain() { [self] result in
             switch result {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
-                print("🎯 getMain success")
+                print("🎯 getMain success in MainViewController")
                 mainCardCollectionView.todayEntries = data.today.entries
                 mainGalleryCollectionView.totalEntries = data.firstPage.entries
                 mainCardCollectionView.cardCollectionView.reloadData()
