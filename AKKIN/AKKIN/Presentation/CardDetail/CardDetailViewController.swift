@@ -96,7 +96,10 @@ class CardDetailViewController: BaseViewController {
 
     // MARK: ActionSheet
     private func presentActionSheet() {
-        let actionsheetController = UIAlertController(title: AkkinString.cardDetail, message: nil, preferredStyle: .actionSheet)
+        let actionsheetController = UIAlertController(
+            title: AkkinString.cardDetail,
+            message: nil,
+            preferredStyle: .actionSheet)
 
         let patchButton = UIAlertAction(
             title: AkkinString.patchGulbis,
@@ -123,7 +126,10 @@ class CardDetailViewController: BaseViewController {
 
     // MARK: Alert
     private func presentAlert() {
-        let alertController = UIAlertController(title: AkkinString.cardDeleteTitle, message: AkkinString.cardDeleteMessage, preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: AkkinString.cardDeleteTitle,
+            message: AkkinString.cardDeleteMessage,
+            preferredStyle: .alert)
 
         let deleteButton = UIAlertAction(
             title: AkkinString.deleteGulbis,
@@ -132,7 +138,10 @@ class CardDetailViewController: BaseViewController {
                 action in deleteGulbis(selectedEntries[0].id)
         })
 
-        let cancelButton = UIAlertAction(title: AkkinString.cancel, style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(
+            title: AkkinString.cancel,
+            style: .cancel,
+            handler: nil)
 
         alertController.addAction(deleteButton)
         alertController.addAction(cancelButton)
