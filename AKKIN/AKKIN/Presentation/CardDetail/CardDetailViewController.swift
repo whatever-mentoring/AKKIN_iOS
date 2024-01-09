@@ -9,6 +9,8 @@ import UIKit
 
 class CardDetailViewController: BaseViewController {
 
+    var id: Int = 0
+    var totalEntries: [MainEntries] = []
     var selectedEntries: [MainEntries] = []
 
     // MARK: UI Components
@@ -26,6 +28,12 @@ class CardDetailViewController: BaseViewController {
     private let router = ExampleRouter()
 
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        getMain()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +47,6 @@ class CardDetailViewController: BaseViewController {
 
         view.addSubview(cardDetailView)
         setNavigationItem()
-        setCardContent()
 
         backButton.tap = { [weak self] in
             guard let self else { return }
@@ -54,7 +61,6 @@ class CardDetailViewController: BaseViewController {
 
     private func setNavigationItem() {
         navigationItem.title = AkkinString.cardDetail
-
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: optionButton)
     }
@@ -105,15 +111,17 @@ class CardDetailViewController: BaseViewController {
             title: AkkinString.patchGulbis,
             style: .default,
             handler: { [self]
-                _ in router.presentCardPatchViewController(selectedEntries: selectedEntries)
-        })
+                _ in router.presentCardPatchViewController(
+                    selectedEntries: selectedEntries
+                )
+            })
 
         let deleteButton = UIAlertAction(
             title: AkkinString.deleteGulbis,
             style: .destructive,
             handler: { [self]
                 _ in presentAlert()
-        })
+            })
 
         let cancelButton = UIAlertAction(title: AkkinString.cancel, style: .cancel, handler: nil)
 
@@ -123,7 +131,7 @@ class CardDetailViewController: BaseViewController {
 
         present(actionsheetController, animated: true, completion: nil)
     }
-
+ 
     // MARK: Alert
     private func presentAlert() {
         let alertController = UIAlertController(
@@ -136,7 +144,7 @@ class CardDetailViewController: BaseViewController {
             style: .destructive,
             handler: { [self]
                 action in deleteGulbis(selectedEntries[0].id)
-        })
+            })
 
         let cancelButton = UIAlertAction(
             title: AkkinString.cancel,
@@ -148,8 +156,34 @@ class CardDetailViewController: BaseViewController {
 
         present(alertController, animated: true, completion: nil)
     }
+}
 
+extension CardDetailViewController {
     // MARK: Networking
+    private func getMain() {
+        print("💸 getMain called")
+        NetworkService.shared.main.getMain() { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? MainResponse else { return }
+                print("🎯 getMain success")
+                totalEntries = data.today.entries
+                selectedEntries = totalEntries.filter { $0.id == id }
+                setCardContent()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
     private func deleteGulbis(_ id: Int) {
         print("💸 deleteGulbis called")
         NetworkService.shared.gulbis.deleteGulbis(id: id) { [self] result in

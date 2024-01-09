@@ -111,7 +111,7 @@ final class MainGalleryCollectionView: BaseView {
     }()
 
     // MARK: Properties
-    var tapCell: (([MainEntries]) -> Void)?
+    var tapCell: ((Int, [MainEntries]) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -283,8 +283,8 @@ final class MainGalleryCollectionView: BaseView {
     }
 
     // MARK: Event
-    func handleCellEvent(_ selectedEntries: [MainEntries]) {
-        tapCell?(selectedEntries)
+    func handleCellEvent(_ id: Int, _ selectedEntries: [MainEntries]) {
+        tapCell?(id, selectedEntries)
     }
 }
 
@@ -363,6 +363,6 @@ extension MainGalleryCollectionView: UICollectionViewDelegate {
         }
 
         selectedTotalEntries = totalEntries.filter { $0.id == entry.id }
-        handleCellEvent(selectedTotalEntries)
+        handleCellEvent(entry.id, selectedTotalEntries)
     }
 }
