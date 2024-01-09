@@ -102,8 +102,8 @@ class CardPatchViewController: BaseViewController, UITextFieldDelegate {
         inputDatePicker.dateTextField.text = "\(selectedEntries[0].year)" + " / " + "\(selectedEntries[0].month)" + " / " + "\(selectedEntries[0].day)"
         inputSaveContent.contentTextField.text = selectedEntries[0].saveContent
         inputHowContent.howTextField.text = selectedEntries[0].how
-        inputCostContent.expectCostTextField.text = selectedEntries[0].expectCost.toPriceFormat
-        inputCostContent.realCostTextField.text = selectedEntries[0].realCost.toPriceFormat
+        inputCostContent.expectCostTextField.text = String(selectedEntries[0].expectCost)
+        inputCostContent.realCostTextField.text = String(selectedEntries[0].realCost)
     }
 
     // MARK: Environment
@@ -130,15 +130,15 @@ class CardPatchViewController: BaseViewController, UITextFieldDelegate {
 
             patchGulbis(
                 id: selectedEntries[0].id,
-                year: selectedEntries[0].year,
-                month: selectedEntries[0].month,
-                day: selectedEntries[0].day,
-                imageUrl: selectedEntries[0].imageUrl ?? "icon_1",
-                category: selectedEntries[0].gulbiCategory,
-                saveContent: selectedEntries[0].saveContent,
-                how: selectedEntries[0].how,
-                expectCost: selectedEntries[0].expectCost,
-                realCost: selectedEntries[0].realCost
+                year: inputDatePicker.selectedYear ?? 0,
+                month: inputDatePicker.selectedMonth ?? 0,
+                day: inputDatePicker.selectedDay ?? 0,
+                imageUrl: inputIconSelectedView.selectedIcon ?? "icon_1",
+                category: inputCategory.selectedCategory ?? AkkinString.dining,
+                saveContent: inputSaveContent.contentTextField.text ?? "nil",
+                how: inputHowContent.howTextField.text ?? "nil",
+                expectCost: Int(inputCostContent.expectCostTextField.text ?? "") ?? 0,
+                realCost: Int(inputCostContent.realCostTextField.text ?? "") ?? 0
             )
         }
 
