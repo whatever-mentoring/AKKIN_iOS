@@ -13,6 +13,7 @@ enum Icon: CaseIterable {
     case iconThemeProfile3
     case iconThemeProfile4
     case iconThemeProfile5
+    case iconThemeProfile6
 
     var image: UIImage {
         switch self {
@@ -21,6 +22,7 @@ enum Icon: CaseIterable {
         case .iconThemeProfile3: return AkkinImage.akkinIcon3
         case .iconThemeProfile4: return AkkinImage.akkinIcon4 
         case .iconThemeProfile5: return AkkinImage.akkinIcon5 
+        case .iconThemeProfile6: return AkkinImage.akkinIcon6
         }
     }
 
@@ -31,6 +33,7 @@ enum Icon: CaseIterable {
         case .iconThemeProfile3: return "icon_3"
         case .iconThemeProfile4: return "icon_4"
         case .iconThemeProfile5: return "icon_5"
+        case .iconThemeProfile6: return "icon_6"
         }
     }
 }
@@ -103,7 +106,7 @@ final class InputIconSelectedView: BaseView {
 
         iconStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.width.equalTo(252)
+            $0.width.equalTo(304)
             $0.centerX.equalToSuperview()
         }
     }

@@ -83,6 +83,8 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
             imageView.image = AkkinImage.akkinImage4
         case .iconThemeProfile5:
             imageView.image = AkkinImage.akkinImage5
+        case .iconThemeProfile6:
+            imageView.image = AkkinImage.akkinIcon6
         }
     }
 
