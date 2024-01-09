@@ -53,7 +53,7 @@ final class MainCardCollectionView: BaseView {
 
     // MARK: Properties
     var tapAdd: (() -> Void)?
-    var tapCell: (([MainEntries]) -> Void)?
+    var tapCell: ((Int, [MainEntries]) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -95,8 +95,8 @@ final class MainCardCollectionView: BaseView {
         tapAdd?()
     }
 
-    func handleCellEvent(_ selectedEntries: [MainEntries]) {
-        tapCell?(selectedEntries)
+    func handleCellEvent(_ id: Int, _ selectedEntries: [MainEntries]) {
+        tapCell?(id, selectedEntries)
     }
 }
 
@@ -151,7 +151,7 @@ extension MainCardCollectionView: UICollectionViewDelegate {
         if todayEntries.count != 0 {
             let entry = todayEntries[indexPath.row]
             selectedTodayEntries = todayEntries.filter { $0.id == entry.id }
-            handleCellEvent(selectedTodayEntries)
+            handleCellEvent(entry.id, selectedTodayEntries)
         }
     }
 }

@@ -82,12 +82,12 @@ final class MainViewController: BaseViewController {
             router.presentInputViewController()
         }
 
-        mainCardCollectionView.tapCell = { [self] selectedEntries in
-            router.presentCardDetailViewController(selectedEntries: selectedEntries)
+        mainCardCollectionView.tapCell = { [self] id, selectedEntries in
+            router.presentCardDetailViewController(id: id, selectedEntries: selectedEntries)
         }
 
-        mainGalleryCollectionView.tapCell = { [self] selectedEntries in
-            router.presentCardDetailViewController(selectedEntries: selectedEntries)
+        mainGalleryCollectionView.tapCell = { [self] id, selectedEntries in
+            router.presentCardDetailViewController(id: id, selectedEntries: selectedEntries)
         }
     }
 
@@ -112,16 +112,16 @@ extension MainViewController {
     // MARK: Networking
     private func getMain() {
         print("💸 getMain called")
-        NetworkService.shared.main.getMain() { result in
+        NetworkService.shared.main.getMain() { [self] result in
             switch result {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
                 print("🎯 getMain success")
-                self.mainCardCollectionView.todayEntries = data.today.entries
-                self.mainGalleryCollectionView.totalEntries = data.firstPage.entries
-                self.mainCardCollectionView.cardCollectionView.reloadData()
-                self.mainGalleryCollectionView.galleryCollectionView.reloadData()
-                self.hideLoadingView()
+                mainCardCollectionView.todayEntries = data.today.entries
+                mainGalleryCollectionView.totalEntries = data.firstPage.entries
+                mainCardCollectionView.cardCollectionView.reloadData()
+                mainGalleryCollectionView.galleryCollectionView.reloadData()
+                hideLoadingView()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }

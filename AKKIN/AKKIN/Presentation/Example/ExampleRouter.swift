@@ -38,8 +38,9 @@ final class ExampleRouter {
         viewController?.navigationController?.pushViewController(inputViewController, animated: true)
     }
 
-    func presentCardDetailViewController(selectedEntries: [MainEntries]) {
+    func presentCardDetailViewController(id: Int, selectedEntries: [MainEntries]) {
         let cardDetailViewController = CardDetailViewController()
+        cardDetailViewController.id = id
         cardDetailViewController.selectedEntries = selectedEntries
 
         viewController?.navigationController?.pushViewController(cardDetailViewController, animated: true)
