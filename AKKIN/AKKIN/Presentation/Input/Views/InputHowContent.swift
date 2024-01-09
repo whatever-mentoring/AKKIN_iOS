@@ -30,8 +30,6 @@ class InputHowContent: BaseView, UITextFieldDelegate {
     override func configureSubviews() {
         super.configureSubviews()
 
-        howTextField.delegate = self
-
         addSubview(howStackView)
         howStackView.addArrangedSubview(howLabel)
         howStackView.addArrangedSubview(howTextField)
