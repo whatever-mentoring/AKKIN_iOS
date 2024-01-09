@@ -86,58 +86,22 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
         }
     }
 
-    // MARK: Keyboard
-    @objc func keyboardWillShow(_ sender: Notification) {
-        guard let keyboardFrame =
-                sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-                as? NSValue,
-              let currentTextField = UIResponder.currentResponder
-                as? UITextField else { return }
-        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
-        let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
-        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
-        if !isKeyboardVisible {
-            if textFieldBottomY > keyboardTopY {
-                let textFieldTopY = convertedTextFieldFrame.origin.y
-                let newFrame = textFieldTopY - keyboardTopY / 1.1
-                view.frame.origin.y -= newFrame
-                isKeyboardVisible = true
-            }
-        }
-    }
-
-    @objc func keyboardWillHide(_ sender: Notification) {
-        if view.frame.origin.y != 0 {
-            isKeyboardVisible = false
-            view.frame.origin.y = 0
-        }
-    }
-
-    private func setupKeyboardEvent() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil)
-    }
-
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
         setupKeyboardEvent()
+        setTextFieldDelegate()
         hideKeyboard()
+        router.viewController = self
+        view.backgroundColor = .akkinBG
+    }
+
+    private func setTextFieldDelegate() {
         inputSaveContent.contentTextField.delegate = self
         inputHowContent.howTextField.delegate = self
         inputCostContent.expectCostTextField.delegate = self
         inputCostContent.realCostTextField.delegate = self
-        router.viewController = self
-        view.backgroundColor = .akkinBG
     }
 
     // MARK: Layout
@@ -316,5 +280,47 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
                 print("pathErr")
             }
         }
+    }
+}
+
+extension InputViewController {
+    // MARK: Keyboard
+    @objc func keyboardWillShow(_ sender: Notification) {
+        guard let keyboardFrame =
+                sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                as? NSValue,
+              let currentTextField = UIResponder.currentResponder
+                as? UITextField else { return }
+        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
+        let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
+        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+        if !isKeyboardVisible {
+            if textFieldBottomY > keyboardTopY {
+                let textFieldTopY = convertedTextFieldFrame.origin.y
+                let newFrame = textFieldTopY - keyboardTopY / 1.1
+                view.frame.origin.y -= newFrame
+                isKeyboardVisible = true
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(_ sender: Notification) {
+        if view.frame.origin.y != 0 {
+            isKeyboardVisible = false
+            view.frame.origin.y = 0
+        }
+    }
+
+    private func setupKeyboardEvent() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil)
     }
 }
