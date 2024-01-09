@@ -102,8 +102,8 @@ class CardPatchViewController: BaseViewController, UITextFieldDelegate {
         inputDatePicker.dateTextField.text = "\(selectedEntries[0].year)" + " / " + "\(selectedEntries[0].month)" + " / " + "\(selectedEntries[0].day)"
         inputSaveContent.contentTextField.text = selectedEntries[0].saveContent
         inputHowContent.howTextField.text = selectedEntries[0].how
-        inputCostContent.expectCostTextField.text = "\(selectedEntries[0].expectCost.toPriceFormat)"
-        inputCostContent.realCostTextField.text = "\(selectedEntries[0].realCost.toPriceFormat)"
+        inputCostContent.expectCostTextField.text = selectedEntries[0].expectCost.toPriceFormat
+        inputCostContent.realCostTextField.text = selectedEntries[0].realCost.toPriceFormat
     }
 
     // MARK: Environment
@@ -140,8 +140,6 @@ class CardPatchViewController: BaseViewController, UITextFieldDelegate {
                 expectCost: selectedEntries[0].expectCost,
                 realCost: selectedEntries[0].realCost
             )
-
-            router.dismissViewController()
         }
 
         backButton.tap = { [weak self] in

@@ -65,8 +65,8 @@ class CardDetailViewController: BaseViewController {
         cardDetailView.savePriceLabel.text = (selectedEntries[0].expectCost - selectedEntries[0].realCost).toPriceFormat.toMoney
         cardDetailView.saveContentLabel.text = selectedEntries[0].saveContent.toSaveContent
         cardDetailView.howLabel.text = selectedEntries[0].how
-        cardDetailView.expectPriceLabel.text = "\(selectedEntries[0].expectCost.toPriceFormat)"
-        cardDetailView.realPriceLabel.text = "\(selectedEntries[0].realCost.toPriceFormat)"
+        cardDetailView.expectPriceLabel.text = selectedEntries[0].expectCost.toPriceFormat
+        cardDetailView.realPriceLabel.text = selectedEntries[0].realCost.toPriceFormat
         if selectedEntries[0].gulbiCategory == AkkinString.DINING {
             cardDetailView.diningButton.setTitleColor(.white, for: .normal)
             cardDetailView.diningButton.backgroundColor = .akkinGreen
