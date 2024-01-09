@@ -167,7 +167,7 @@ extension CardDetailViewController {
             case .success(let response):
                 guard let data = response as? MainResponse else { return }
                 print("🎯 getMain success in CardDetailViewController")
-                totalEntries = data.today.entries
+                totalEntries = data.firstPage.entries
                 selectedEntries = totalEntries.filter { $0.id == id }
                 setCardContent()
             case .requestErr(let errorResponse):
