@@ -1,5 +1,5 @@
 //
-//  InputViewController.swift
+//  CardInputViewController.swift
 //  AKKIN
 //
 //  Created by SJW on 2023/09/14.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InputViewController: BaseViewController, UITextFieldDelegate {
+class CardInputViewController: BaseViewController, UITextFieldDelegate {
 
     // MARK: Constants
     private var isKeyboardVisible = false
@@ -301,7 +301,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     }
 }
 
-extension InputViewController {
+extension CardInputViewController {
     // MARK: Keyboard
     @objc func keyboardWillShow(_ sender: Notification) {
         guard let keyboardFrame =

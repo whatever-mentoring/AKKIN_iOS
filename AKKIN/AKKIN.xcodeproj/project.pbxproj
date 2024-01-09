@@ -32,7 +32,7 @@
 		6B7427F82AB87A0100BA7E2C /* InputHowContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427F72AB87A0100BA7E2C /* InputHowContent.swift */; };
 		6B7427FA2AB87A0D00BA7E2C /* InputIconSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427F92AB87A0D00BA7E2C /* InputIconSelectedView.swift */; };
 		6B7427FC2AB87A3400BA7E2C /* InputSaveContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427FB2AB87A3400BA7E2C /* InputSaveContent.swift */; };
-		6B7427FE2AB87A5000BA7E2C /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427FD2AB87A5000BA7E2C /* InputViewController.swift */; };
+		6B7427FE2AB87A5000BA7E2C /* CardInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7427FD2AB87A5000BA7E2C /* CardInputViewController.swift */; };
 		6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7428092AB9580B00BA7E2C /* UIColor+Extension.swift */; };
 		6B742DA12AC02988002A784E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B742DA02AC02988002A784E /* UIViewController+Extension.swift */; };
 		9507C1B92AB626CB00E026F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507C1B82AB626CB00E026F9 /* MyPageView.swift */; };
@@ -129,7 +129,7 @@
 		6B7427F72AB87A0100BA7E2C /* InputHowContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHowContent.swift; sourceTree = "<group>"; };
 		6B7427F92AB87A0D00BA7E2C /* InputIconSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputIconSelectedView.swift; sourceTree = "<group>"; };
 		6B7427FB2AB87A3400BA7E2C /* InputSaveContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSaveContent.swift; sourceTree = "<group>"; };
-		6B7427FD2AB87A5000BA7E2C /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		6B7427FD2AB87A5000BA7E2C /* CardInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInputViewController.swift; sourceTree = "<group>"; };
 		6B7428002AB9578600BA7E2C /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
 		6B7428012AB9578600BA7E2C /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		6B7428022AB9578600BA7E2C /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
@@ -256,15 +256,15 @@
 			path = CardSave;
 			sourceTree = "<group>";
 		};
-		6B7427EF2AB8799A00BA7E2C /* Input */ = {
+		6B7427EF2AB8799A00BA7E2C /* CardInput */ = {
 			isa = PBXGroup;
 			children = (
 				6B7427F02AB879A200BA7E2C /* Views */,
-				6B7427FD2AB87A5000BA7E2C /* InputViewController.swift */,
+				6B7427FD2AB87A5000BA7E2C /* CardInputViewController.swift */,
 				6B117F6E2ABE6513000B03F7 /* CategoryButton.swift */,
 				6B117F6C2ABD0E74000B03F7 /* IconButton.swift */,
 			);
-			path = Input;
+			path = CardInput;
 			sourceTree = "<group>";
 		};
 		6B7427F02AB879A200BA7E2C /* Views */ = {
@@ -435,6 +435,17 @@
 			path = Gone;
 			sourceTree = "<group>";
 		};
+		95D004442B4D4512009D4DF3 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				6B7427EF2AB8799A00BA7E2C /* CardInput */,
+				6B7427DE2AB8787000BA7E2C /* CardSave */,
+				951261C82AC1FE380012B5F9 /* CardDetail */,
+				951261D12AC21D0A0012B5F9 /* CardPatch */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
 		95E535A42AB1910900FA2492 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,10 +517,7 @@
 				95E535CE2AB492E500FA2492 /* Splash */,
 				951261612ABD96FB0012B5F9 /* Login */,
 				95E535A42AB1910900FA2492 /* Main */,
-				6B7427EF2AB8799A00BA7E2C /* Input */,
-				6B7427DE2AB8787000BA7E2C /* CardSave */,
-				951261C82AC1FE380012B5F9 /* CardDetail */,
-				951261D12AC21D0A0012B5F9 /* CardPatch */,
+				95D004442B4D4512009D4DF3 /* Card */,
 				9507C1B72AB626C100E026F9 /* MyPage */,
 				BC94AD4C2AA61C9600A77052 /* Example */,
 				95B10FB72B3326CD005319F6 /* Gone */,
@@ -753,7 +761,7 @@
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
 				951261A22AC061560012B5F9 /* NetworkService.swift in Sources */,
 				6B5B83972AC1EE4800CD0AFC /* ErrorResponse.swift in Sources */,
-				6B7427FE2AB87A5000BA7E2C /* InputViewController.swift in Sources */,
+				6B7427FE2AB87A5000BA7E2C /* CardInputViewController.swift in Sources */,
 				BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */,
 				951261652ABD97100012B5F9 /* LoginView.swift in Sources */,
 				951261B22AC1A8890012B5F9 /* WeeklyResponse.swift in Sources */,

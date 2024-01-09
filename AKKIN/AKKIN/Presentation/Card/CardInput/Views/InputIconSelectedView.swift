@@ -28,11 +28,11 @@ enum Icon: CaseIterable {
 
     var imageString: String {
         switch self {
-        case .iconThemeProfile1: return "icon_1"
-        case .iconThemeProfile2: return "icon_2"
-        case .iconThemeProfile3: return "icon_3"
-        case .iconThemeProfile4: return "icon_4"
-        case .iconThemeProfile5: return "icon_5"
+        case .iconThemeProfile1: return "image_1"
+        case .iconThemeProfile2: return "image_2"
+        case .iconThemeProfile3: return "image_3"
+        case .iconThemeProfile4: return "image_4"
+        case .iconThemeProfile5: return "image_5"
         case .iconThemeProfile6: return "icon_6"
         }
     }
