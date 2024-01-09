@@ -73,17 +73,27 @@ class CardDetailViewController: BaseViewController {
         cardDetailView.howLabel.text = selectedEntries[0].how
         cardDetailView.expectPriceLabel.text = selectedEntries[0].expectCost.toPriceFormat
         cardDetailView.realPriceLabel.text = selectedEntries[0].realCost.toPriceFormat
+
+        cardDetailView.diningButton.setTitleColor(.akkinBlack, for: .normal)
+        cardDetailView.diningButton.backgroundColor = .akkinWhite
+        cardDetailView.trafficButton.setTitleColor(.akkinBlack, for: .normal)
+        cardDetailView.trafficButton.backgroundColor = .akkinWhite
+        cardDetailView.shoppingButton.setTitleColor(.akkinBlack, for: .normal)
+        cardDetailView.shoppingButton.backgroundColor = .akkinWhite
+        cardDetailView.etcButton.setTitleColor(.akkinBlack, for: .normal)
+        cardDetailView.etcButton.backgroundColor = .akkinWhite
+
         if selectedEntries[0].gulbiCategory == AkkinString.DINING {
-            cardDetailView.diningButton.setTitleColor(.white, for: .normal)
+            cardDetailView.diningButton.setTitleColor(.akkinWhite, for: .normal)
             cardDetailView.diningButton.backgroundColor = .akkinGreen
         } else if selectedEntries[0].gulbiCategory == AkkinString.TRAFFIC {
-            cardDetailView.trafficButton.setTitleColor(.white, for: .normal)
+            cardDetailView.trafficButton.setTitleColor(.akkinWhite, for: .normal)
             cardDetailView.trafficButton.backgroundColor = .akkinGreen
         } else if selectedEntries[0].gulbiCategory == AkkinString.SHOPPING {
-            cardDetailView.shoppingButton.setTitleColor(.white, for: .normal)
+            cardDetailView.shoppingButton.setTitleColor(.akkinWhite, for: .normal)
             cardDetailView.shoppingButton.backgroundColor = .akkinGreen
         } else if selectedEntries[0].gulbiCategory == AkkinString.ETC {
-            cardDetailView.etcButton.setTitleColor(.white, for: .normal)
+            cardDetailView.etcButton.setTitleColor(.akkinWhite, for: .normal)
             cardDetailView.etcButton.backgroundColor = .akkinGreen
         } else {
             print("category is nil" + "\(selectedEntries[0].gulbiCategory)")
