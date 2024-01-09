@@ -7,7 +7,6 @@
 
 import UIKit
 
-// 현재 응답받는 UI를 알아내기 위해 사용 (textfield, textview 등)
 extension UIResponder {
     
     private struct Static {

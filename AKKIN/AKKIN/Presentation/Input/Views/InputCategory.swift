@@ -85,8 +85,8 @@ final class InputCategory: BaseView {
             categorySelectedStackView.addArrangedSubview(button)
             button.addAction(UIAction(handler: { [weak self] _ in
                 guard let self = self else { return }
-                self.onCategoryTapped?(button.category)
-                self.setHighlightedState(button.category)
+                onCategoryTapped?(button.category)
+                setHighlightedState(button.category)
             }), for: .touchUpInside)
         }
     }
