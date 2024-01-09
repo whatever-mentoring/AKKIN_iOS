@@ -30,8 +30,6 @@ class InputSaveContent: BaseView, UITextFieldDelegate {
     override func configureSubviews() {
         super.configureSubviews()
 
-        contentTextField.delegate = self
-
         addSubview(contentStackView)
         contentStackView.addArrangedSubview(contentLabel)
         contentStackView.addArrangedSubview(contentTextField)
