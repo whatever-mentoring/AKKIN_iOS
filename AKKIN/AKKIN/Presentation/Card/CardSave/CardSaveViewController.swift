@@ -51,12 +51,12 @@ class CardSaveViewController: BaseViewController {
 
         view.addSubview(cardSavePageView)
 
-        cardSavePageView.tap = { [weak self] in
+        cardSavePageView.tapHome = { [weak self] in
             guard let self else { return }
             router.popToRootViewController()
         }
 
-        cardSavePageView.tapImage = { [weak self] in
+        cardSavePageView.tapSave = { [weak self] in
             guard let self else { return };
             saveCardAsImage()
         }
@@ -79,7 +79,7 @@ class CardSaveViewController: BaseViewController {
                 print("이미지 저장 실패: \(error.localizedDescription)")
             } else {
                 DispatchQueue.main.async {
-                    self.view.makeToast(AkkinString.saveSuccessToast, duration: 1.0, position: .bottom)
+                    self.view.makeToast(AkkinString.saveSuccessToast, duration: 1.3, position: .bottom)
                 }
             }
         }

@@ -23,7 +23,7 @@ final class CardSavePageView: BaseView {
         $0.setImage(AkkinButton.homeButton, for: .normal)
     }
 
-    private let cardTopText = UILabel().then {
+    private let cardCompleteLabel = UILabel().then {
         $0.text = AkkinString.completeAkkin
         $0.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         $0.font = .systemFont(ofSize: 24, weight: .semibold)
@@ -54,20 +54,20 @@ final class CardSavePageView: BaseView {
     }
 
     // MARK: Properties
-    var tap: (() -> Void)?
-    var tapImage: (() -> Void)?
+    var tapHome: (() -> Void)?
+    var tapSave: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
         addSubview(homeButton)
-        addSubview(cardTopText)
+        addSubview(cardCompleteLabel)
         addSubview(cardSaveView)
         addSubview(imageSaveButton)
         addSubview(imageShareButton)
 
-        homeButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
-        imageSaveButton.addTarget(self, action: #selector(handleTapEvent), for: .touchUpInside)
+        homeButton.addTarget(self, action: #selector(handleTapHomeEvent), for: .touchUpInside)
+        imageSaveButton.addTarget(self, action: #selector(handleTapSaveEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -79,7 +79,7 @@ final class CardSavePageView: BaseView {
             $0.leading.equalToSuperview().offset(18)
         }
 
-        cardTopText.snp.makeConstraints {
+        cardCompleteLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).inset(40)
             $0.leading.equalToSuperview().offset(24)
         }
@@ -107,12 +107,12 @@ final class CardSavePageView: BaseView {
     }
 
     // MARK: Event
-    @objc private func handleAddEvent() {
-        tap?()
+    @objc private func handleTapHomeEvent() {
+        tapHome?()
     }
 
-    @objc private func handleTapEvent() {
-        tapImage?()
+    @objc private func handleTapSaveEvent() {
+        tapSave?()
     }
 
     func saveCardViewAsImage() -> UIImage {

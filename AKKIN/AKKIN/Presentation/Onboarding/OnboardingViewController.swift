@@ -29,7 +29,7 @@ final class OnboardingViewController: BaseViewController {
     private let router = ExampleRouter()
 
     // MARK: Event
-    @objc private func handleAddEvent() {
+    @objc private func handleLoginEvent() {
         router.presentLoginViewController()
     }
 
@@ -82,8 +82,8 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as? OnboardingCollectionViewCell else { return UICollectionViewCell() }
         cell.onboardingImageView.image = imageArr[indexPath.row]
-        cell.startButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
-        cell.skipButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
+        cell.startButton.addTarget(self, action: #selector(handleLoginEvent), for: .touchUpInside)
+        cell.skipButton.addTarget(self, action: #selector(handleLoginEvent), for: .touchUpInside)
 
         if indexPath.row == 2 {
             cell.startButton.isHidden = false
