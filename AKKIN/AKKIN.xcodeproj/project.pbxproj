@@ -75,6 +75,7 @@
 		95B10FC12B33684E005319F6 /* MainGalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FC02B33684E005319F6 /* MainGalleryCollectionView.swift */; };
 		95B10FC62B34C3FF005319F6 /* MyPageTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FC52B34C3FF005319F6 /* MyPageTableViewFooter.swift */; };
 		95D004432B4D0160009D4DF3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D004422B4D0160009D4DF3 /* String+Extension.swift */; };
+		95D004472B4EB456009D4DF3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 95D004462B4EB456009D4DF3 /* Kingfisher */; };
 		95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */; };
 		95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */; };
 		95E535A02AB18F1700FA2492 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5359F2AB18F1700FA2492 /* MainViewController.swift */; };
@@ -219,6 +220,7 @@
 				BC94AD452AA619FC00A77052 /* SnapKit in Frameworks */,
 				BC94AD3F2AA619CE00A77052 /* Moya in Frameworks */,
 				BC94AD422AA619DC00A77052 /* Then in Frameworks */,
+				95D004472B4EB456009D4DF3 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +636,7 @@
 				BC94AD412AA619DC00A77052 /* Then */,
 				BC94AD442AA619FC00A77052 /* SnapKit */,
 				951261D92AC2A9380012B5F9 /* Toast */,
+				95D004462B4EB456009D4DF3 /* Kingfisher */,
 			);
 			productName = AKKIN;
 			productReference = BC94AD1D2AA5FE3A00A77052 /* AKKIN.app */;
@@ -668,6 +671,7 @@
 				BC94AD402AA619DC00A77052 /* XCRemoteSwiftPackageReference "Then" */,
 				BC94AD432AA619FC00A77052 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				951261D82AC2A9380012B5F9 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				95D004452B4EB456009D4DF3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = BC94AD1E2AA5FE3A00A77052 /* Products */;
 			projectDirPath = "";
@@ -1002,6 +1006,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		95D004452B4EB456009D4DF3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		BC94AD3D2AA619CE00A77052 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -1033,6 +1045,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 951261D82AC2A9380012B5F9 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		95D004462B4EB456009D4DF3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95D004452B4EB456009D4DF3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		BC94AD3E2AA619CE00A77052 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
