@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class CardInputViewController: BaseViewController, UITextFieldDelegate {
 
@@ -24,7 +23,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
 
     private let inputIconSelectedView = InputIconSelectedView()
 
-    private let cardImageContainerView = UIView().then {
+    private let cardImageContainerView = BaseButton().then {
         $0.backgroundColor = .akkinWhite
         $0.layer.cornerRadius = 8
         $0.layer.borderWidth = 1
@@ -74,6 +73,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+
         inputDatePicker.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         scrollView.addSubview(inputIconSelectedView)
@@ -101,7 +101,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
         UIBarButtonItem(customView: backButton)
     }
 
-    func tapIcon(_ icon: Icon) {
+    private func tapIcon(_ icon: Icon) {
         switch icon {
         case .iconThemeProfile1:
             cardImageView.image = AkkinImage.akkinImage1
@@ -274,10 +274,25 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
             }
         }
 
+        cardImageContainerView.addTarget(self, action: #selector(handleUserImageAddEvent), for: .touchUpInside)
+
         inputCategory.onCategoryTapped = { [weak self] category in
             guard self != nil else {
-                return }
+                return
+            }
         }
+    }
+
+    // MARK: Event
+    @objc func handleUserImageAddEvent() {
+        if (userGuideImageView.isHidden == false &&
+            userImageInputLabel.isHidden == false) {
+            presentAlbum()
+        }
+    }
+
+    private func presentAlbum() {
+        print("presentAlbum")
     }
 
     private func presentCardSaveViewControllerWithArgs(
