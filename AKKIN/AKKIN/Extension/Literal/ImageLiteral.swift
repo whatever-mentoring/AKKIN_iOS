@@ -15,14 +15,16 @@ public enum AkkinImage {
     public static var akkinIcon3: UIImage { .load(name: "icon_3") }
     public static var akkinIcon4: UIImage { .load(name: "icon_4") }
     public static var akkinIcon5: UIImage { .load(name: "icon_5") }
-    public static var akkinIcon6: UIImage { .load(name: "icon_6") }
-    
+    public static var userIcon: UIImage { .load(name: "icon_6") }
+    public static var userIconSelected: UIImage { .load(name: "icon_6_selected") }
+
     public static var akkinImage1: UIImage { .load(name: "image_1")}
     public static var akkinImage2: UIImage { .load(name: "image_2")}
     public static var akkinImage3: UIImage { .load(name: "image_3")}
     public static var akkinImage4: UIImage { .load(name: "image_4")}
     public static var akkinImage5: UIImage { .load(name: "image_5")}
-    
+    public static var userImageGuide: UIImage { .load(name: "userImageGuide") }
+
     public static var akkinlogin: UIImage { .load(name: "login")}
     public static var akkinOnboarding1: UIImage { .load(name: "onboarding1")}
     public static var akkinOnboarding2: UIImage { .load(name: "onboarding2")}
