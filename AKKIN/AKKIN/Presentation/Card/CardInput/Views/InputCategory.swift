@@ -44,8 +44,8 @@ final class InputCategory: BaseView {
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
 
-    private let categoryDescriptionLabel = UILabel().then {
-        $0.text = AkkinString.categoryDescription
+    private let categoryGuideLabel = UILabel().then {
+        $0.text = AkkinString.categoryGuide
         $0.font = .systemFont(ofSize: 12, weight: .regular)
         $0.textColor = .akkinGreen
     }
@@ -56,7 +56,7 @@ final class InputCategory: BaseView {
 
         addSubview(categoryStackView)
         categoryStackView.addArrangedSubview(categoryLabel)
-        categoryStackView.addArrangedSubview(categoryDescriptionLabel)
+        categoryStackView.addArrangedSubview(categoryGuideLabel)
         addSubview(categorySelectedStackView)
         iconButtonSetup()
     }
