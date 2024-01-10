@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Photos
 
-class CardInputViewController: BaseViewController, UITextFieldDelegate {
+class CardInputViewController: BaseViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: Constants
     private var isKeyboardVisible = false
@@ -22,6 +23,11 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
     }
 
     private let inputIconSelectedView = InputIconSelectedView()
+
+    private let imagePickerController = UIImagePickerController().then {
+        $0.sourceType = .photoLibrary
+        $0.modalPresentationStyle = .currentContext
+    }
 
     private let cardImageContainerView = BaseButton().then {
         $0.backgroundColor = .akkinWhite
@@ -43,15 +49,15 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
     }
 
     private let userImageInputLabel = UILabel().then {
-            $0.text = AkkinString.userImageInput
-            $0.textColor = UIColor.akkinGray2
-            $0.font = .systemFont(ofSize: 14, weight: .regular)
-            $0.numberOfLines = 0
-            $0.textAlignment = .center
-            $0.isHidden = true
-        }
+        $0.text = AkkinString.userImageInput
+        $0.textColor = UIColor.akkinGray2
+        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.isHidden = true
+    }
 
-    var userGuideImageView = UIImageView().then {
+    private var userGuideImageView = UIImageView().then {
         $0.image = AkkinImage.userImageGuide
         $0.isHidden = true
     }
@@ -76,6 +82,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
 
         inputDatePicker.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
+
         scrollView.addSubview(inputIconSelectedView)
         scrollView.addSubview(cardImageContainerView)
         scrollView.addSubview(inputDatePicker)
@@ -90,15 +97,14 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
         cardImageContainerView.addSubview(userGuideImageView)
         cardImageContainerView.addSubview(userImageInputLabel)
     }
-  
+
     // MARK: Environment
     private let router = ExampleRouter()
 
     // MARK: Properties
     private func setNavigationItem() {
         navigationItem.title = AkkinString.postGulbis
-        navigationItem.leftBarButtonItem =
-        UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
 
     private func tapIcon(_ icon: Icon) {
@@ -124,13 +130,14 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
 
         setNavigationItem()
         setupKeyboardEvent()
-        setTextFieldDelegate()
+        setDelegate()
         hideKeyboard()
         router.viewController = self
         view.backgroundColor = .akkinBG
     }
 
-    private func setTextFieldDelegate() {
+    private func setDelegate() {
+        imagePickerController.delegate = self
         inputSaveContent.contentTextField.delegate = self
         inputHowContent.howTextField.delegate = self
         inputCostContent.expectCostTextField.delegate = self
@@ -287,12 +294,40 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
     @objc func handleUserImageAddEvent() {
         if (userGuideImageView.isHidden == false &&
             userImageInputLabel.isHidden == false) {
-            presentAlbum()
+            PHPhotoLibrary.requestAuthorization( { [self] status in
+                switch status {
+                case .authorized:
+                    presentAlbum()
+                case .notDetermined:
+                    DispatchQueue.main.async {
+                        print("notDetermined")
+                    }
+                case .denied, .restricted:
+                    DispatchQueue.main.async {
+                        print("denied/restricted")
+                    }
+                default:
+                    break
+                }
+            })
         }
     }
 
     private func presentAlbum() {
         print("presentAlbum")
+        DispatchQueue.main.async {
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        }
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            cardImageView.image = image
+            userGuideImageView.isHidden = true
+            userImageInputLabel.isHidden = true
+        }
+
+        dismiss(animated: true, completion: nil)
     }
 
     private func presentCardSaveViewControllerWithArgs(
