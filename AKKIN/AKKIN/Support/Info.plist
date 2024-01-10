@@ -8,6 +8,8 @@
 	</array>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>사진을 저장하기 위해 사진 앨범에 접근할 권한이 필요합니다</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&quot;아낀거지&quot;가 사진을 촬영하여 게시글에 첨부하는 기능의 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>UIUserInterfaceStyle</key>
