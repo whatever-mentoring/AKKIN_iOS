@@ -22,7 +22,7 @@ enum Icon: CaseIterable {
         case .iconThemeProfile3: return AkkinImage.akkinIcon3
         case .iconThemeProfile4: return AkkinImage.akkinIcon4 
         case .iconThemeProfile5: return AkkinImage.akkinIcon5 
-        case .iconThemeProfile6: return AkkinImage.akkinIcon6
+        case .iconThemeProfile6: return AkkinImage.userIcon
         }
     }
 

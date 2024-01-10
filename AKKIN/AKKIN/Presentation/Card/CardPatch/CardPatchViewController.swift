@@ -230,7 +230,7 @@ class CardPatchViewController: BaseViewController, UITextFieldDelegate {
         case .iconThemeProfile5:
             cardImageView.image = AkkinImage.akkinImage5
         case .iconThemeProfile6:
-            cardImageView.image = AkkinImage.akkinIcon6
+            cardImageView.image = AkkinImage.userImageGuide
         }
     }
 

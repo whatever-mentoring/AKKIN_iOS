@@ -34,8 +34,8 @@ final class ExampleRouter {
     }
 
     func presentInputViewController() {
-        let inputViewController = InputViewController()
-        viewController?.navigationController?.pushViewController(inputViewController, animated: true)
+        let cardInputViewController = CardInputViewController()
+        viewController?.navigationController?.pushViewController(cardInputViewController, animated: true)
     }
 
     func presentCardDetailViewController(id: Int, selectedEntries: [MainEntries]) {

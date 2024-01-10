@@ -33,7 +33,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
     }
     private let imageInputLabel = UILabel().then {
         $0.textColor = UIColor.akkinGray2
-        $0.text = AkkinString.categorySelectedPhoto
+        $0.text = AkkinString.imageInputGuide
         $0.numberOfLines = 0
         $0.layer.opacity = 1
         $0.textAlignment = .center
@@ -95,7 +95,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
         case .iconThemeProfile5:
             imageView.image = AkkinImage.akkinImage5
         case .iconThemeProfile6:
-            imageView.image = AkkinImage.akkinIcon6
+            imageView.image = AkkinImage.userImageGuide
         }
     }
 
