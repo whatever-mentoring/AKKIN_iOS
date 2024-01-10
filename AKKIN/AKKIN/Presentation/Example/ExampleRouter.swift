@@ -11,7 +11,7 @@ final class ExampleRouter {
     // MARK: Properties
     weak var viewController: UIViewController?
     
-    // MARK: Routing
+    // MARK: Routing - present
     func presentSomeViewController() {
         let someViewController = UIViewController()
         someViewController.view.backgroundColor = .white
@@ -36,6 +36,12 @@ final class ExampleRouter {
     func presentInputViewController() {
         let cardInputViewController = CardInputViewController()
         viewController?.navigationController?.pushViewController(cardInputViewController, animated: true)
+    }
+
+    func presentCardSaveViewController() {
+        let cardSaveViewController = CardSaveViewController()
+        cardSaveViewController.modalPresentationStyle = .fullScreen
+        viewController?.present(cardSaveViewController, animated: true)
     }
 
     func presentCardDetailViewController(id: Int, selectedEntries: [MainEntries]) {
@@ -63,22 +69,18 @@ final class ExampleRouter {
         viewController?.navigationController?.pushViewController(monthlyStatsViewController, animated: true)
     }
 
-    func dismissViewController() {
-        viewController?.navigationController?.popViewController(animated: true)
-    }
-        
-    func presentCardSaveViewController() {
-        let cardSaveViewController = CardSaveViewController()
-        cardSaveViewController.modalPresentationStyle = .fullScreen
-        viewController?.present(cardSaveViewController, animated: true)
-    }
-
+    // MARK: Routing - dismiss
     func dismissCardSaveViewController() {
         viewController?.dismiss(animated: true, completion: {
             self.viewController?.navigationController?.popToRootViewController(animated: true)
         })
     }
 
+    func dismissViewController() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
+
+    // MARK: Routing - pop
     func popToRootViewController() {
         viewController?.dismiss(animated: true, completion: {
             if let rootViewController =
