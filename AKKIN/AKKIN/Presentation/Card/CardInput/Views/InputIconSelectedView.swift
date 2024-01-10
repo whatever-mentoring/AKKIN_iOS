@@ -63,10 +63,13 @@ final class InputIconSelectedView: BaseView {
 
     // MARK: Properties
     private func iconButtonSetup() {
-        self.buttons = Icon.allCases.map { icon in
+        buttons = Icon.allCases.map { icon in
             let button = IconButton(icon: icon)
             button.layer.cornerRadius = 8
             button.setImage(icon.image, for: .normal)
+            if icon == Icon.iconThemeProfile6 {
+                button.setImage(AkkinImage.userIconSelected, for: .selected)
+            }
             button.imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
             button.backgroundColor = .akkinWhite
             button.layer.borderWidth = 1
@@ -92,11 +95,14 @@ final class InputIconSelectedView: BaseView {
         for button in buttons {
             if button.icon == icon {
                 selectedIcon = "\(icon.imageString)"
-                button.layer.borderWidth = 1
-                button.layer.borderColor = UIColor.akkinGreen.cgColor
-            } else {
                 button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.akkinGray3.cgColor}
+                button.layer.borderColor = UIColor.akkinGreen.cgColor
+                button.isSelected = true
+            } else {
+                button.layer.borderWidth = 1
+                button.layer.borderColor = UIColor.akkinGray3.cgColor
+                button.isSelected = false
+            }
         }
     }
 

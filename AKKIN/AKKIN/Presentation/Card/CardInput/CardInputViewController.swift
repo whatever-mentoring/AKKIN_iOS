@@ -24,20 +24,37 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
 
     private let inputIconSelectedView = InputIconSelectedView()
 
-    private let imageView = UIImageView().then {
+    private let cardImageContainerView = UIView().then {
         $0.backgroundColor = .akkinWhite
         $0.layer.cornerRadius = 8
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.akkinGray3.cgColor
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    private let imageInputLabel = UILabel().then {
+
+    private let cardImageView = UIImageView()
+
+    private let imageInputGuideLabel = UILabel().then {
         $0.textColor = UIColor.akkinGray2
         $0.text = AkkinString.imageInputGuide
         $0.numberOfLines = 0
         $0.layer.opacity = 1
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 14, weight: .regular)
+    }
+
+    private let userImageInputLabel = UILabel().then {
+            $0.text = AkkinString.userImageInput
+            $0.textColor = UIColor.akkinGray2
+            $0.font = .systemFont(ofSize: 14, weight: .regular)
+            $0.numberOfLines = 0
+            $0.textAlignment = .center
+            $0.isHidden = true
+        }
+
+    var userGuideImageView = UIImageView().then {
+        $0.image = AkkinImage.userImageGuide
+        $0.isHidden = true
     }
 
     private let inputDatePicker = InputDatePicker()
@@ -48,8 +65,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
 
     private let makeCardButton = BaseButton().then {
         $0.setTitle(AkkinString.makeGulbis, for: .normal)
-        $0.titleLabel?.font =
-            .systemFont(ofSize: 20, weight: .semibold)
+        $0.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .akkinGreen
         $0.layer.cornerRadius = 16
@@ -58,18 +74,21 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        inputDatePicker
-            .translatesAutoresizingMaskIntoConstraints = false
+        inputDatePicker.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         scrollView.addSubview(inputIconSelectedView)
-        scrollView.addSubview(imageView)
+        scrollView.addSubview(cardImageContainerView)
         scrollView.addSubview(inputDatePicker)
         scrollView.addSubview(inputCategory)
         scrollView.addSubview(inputSaveContent)
         scrollView.addSubview(inputHowContent)
         scrollView.addSubview(inputCostContent)
         scrollView.addSubview(makeCardButton)
-        imageView.addSubview(imageInputLabel)
+
+        cardImageContainerView.addSubview(imageInputGuideLabel)
+        cardImageContainerView.addSubview(cardImageView)
+        cardImageContainerView.addSubview(userGuideImageView)
+        cardImageContainerView.addSubview(userImageInputLabel)
     }
   
     // MARK: Environment
@@ -85,23 +104,24 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
     func tapIcon(_ icon: Icon) {
         switch icon {
         case .iconThemeProfile1:
-            imageView.image = AkkinImage.akkinImage1
+            cardImageView.image = AkkinImage.akkinImage1
         case .iconThemeProfile2:
-            imageView.image = AkkinImage.akkinImage2
+            cardImageView.image = AkkinImage.akkinImage2
         case .iconThemeProfile3:
-            imageView.image = AkkinImage.akkinImage3
+            cardImageView.image = AkkinImage.akkinImage3
         case .iconThemeProfile4:
-            imageView.image = AkkinImage.akkinImage4
+            cardImageView.image = AkkinImage.akkinImage4
         case .iconThemeProfile5:
-            imageView.image = AkkinImage.akkinImage5
+            cardImageView.image = AkkinImage.akkinImage5
         case .iconThemeProfile6:
-            imageView.image = AkkinImage.userImageGuide
+            cardImageView.image = nil
         }
     }
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setNavigationItem()
         setupKeyboardEvent()
         setTextFieldDelegate()
@@ -132,18 +152,34 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
             $0.width.equalToSuperview()
         }
 
-        imageView.snp.makeConstraints {
-            $0.width.height.equalTo(172)
+        cardImageContainerView.snp.makeConstraints {
             $0.top.equalTo(inputIconSelectedView.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(180)
         }
 
-        imageInputLabel.snp.makeConstraints {
+        cardImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(10)
+        }
+
+        imageInputGuideLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
 
+        userGuideImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(47)
+            $0.leading.equalToSuperview().inset(69)
+            $0.width.equalTo(41)
+            $0.height.equalTo(39)
+        }
+
+        userImageInputLabel.snp.makeConstraints {
+            $0.top.equalTo(userGuideImageView.snp.bottom).offset(8)
+            $0.centerX.equalToSuperview()
+        }
+
         inputDatePicker.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(24)
+            $0.top.equalTo(cardImageContainerView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(46)
             $0.height.equalTo(47)
             $0.width.equalTo(294)
@@ -179,9 +215,9 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
 
         makeCardButton.snp.makeConstraints {
             $0.top.equalTo(inputCostContent.snp.bottom).offset(28)
+            $0.centerX.equalToSuperview()
             $0.width.equalTo(342)
             $0.height.equalTo(60)
-            $0.centerX.equalToSuperview()
         }
     }
 
@@ -205,7 +241,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
                 selectedYear: inputDatePicker.selectedYear,
                 selectedMonth: inputDatePicker.selectedMonth,
                 selectedDay: inputDatePicker.selectedDay,
-                selectedImage: imageView.image,
+                selectedImage: cardImageView.image,
                 selectedSaveContent: inputSaveContent.contentTextField.text,
                 selectedHow: inputHowContent.howTextField.text,
                 selectedExpectCost: Int(inputCostContent.expectCostTextField.text ?? "0"),
@@ -223,7 +259,19 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
             guard let self else {
                 return }
             tapIcon(icon)
-            imageInputLabel.layer.opacity = 0
+            imageInputGuideLabel.isHidden = true
+            switch icon {
+            case .iconThemeProfile1,
+                    .iconThemeProfile2,
+                    .iconThemeProfile3,
+                    .iconThemeProfile4,
+                    .iconThemeProfile5:
+                userGuideImageView.isHidden = true
+                userImageInputLabel.isHidden = true
+            case .iconThemeProfile6:
+                userGuideImageView.isHidden = false
+                userImageInputLabel.isHidden = false
+            }
         }
 
         inputCategory.onCategoryTapped = { [weak self] category in
@@ -248,7 +296,7 @@ class CardInputViewController: BaseViewController, UITextFieldDelegate {
         cardSaveiewController.selectedYear = selectedYear
         cardSaveiewController.selectedMonth = selectedMonth
         cardSaveiewController.selectedDay = selectedDay
-        cardSaveiewController.selectedImage = imageView.image
+        cardSaveiewController.selectedImage = cardImageView.image
         cardSaveiewController.selectedSaveContent = selectedSaveContent
         cardSaveiewController.selectedHow = selectedHow
         cardSaveiewController.selectedExpectCost = selectedExpectCost
