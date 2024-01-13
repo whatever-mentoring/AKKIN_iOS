@@ -8,6 +8,9 @@
 import UIKit
 import Photos
 import Toast
+import KakaoSDKShare
+import KakaoSDKTemplate
+import KakaoSDKCommon
 
 class CardSaveViewController: BaseViewController {
 
@@ -59,6 +62,43 @@ class CardSaveViewController: BaseViewController {
         cardSavePageView.tapImage = { [weak self] in
             guard let self else { return };
             saveCardAsImage()
+        }
+
+        cardSavePageView.tapShareButton = { [weak self] in
+            guard self != nil else { return };
+            if ShareApi.isKakaoTalkSharingAvailable(){
+                let link = Link(webUrl: URL(string:"https://www.naver.com/"),
+                mobileWebUrl: URL(string:"https://www.naver.com/"))
+
+                let appLink = Link(iosExecutionParams: ["second": "vvv"])
+
+                let button = Button(title: "앱에서 보기", link: appLink)
+
+                let content = Content(title: "타이틀 문구",
+                                    imageUrl: URL(string:"http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png")!,
+                                    description: "#케익 #딸기 #삼평동 #카페 #분위기 #소개팅",
+                                    link: appLink)
+
+                let template = FeedTemplate(content: content, buttons: [button])
+
+                if let templateJsonData = (try? SdkJSONEncoder.custom.encode(template)) {
+                    if let templateJsonObject = SdkUtils.toJsonObject(templateJsonData) {
+                        ShareApi.shared.shareDefault(templateObject:templateJsonObject) {(linkResult, error) in
+                            if let error = error {
+                                print("error : \(error)")
+                            }
+                            else {
+                                print("defaultLink(templateObject:templateJsonObject) success.")
+                                guard let linkResult = linkResult else { return }
+                                UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                print("카카오톡 미설치")
+            }
         }
     }
 
