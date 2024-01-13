@@ -56,6 +56,7 @@ final class CardSavePageView: BaseView {
     // MARK: Properties
     var tap: (() -> Void)?
     var tapImage: (() -> Void)?
+    var tapShareButton: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -68,6 +69,7 @@ final class CardSavePageView: BaseView {
 
         homeButton.addTarget(self, action: #selector(handleAddEvent), for: .touchUpInside)
         imageSaveButton.addTarget(self, action: #selector(handleTapEvent), for: .touchUpInside)
+        imageShareButton.addTarget(self, action: #selector(handleTapShareEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -113,6 +115,10 @@ final class CardSavePageView: BaseView {
 
     @objc private func handleTapEvent() {
         tapImage?()
+    }
+
+    @objc private func handleTapShareEvent() {
+        tapShareButton?()
     }
 
     func saveCardViewAsImage() -> UIImage {
