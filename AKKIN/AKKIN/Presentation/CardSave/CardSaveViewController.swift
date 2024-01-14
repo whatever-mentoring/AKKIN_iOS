@@ -66,7 +66,7 @@ class CardSaveViewController: BaseViewController {
 
         cardSavePageView.tapShareButton = { [weak self] in
             guard let self else { return };
-            sharedTextTemplate()
+            sharedTextTemplate(selectedYear: selectedYear, selectedMonth: selectedMonth, selectedDay: selectedDay, selectedImage: selectedImage, selectedSaveContent: selectedSaveContent, selectedHow: selectedHow, selectedExpectCost: selectedExpectCost, selectedRealCost: selectedRealCost)
         }
     }
 
@@ -79,40 +79,55 @@ class CardSaveViewController: BaseViewController {
         }
     }
 
-    func sharedTextTemplate() {
-        if ShareApi.isKakaoTalkSharingAvailable() {
-//                let link = Link(webUrl: URL(string:"https://www.naver.com/"),
-//                mobileWebUrl: URL(string:"https://www.naver.com/"))
+    func sharedTextTemplate(
+        selectedYear: Int?,
+        selectedMonth: Int?,
+        selectedDay: Int?,
+        selectedImage: UIImage?,
+        selectedSaveContent: String?,
+        selectedHow: String?,
+        selectedExpectCost: Int?,
+        selectedRealCost: Int?) {
+            if let year = selectedYear,
+               let month = selectedMonth,
+               let day = selectedDay,
+               let image = selectedImage,
+               let saveContent = selectedSaveContent,
+               let how = selectedHow,
+               let expectCost = selectedExpectCost,
+               let realCost = selectedRealCost
+            {
+                let title = "[\(how)]"
+                let script =  "\((expectCost - realCost).toPriceFormat.toMoney)원 아낌"
+                if ShareApi.isKakaoTalkSharingAvailable() {
+                    let appLink = Link(iosExecutionParams: ["second": "vvv"])
+                    let button = Button(title: "앱에서 보기", link: appLink)
+                    let content = Content(
+                        title: title,
+                        imageUrl: URL(string: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fwjfunfun%2Fphotos%2Fa.307233546109396%2F373916449441105%2F%3Ftype%3D3&psig=AOvVaw1f0tAuzSOX6cmdHMxK-k75&ust=1705321231841000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJDWq-Tu3IMDFQAAAAAdAAAAABAD")!,
+                        description: script,
+                        link: appLink)
+                    let template = FeedTemplate(content: content, buttons: [button])
 
-            let appLink = Link(iosExecutionParams: ["second": "vvv"])
-
-            let button = Button(title: "앱에서 보기", link: appLink)
-
-            let content = Content(title: "타이틀 문구",
-                                imageUrl: URL(string:"http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png")!,
-                                description: "#케익 #딸기 #삼평동 #카페 #분위기 #소개팅",
-                                link: appLink)
-
-            let template = FeedTemplate(content: content, buttons: [button])
-
-            if let templateJsonData = (try? SdkJSONEncoder.custom.encode(template)) {
-                if let templateJsonObject = SdkUtils.toJsonObject(templateJsonData) {
-                    ShareApi.shared.shareDefault(templateObject:templateJsonObject) {(linkResult, error) in
-                        if let error = error {
-                            print("error : \(error)")
-                        }
-                        else {
-                            print("defaultLink(templateObject:templateJsonObject) success.")
-                            guard let linkResult = linkResult else { return }
-                            UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
+                    if let templateJsonData = (try? SdkJSONEncoder.custom.encode(template)) {
+                        if let templateJsonObject = SdkUtils.toJsonObject(templateJsonData) {
+                            ShareApi.shared.shareDefault(templateObject:templateJsonObject) {(linkResult, error) in
+                                if let error = error {
+                                    print("error : \(error)")
+                                }
+                                else {
+                                    print("defaultLink(templateObject:templateJsonObject) success.")
+                                    guard let linkResult = linkResult else { return }
+                                    UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
+                                }
+                            }
                         }
                     }
                 }
+                else {
+                    print("카카오톡 미설치")
+                }
             }
-        }
-        else {
-            print("카카오톡 미설치")
-        }
     }
 
     func saveCardAsImage() {
